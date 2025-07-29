@@ -6,7 +6,7 @@ import SubscriptionPlanList from "./SubscriptionPlanList";
 import PeriodFilters from "./PeriodFilters";
 
 function SubscriptionPlans() {
-  const [subscriptionPlansOpen, setSubscriptionPlansOpen] = useState(false);
+  const [subscriptionPlansOpen, setSubscriptionPlansOpen] = useState(true);
   return (
     <Modal
       open={subscriptionPlansOpen}
