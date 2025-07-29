@@ -1,0 +1,14 @@
+<svg width="60" height="70" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M30 62.5V67.5H36.975C37.2218 67.5014 37.4635 67.4298 37.6696 67.2941C37.8758 67.1584 38.0371 66.9648 38.1334 66.7375C38.2296 66.5103 38.2564 66.2596 38.2105 66.0171C38.1645 65.7747 38.0478 65.5512 37.875 65.375L35 62.5H30Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M35 37.5L30 47.5V62.5H35L38.275 49.35C38.7964 47.26 38.7688 45.0708 38.195 42.9945C37.6212 40.9183 36.5206 39.0256 35 37.5Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M29.9999 62.5V67.5H23.0249C22.7781 67.5014 22.5364 67.4298 22.3303 67.2941C22.1242 67.1584 21.9628 66.9648 21.8666 66.7375C21.7703 66.5103 21.7435 66.2596 21.7895 66.0171C21.8354 65.7747 21.9522 65.5512 22.1249 65.375L24.9999 62.5H29.9999Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M21.7252 49.35L25.0002 62.5H30.0002V47.5L25.0002 37.5C23.4796 39.0256 22.379 40.9183 21.8052 42.9945C21.2314 45.0708 21.2038 47.26 21.7252 49.35Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M50 22.5H35V27.5H50V22.5Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M53.75 28.75C55.8211 28.75 57.5 27.0711 57.5 25C57.5 22.9289 55.8211 21.25 53.75 21.25C51.6789 21.25 50 22.9289 50 25C50 27.0711 51.6789 28.75 53.75 28.75Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M25 22.5H10V27.5H25V22.5Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M6.25 28.75C8.32107 28.75 10 27.0711 10 25C10 22.9289 8.32107 21.25 6.25 21.25C4.17893 21.25 2.5 22.9289 2.5 25C2.5 27.0711 4.17893 28.75 6.25 28.75Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M25 37.5L20 22.5H40L35 37.5H25Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M33.75 12.5H26.25V22.5H33.75V12.5Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M30 17.5C34.1421 17.5 37.5 14.1421 37.5 10C37.5 5.85786 34.1421 2.5 30 2.5C25.8579 2.5 22.5 5.85786 22.5 10C22.5 14.1421 25.8579 17.5 30 17.5Z" stroke="#3E1492" stroke-miterlimit="10"/>
+<path d="M25 37.5L30 47.5L35 37.5H25Z" fill="#EDEBF2" fill-opacity="0.25" stroke="#3E1492" stroke-miterlimit="10"/>
+</svg>
