@@ -31,7 +31,7 @@ function Modal({
   description,
   children,
   footer,
-  contentClassName = "max-w-full",
+  contentClassName,
   titleClassName,
   descriptionClassName,
   closeButtonClassname,
