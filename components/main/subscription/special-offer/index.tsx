@@ -5,7 +5,7 @@ import { useState } from "react";
 import Content from "./Content";
 
 function SpecialOffer() {
-  const [specialOfferOpen, setSpecialOfferOpen] = useState(false);
+  const [specialOfferOpen, setSpecialOfferOpen] = useState(true);
   return (
     <Modal
       open={specialOfferOpen}
