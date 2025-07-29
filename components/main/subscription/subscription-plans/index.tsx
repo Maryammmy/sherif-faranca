@@ -12,7 +12,7 @@ function SubscriptionPlans() {
       open={subscriptionPlansOpen}
       onClose={() => setSubscriptionPlansOpen(false)}
       title={<Header />}
-      contentClassName="lg:max-w-[900px]"
+      contentClassName="max-w-full lg:max-w-[900px]"
     >
       <div className="pt-1 sm:pt-6 space-y-5 sm:space-y-10 max-h-[70vh] overflow-y-auto">
         <PeriodFilters />
