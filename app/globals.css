@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin 'tailwind-scrollbar';
+@import "react-phone-input-2/lib/style.css";
+
 @custom-variant dark (&:is(.dark *));
 @theme {
   --color-primary: #3e1492;
