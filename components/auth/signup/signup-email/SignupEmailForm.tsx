@@ -26,6 +26,7 @@ export default function SignupEmailForm() {
   >(async (prevState, formData) => {
     const result = await signupAction(prevState, formData);
     if (result.message) {
+      console.log(result);
       if (result.success) {
         toast.success(result.message);
       } else {
