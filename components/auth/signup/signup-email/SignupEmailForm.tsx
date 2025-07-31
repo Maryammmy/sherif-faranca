@@ -1,65 +1,68 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useActionState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { Mail } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
-import { sendRegistrationAPI } from "@/services/otp";
-import { Mail } from "lucide-react";
-// import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { signupAction } from "@/actions/signup";
+import { SignupActionState } from "@/types/auth/signup";
+import Loader from "@/components/loader/Loader";
+import InputErrorMessage from "@/components/InputErrorMsg";
 
-type FormValues = {
-  email: string;
+const initialState: SignupActionState = {
+  success: false,
+  errors: {},
+  message: "",
 };
 
 export default function SignupEmailForm() {
-  // const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormValues>();
-
-  const onSubmit = async (data: FormValues) => {
-    try {
-      console.log(data);
-      const response = await sendRegistrationAPI(data);
-      console.log(response);
-      // router.push("/otp");
-    } catch (error) {
-      console.error("Error sending email:", error);
+  const router = useRouter();
+  const [state, formAction, isPending] = useActionState<
+    SignupActionState,
+    FormData
+  >(async (prevState, formData) => {
+    const result = await signupAction(prevState, formData);
+    if (result.message) {
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
     }
-  };
+    return result;
+  }, initialState);
+
+  useEffect(() => {
+    if (state.success) {
+      const timer = setTimeout(() => {
+        router.push("/otp");
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [state.success, router]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="py-5 space-y-5">
+    <form action={formAction} className="py-5 space-y-5">
       <div className="flex flex-col gap-1">
-        <Label className="text-secondary font-medium">Email</Label>
+        <Label>Email</Label>
         <div className="flex p-3 gap-1 items-center border border-gray-400 rounded-md">
           <Mail className="text-primary" />
-          <Input
-            className="flex-1 placeholder:text-gray-400"
-            placeholder="Email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                message: "Invalid email address",
-              },
-            })}
-          />
+          <Input name="email" className="w-full" placeholder="Email" />
         </div>
-        {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
+        {state.errors?.email && (
+          <InputErrorMessage msg={state.errors.email[0]} />
         )}
       </div>
 
       <Button
         type="submit"
-        className="w-full bg-primary text-white p-3 rounded-md font-medium cursor-pointer"
-        disabled={isSubmitting}
+        className="w-full bg-primary text-white p-3 rounded-md font-medium"
+        disabled={isPending}
       >
-        {isSubmitting ? "Sending..." : "Create new account"}
+        {isPending ? <Loader /> : "Create new account"}
       </Button>
     </form>
   );

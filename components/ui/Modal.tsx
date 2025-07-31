@@ -10,6 +10,7 @@ import {
 } from "../ui/dialog";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+// import { ScrollArea } from "./scroll-area";
 
 interface IProps {
   open: boolean;
@@ -39,6 +40,7 @@ function Modal({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className={contentClassName}>
+        {/* <ScrollArea className="min-h-full overflow-y-auto"> */}
         {title && (
           <DialogHeader>
             <CloseButtonModal closeButtonClassname={closeButtonClassname} />
@@ -52,6 +54,7 @@ function Modal({
         )}
         {children}
         {footer && <DialogFooter>{footer}</DialogFooter>}
+        {/* </ScrollArea> */}
       </DialogContent>
     </Dialog>
   );
