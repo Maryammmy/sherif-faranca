@@ -24,7 +24,7 @@ export async function signupAction(
   try {
     const response = await sendRegistrationAPI(parsed.data);
     console.log("API response:", response?.data?.message);
-    return { success: true, errors: {}, message: response?.data?.message };
+    return { success: true, errors: {}, message: "OTP sent successfully" };
   } catch (error) {
     console.error("API error:", error);
     return { success: false, errors: {}, message: "Failed to send email" };
