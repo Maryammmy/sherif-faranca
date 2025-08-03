@@ -1,6 +1,6 @@
 import { Lock, LockOpen } from "lucide-react";
 import CircularRing from "@/components/ui/CircularRing";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 interface IProps {
   videoRef: React.RefObject<HTMLVideoElement | null>;

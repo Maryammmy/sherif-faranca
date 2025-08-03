@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Award, Calendar, MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";

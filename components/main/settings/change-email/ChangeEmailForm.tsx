@@ -2,7 +2,7 @@ import { email } from "@/data/main/settings/change-email";
 import { Mail } from "lucide-react";
 import React from "react";
 import SettingsInput from "../SettingsInput";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 interface IProps {
   handleConfirmEmail: (e: React.FormEvent<HTMLFormElement>) => void;

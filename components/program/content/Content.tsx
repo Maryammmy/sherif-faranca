@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Calendar1, Clock4, Dumbbell, House, ShieldCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
 interface IProps {

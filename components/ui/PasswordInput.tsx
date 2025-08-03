@@ -1,18 +1,18 @@
 "use client";
 import { InputHTMLAttributes, useState } from "react";
 import { Eye, EyeOff, Lock } from "lucide-react";
-import Input from "./Input";
+import { Input } from "./Input";
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
-  className: string;
+  className?: string;
 }
 export default function PasswordInput({ className, ...rest }: IProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="flex justify-between items-center gap-2 w-full">
       {/* Lock Icon */}
-      <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary">
+      <div className="text-primary">
         <Lock size={20} />
       </div>
 
@@ -25,7 +25,7 @@ export default function PasswordInput({ className, ...rest }: IProps) {
 
       {/* Eye Toggle Icon */}
       <div
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-primary"
+        className="cursor-pointer text-primary"
         onClick={() => setShowPassword((prev) => !prev)}
       >
         {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}

@@ -1,5 +1,5 @@
 import DiscoverProgramsCard from "@/components/main/home/DiscoverProgramsCard";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export default function DiscoverPrograms() {
   return (

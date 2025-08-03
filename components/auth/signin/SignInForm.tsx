@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import Label from "@/components/ui/Label";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
 import { SignInschema } from "@/schema/authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";

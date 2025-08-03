@@ -1,13 +1,14 @@
 "use server";
 
+import { IActionState } from "@/interfaces/form";
+import { handleError } from "@/lib/utils";
 import { signupEmailSchema } from "@/schema/auth/signup";
 import { sendRegistrationAPI } from "@/services/otp";
-import { SignupActionState } from "@/types/auth/signup";
 
-export async function signupAction(
-  prevState: SignupActionState,
+export async function sendRegistrationEmailAction(
+  prevState: IActionState,
   formData: FormData
-): Promise<SignupActionState> {
+): Promise<IActionState> {
   const data = {
     email: formData.get("email") as string,
   };
@@ -24,9 +25,13 @@ export async function signupAction(
   try {
     const response = await sendRegistrationAPI(parsed.data);
     console.log("API response:", response?.data?.message);
-    return { success: true, errors: {}, message: response?.data?.message };
+    return {
+      success: true,
+      errors: {},
+      message: response?.data?.message,
+      data: { email: parsed.data.email },
+    };
   } catch (error) {
-    console.error("API error:", error);
-    return { success: false, errors: {}, message: "Failed to send email" };
+    return handleError(error);
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { periods } from "@/data/main/subscription-plans";
 import { cn } from "@/lib/utils";
 import { useState } from "react";

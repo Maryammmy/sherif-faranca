@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { ISetting } from "@/interfaces/main/settings";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";

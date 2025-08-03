@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { times } from "@/data/questions";
 import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";

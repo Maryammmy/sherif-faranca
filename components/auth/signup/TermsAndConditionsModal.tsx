@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import Button from "../../ui/Button";
+import { Button } from "../../ui/Button";
 import Modal from "../../ui/Modal";
 
 interface IProps {

@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Clock12, Heart, MoveLeft, Play, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

@@ -6,6 +6,6 @@ export const signupEmailSchema = z.object({
     .nonempty("Email is required")
     .email("Invalid email address"),
 });
-
-// Type inference
-export type SignupEmail = z.infer<typeof signupEmailSchema>;
+export const signupNumberSchema = z.object({
+  number: z.string().nonempty("phone number is required"),
+});

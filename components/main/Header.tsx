@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 import { useSidebar } from "@/context/sidebar";
 import { Bell, Menu, Search } from "lucide-react";
 import Image from "next/image";

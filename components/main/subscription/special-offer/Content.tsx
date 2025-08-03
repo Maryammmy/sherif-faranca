@@ -1,6 +1,6 @@
 import Image from "next/image";
 import PricingCard from "./PricingCard";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 function Content() {
   return (

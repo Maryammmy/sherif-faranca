@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { floorToTen } from "@/lib/utils";
 import RulerTick from "./RulerTick";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export default function WeightSelector() {
   const minWeight = 30;

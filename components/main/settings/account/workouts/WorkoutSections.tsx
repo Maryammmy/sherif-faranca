@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { workoutSections } from "@/data/main/settings/account/workouts";
 import { cn } from "@/lib/utils";
 import WorkoutTimeFilters from "./WorkoutTimeFilters";

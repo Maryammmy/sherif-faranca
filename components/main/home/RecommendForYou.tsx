@@ -1,5 +1,5 @@
 import RecommendCard from "@/components/main/home/RecommendCard";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 interface IProps {

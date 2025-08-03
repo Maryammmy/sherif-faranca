@@ -1,141 +1,110 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import { gsap } from "gsap";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useActionState } from "react";
+import { Button } from "@/components/ui/Button";
+import Loader from "@/components/loader/Loader";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
+import toast from "react-hot-toast";
+import ResendOtp from "./ResendOtp";
+import { verifyOtpAction } from "@/actions/otp";
+import { IActionState } from "@/interfaces/form";
 
-export default function OtpForm() {
-  const [otp, setOtp] = useState(new Array(5).fill(""));
-  const [timer, setTimer] = useState(20);
+interface IProps {
+  queryParams: Record<string, string>;
+}
+const initialState: IActionState = {
+  success: false,
+  message: "",
+  errors: {},
+};
+
+export default function OtpForm({ queryParams }: IProps) {
+  const [otp, setOtp] = useState("");
+  const [timeLeft, setTimeLeft] = useState(60);
   const router = useRouter();
+  const { type, email } = queryParams;
 
-  // Refs for OTP input boxes
-  const otpBoxesRef = useRef<(HTMLInputElement | null)[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const [state, formAction, isPending] = useActionState<IActionState, FormData>(
+    async (prevState, formData) => {
+      const result = await verifyOtpAction(prevState, formData);
+      if (result.message) {
+        console.log(result);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      }
+      return result;
+    },
+    initialState
+  );
 
-  // Animation effect for OTP boxes
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Initial state - hide all OTP boxes
-      gsap.set(otpBoxesRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        y: 20,
-      });
-
-      // Staggered entrance animation for OTP boxes
-      gsap.to(otpBoxesRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "back.out(1.7)",
-        stagger: 0.3, // 0.1 second delay between each box
-        delay: 0.3, // Start after the form container animation
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Handle input animation when user types
-  const handleInputAnimation = (element: HTMLInputElement) => {
-    gsap.fromTo(
-      element,
-      { scale: 1 },
-      {
-        scale: 1.1,
-        duration: 0.15,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 1,
-      },
-    );
-  };
-
-  // Handle focus animation
-  const handleFocusAnimation = (element: HTMLInputElement) => {
-    gsap.to(element, {
-      borderColor: "#5B2E9D", // primary color
-      boxShadow: "0 0 0 3px rgba(91, 46, 157, 0.1)",
-      duration: 0.2,
-      ease: "power2.out",
-    });
-  };
-
-  // Handle blur animation
-  const handleBlurAnimation = (element: HTMLInputElement) => {
-    gsap.to(element, {
-      borderColor: "#9CA3AF", // gray-400
-      boxShadow: "none",
-      duration: 0.2,
-      ease: "power2.out",
-    });
-  };
-
-  const handleChange = (element: HTMLInputElement, index: number) => {
-    if (isNaN(Number(element.value))) return false;
-
-    setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
-
-    // Add animation when user types
-    if (element.value) {
-      handleInputAnimation(element);
-    }
-
-    //Focus next input - This will be simplified
-    if (element.nextSibling && element.value) {
-      (element.nextSibling as HTMLInputElement).focus();
+  const handleOTPChange = (val: string) => {
+    if (/^\d*$/.test(val)) {
+      setOtp(val);
     }
   };
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [timeLeft]);
+  useEffect(() => {
+    if (state.success) {
+      if (type === "register-email") {
+        const timer = setTimeout(() => {
+          router.push(`/create-account?email=${email}`);
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [state.success, type, router, email]);
 
   return (
-    <div ref={containerRef} className="space-y-5 py-5">
-      <div className="flex justify-center gap-2 lg:gap-5">
-        {otp.map((data, index) => {
-          return (
-            <Input
-              ref={el => {
-                otpBoxesRef.current[index] = el;
-              }}
-              className="w-12 h-12 lg:w-14 lg:h-14 text-center text-lg border border-gray-400 rounded-md"
-              type="text"
-              name="otp"
-              maxLength={1}
-              key={index}
-              value={data}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target, index)}
-              onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
-                e.target.select();
-                handleFocusAnimation(e.target);
-              }}
-              onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
-                handleBlurAnimation(e.target);
-              }}
-            />
-          );
-        })}
-      </div>
-      <Button
-        type="submit"
-        className="w-full bg-primary text-white p-3 rounded-md font-medium cursor-pointer"
-        onClick={() => router.push("/create-account")}
-      >
-        Verify
-      </Button>
-      <div className="text-center">
-        <Button disabled={timer > 0} className="text-primary disabled:text-gray-400 font-medium">
-          Send Code Again {timer > 0 && `00:${timer.toString().padStart(2, "0")}`}
-        </Button>
-      </div>
+    <div className="py-5 space-y-5">
+      <form action={formAction}>
+        <div className="space-y-5">
+          <div className="flex flex-col mx-auto w-fit">
+            <InputOTP value={otp} onChange={handleOTPChange} maxLength={5}>
+              <InputOTPGroup className="flex justify-between items-center gap-2 sm:gap-4">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <InputOTPSlot
+                    key={index}
+                    index={index}
+                    className="w-[40px] h-[40px] md:w-[50px] md:h-[50px] text-lg font-medium border border-gray-300 data-[active=true]:border-primary data-[active=true]:ring-1 data-[active=true]:ring-primary/30 rounded-md"
+                  />
+                ))}
+              </InputOTPGroup>
+            </InputOTP>
+            <input type="hidden" name="otp" value={otp} />
+            <input type="hidden" name="email" value={email} />
+            <input type="hidden" name="type" value={type} />
+          </div>
+          <p className="text-sm text-secondary font-semibold text-center mb-4">
+            {timeLeft > 0
+              ? `Resend OTP in ${Math.floor(timeLeft / 60)}:${String(
+                  timeLeft % 60
+                ).padStart(2, "0")}`
+              : `Didn't receive the code?`}
+          </p>
+          <Button
+            type="submit"
+            className="w-full bg-primary text-white p-3 rounded-md font-medium"
+            disabled={isPending}
+          >
+            {isPending ? <Loader /> : "Verify"}
+          </Button>
+        </div>
+      </form>
+      {timeLeft === 0 && <ResendOtp queryParams={queryParams} />}
     </div>
   );
 }

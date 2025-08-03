@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { workoutTimeFilters } from "@/data/main/settings/account/workouts";
 import { cn } from "@/lib/utils";
 import { useState } from "react";

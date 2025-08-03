@@ -1,5 +1,5 @@
 import RecentWatchedCard from "@/components/main/home/RecentWatchedCard";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export default function RecentWatched() {
   return (

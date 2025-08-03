@@ -4,7 +4,7 @@ import TrainingStats from "./TrainingStats";
 import AccountSection from "./AccountSection";
 import SettingsSection from "./SettingsSection";
 import ReachOutSection from "./ReachOutSection";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { LogOut } from "lucide-react";
 
 interface IProps {

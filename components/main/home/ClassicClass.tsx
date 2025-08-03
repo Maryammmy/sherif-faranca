@@ -1,7 +1,7 @@
 "use client";
 
 import ClassicClassCard from "@/components/main/home/ClassicClassCard";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { classicClass } from "@/data/main/home";
 import { useState } from "react";
 

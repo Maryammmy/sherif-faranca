@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
-import Button from "../../ui/Button";
+import { Button } from "../../ui/Button";
 import SidebarContent from "./SidebarContent";
 import { useSidebar } from "@/context/sidebar";
 

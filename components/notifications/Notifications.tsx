@@ -2,10 +2,10 @@
 
 import { MoveLeft } from "lucide-react";
 import { useState } from "react";
-import Button from "../ui/Button";
 import Link from "next/link";
 import Notification from "./Notification";
 import { notifications } from "@/data/notifications";
+import { Button } from "../ui/Button";
 
 export default function NotificationList() {
   const [tab, setTab] = useState("unread");

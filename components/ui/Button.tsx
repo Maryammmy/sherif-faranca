@@ -4,7 +4,7 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
-const Button = forwardRef<HTMLButtonElement, IProps>(
+export const Button = forwardRef<HTMLButtonElement, IProps>(
   ({ children, ...rest }, ref) => {
     return (
       <button ref={ref} {...rest}>
@@ -14,4 +14,3 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
   }
 );
 Button.displayName = "Button";
-export default Button;

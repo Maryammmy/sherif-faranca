@@ -5,7 +5,7 @@ import { mainNavItems, secondaryNavItems } from "@/data/main/sidebar";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import SettingsPanel from "../settings/settings-panel";
 export default function SidebarContent({
   isExpanded,

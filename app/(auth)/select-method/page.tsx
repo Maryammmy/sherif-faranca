@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { socialButtons } from "@/data/auth/select-method";
 import { gsap } from "gsap";
 import { Mail, Phone } from "lucide-react";

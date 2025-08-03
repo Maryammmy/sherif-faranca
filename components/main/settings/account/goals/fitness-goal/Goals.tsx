@@ -1,7 +1,7 @@
 "use client";
 import { goals } from "@/data/questions";
 import FitnessGoalCard from "./Card";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 
 function Goals() {
