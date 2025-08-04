@@ -26,9 +26,13 @@ function SettingsInput({
     placeholder,
     className: inputClassname,
   };
-
   const renderInput = () => {
-    if (type === "password") return <PasswordInput {...inputProps} />;
+    if (type === "password")
+      return (
+        <div className="p-3 border border-gray-600 rounded-md w-full">
+          <PasswordInput {...inputProps} />
+        </div>
+      );
     if (withWrapper) {
       return (
         <div className={wrapperClassName}>

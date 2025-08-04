@@ -2,7 +2,7 @@ import { IInputSettings } from "@/interfaces/main/settings";
 
 const defaultStyles = {
   labelClassname: "font-medium text-gray-600",
-  inputClassname: "pl-10 pr-10 py-3 border border-gray-600 rounded-md w-full",
+  inputClassname: "w-full",
 };
 export const changePasswordForm: IInputSettings[] = [
   {

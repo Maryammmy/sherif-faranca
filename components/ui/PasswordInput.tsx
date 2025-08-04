@@ -2,6 +2,7 @@
 import { InputHTMLAttributes, useState } from "react";
 import { Eye, EyeOff, Lock } from "lucide-react";
 import { Input } from "./Input";
+import { Button } from "./Button";
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
@@ -12,9 +13,9 @@ export default function PasswordInput({ className, ...rest }: IProps) {
   return (
     <div className="flex justify-between items-center gap-2 w-full">
       {/* Lock Icon */}
-      <div className="text-primary">
+      <span className="text-primary">
         <Lock size={20} />
-      </div>
+      </span>
 
       {/* Input Field */}
       <Input
@@ -24,12 +25,13 @@ export default function PasswordInput({ className, ...rest }: IProps) {
       />
 
       {/* Eye Toggle Icon */}
-      <div
-        className="cursor-pointer text-primary"
+      <Button
+        type="button"
+        className="text-primary"
         onClick={() => setShowPassword((prev) => !prev)}
       >
         {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
-      </div>
+      </Button>
     </div>
   );
 }
