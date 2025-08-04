@@ -1,7 +1,7 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleError } from "@/lib/utils";
+import { handleServerError } from "@/lib/utils";
 import { signupNumberSchema } from "@/schema/auth/signup";
 import { sendRegistrationAPI } from "@/services/otp";
 
@@ -35,6 +35,6 @@ export async function sendRegistrationNumberAction(
       },
     };
   } catch (error) {
-    return handleError(error);
+    return handleServerError(error);
   }
 }

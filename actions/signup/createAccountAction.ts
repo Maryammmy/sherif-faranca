@@ -1,7 +1,7 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleError } from "@/lib/utils";
+import { handleServerError } from "@/lib/utils";
 import {
   createAccountEmailSchema,
   createAccountMobileSchema,
@@ -82,6 +82,6 @@ export async function createAccountAction(
         };
     }
   } catch (error) {
-    return handleError(error);
+    return handleServerError(error);
   }
 }

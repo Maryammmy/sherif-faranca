@@ -1,73 +1,98 @@
 "use client";
 
+import InputErrorMessage from "@/components/InputErrorMsg";
+import Loader from "@/components/loader/Loader";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { SignInschema } from "@/schema/authSchema";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
+import PasswordInput from "@/components/ui/PasswordInput";
+import { handleClientError } from "@/lib/utils";
+import { signinData, signinSchema } from "@/schema/auth/signin";
+import { SigninWithEmailAPI } from "@/services/auth/signin";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+// import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 function SignInForm() {
-  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  // const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields },
-  } = useForm({
-    resolver: yupResolver(SignInschema),
+    formState: { errors, isSubmitting },
+  } = useForm<signinData>({
+    resolver: zodResolver(signinSchema),
     mode: "onChange",
   });
 
-  const onSubmit = (data: unknown) => {
-    // Handle sign in logic
-    console.log(data);
+  const onSubmit = async (data: signinData) => {
+    try {
+      const response = await SigninWithEmailAPI(data);
+
+      if (response?.data?.success === true) {
+        const token = response?.data?.token;
+        const isAnswared = response?.data?.isAnswared;
+        if (token) {
+          Cookies.set("token", token, {
+            expires: 365,
+            secure: true,
+            sameSite: "strict",
+          });
+        }
+        toast.success(response?.data?.message);
+        setTimeout(() => {
+          if (isAnswared) {
+            router.push("/");
+          } else {
+            router.push("/questions/1/intro");
+          }
+        }, 500);
+      }
+    } catch (error) {
+      handleClientError(error);
+    }
   };
+
   return (
     <form className="py-5 space-y-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-1">
         <Label className="text-secondary font-medium">Email</Label>
         <div
-          className={`flex p-3 gap-1 items-center border rounded-md focus-within:border-primary ${
-            errors.email
-              ? "border-red-500"
-              : touchedFields.email
-              ? "border-green-500"
-              : "border-gray-400"
+          className={`flex p-3 gap-2 items-center border rounded-md focus-within:border-primary ${
+            errors.email ? "border-red-500" : "border-gray-400"
           }`}
         >
-          <Mail className="text-primary" />
+          <Mail className="text-primary" size={22} />
           <Input
-            className="flex-1 placeholder:text-gray-400"
+            className="w-full"
             placeholder="Email"
             {...register("email")}
           />
         </div>
-        {errors.email && (
-          <span className="text-red-500 text-sm">{errors.email.message}</span>
-        )}
-        {touchedFields.email && !errors.email && (
-          <span className="text-green-500 text-sm">Valid email</span>
-        )}
+        {errors.email && <InputErrorMessage msg={errors.email.message} />}
       </div>
       <div className="flex flex-col gap-1">
         <Label className="text-secondary font-medium">Password</Label>
         <div
-          className={`flex p-3 gap-1 items-center border rounded-md focus-within:border-primary ${
-            errors.password
-              ? "border-red-500"
-              : touchedFields.password
-              ? "border-green-500"
-              : "border-gray-400"
+          className={`p-3 w-full border rounded-md focus-within:border-primary ${
+            errors.password ? "border-red-500" : "border-gray-400"
           }`}
         >
-          <LockKeyhole className="text-primary" />
+          <PasswordInput
+            {...register("password")}
+            placeholder="Password"
+            className="w-full"
+          />
+          {/* <LockKeyhole className="text-primary" />
           <Input
             className="flex-1 placeholder:text-gray-400"
             placeholder="Password"
             type={showPassword ? "text" : "password"}
-            {...register("password")}
+           
           />
           <Button type="button" onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? (
@@ -75,30 +100,27 @@ function SignInForm() {
             ) : (
               <Eye strokeWidth={2.5} className="text-primary" />
             )}
-          </Button>
+          </Button> */}
         </div>
-        {errors.password && (
-          <span className="text-red-500 text-sm">
-            {errors.password.message}
-          </span>
-        )}
-        {touchedFields.password && !errors.password && (
-          <span className="text-green-500 text-sm">Valid password</span>
-        )}
+        {errors.password && <InputErrorMessage msg={errors.password.message} />}
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center justify-end">
+        {/* <div className="flex items-center gap-1">
           <Input className="accent-primary h-4 w-4" type="checkbox" />
           <span className="text-[#574F4AB2] font-medium">Remember me</span>
-        </div>
+        </div> */}
         <div>
           <Link href="/forget-password" className="text-primary font-medium">
             Forget Password ?
           </Link>
         </div>
       </div>
-      <Button className="w-full bg-primary text-white p-3 rounded-md font-medium">
-        Sign In
+      <Button
+        disabled={isSubmitting}
+        type="submit"
+        className="w-full bg-primary text-white p-3 rounded-md font-medium"
+      >
+        {isSubmitting ? <Loader /> : "Sign In"}
       </Button>
     </form>
   );

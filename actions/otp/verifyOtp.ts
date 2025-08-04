@@ -1,7 +1,7 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleError } from "@/lib/utils";
+import { handleServerError } from "@/lib/utils";
 import {
   verifyRegistrationEmailAPI,
   verifyRegistrationMobileAPI,
@@ -52,6 +52,6 @@ export async function verifyOtpAction(
         throw new Error("Invalid type");
     }
   } catch (error) {
-    return handleError(error);
+    return handleServerError(error);
   }
 }

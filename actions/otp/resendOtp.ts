@@ -1,7 +1,7 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleError } from "@/lib/utils";
+import { handleServerError } from "@/lib/utils";
 import { sendRegistrationAPI } from "@/services/otp";
 export async function resendOtpAction(
   prevState: IActionState,
@@ -39,6 +39,6 @@ export async function resendOtpAction(
         throw new Error("Invalid type");
     }
   } catch (error) {
-    return handleError(error);
+    return handleServerError(error);
   }
 }

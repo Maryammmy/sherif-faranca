@@ -1,7 +1,7 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleError } from "@/lib/utils";
+import { handleServerError } from "@/lib/utils";
 import { signupEmailSchema } from "@/schema/auth/signup";
 import { sendRegistrationAPI } from "@/services/otp";
 
@@ -32,6 +32,6 @@ export async function sendRegistrationEmailAction(
       data: { email: parsed.data.email },
     };
   } catch (error) {
-    return handleError(error);
+    return handleServerError(error);
   }
 }

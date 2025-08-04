@@ -20,10 +20,10 @@ function SocialMediaSignIn() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center font-medium">
+      <div className="flex gap-1 justify-center items-center font-medium">
         <p className="text-[#253248]">Don&apos;t have account ?</p>
         <Link href="/select-language" className="text-primary">
-          <span className="hidden lg:block">Creat new account</span>
+          <span className="hidden lg:block">Create new account</span>
           <span className="block lg:hidden">Sign up</span>
         </Link>
       </div>
