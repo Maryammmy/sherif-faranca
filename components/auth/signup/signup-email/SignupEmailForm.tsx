@@ -50,8 +50,8 @@ export default function SignupEmailForm() {
   return (
     <form action={formAction} className="py-5 space-y-5">
       <div className="flex flex-col gap-1">
-        <Label>Email</Label>
-        <div className="flex p-3 gap-1 items-center border border-gray-400 rounded-md">
+        <Label className="font-medium text-secondary">Email</Label>
+        <div className="flex p-3 gap-2 items-center border border-gray-400 rounded-md">
           <Mail className="text-primary" />
           <Input name="email" className="w-full" placeholder="Email" />
         </div>

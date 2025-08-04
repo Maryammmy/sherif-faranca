@@ -1,14 +1,20 @@
-import { useRouter } from "next/navigation";
+import Loader from "@/components/loader/Loader";
 import { Button } from "../../ui/Button";
 import Modal from "../../ui/Modal";
 
 interface IProps {
   open: boolean;
   onClose: () => void;
+  isPending: boolean;
+  onAgree: () => void;
 }
 
-function TermsAndConditionsModal({ open, onClose }: IProps) {
-  const router = useRouter();
+function TermsAndConditionsModal({
+  open,
+  onClose,
+  isPending,
+  onAgree,
+}: IProps) {
   return (
     <Modal
       open={open}
@@ -18,17 +24,19 @@ function TermsAndConditionsModal({ open, onClose }: IProps) {
       footer={
         <div className="w-full grid grid-cols-2 gap-5 sm:gap-10 font-medium">
           <Button
+            type="button"
             onClick={onClose}
             className="border border-primary text-primary rounded-md py-2.5"
           >
             Decline
           </Button>
           <Button
-            onClick={() => router.push("/account-created")}
-            type="submit"
+            onClick={onAgree}
+            disabled={isPending}
+            type="button"
             className="bg-primary text-white rounded-md py-2.5"
           >
-            I Agree
+            {isPending ? <Loader /> : "I Agree"}
           </Button>
         </div>
       }
