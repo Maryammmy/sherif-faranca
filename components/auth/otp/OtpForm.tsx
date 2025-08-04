@@ -28,7 +28,7 @@ export default function OtpForm({ queryParams }: IProps) {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const router = useRouter();
-  const { type, email } = queryParams;
+  const { type, email, countryCode, mobile } = queryParams;
 
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
@@ -51,6 +51,10 @@ export default function OtpForm({ queryParams }: IProps) {
       setOtp(val);
     }
   };
+  const resetTimer = () => {
+    setTimeLeft(60);
+  };
+
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
@@ -59,12 +63,13 @@ export default function OtpForm({ queryParams }: IProps) {
   }, [timeLeft]);
   useEffect(() => {
     if (state.success) {
-      if (type === "register-email") {
-        const timer = setTimeout(() => {
-          router.push(`/create-account?email=${email}`);
-        }, 500);
-        return () => clearTimeout(timer);
-      }
+      const destination =
+        type === "register-email"
+          ? `/create-account?type=${type}&email=${email}`
+          : `/create-account?type=${type}`;
+
+      const timer = setTimeout(() => router.push(destination), 500);
+      return () => clearTimeout(timer);
     }
   }, [state.success, type, router, email]);
 
@@ -84,9 +89,18 @@ export default function OtpForm({ queryParams }: IProps) {
                 ))}
               </InputOTPGroup>
             </InputOTP>
+            {/* Hidden inputs for the form */}
             <input type="hidden" name="otp" value={otp} />
-            <input type="hidden" name="email" value={email} />
             <input type="hidden" name="type" value={type} />
+            {type === "register-email" && email && (
+              <input type="hidden" name="email" value={email} />
+            )}
+            {type === "register-number" && countryCode && mobile && (
+              <>
+                <input type="hidden" name="countryCode" value={countryCode} />
+                <input type="hidden" name="mobile" value={mobile} />
+              </>
+            )}
           </div>
           <p className="text-sm text-secondary font-semibold text-center mb-4">
             {timeLeft > 0
@@ -104,7 +118,9 @@ export default function OtpForm({ queryParams }: IProps) {
           </Button>
         </div>
       </form>
-      {timeLeft === 0 && <ResendOtp queryParams={queryParams} />}
+      {timeLeft === 0 && (
+        <ResendOtp queryParams={queryParams} onResend={resetTimer} />
+      )}
     </div>
   );
 }

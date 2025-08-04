@@ -2,25 +2,51 @@
 
 import { IActionState } from "@/interfaces/form";
 import { handleError } from "@/lib/utils";
-import { verifyRegistrationEmailAPI } from "@/services/otp";
+import {
+  verifyRegistrationEmailAPI,
+  verifyRegistrationMobileAPI,
+} from "@/services/otp";
 
 export async function verifyOtpAction(
   prevState: IActionState,
   formData: FormData
 ): Promise<IActionState> {
   const otp = formData.get("otp") as string;
-  const email = formData.get("email") as string;
   const type = formData.get("type") as string;
+
   try {
+    if (!otp) throw new Error("OTP is required");
+
     switch (type) {
-      case "register-email":
-        if (!email) throw new Error("Email required");
+      case "register-email": {
+        const email = formData.get("email") as string;
+        if (!email) throw new Error("Email is required");
+
         const response = await verifyRegistrationEmailAPI({ email, otp });
         return {
           success: true,
           message: response?.data?.message,
           errors: {},
         };
+      }
+
+      case "register-number": {
+        const countryCode = formData.get("countryCode") as string;
+        const mobile = formData.get("mobile") as string;
+        if (!countryCode || !mobile)
+          throw new Error("Country code and mobile are required");
+
+        const response = await verifyRegistrationMobileAPI({
+          countryCode,
+          mobile,
+          otp,
+        });
+        return {
+          success: true,
+          message: response?.data?.message,
+          errors: {},
+        };
+      }
 
       default:
         throw new Error("Invalid type");

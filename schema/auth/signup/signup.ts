@@ -7,5 +7,11 @@ export const signupEmailSchema = z.object({
     .email("Invalid email address"),
 });
 export const signupNumberSchema = z.object({
-  number: z.string().nonempty("phone number is required"),
+  mobile: z
+    .string()
+    .regex(/^\d+$/, { message: "Phone number must contain only digits" })
+    .min(9, { message: "Phone number must be at least 9 digits" })
+    .max(15, { message: "Phone number can't be more than 15 digits" })
+    .nonempty({ message: "Phone number is required" }),
+  countryCode: z.string().nonempty({ message: "Country code is required" }),
 });

@@ -5,6 +5,7 @@ import Image from "next/image";
 
 function Otp() {
   const queryParams = useQueryParams();
+  const { type, email, countryCode, mobile } = queryParams;
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-20 place-items-center my-5">
       <div className="space-y-5 flex flex-col justify-center">
@@ -15,8 +16,22 @@ function Otp() {
             </h1>
           </header>
           <p className="text-gray-400 font-medium max-w-sm">
-            A Verification With An Activation Code To Your Email{" "}
-            <span className="text-primary">{queryParams?.email}</span>
+            A Verification Code Has Been Sent To Your{" "}
+            <span className="text-gray-400">
+              {type === "register-number" && countryCode && mobile ? (
+                <>
+                  Number{" "}
+                  <span className="text-primary">
+                    (+{countryCode}
+                    {mobile})
+                  </span>
+                </>
+              ) : (
+                <>
+                  Email <span className="text-primary">({email})</span>
+                </>
+              )}
+            </span>
           </p>
         </div>
         <div>

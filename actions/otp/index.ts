@@ -1,3 +1,3 @@
 export * from "./send-registration";
-export * from "./sendOtp";
+export * from "./resendOtp";
 export * from "./verifyOtp";

@@ -27,7 +27,7 @@ export default function CreateAccountForm() {
   const [termsOpen, setTermsOpen] = useState(false);
   const [resetFieldsTrigger, setResetFieldsTrigger] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const email = useQueryParams("email");
+  const { type, email } = useQueryParams();
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
       setResetFieldsTrigger(true);
@@ -62,8 +62,9 @@ export default function CreateAccountForm() {
 
   return (
     <form ref={formRef} action={formAction} className="space-y-5 py-3">
+      <Input type="hidden" name="type" value={type} />
       {/* Email */}
-      <Input type="hidden" name="email" value={email} />
+      {email && <Input type="hidden" name="email" value={email} />}
       {/* First Name */}
       <div className="flex flex-col gap-1">
         <Label className="font-medium text-secondary">First Name</Label>

@@ -16,7 +16,6 @@ export default function PhoneField({
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [fullNumber, setFullNumber] = useState("");
-  console.log("dd", fullNumber);
   useEffect(() => {
     if (resetTrigger) {
       setFullNumber("");
