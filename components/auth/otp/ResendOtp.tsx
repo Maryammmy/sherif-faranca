@@ -2,7 +2,7 @@ import Loader from "@/components/loader/Loader";
 import { Button } from "@/components/ui/Button";
 import toast from "react-hot-toast";
 import { useActionState } from "react";
-import { resendOtpAction } from "@/actions/otp/resendOtp";
+import { resendOtpAction } from "@/actions/otp";
 import { IActionState } from "@/interfaces/form";
 import { Input } from "@/components/ui/Input";
 
@@ -37,7 +37,7 @@ function ResendOtp({ queryParams, onResend }: IProps) {
   return (
     <form action={formAction}>
       <Input type="hidden" name="type" value={type} />
-      {type === "register-email" && email && (
+      {(type === "register-email" || type === "forget-password") && email && (
         <Input type="hidden" name="email" value={email} />
       )}
       {type === "register-number" && countryCode && mobile && (

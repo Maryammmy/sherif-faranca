@@ -1,3 +1,13 @@
+export interface ILanguage {
+  code: string;
+  label: string;
+  flag: string;
+}
+export interface ISocialButton {
+  icon: string;
+  alt: string;
+  label: string;
+}
 export interface ISignupWithEmail {
   birthDate: string;
   firstName: string;
@@ -8,7 +18,7 @@ export interface ISignupWithEmail {
   password: string;
   confirmPassword: string;
 }
-export interface ISignupWithMobile {
+export interface ISignupWithNumber {
   birthDate: string;
   firstName: string;
   lastName: string;
@@ -16,4 +26,8 @@ export interface ISignupWithMobile {
   phoneNumber: string;
   password: string;
   confirmPassword: string;
+}
+export interface ISigninWithEmail {
+  email: string;
+  password: string;
 }

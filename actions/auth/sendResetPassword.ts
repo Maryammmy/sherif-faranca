@@ -2,20 +2,19 @@
 
 import { IActionState } from "@/interfaces/form";
 import { handleServerError } from "@/lib/utils";
-import { signupNumberSchema } from "@/schema/auth/signup";
-import { sendRegistrationAPI } from "@/services/otp";
+import { resetPasswordWithEmailSchema } from "@/schema/auth";
+import { sendResetPasswordAPI } from "@/services/auth";
 
-export async function sendRegistrationNumberAction(
+export async function sendResetPasswordAction(
   prevState: IActionState,
   formData: FormData
 ): Promise<IActionState> {
   const data = {
-    mobile: formData.get("mobile") as string,
-    countryCode: formData.get("countryCode") as string,
+    email: formData.get("email") as string,
   };
 
   // ✅ Validate with Zod
-  const parsed = signupNumberSchema.safeParse(data);
+  const parsed = resetPasswordWithEmailSchema.safeParse(data);
   if (!parsed.success) {
     return {
       success: false,
@@ -24,15 +23,13 @@ export async function sendRegistrationNumberAction(
     };
   }
   try {
-    const response = await sendRegistrationAPI(parsed.data);
+    const response = await sendResetPasswordAPI(parsed.data);
+    console.log("API response:", response?.data?.message);
     return {
       success: true,
       errors: {},
       message: response?.data?.message,
-      data: {
-        countryCode: parsed?.data?.countryCode,
-        mobile: parsed?.data?.mobile,
-      },
+      data: { email: parsed.data.email },
     };
   } catch (error) {
     return handleServerError(error);

@@ -1,4 +1,4 @@
-import { ISocialButton } from "@/interfaces/auth/select-method";
+import { ISocialButton } from "@/interfaces/auth";
 
 export const socialButtons: ISocialButton[] = [
   {

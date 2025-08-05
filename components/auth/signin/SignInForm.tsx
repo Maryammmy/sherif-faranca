@@ -6,42 +6,35 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import PasswordInput from "@/components/ui/PasswordInput";
-import { handleClientError } from "@/lib/utils";
-import { signinData, signinSchema } from "@/schema/auth/signin";
-import { SigninWithEmailAPI } from "@/services/auth/signin";
+import { handleClientError, setToken } from "@/lib/utils";
+import { SigninData, signinSchema } from "@/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import Link from "next/link";
-// import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { signinWithEmailAPI } from "@/services/auth";
 function SignInForm() {
   const router = useRouter();
-  // const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<signinData>({
+  } = useForm<SigninData>({
     resolver: zodResolver(signinSchema),
     mode: "onChange",
   });
 
-  const onSubmit = async (data: signinData) => {
+  const onSubmit = async (data: SigninData) => {
     try {
-      const response = await SigninWithEmailAPI(data);
+      const response = await signinWithEmailAPI(data);
 
       if (response?.data?.success === true) {
         const token = response?.data?.token;
         const isAnswared = response?.data?.isAnswared;
         if (token) {
-          Cookies.set("token", token, {
-            expires: 365,
-            secure: true,
-            sameSite: "strict",
-          });
+          setToken(token);
         }
         toast.success(response?.data?.message);
         setTimeout(() => {
@@ -87,20 +80,6 @@ function SignInForm() {
             placeholder="Password"
             className="w-full"
           />
-          {/* <LockKeyhole className="text-primary" />
-          <Input
-            className="flex-1 placeholder:text-gray-400"
-            placeholder="Password"
-            type={showPassword ? "text" : "password"}
-           
-          />
-          <Button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <EyeOff strokeWidth={2.5} className="text-primary" />
-            ) : (
-              <Eye strokeWidth={2.5} className="text-primary" />
-            )}
-          </Button> */}
         </div>
         {errors.password && <InputErrorMessage msg={errors.password.message} />}
       </div>

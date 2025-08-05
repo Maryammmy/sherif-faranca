@@ -2,7 +2,7 @@
 
 import { IActionState } from "@/interfaces/form";
 import { handleServerError } from "@/lib/utils";
-import { sendRegistrationAPI } from "@/services/otp";
+import { sendRegistrationAPI, sendResetPasswordAPI } from "@/services/auth";
 export async function resendOtpAction(
   prevState: IActionState,
   formData: FormData
@@ -29,6 +29,17 @@ export async function resendOtpAction(
           throw new Error("Country code and mobile are required");
 
         const response = await sendRegistrationAPI({ countryCode, mobile });
+        return {
+          success: true,
+          message: response?.data?.message,
+          errors: {},
+        };
+      }
+      case "forget-password": {
+        const email = formData.get("email") as string;
+        if (!email) throw new Error("Email is required");
+
+        const response = await sendResetPasswordAPI({ email });
         return {
           success: true,
           message: response?.data?.message,

@@ -63,10 +63,21 @@ export default function OtpForm({ queryParams }: IProps) {
   }, [timeLeft]);
   useEffect(() => {
     if (state.success) {
-      const destination =
-        type === "register-email"
-          ? `/create-account?type=${type}&email=${email}`
-          : `/create-account?type=${type}`;
+      let destination: string | undefined;
+
+      switch (type) {
+        case "register-email":
+          destination = `/create-account?type=${type}&email=${email}`;
+          break;
+        case "register-number":
+          destination = `/create-account?type=${type}`;
+          break;
+        case "forget-password":
+          destination = `/change-password?email=${email}`;
+          break;
+      }
+
+      if (!destination) return;
 
       const timer = setTimeout(() => router.push(destination), 500);
       return () => clearTimeout(timer);
@@ -92,9 +103,8 @@ export default function OtpForm({ queryParams }: IProps) {
             {/* Hidden inputs for the form */}
             <input type="hidden" name="otp" value={otp} />
             <input type="hidden" name="type" value={type} />
-            {type === "register-email" && email && (
-              <input type="hidden" name="email" value={email} />
-            )}
+            {(type === "register-email" || type === "forget-password") &&
+              email && <input type="hidden" name="email" value={email} />}
             {type === "register-number" && countryCode && mobile && (
               <>
                 <input type="hidden" name="countryCode" value={countryCode} />

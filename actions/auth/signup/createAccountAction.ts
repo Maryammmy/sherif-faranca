@@ -3,13 +3,10 @@
 import { IActionState } from "@/interfaces/form";
 import { handleServerError } from "@/lib/utils";
 import {
-  createAccountEmailSchema,
-  createAccountMobileSchema,
-} from "@/schema/auth/signup";
-import {
-  SignupWithEmailAPI,
-  SignupWithMobileAPI,
-} from "@/services/auth/signup";
+  createAccountWithEmailSchema,
+  createAccountWithNumberSchema,
+} from "@/schema/auth";
+import { signupWithEmailAPI, signupWithNumberAPI } from "@/services/auth";
 
 export async function createAccountAction(
   prevState: IActionState,
@@ -31,7 +28,7 @@ export async function createAccountAction(
           confirmPassword: formData.get("confirmPassword") as string,
         };
 
-        const parsed = createAccountEmailSchema.safeParse(data);
+        const parsed = createAccountWithEmailSchema.safeParse(data);
         if (!parsed.success) {
           return {
             success: false,
@@ -40,7 +37,7 @@ export async function createAccountAction(
           };
         }
 
-        const response = await SignupWithEmailAPI(parsed.data);
+        const response = await signupWithEmailAPI(parsed.data);
         return {
           success: true,
           errors: {},
@@ -58,7 +55,7 @@ export async function createAccountAction(
           confirmPassword: formData.get("confirmPassword") as string,
         };
 
-        const parsed = createAccountMobileSchema.safeParse(data);
+        const parsed = createAccountWithNumberSchema.safeParse(data);
         if (!parsed.success) {
           return {
             success: false,
@@ -67,7 +64,7 @@ export async function createAccountAction(
           };
         }
 
-        const response = await SignupWithMobileAPI(parsed.data);
+        const response = await signupWithNumberAPI(parsed.data);
         return {
           success: true,
           errors: {},

@@ -2,19 +2,20 @@
 
 import { IActionState } from "@/interfaces/form";
 import { handleServerError } from "@/lib/utils";
-import { signupEmailSchema } from "@/schema/auth/signup";
-import { sendRegistrationAPI } from "@/services/otp";
+import { signupWithNumberSchema } from "@/schema/auth";
+import { sendRegistrationAPI } from "@/services/auth";
 
-export async function sendRegistrationEmailAction(
+export async function sendRegistrationWithNumberAction(
   prevState: IActionState,
   formData: FormData
 ): Promise<IActionState> {
   const data = {
-    email: formData.get("email") as string,
+    mobile: formData.get("mobile") as string,
+    countryCode: formData.get("countryCode") as string,
   };
 
   // ✅ Validate with Zod
-  const parsed = signupEmailSchema.safeParse(data);
+  const parsed = signupWithNumberSchema.safeParse(data);
   if (!parsed.success) {
     return {
       success: false,
@@ -24,12 +25,14 @@ export async function sendRegistrationEmailAction(
   }
   try {
     const response = await sendRegistrationAPI(parsed.data);
-    console.log("API response:", response?.data?.message);
     return {
       success: true,
       errors: {},
       message: response?.data?.message,
-      data: { email: parsed.data.email },
+      data: {
+        countryCode: parsed?.data?.countryCode,
+        mobile: parsed?.data?.mobile,
+      },
     };
   } catch (error) {
     return handleServerError(error);

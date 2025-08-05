@@ -1,4 +1,4 @@
-import { ILanguage } from "@/interfaces/auth/select-language";
+import { ILanguage } from "@/interfaces/auth";
 
 export const languages: ILanguage[] = [
   {

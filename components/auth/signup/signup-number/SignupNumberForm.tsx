@@ -8,8 +8,8 @@ import { Label } from "@/components/ui/Label";
 import Loader from "@/components/loader/Loader";
 import InputErrorMessage from "@/components/InputErrorMsg";
 import { IActionState } from "@/interfaces/form";
+import { sendRegistrationWithNumberAction } from "@/actions/auth";
 import PhoneField from "@/components/ui/PhoneField";
-import { sendRegistrationNumberAction } from "@/actions/otp";
 
 const initialState: IActionState = {
   success: false,
@@ -22,7 +22,10 @@ export default function SignupNumberForm() {
   const [resetFieldsTrigger, setResetFieldsTrigger] = useState(false);
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
-      const result = await sendRegistrationNumberAction(prevState, formData);
+      const result = await sendRegistrationWithNumberAction(
+        prevState,
+        formData
+      );
       if (result.message) {
         console.log(result);
         if (result.success) {

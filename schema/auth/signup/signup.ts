@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-export const signupEmailSchema = z.object({
+export const signupWithEmailSchema = z.object({
   email: z
     .string()
     .nonempty("Email is required")
     .email("Invalid email address"),
 });
-export const signupNumberSchema = z.object({
+export const signupWithNumberSchema = z.object({
   mobile: z
     .string()
     .regex(/^\d+$/, { message: "Phone number must contain only digits" })

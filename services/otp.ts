@@ -1,17 +1,13 @@
 "use server";
-import { SendRegistration } from "@/types/otp";
-import { baseAPI } from ".";
 import {
-  IVerifyRegistrationEmail,
-  IVerifyRegistrationMobile,
+  IVerifyRegistrationWithEmail,
+  IVerifyRegistrationWithNumber,
+  IVerifyResetPasswordWithEmail,
 } from "@/interfaces/otp";
+import { baseAPI } from ".";
 
-export const sendRegistrationAPI = async (payload: SendRegistration) => {
-  const response = await baseAPI.post("/api/Otp/send-registration", payload);
-  return response;
-};
-export const verifyRegistrationEmailAPI = async (
-  payload: IVerifyRegistrationEmail
+export const verifyRegistrationWithEmailAPI = async (
+  payload: IVerifyRegistrationWithEmail
 ) => {
   const response = await baseAPI.post(
     "/api/Otp/verify-registration-email",
@@ -19,12 +15,18 @@ export const verifyRegistrationEmailAPI = async (
   );
   return response;
 };
-export const verifyRegistrationMobileAPI = async (
-  payload: IVerifyRegistrationMobile
+export const verifyRegistrationWithNumberAPI = async (
+  payload: IVerifyRegistrationWithNumber
 ) => {
   const response = await baseAPI.post(
     "/api/Otp/verify-registration-mobile",
     payload
   );
+  return response;
+};
+export const verifyResetPasswordWithEmailAPI = async (
+  payload: IVerifyResetPasswordWithEmail
+) => {
+  const response = await baseAPI.post("/api/Otp/verify-reset-email", payload);
   return response;
 };

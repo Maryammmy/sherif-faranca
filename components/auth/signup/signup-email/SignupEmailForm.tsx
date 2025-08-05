@@ -9,8 +9,8 @@ import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import Loader from "@/components/loader/Loader";
 import InputErrorMessage from "@/components/InputErrorMsg";
-import { sendRegistrationEmailAction } from "@/actions/otp";
 import { IActionState } from "@/interfaces/form";
+import { sendRegistrationWithEmailAction } from "@/actions/auth";
 
 const initialState: IActionState = {
   success: false,
@@ -22,7 +22,7 @@ export default function SignupEmailForm() {
   const router = useRouter();
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
-      const result = await sendRegistrationEmailAction(prevState, formData);
+      const result = await sendRegistrationWithEmailAction(prevState, formData);
       if (result.message) {
         console.log(result);
         if (result.success) {

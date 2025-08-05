@@ -3,8 +3,9 @@
 import { IActionState } from "@/interfaces/form";
 import { handleServerError } from "@/lib/utils";
 import {
-  verifyRegistrationEmailAPI,
-  verifyRegistrationMobileAPI,
+  verifyRegistrationWithEmailAPI,
+  verifyRegistrationWithNumberAPI,
+  verifyResetPasswordWithEmailAPI,
 } from "@/services/otp";
 
 export async function verifyOtpAction(
@@ -22,7 +23,7 @@ export async function verifyOtpAction(
         const email = formData.get("email") as string;
         if (!email) throw new Error("Email is required");
 
-        const response = await verifyRegistrationEmailAPI({ email, otp });
+        const response = await verifyRegistrationWithEmailAPI({ email, otp });
         return {
           success: true,
           message: response?.data?.message,
@@ -36,7 +37,7 @@ export async function verifyOtpAction(
         if (!countryCode || !mobile)
           throw new Error("Country code and mobile are required");
 
-        const response = await verifyRegistrationMobileAPI({
+        const response = await verifyRegistrationWithNumberAPI({
           countryCode,
           mobile,
           otp,
@@ -47,7 +48,17 @@ export async function verifyOtpAction(
           errors: {},
         };
       }
+      case "forget-password": {
+        const email = formData.get("email") as string;
+        if (!email) throw new Error("Email is required");
 
+        const response = await verifyResetPasswordWithEmailAPI({ email, otp });
+        return {
+          success: true,
+          message: response?.data?.message,
+          errors: {},
+        };
+      }
       default:
         throw new Error("Invalid type");
     }

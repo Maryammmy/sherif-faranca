@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createAccountEmailSchema = z
+export const createAccountWithEmailSchema = z
   .object({
     email: z
       .string()
@@ -38,7 +38,7 @@ export const createAccountEmailSchema = z
     path: ["confirmPassword"],
     message: "Passwords must match",
   });
-export const createAccountMobileSchema = z
+export const createAccountWithNumberSchema = z
   .object({
     firstName: z
       .string()
