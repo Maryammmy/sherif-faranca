@@ -5,6 +5,7 @@ import { socialButtons } from "@/data/auth";
 import { handleClientError } from "@/lib/utils";
 import { getFacebookAuthUrlAPI, getGoogleAuthUrlAPI } from "@/services/auth";
 import Image from "next/image";
+import Link from "next/link";
 
 function SocialButtons() {
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
@@ -30,19 +31,31 @@ function SocialButtons() {
       handleClientError(error);
     }
   };
-
   return (
-    <div className="flex flex-col gap-4 mb-8">
-      {socialButtons.map((btn, i) => (
-        <Button
-          key={i}
-          className="w-full border border-gray-200 py-3 rounded-lg font-medium flex items-center gap-2 justify-center hover:bg-gray-50 transition"
-          onClick={() => handleSocialLogin(btn.alt)} // Trigger API call
-        >
-          <Image src={btn.icon} alt={btn.alt} width={22} height={22} />
-          {btn.label}
-        </Button>
-      ))}
+    <div>
+      <div>
+        <p className="text-[#7C8493] font-medium text-center">
+          Select another method login
+        </p>
+      </div>
+      <div className="flex gap-5 justify-center py-5">
+        {socialButtons.map(({ icon, alt }, index) => (
+          <Button
+            onClick={() => handleSocialLogin(alt)} // Trigger API call
+            key={index}
+            className="border-2 rounded-md px-2 py-1 gap-2 text-[#8F8F8F26] flex justify-center items-center"
+          >
+            <Image src={icon} alt={alt} width={25} height={25} />
+          </Button>
+        ))}
+      </div>
+      <div className="flex gap-1 justify-center items-center font-medium">
+        <p className="text-[#253248]">Don&apos;t have account ?</p>
+        <Link href="/select-language" className="text-primary">
+          <span className="hidden lg:block">Create new account</span>
+          <span className="block lg:hidden">Sign up</span>
+        </Link>
+      </div>
     </div>
   );
 }

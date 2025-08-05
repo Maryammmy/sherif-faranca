@@ -1,5 +1,5 @@
-import SignInForm from "@/components/auth/signin/SignInForm";
-import SocialMediaSignIn from "@/components/auth/signin/SocialMediaLogin";
+import SignInForm from "./SignInForm";
+import SocialButtons from "./SocialButtons";
 import Image from "next/image";
 
 function SignIn() {
@@ -18,7 +18,7 @@ function SignIn() {
           <SignInForm />
         </div>
         <div>
-          <SocialMediaSignIn />
+          <SocialButtons />
         </div>
       </div>
       <div className="hidden lg:flex lg:items-center lg:justify-center">
