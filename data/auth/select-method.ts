@@ -1,4 +1,4 @@
-import { ISocialButton } from "@/interfaces/auth";
+import { ISocialButton } from "@/types/auth";
 
 export const socialButtons: ISocialButton[] = [
   {

@@ -1,4 +1,4 @@
-import { SocialMediaImages } from "@/data/auth/sign-in";
+import { SocialMediaImages } from "@/data/auth";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -19,3 +19,8 @@ export type ResetPassword =
       newPassword: string;
       confirmPassword: string;
     };
+export type ISocialButton = {
+  icon: string;
+  alt: "Google" | "Facebook";
+  label: string;
+};

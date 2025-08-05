@@ -3,11 +3,6 @@ export interface ILanguage {
   label: string;
   flag: string;
 }
-export interface ISocialButton {
-  icon: string;
-  alt: string;
-  label: string;
-}
 export interface ISignupWithEmail {
   birthDate: string;
   firstName: string;
@@ -30,4 +25,7 @@ export interface ISignupWithNumber {
 export interface ISigninWithEmail {
   email: string;
   password: string;
+}
+export interface ISocialSignin {
+  accessToken: string;
 }

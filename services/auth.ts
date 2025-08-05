@@ -8,6 +8,7 @@ import {
   ISigninWithEmail,
   ISignupWithEmail,
   ISignupWithNumber,
+  ISocialSignin,
 } from "@/interfaces/auth";
 
 export const sendRegistrationAPI = async (payload: SendRegistration) => {
@@ -25,6 +26,25 @@ export const signupWithNumberAPI = async (payload: ISignupWithNumber) => {
 };
 export const signinWithEmailAPI = async (payload: ISigninWithEmail) => {
   const response = await baseAPI.post("/api/Auth/login/email", payload);
+  return response;
+};
+export const getGoogleAuthUrlAPI = async () => {
+  const response = await baseAPI.get("/api/Auth/google/frontend");
+  return response;
+};
+
+export const getFacebookAuthUrlAPI = async () => {
+  const response = await baseAPI.get("/api/Auth/frontend/facebook");
+  return response;
+};
+
+export const signinWithGoogleAPI = async (payload: ISocialSignin) => {
+  const response = await baseAPI.post("/api/Auth/google", payload);
+  return response;
+};
+
+export const signinWithFacebookAPI = async (payload: ISocialSignin) => {
+  const response = await baseAPI.post("/api/Auth/frontend/facebook", payload);
   return response;
 };
 
