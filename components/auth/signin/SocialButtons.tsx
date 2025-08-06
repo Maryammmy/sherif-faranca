@@ -2,12 +2,25 @@
 
 import { Button } from "@/components/ui/Button";
 import { socialButtons } from "@/data/auth";
-import { handleClientError } from "@/lib/utils";
+import { handleClientError, setToken, useQueryParams } from "@/lib/utils";
 import { getFacebookAuthUrlAPI, getGoogleAuthUrlAPI } from "@/services/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function SocialButtons() {
+  const { token, isAnswered } = useQueryParams();
+  const router = useRouter();
+  useEffect(() => {
+    if (!token) return;
+    setToken(token);
+    if (isAnswered === "true") {
+      router.push("/");
+    } else if (isAnswered === "false") {
+      router.push("/questions/1/intro");
+    }
+  }, [token, isAnswered, router]);
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
     try {
       const authAPIs = {
