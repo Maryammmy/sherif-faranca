@@ -1,7 +1,12 @@
 import SignInComponent from "@/components/auth/signin";
+import { Suspense } from "react";
 
 function SignIn() {
-  return <SignInComponent />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignInComponent />
+    </Suspense>
+  );
 }
 
 export default SignIn;
