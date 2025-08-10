@@ -26,7 +26,7 @@ export async function verifyOtpAction(
         const response = await verifyRegistrationWithEmailAPI({ email, otp });
         return {
           success: true,
-          message: response?.data?.message,
+          message: response?.message,
           errors: {},
         };
       }
@@ -44,7 +44,7 @@ export async function verifyOtpAction(
         });
         return {
           success: true,
-          message: response?.data?.message,
+          message: response?.message,
           errors: {},
         };
       }
@@ -55,7 +55,7 @@ export async function verifyOtpAction(
         const response = await verifyResetPasswordWithEmailAPI({ email, otp });
         return {
           success: true,
-          message: response?.data?.message,
+          message: response?.message,
           errors: {},
         };
       }

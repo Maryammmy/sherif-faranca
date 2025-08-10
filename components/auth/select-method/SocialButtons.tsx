@@ -19,7 +19,7 @@ function SocialButtons() {
         return;
       }
       const response = await getAuthUrl();
-      const url = response?.data?.url;
+      const url = response?.url;
 
       if (url) {
         window.location.href = url; // Redirect user to OAuth consent screen

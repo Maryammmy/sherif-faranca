@@ -13,7 +13,7 @@ export const verifyRegistrationWithEmailAPI = async (
     "/api/Otp/verify-registration-email",
     payload
   );
-  return response;
+  return response?.data;
 };
 export const verifyRegistrationWithNumberAPI = async (
   payload: IVerifyRegistrationWithNumber
@@ -22,11 +22,11 @@ export const verifyRegistrationWithNumberAPI = async (
     "/api/Otp/verify-registration-mobile",
     payload
   );
-  return response;
+  return response?.data;
 };
 export const verifyResetPasswordWithEmailAPI = async (
   payload: IVerifyResetPasswordWithEmail
 ) => {
   const response = await baseAPI.post("/api/Otp/verify-reset-email", payload);
-  return response;
+  return response?.data;
 };

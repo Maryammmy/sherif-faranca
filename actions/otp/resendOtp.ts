@@ -18,7 +18,7 @@ export async function resendOtpAction(
         const response = await sendRegistrationAPI({ email });
         return {
           success: true,
-          message: response?.data?.message,
+          message: response?.message,
           errors: {},
         };
       }

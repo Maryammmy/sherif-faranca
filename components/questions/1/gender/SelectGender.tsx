@@ -1,16 +1,14 @@
-"use client";
 import { Button } from "@/components/ui/Button";
 import { genders } from "@/data/questions";
 import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 
-function SelectGender() {
-  const [selectedGender, setSelectedGender] = useState<string | null>(null);
-  const handleSelectGender = (gender: string) => {
-    setSelectedGender(gender);
-  };
+interface IProps {
+  selectedGender: string | null;
+  handleSelectGender: (gender: string) => void;
+}
+function SelectGender({ selectedGender, handleSelectGender }: IProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 pt-5">
       {genders.map((gender) => (

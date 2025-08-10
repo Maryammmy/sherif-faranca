@@ -30,13 +30,13 @@ function SignInForm() {
     try {
       const response = await signinWithEmailAPI(data);
 
-      if (response?.data?.success === true) {
-        const token = response?.data?.token;
-        const isAnswared = response?.data?.isAnswared;
+      if (response?.success === true) {
+        const token = response?.token;
+        const isAnswared = response?.isAnswared;
         if (token) {
           setToken(token);
         }
-        toast.success(response?.data?.message);
+        toast.success(response?.message);
         setTimeout(() => {
           if (isAnswared) {
             router.push("/");

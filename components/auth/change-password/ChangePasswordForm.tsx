@@ -27,8 +27,8 @@ function ChangePasswordForm() {
     try {
       const response = await resetPasswordAPI({ ...data, email });
 
-      if (response?.data?.success === true) {
-        toast.success(response?.data?.message);
+      if (response?.success === true) {
+        toast.success(response?.message);
         setTimeout(() => {
           router.push("/signin");
         }, 500);

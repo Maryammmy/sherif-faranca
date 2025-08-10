@@ -9,6 +9,7 @@ interface IProps {
   content: ReactNode;
   backHref: string;
   nextHref: string;
+  isNextDisabled?: boolean;
 }
 function Shared({
   progresses,
@@ -18,6 +19,7 @@ function Shared({
   content,
   backHref,
   nextHref,
+  isNextDisabled,
 }: IProps) {
   return (
     <div className="min-h-screen">
@@ -41,7 +43,11 @@ function Shared({
           </div>
         </div>
       </div>
-      <NextAndBackButtons backHref={backHref} nextHref={nextHref} />
+      <NextAndBackButtons
+        backHref={backHref}
+        nextHref={nextHref}
+        isNextDisabled={isNextDisabled}
+      />
     </div>
   );
 }

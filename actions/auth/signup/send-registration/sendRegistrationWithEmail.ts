@@ -24,11 +24,11 @@ export async function sendRegistrationWithEmailAction(
   }
   try {
     const response = await sendRegistrationAPI(parsed.data);
-    console.log("API response:", response?.data?.message);
+    console.log("API response:", response?.message);
     return {
       success: true,
       errors: {},
-      message: response?.data?.message,
+      message: response?.message,
       data: { email: parsed.data.email },
     };
   } catch (error) {

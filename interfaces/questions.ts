@@ -22,3 +22,7 @@ export interface IFitnessLevel {
   title: string;
   description: string;
 }
+export interface IArea {
+  id: number;
+  name: string;
+}

@@ -28,7 +28,7 @@ export async function sendRegistrationWithNumberAction(
     return {
       success: true,
       errors: {},
-      message: response?.data?.message,
+      message: response?.message,
       data: {
         countryCode: parsed?.data?.countryCode,
         mobile: parsed?.data?.mobile,

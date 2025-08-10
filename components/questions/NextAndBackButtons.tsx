@@ -1,10 +1,18 @@
+"use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Button } from "../ui/Button";
 
 interface IProps {
   backHref: string;
   nextHref: string;
+  isNextDisabled?: boolean;
 }
-function NextAndBackButtons({ backHref, nextHref }: IProps) {
+function NextAndBackButtons({ backHref, nextHref, isNextDisabled }: IProps) {
+  const router = useRouter();
+  const handleNextClick = () => {
+    router.push(nextHref);
+  };
   return (
     <div>
       <div className="border-2 w-full"></div>
@@ -15,12 +23,13 @@ function NextAndBackButtons({ backHref, nextHref }: IProps) {
         >
           Back
         </Link>
-        <Link
-          href={nextHref}
-          className="text-center bg-primary text-white font-medium py-2.5 w-full sm:w-40 rounded"
+        <Button
+          disabled={isNextDisabled}
+          onClick={handleNextClick}
+          className="text-center bg-primary disabled:cursor-not-allowed disabled:bg-gray-200 text-white font-medium py-2.5 w-full sm:w-40 rounded"
         >
           Next
-        </Link>
+        </Button>
       </div>
     </div>
   );

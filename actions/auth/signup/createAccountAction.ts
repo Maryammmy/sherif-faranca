@@ -41,7 +41,7 @@ export async function createAccountAction(
         return {
           success: true,
           errors: {},
-          message: response?.data?.message,
+          message: response?.message,
         };
       }
       case "register-number": {
@@ -68,7 +68,7 @@ export async function createAccountAction(
         return {
           success: true,
           errors: {},
-          message: response?.data?.message,
+          message: response?.message,
         };
       }
       default:

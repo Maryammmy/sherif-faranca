@@ -26,6 +26,3 @@ export interface ISigninWithEmail {
   email: string;
   password: string;
 }
-export interface ISocialSignin {
-  accessToken: string;
-}

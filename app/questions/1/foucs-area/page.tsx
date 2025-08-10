@@ -1,17 +1,14 @@
-import SelectArea from "@/components/questions/1/foucs-area/SelectArea";
-import Shared from "@/components/questions/Shared";
+import FoucsAreaComponent from "@/components/questions/1/foucs-area";
+import { getFoucsAreasAPI } from "@/services/questions";
 
-function FoucsArea() {
-  return (
-    <Shared
-      progresses={[25, 0, 0]}
-      title="What's your"
-      coloredTitle="Focus area ?"
-      content={<SelectArea />}
-      backHref="/questions/1/gender"
-      nextHref="/questions/1/height"
-    />
-  );
+export default async function FoucsArea() {
+  const areas = await getFoucsAreasAPI();
+  console.log(areas);
+  // try {
+  //   const areas = await getFoucsAreasAPI();
+  // } catch (error) {
+  //   handleClientError(error);
+  // }
+
+  return <FoucsAreaComponent areas={areas} />;
 }
-
-export default FoucsArea;
