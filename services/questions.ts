@@ -1,17 +1,22 @@
-import { initServerBaseAPI } from "./server";
+import { IPreferences } from "@/interfaces/questions";
+import { baseAPI, serverBaseAPIWithToken } from ".";
 
-// export const getFoucsAreasAPI = async () => {
-//   const token = await getServerToken();
-//   const response = await axios.get(`${baseURL}/api/Questions/Focas-area`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       ...(token ? { Authorization: `Bearer ${token}` } : {}),
-//     },
-//   });
-//   return response?.data; // << هنا بس
-// };
 export const getFoucsAreasAPI = async () => {
-  const api = await initServerBaseAPI();
+  const api = await serverBaseAPIWithToken();
   const response = await api.get("/api/Questions/Focas-area");
-  return response?.data; // << هنا بس
+  return response?.data;
+};
+export const getGoalsAPI = async () => {
+  const api = await serverBaseAPIWithToken();
+  const response = await api.get("/api/Questions/goals");
+  return response?.data;
+};
+export const getShapesAPI = async () => {
+  const api = await serverBaseAPIWithToken();
+  const response = await api.get("/api/Questions/body-shapes");
+  return response?.data;
+};
+export const preferencesAPI = async (payload: IPreferences) => {
+  const response = await baseAPI.post("/api/Questions/preferences", payload);
+  return response?.data;
 };

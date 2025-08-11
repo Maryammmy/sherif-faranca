@@ -9,7 +9,12 @@ export default function SelectWeight() {
   const maxWeight = 200;
   const rulerRef = useRef<HTMLDivElement>(null);
   const [selectedWeight, setSelectedWeight] = useState(60);
-
+  useEffect(() => {
+    const stored = sessionStorage.getItem("weightKg");
+    if (stored) {
+      setSelectedWeight(Number(stored));
+    }
+  }, []);
   const handleScroll = () => {
     if (rulerRef.current) {
       const itemWidth = 20;
@@ -23,6 +28,7 @@ export default function SelectWeight() {
         newWeight <= maxWeight
       ) {
         setSelectedWeight(newWeight);
+        sessionStorage.setItem("weightKg", newWeight.toString());
       }
     }
   };
@@ -62,7 +68,10 @@ export default function SelectWeight() {
                 weight={weight}
                 isMajor={isMajor}
                 shouldHighlight={shouldHighlight}
-                onClick={() => setSelectedWeight(weight)}
+                onClick={() => {
+                  setSelectedWeight(weight);
+                  sessionStorage.setItem("weightKg", weight.toString());
+                }}
               />
             );
           })}

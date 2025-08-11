@@ -12,7 +12,7 @@ function FitnessGoals() {
           description="You’re just a few questions away from a personalized plan built for your success. Want to keep going?"
         />
       </div>
-      <ContinueAndSkipButtons skipHref="/" continueHref="/questions/2" />
+      <ContinueAndSkipButtons continueHref="/questions/2" />
     </div>
   );
 }

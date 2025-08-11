@@ -10,6 +10,12 @@ export default function SelectHeight() {
   const rulerRef = useRef<HTMLDivElement>(null);
   const [selectedHeight, setSelectedHeight] = useState(160);
 
+  useEffect(() => {
+    const stored = sessionStorage.getItem("heightCm");
+    if (stored) {
+      setSelectedHeight(Number(stored));
+    }
+  }, []);
   const handleScroll = () => {
     if (rulerRef.current) {
       const itemWidth = 20;
@@ -24,6 +30,7 @@ export default function SelectHeight() {
         newHeight <= maxHeight
       ) {
         setSelectedHeight(newHeight);
+        sessionStorage.setItem("heightCm", selectedHeight.toString());
       }
     }
   };
@@ -63,7 +70,10 @@ export default function SelectHeight() {
                 value={height}
                 isMajor={isMajor}
                 shouldHighlight={shouldHighlight}
-                onClick={() => setSelectedHeight(height)}
+                onClick={() => {
+                  setSelectedHeight(height);
+                  sessionStorage.setItem("heightCm", selectedHeight.toString());
+                }}
               />
             );
           })}

@@ -1,4 +1,4 @@
-import { getToken } from "@/lib/utils";
+import { getServerToken, getToken } from "@/lib/utils";
 import axios from "axios";
 
 // import baseUrl
@@ -13,25 +13,6 @@ export const baseAPI = axios.create({
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   },
 });
-// create an instance of the axios server
-// export const serverBaseAPI = axios.create({
-//   baseURL,
-//   headers: {
-//     "Content-Type": "application/json",
-//     ...(serverToken ? { Authorization: `Bearer ${serverToken}` } : {}),
-//   },
-// });
-
-// Interceptor للـ baseAPI
-// baseAPI.interceptors.request.use((config) => {
-//   const token = getToken();
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   } else {
-//     delete config.headers.Authorization;
-//   }
-//   return config;
-// });
 
 // use this baseAPI form only if you are visiting a form data or uploading a document
 export const baseAPIForm = axios.create({
@@ -41,13 +22,15 @@ export const baseAPIForm = axios.create({
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   },
 });
-// Interceptor للـ baseAPIForm
-// baseAPIForm.interceptors.request.use((config) => {
-//   const token = getToken();
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   } else {
-//     delete config.headers.Authorization;
-//   }
-//   return config;
-// });
+
+// server-side axios instance factory (async)
+export const serverBaseAPIWithToken = async () => {
+  const token = await getServerToken();
+  return axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+  });
+};

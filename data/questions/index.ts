@@ -1,6 +1,6 @@
 import {
   IFitnessLevel,
-  IQuestion,
+  IQuestionData,
   ITime,
   IWorkoutFrequency,
 } from "@/interfaces/questions";
@@ -21,15 +21,10 @@ export const areas: string[] = [
   "Leg",
   "Full Body",
 ];
-export const goals: IQuestion[] = [
+export const goals: IQuestionData[] = [
   { src: "lose-weight", label: "lose weight" },
   { src: "build-muscle", label: "build muscle" },
   { src: "keep-fit", label: "keep fit" },
-];
-export const shapes: IQuestion[] = [
-  { src: "medium-body", label: "medium body" },
-  { src: "fat-body", label: "fat body" },
-  { src: "muscular-body", label: "muscular body" },
 ];
 export const times: ITime[] = [
   { icon: ScanFace, label: "Right now" },
@@ -38,7 +33,7 @@ export const times: ITime[] = [
   { icon: CalendarPlus, label: "> 3 Year ago" },
   { icon: Ban, label: "Never" },
 ];
-export const injuries: IQuestion[] = [
+export const injuries: IQuestionData[] = [
   { src: "none-injury", label: "none" },
   { src: "shoulder-injury", label: "shoulder" },
   { src: "wrist-injury", label: "wrist" },

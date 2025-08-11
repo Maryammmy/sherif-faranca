@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/Button";
-import { IQuestion } from "@/interfaces/questions";
+import { IQuestionData } from "@/interfaces/questions";
 import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
 interface IProps {
-  goal: IQuestion;
+  goal: IQuestionData;
   selectedGoal: string;
   handleSelectGoal: (goal: string) => void;
 }
