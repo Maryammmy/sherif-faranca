@@ -1,14 +1,14 @@
-"use client"; // لازم يكون client component عشان يقدر يعرض الخطأ ويتفاعل مع المستخدم
+"use client";
 
 import { Button } from "@/components/ui/Button";
 import { useEffect } from "react";
 
-interface ErrorProps {
+interface IProps {
   error: Error;
   reset: () => void;
 }
 
-export default function Error({ error, reset }: ErrorProps) {
+export default function Error({ error, reset }: IProps) {
   useEffect(() => {
     console.error(error);
   }, [error]);

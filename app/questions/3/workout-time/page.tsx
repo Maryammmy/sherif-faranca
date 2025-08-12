@@ -1,17 +1,9 @@
-import SelectWorkoutTime from "@/components/questions/3/workout-time/SelectWorkoutTime";
-import Shared from "@/components/questions/Shared";
+import WorkoutTimeComponent from "@/components/questions/3/workout-time";
+import { getWorkoutTimeAPI } from "@/services/questions";
 
-function WorkoutTime() {
-  return (
-    <Shared
-      progresses={[100, 100, 66.66]}
-      title="What is best time for you to"
-      coloredTitle="work out ?"
-      content={<SelectWorkoutTime />}
-      backHref="/questions/3/fitness-level"
-      nextHref="/questions/3/music-preference"
-    />
-  );
+async function WorkoutTime() {
+  const workoutTimes = await getWorkoutTimeAPI();
+  return <WorkoutTimeComponent workoutTimes={workoutTimes} />;
 }
 
 export default WorkoutTime;

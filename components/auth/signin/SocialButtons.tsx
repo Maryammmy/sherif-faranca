@@ -18,7 +18,7 @@ function SocialButtons() {
     if (isAnswered === "true") {
       router.push("/");
     } else if (isAnswered === "false") {
-      router.push("/questions/1/intro");
+      router.push("/questions/1");
     }
   }, [token, isAnswered, router]);
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {

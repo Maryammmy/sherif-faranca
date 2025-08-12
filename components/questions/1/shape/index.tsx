@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectShape from "./SelectShape";
 import Shared from "@/components/questions/Shared";
 import { IQuestion } from "@/interfaces/questions";
@@ -8,10 +8,15 @@ interface IProps {
   shapes: IQuestion[];
 }
 function Shape({ shapes }: IProps) {
-  const [selectedShape, setSelectedShape] = useState<number | null>(() => {
+  const [selectedShape, setSelectedShape] = useState<number | null>(null);
+
+  useEffect(() => {
     const stored = sessionStorage.getItem("bodyShapeId");
-    return stored ? Number(stored) : null;
-  });
+    if (stored) {
+      setSelectedShape(Number(stored));
+    }
+  }, []);
+
   const handleSelectShape = (id: number) => {
     setSelectedShape(id);
     sessionStorage.setItem("bodyShapeId", JSON.stringify(id));

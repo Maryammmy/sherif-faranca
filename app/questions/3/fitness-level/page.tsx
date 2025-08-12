@@ -1,17 +1,9 @@
-import SelectFitnessLevel from "@/components/questions/3/fitness-level/SelectFitnessLevel";
-import Shared from "@/components/questions/Shared";
+import FitnessLevelComponent from "@/components/questions/3/fitness-level";
+import { getLevelsAPI } from "@/services/questions";
 
-function FitnessLevel() {
-  return (
-    <Shared
-      progresses={[100, 100, 33.33]}
-      title="how would you rate your"
-      coloredTitle="fitness level ?"
-      content={<SelectFitnessLevel />}
-      backHref="/questions/2/injuries"
-      nextHref="/questions/3/workout-time"
-    />
-  );
+async function FitnessLevel() {
+  const fitnessLevels = await getLevelsAPI();
+  return <FitnessLevelComponent fitnessLevels={fitnessLevels} />;
 }
 
 export default FitnessLevel;

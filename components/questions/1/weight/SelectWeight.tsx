@@ -13,8 +13,11 @@ export default function SelectWeight() {
     const stored = sessionStorage.getItem("weightKg");
     if (stored) {
       setSelectedWeight(Number(stored));
+    } else {
+      sessionStorage.setItem("weightKg", "60");
     }
   }, []);
+
   const handleScroll = () => {
     if (rulerRef.current) {
       const itemWidth = 20;

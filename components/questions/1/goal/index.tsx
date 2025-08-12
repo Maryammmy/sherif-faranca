@@ -2,16 +2,18 @@
 import { IQuestion } from "@/interfaces/questions";
 import SelectGoal from "./SelectGoal";
 import Shared from "@/components/questions/Shared";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IProps {
   goals: IQuestion[];
 }
 function Goal({ goals }: IProps) {
-  const [selectedGoal, setSelectedGoal] = useState<number | null>(() => {
+  const [selectedGoal, setSelectedGoal] = useState<number | null>(null);
+
+  useEffect(() => {
     const stored = sessionStorage.getItem("goalId");
-    return stored ? Number(stored) : null;
-  });
+    if (stored) setSelectedGoal(Number(stored));
+  }, []);
   const handleSelectGoal = (id: number) => {
     setSelectedGoal(id);
     sessionStorage.setItem("goalId", JSON.stringify(id));

@@ -1,35 +1,39 @@
-"use client";
 import { Button } from "@/components/ui/Button";
-import { times } from "@/data/questions";
+import { IQuestion } from "@/interfaces/questions";
 import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import Image from "next/image";
 
-function SelectIdealBodyTime() {
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const handleSelectTime = (time: string) => {
-    setSelectedTime(time);
-  };
+interface IProps {
+  idealBodies: IQuestion[];
+  selectedIdealBody: number | null;
+  handleSelectIdealBody: (id: number) => void;
+}
+function SelectIdealBodyTime({
+  idealBodies,
+  selectedIdealBody,
+  handleSelectIdealBody,
+}: IProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pt-5">
-      {times.map(({ icon: Icon, label }) => (
+      {idealBodies?.map(({ id, name, imageUrl }) => (
         <Button
-          key={label}
-          onClick={() => handleSelectTime(label)}
+          key={id}
+          onClick={() => handleSelectIdealBody(id)}
           className={cn(
             "bg-white relative flex flex-col gap-3 justify-center items-center p-4 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
-            selectedTime === label &&
+            selectedIdealBody === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}
         >
-          {selectedTime === label && (
+          {selectedIdealBody === id && (
             <CheckCircle2 className="absolute top-2 right-2 text-primary w-6 h-6 transition-opacity opacity-100" />
           )}
-          <span>
-            <Icon className="w-8 h-8 text-primary" />
-          </span>
+          <div className="relative w-8 h-8 rounded overflow-hidden">
+            <Image src={imageUrl} alt={name} fill />
+          </div>
           <h5 className="text-center text-secondary font-medium text-xl">
-            {label}
+            {name}
           </h5>
         </Button>
       ))}

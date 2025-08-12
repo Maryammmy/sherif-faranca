@@ -2,6 +2,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/Button";
+import { useState } from "react";
+import { sendPreference } from "@/lib/utils";
+import Loader from "../loader/Loader";
 
 interface IProps {
   backHref: string;
@@ -10,8 +13,15 @@ interface IProps {
 }
 function NextAndBackButtons({ backHref, nextHref, isNextDisabled }: IProps) {
   const router = useRouter();
-  const handleNextClick = () => {
-    router.push(nextHref);
+  const [loading, setLoading] = useState(false);
+  const handleNextClick = async () => {
+    if (nextHref === "/") {
+      setLoading(true);
+      await sendPreference(router);
+      setLoading(false);
+    } else {
+      router.push(nextHref);
+    }
   };
   return (
     <div>
@@ -24,11 +34,11 @@ function NextAndBackButtons({ backHref, nextHref, isNextDisabled }: IProps) {
           Back
         </Link>
         <Button
-          disabled={isNextDisabled}
+          disabled={isNextDisabled || loading}
           onClick={handleNextClick}
           className="text-center bg-primary disabled:cursor-not-allowed disabled:bg-gray-200 text-white font-medium py-2.5 w-full sm:w-40 rounded"
         >
-          Next
+          {loading ? <Loader borderColor="#3e1492" /> : "Next"}
         </Button>
       </div>
     </div>

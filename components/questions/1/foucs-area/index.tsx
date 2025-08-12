@@ -17,10 +17,10 @@ function FoucsArea({ areas }: IProps) {
       setSelectedAreas(parsed);
     }
   }, []);
-  const toggleArea = (area: number) => {
-    const updated = selectedAreas.includes(area)
-      ? selectedAreas.filter((a) => a !== area)
-      : [...selectedAreas, area];
+  const toggleArea = (id: number) => {
+    const updated = selectedAreas.includes(id)
+      ? selectedAreas.filter((a) => a !== id)
+      : [...selectedAreas, id];
     setSelectedAreas(updated);
     sessionStorage.setItem("selectedTrainingAreaIds", JSON.stringify(updated));
   };

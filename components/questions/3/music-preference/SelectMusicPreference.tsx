@@ -1,39 +1,35 @@
-"use client";
 import { Button } from "@/components/ui/Button";
-import { musicPreference } from "@/data/questions";
+import { ISupQuestion } from "@/interfaces/questions";
 import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";
-import { useState } from "react";
 
-function SelectMusicPreference() {
-  const [selectedMusicPreferences, setSelectedMusicPreferences] = useState<
-    string[]
-  >([]);
-
-  const handleSelectMusicPreference = (musicPreference: string) => {
-    setSelectedMusicPreferences((prev) =>
-      prev.includes(musicPreference)
-        ? prev.filter((m) => m !== musicPreference)
-        : [...prev, musicPreference]
-    );
-  };
+interface IProps {
+  musicPreferences: ISupQuestion[];
+  selectedMusicPreferences: number[];
+  toggleMusic: (id: number) => void;
+}
+function SelectMusicPreference({
+  musicPreferences,
+  selectedMusicPreferences,
+  toggleMusic,
+}: IProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-10 pt-5">
-      {musicPreference.map((music) => (
+      {musicPreferences.map(({ id, name }) => (
         <Button
-          key={music}
-          onClick={() => handleSelectMusicPreference(music)}
+          key={id}
+          onClick={() => toggleMusic(id)}
           className={cn(
             "bg-white relative flex flex-col gap-3 p-4 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
-            selectedMusicPreferences.includes(music) &&
+            selectedMusicPreferences.includes(id) &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}
         >
-          {selectedMusicPreferences.includes(music) && (
+          {selectedMusicPreferences.includes(id) && (
             <CheckCircle2 className="absolute top-2 right-2 text-primary w-6 h-6 transition-opacity opacity-100" />
           )}
           <h5 className="text-start text-secondary font-medium text-xl">
-            {music}
+            {name}
           </h5>
         </Button>
       ))}

@@ -12,7 +12,7 @@ interface IProps {
 function SelectShape({ shapes, selectedShape, handleSelectShape }: IProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pt-5">
-      {shapes.map(({ id, name, imageUrl }) => (
+      {shapes?.map(({ id, name, imageUrl }) => (
         <Button
           key={id}
           onClick={() => handleSelectShape(id)}

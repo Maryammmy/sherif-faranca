@@ -40,7 +40,7 @@ function SignInForm() {
           if (isAnswared) {
             router.push("/");
           } else {
-            router.push("/questions/1/intro");
+            router.push("/questions/1");
           }
         }, 500);
       }

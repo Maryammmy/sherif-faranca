@@ -14,6 +14,8 @@ export default function SelectHeight() {
     const stored = sessionStorage.getItem("heightCm");
     if (stored) {
       setSelectedHeight(Number(stored));
+    } else {
+      sessionStorage.setItem("heightCm", "160");
     }
   }, []);
   const handleScroll = () => {

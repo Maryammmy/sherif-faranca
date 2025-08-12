@@ -1,17 +1,16 @@
-"use client";
-import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { workoutFrequencies } from "@/data/questions";
 import { Button } from "@/components/ui/Button";
 
-const SelectWorkoutFrequency = () => {
-  const [selectedWorkoutTime, setSelectedWorkoutTime] = useState(4);
-
-  const handleClickWorkoutTime = (val: number) => {
-    setSelectedWorkoutTime(val);
-  };
-
+interface IProps {
+  selectedWorkoutTime: number;
+  handleClickWorkoutTime: (val: number) => void;
+}
+const SelectWorkoutFrequency = ({
+  selectedWorkoutTime,
+  handleClickWorkoutTime,
+}: IProps) => {
   const selectedItem = workoutFrequencies.find(
     (item) => item.value === selectedWorkoutTime
   );
