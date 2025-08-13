@@ -9,7 +9,6 @@ interface IProps {
 }
 function Goal({ goals }: IProps) {
   const [selectedGoal, setSelectedGoal] = useState<number | null>(null);
-
   useEffect(() => {
     const stored = sessionStorage.getItem("goalId");
     if (stored) setSelectedGoal(Number(stored));

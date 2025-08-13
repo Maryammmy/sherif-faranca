@@ -6,16 +6,20 @@ import RecommendForYou from "@/components/main/home/RecommendForYou";
 import SubscriptionPlans from "@/components/main/subscription/subscription-plans";
 import SpecialOffer from "@/components/main/subscription/special-offer";
 import NavigationBar from "@/components/main/home/navigation-bar";
+import PrefetchHydrate from "@/components/query";
+import { getHomeAPI } from "@/services/home";
 
-export default function HomePage() {
+export default function Home() {
   return (
     <div className="space-y-2">
       <NavigationBar />
-      <RecentWatched />
-      <RecommendForYou />
-      <ClassicClass />
-      <Banner />
-      <DiscoverPrograms />
+      <PrefetchHydrate queryKey={["home"]} queryFn={getHomeAPI}>
+        <RecentWatched />
+        <RecommendForYou />
+        <ClassicClass />
+        <Banner />
+        <DiscoverPrograms />
+      </PrefetchHydrate>
       <SubscriptionPlans />
       <SpecialOffer />
     </div>

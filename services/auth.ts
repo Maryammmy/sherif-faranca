@@ -1,46 +1,47 @@
+"use server";
 import {
   ResetPassword,
   SendRegistration,
   SendResetPassword,
 } from "@/types/auth";
-import { baseAPI } from ".";
 import {
   ISigninWithEmail,
   ISignupWithEmail,
   ISignupWithNumber,
 } from "@/interfaces/auth";
+import { getServerData, postServerData } from "./server";
 
 export const sendRegistrationAPI = async (payload: SendRegistration) => {
-  const response = await baseAPI.post("/api/Otp/send-registration", payload);
-  return response?.data;
+  const data = await postServerData("/api/Otp/send-registration", payload);
+  return data;
 };
 export const signupWithEmailAPI = async (payload: ISignupWithEmail) => {
-  const response = await baseAPI.post("/api/Auth/signup-with-email", payload);
-  return response?.data;
+  const data = await postServerData("/api/Auth/signup-with-email", payload);
+  return data;
 };
 
 export const signupWithNumberAPI = async (payload: ISignupWithNumber) => {
-  const response = await baseAPI.post("api/Auth/signup-with-mobile", payload);
-  return response?.data;
+  const data = await postServerData("api/Auth/signup-with-mobile", payload);
+  return data;
 };
 export const signinWithEmailAPI = async (payload: ISigninWithEmail) => {
-  const response = await baseAPI.post("/api/Auth/login/email", payload);
-  return response?.data;
+  const data = await postServerData("/api/Auth/login/email", payload);
+  return data;
+};
+export const sendResetPasswordAPI = async (payload: SendResetPassword) => {
+  const data = await postServerData("/api/Otp/send-reset", payload);
+  return data;
+};
+export const resetPasswordAPI = async (payload: ResetPassword) => {
+  const data = await postServerData("/api/Auth/reset-password", payload);
+  return data;
 };
 export const getGoogleAuthUrlAPI = async () => {
-  const response = await baseAPI.get("/api/Auth/google/frontend");
-  return response?.data;
+  const data = await getServerData("/api/Auth/google/frontend");
+  return data;
 };
 
 export const getFacebookAuthUrlAPI = async () => {
-  const response = await baseAPI.get("/api/Auth/frontend/facebook");
-  return response?.data;
-};
-export const sendResetPasswordAPI = async (payload: SendResetPassword) => {
-  const response = await baseAPI.post("/api/Otp/send-reset", payload);
-  return response?.data;
-};
-export const resetPasswordAPI = async (payload: ResetPassword) => {
-  const response = await baseAPI.post("/api/Auth/reset-password", payload);
-  return response?.data;
+  const data = await getServerData("/api/Auth/frontend/facebook");
+  return data;
 };

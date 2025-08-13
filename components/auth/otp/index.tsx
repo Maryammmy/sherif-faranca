@@ -28,7 +28,8 @@ function Otp() {
                 </>
               ) : (
                 <>
-                  Email <span className="text-primary">({email})</span>
+                  Email{" "}
+                  <span className="text-primary wrap-anywhere">({email})</span>
                 </>
               )}
             </span>

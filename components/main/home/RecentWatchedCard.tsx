@@ -6,14 +6,27 @@ import {
   UserRound,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { IRecentWatched } from "@/interfaces/main/home";
+import CircularRing from "@/components/ui/CircularRing";
 
-export default function RecentWatchedCard() {
+interface IProps {
+  recentVideo: IRecentWatched;
+}
+export default function RecentWatchedCard({ recentVideo }: IProps) {
+  const {
+    categoryName,
+    levelName,
+    time,
+    title,
+    videoType,
+    watchProgressPercentage,
+  } = recentVideo;
   return (
-    <div className="relative rounded-2xl overflow-hidden text-white h-[250px] shadow-lg">
+    <div className="relative rounded-2xl overflow-hidden text-white h-[250px] shadow-lg w-full">
       {/* Background image */}
       <Image
         src="/recent-watched-card.jpg"
-        alt="Workout"
+        alt={title}
         fill
         className="object-cover"
       />
@@ -22,11 +35,11 @@ export default function RecentWatchedCard() {
       {/* Content */}
       <div className="absolute z-20 inset-0 p-4 flex flex-col justify-between gap-2">
         {/* Top Section */}
-        <div className="flex justify-between items-start">
-          <div>
-            <p className="text-gray-200 font-medium">Mixed Course</p>
-            <span className="text-xs bg-primary p-2 rounded-lg inline-block mt-1">
-              Cardio
+        <div className="flex justify-between gap-4 items-start">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-gray-200 font-medium truncate">{title}</h2>
+            <span className="text-xs bg-primary p-2 rounded-lg inline-block mt-1 max-w-full truncate">
+              {categoryName}
             </span>
           </div>
           <Button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
@@ -36,49 +49,31 @@ export default function RecentWatchedCard() {
           </Button>
         </div>
         {/* Center Section */}
-        <div className="flex justify-between gap-2">
-          {/* Title + Icons */}
-          <div>
-            <h3 className="text-lg font-bold">Dance & Work Out</h3>
-            <div className="flex items-center gap-4 text-sm mt-2">
-              <div className="flex items-center gap-1 text-gray-300 font-medium">
-                <UserRound />
-                <span>Beginners</span>
-              </div>
-              <div className="flex items-center gap-1 text-gray-300 font-medium">
-                <Clock12 />
-                <span>2 hours</span>
-              </div>
+        <div>
+          <div className="flex items-center justify-between gap-2">
+            {/* Title  */}
+            <h3 className="text-lg font-bold truncate max-w-full">
+              {videoType}
+            </h3>
+            {/* Progress circle */}
+            <div className="w-10 h-10 shrink-0">
+              <CircularRing
+                value={watchProgressPercentage}
+                color="#3e1492"
+                strokeWidth={5}
+                text={`${watchProgressPercentage.toString()}%`}
+              />
             </div>
           </div>
-          {/* Progress circle */}
-          <div className="relative w-12 h-12">
-            <svg className="w-full h-full">
-              <circle
-                cx="24"
-                cy="24"
-                r="20"
-                fill="transparent"
-                stroke="white"
-                strokeOpacity="0.2"
-                strokeWidth="4"
-              />
-              <circle
-                cx="24"
-                cy="24"
-                r="20"
-                fill="transparent"
-                stroke="white"
-                strokeWidth="4"
-                strokeDasharray="125.6"
-                strokeDashoffset="31.4"
-                strokeLinecap="round"
-                transform="rotate(-90 24 24)"
-              />
-            </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-sm font-bold">
-              75%
-            </span>
+          <div className="flex items-center gap-4 text-sm mt-2">
+            <div className="flex min-w-0 flex-1 items-center gap-1 text-gray-300 font-medium">
+              <UserRound />
+              <span className="truncate">{levelName}</span>
+            </div>
+            <div className="flex min-w-0 flex-1 items-center gap-1 text-gray-300 font-medium">
+              <Clock12 />
+              <span className="truncate">{time}</span>
+            </div>
           </div>
         </div>
         {/* Bottom Section */}

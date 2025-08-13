@@ -1,19 +1,23 @@
-import Cookies from "js-cookie";
+"use server";
+import { cookies } from "next/headers";
 
 const TOKEN_KEY = "token";
-
-export const setToken = (token: string) => {
-  Cookies.set(TOKEN_KEY, token, {
-    expires: 365,
-    secure: true,
-    sameSite: "strict",
+export const getToken = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(TOKEN_KEY)?.value || null;
+  return token;
+};
+export const setToken = async (value: string) => {
+  const cookieStore = await cookies();
+  cookieStore.set({
+    name: TOKEN_KEY,
+    value: value,
+    httpOnly: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365,
   });
 };
-
-export const getToken = () => {
-  return Cookies.get(TOKEN_KEY) || null;
-};
-
-export const removeToken = () => {
-  Cookies.remove(TOKEN_KEY);
+export const removeToken = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete(TOKEN_KEY);
 };

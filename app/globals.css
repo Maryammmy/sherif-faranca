@@ -16,7 +16,7 @@ body {
 }
 p,
 span {
-  @apply break-words;
+  @apply wrap-break-word;
 }
 /* Button scale */
 .zoom {
