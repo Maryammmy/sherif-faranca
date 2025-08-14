@@ -3,12 +3,21 @@
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useSidebar } from "@/context/sidebar";
+import { useHeader } from "@/hooks/header";
+import { IHeader } from "@/interfaces/main/header";
 import { Bell, Menu, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import CircularRing from "../ui/CircularRing";
 
 export default function Header() {
   const { toggleMobileSidebar } = useSidebar();
+  const { data } = useHeader();
+
+  console.log(data);
+  if (!data) return null;
+  const { userName, activeGoals, greeting, trainingPerWeek }: IHeader = data;
+  const progressValue = (activeGoals % trainingPerWeek) * 100;
   return (
     <header className="flex items-center justify-between p-5 pb-3 border-b">
       {/* Left side: */}
@@ -28,8 +37,10 @@ export default function Header() {
           <Menu />
         </Button>
         <div className="hidden lg:block">
-          <h2 className="text-xl font-semibold text-gray-800">Hey Sara Ali</h2>
-          <p className="text-sm text-gray-500">good morning</p>
+          <h2 className="text-xl font-semibold text-gray-800">
+            Hey {userName}
+          </h2>
+          <p className="text-sm text-gray-500">{greeting}</p>
         </div>
       </div>
       {/* Right side: */}
@@ -59,39 +70,14 @@ export default function Header() {
             />
           </svg>
         </Button>
-        <div className="flex items-center gap-2">
-          <div className="relative w-10 h-10">
-            <svg className="w-full h-full" viewBox="0 0 36 36">
-              <path
-                d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                fill="none"
-                stroke="#e6e6e6"
-                strokeWidth="3"
-              />
-              <path
-                d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                fill="none"
-                stroke="#3E1492"
-                strokeWidth="3"
-                strokeDasharray="0, 100" // 0% progress, adjust this value
-                strokeLinecap="round"
-              />
-              <text
-                x="18"
-                y="21"
-                textAnchor="middle"
-                fontSize="10"
-                fill="#3E1492"
-                fontWeight="bold"
-              >
-                0/3
-              </text>
-            </svg>
-          </div>
+        <div className="w-10 h-10">
+          <CircularRing
+            textColor="#3e1492"
+            value={progressValue}
+            color="#3e1492"
+            strokeWidth={10}
+            text={`${activeGoals}/${trainingPerWeek}`}
+          />
         </div>
         <Link href="/notifications" className="relative p-2">
           <Bell className="w-6 h-6 text-gray-600" />
