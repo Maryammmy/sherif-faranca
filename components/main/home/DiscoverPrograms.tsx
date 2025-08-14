@@ -1,7 +1,14 @@
+"use client";
 import DiscoverProgramsCard from "@/components/main/home/DiscoverProgramsCard";
 import { Button } from "@/components/ui/Button";
+import { useHome } from "@/hooks";
+import { IDiscoverProgram } from "@/interfaces/main/home";
 
 export default function DiscoverPrograms() {
+  const { data } = useHome();
+  const discoverPrograms: IDiscoverProgram[] = data?.data?.discoverProgram;
+
+  console.log(discoverPrograms);
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -13,8 +20,11 @@ export default function DiscoverPrograms() {
         </Button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <DiscoverProgramsCard key={index} id={index + 1} />
+        {discoverPrograms.map((discoverProgram) => (
+          <DiscoverProgramsCard
+            key={discoverProgram?.id}
+            discoverProgram={discoverProgram}
+          />
         ))}
       </div>
     </div>

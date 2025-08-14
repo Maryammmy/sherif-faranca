@@ -7,7 +7,6 @@ import { IRecentWatched } from "@/interfaces/main/home";
 export default function RecentWatched() {
   const { data } = useHome();
   const recentVideos: IRecentWatched[] = data?.data?.recentVideos;
-  console.log(data);
   return (
     <div>
       <div className="flex items-center justify-between">

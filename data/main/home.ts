@@ -1,4 +1,4 @@
-import { IClassicClass, INavItem } from "@/interfaces/main/home";
+import { INavItem } from "@/interfaces/main/home";
 import {
   Play,
   Grid,
@@ -11,13 +11,6 @@ import {
   Clock,
 } from "lucide-react";
 
-export const classicClass: IClassicClass[] = [
-  { id: 1, title: "Abs" },
-  { id: 2, title: "Arms" },
-  { id: 3, title: "Chest" },
-  { id: 4, title: "Legs" },
-  { id: 5, title: "Shoulder & Back" },
-];
 export const navItems: INavItem[] = [
   { label: "Class", icon: Play },
   { label: "Challenges", icon: Grid },

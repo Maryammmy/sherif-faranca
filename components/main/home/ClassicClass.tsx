@@ -2,12 +2,20 @@
 
 import ClassicClassCard from "@/components/main/home/ClassicClassCard";
 import { Button } from "@/components/ui/Button";
-import { classicClass } from "@/data/main/home";
+import { useHome } from "@/hooks";
+import { IClassicClass } from "@/interfaces/main/home";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const { data } = useHome();
+  const classicClasses: IClassicClass[] = data?.data?.classicClasses;
 
+  // هات الـ programs الخاصة بالـ selectedId
+  const selectedClasses = classicClasses?.find(
+    (item) => item.focusAreaId === selectedId
+  )?.programs;
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -16,31 +24,48 @@ export default function ClassicClass() {
           <span>View All</span>
         </Button>
       </div>
-      <div className=" flex items-center justify-center">
-        <div className="flex items-center gap-5">
-          {classicClass.map((item) => {
-            const isSelected = selectedId === item?.id;
-            return (
-              <Button
-                key={item?.id}
-                onClick={() => item?.id && setSelectedId(item.id)}
-                className={`px-4 py-2 rounded-lg cursor-pointer font-medium transition-colors ${
-                  isSelected
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                <h3>{item?.title}</h3>
-              </Button>
-            );
-          })}
-        </div>
+
+      {/* أزرار الفوكس أريا */}
+      <div className="flex justify-center items-center gap-5 pt-5">
+        {classicClasses?.map(({ focusAreaId, focusAreaName }) => {
+          const isSelected = selectedId === focusAreaId;
+          return (
+            <Button
+              key={focusAreaId}
+              onClick={() => setSelectedId(focusAreaId)}
+              className={`px-4 py-2 rounded-lg cursor-pointer font-medium transition-colors ${
+                isSelected
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              <h3>{focusAreaName}</h3>
+            </Button>
+          );
+        })}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <ClassicClassCard key={index} />
-        ))}
+      {/* عرض البرامج */}
+      <div
+        className={cn(
+          "grid gap-5 py-5",
+          selectedClasses?.length
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+            : "grid-cols-1"
+        )}
+      >
+        {selectedClasses?.length ? (
+          selectedClasses?.map((classicClass) => (
+            <ClassicClassCard
+              key={classicClass?.programDayId}
+              classicClass={classicClass}
+            />
+          ))
+        ) : (
+          <p className="text-gray-500 text-center">
+            Select a Focus Area to view programs
+          </p>
+        )}
       </div>
     </div>
   );

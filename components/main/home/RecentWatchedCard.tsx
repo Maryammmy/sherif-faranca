@@ -14,6 +14,7 @@ interface IProps {
 }
 export default function RecentWatchedCard({ recentVideo }: IProps) {
   const {
+    imageUrl,
     categoryName,
     levelName,
     time,
@@ -24,12 +25,7 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
   return (
     <div className="relative rounded-2xl overflow-hidden text-white h-[250px] shadow-lg w-full">
       {/* Background image */}
-      <Image
-        src="/recent-watched-card.jpg"
-        alt={title}
-        fill
-        className="object-cover"
-      />
+      <Image src={imageUrl} alt={title} fill className="object-cover" />
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 z-10" />
       {/* Content */}

@@ -79,7 +79,7 @@ function DayExercises({ programId }: IProps) {
             Start Training
           </Link>
         </div>
-        <RecommendForYou length={5} screen3xl={true} />
+        <RecommendForYou screen3xl={true} />
       </div>
     </div>
   );

@@ -1,12 +1,16 @@
+"use client";
 import RecommendCard from "@/components/main/home/RecommendCard";
 import { Button } from "@/components/ui/Button";
+import { useHome } from "@/hooks";
+import { IRecommendedForYou } from "@/interfaces/main/home";
 import { cn } from "@/lib/utils";
 
 interface IProps {
-  length?: number;
   screen3xl?: boolean;
 }
-export default function RecommendForYou({ length = 4, screen3xl }: IProps) {
+export default function RecommendForYou({ screen3xl }: IProps) {
+  const { data } = useHome();
+  const recommendedForYou: IRecommendedForYou[] = data?.data?.recommendedForYou;
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -23,8 +27,11 @@ export default function RecommendForYou({ length = 4, screen3xl }: IProps) {
           screen3xl && "3xl:grid-cols-5"
         )}
       >
-        {Array.from({ length: length }).map((_, index) => (
-          <RecommendCard key={index} />
+        {recommendedForYou?.map((recommendedForYou) => (
+          <RecommendCard
+            key={recommendedForYou?.id}
+            recommendForYou={recommendedForYou}
+          />
         ))}
       </div>
     </div>

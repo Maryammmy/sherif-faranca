@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/Button";
+import { IRecommendedForYou } from "@/interfaces/main/home";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "next/image";
 
-export default function RecommendCard() {
+interface IProps {
+  recommendForYou: IRecommendedForYou;
+}
+export default function RecommendCard({ recommendForYou }: IProps) {
+  const { classesCount, levelName, title, totalCalories } = recommendForYou;
   return (
     <div className="space-y-2">
       <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
@@ -29,20 +34,20 @@ export default function RecommendCard() {
         </div>
       </div>
       <div>
-        <h3 className="text-gray-600 font-medium">Full Body Kpop Challenge</h3>
+        <h3 className="text-gray-600 font-medium">{title}</h3>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="grid grid-cols-3 gap-2">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <TrendingUp />
-          <span>Beginners</span>
+          <span className="truncate">{levelName}</span>
         </div>
-        <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
+        <div className="flex items-center justify-center gap-1 text-gray-400 text-sm font-medium">
           <Play />
-          <span>Class</span>
+          <span className="truncate">{classesCount}Class</span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
-          <Flame />
-          <span>Kcal</span>
+          <Flame className="shrink-0" />
+          <span className="truncate">{totalCalories}Kcal</span>
         </div>
       </div>
     </div>
