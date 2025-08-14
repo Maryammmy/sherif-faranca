@@ -24,49 +24,52 @@ export default function ClassicClass() {
           <span>View All</span>
         </Button>
       </div>
+      {data && classicClasses?.length && (
+        <>
+          {/* أزرار الفوكس أريا */}
+          <div className="flex justify-center items-center gap-5 pt-5">
+            {classicClasses?.map(({ focusAreaId, focusAreaName }) => {
+              const isSelected = selectedId === focusAreaId;
+              return (
+                <Button
+                  key={focusAreaId}
+                  onClick={() => setSelectedId(focusAreaId)}
+                  className={`px-4 py-2 rounded-lg cursor-pointer font-medium transition-colors ${
+                    isSelected
+                      ? "bg-primary text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  <h3>{focusAreaName}</h3>
+                </Button>
+              );
+            })}
+          </div>
 
-      {/* أزرار الفوكس أريا */}
-      <div className="flex justify-center items-center gap-5 pt-5">
-        {classicClasses?.map(({ focusAreaId, focusAreaName }) => {
-          const isSelected = selectedId === focusAreaId;
-          return (
-            <Button
-              key={focusAreaId}
-              onClick={() => setSelectedId(focusAreaId)}
-              className={`px-4 py-2 rounded-lg cursor-pointer font-medium transition-colors ${
-                isSelected
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              <h3>{focusAreaName}</h3>
-            </Button>
-          );
-        })}
-      </div>
-
-      {/* عرض البرامج */}
-      <div
-        className={cn(
-          "grid gap-5 py-5",
-          selectedClasses?.length
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-            : "grid-cols-1"
-        )}
-      >
-        {selectedClasses?.length ? (
-          selectedClasses?.map((classicClass) => (
-            <ClassicClassCard
-              key={classicClass?.programDayId}
-              classicClass={classicClass}
-            />
-          ))
-        ) : (
-          <p className="text-gray-500 text-center">
-            Select a Focus Area to view programs
-          </p>
-        )}
-      </div>
+          {/* عرض البرامج */}
+          <div
+            className={cn(
+              "grid gap-5 py-5",
+              selectedClasses?.length
+                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+                : "grid-cols-1"
+            )}
+          >
+            {selectedClasses?.length ? (
+              selectedClasses?.map((classicClass) => (
+                <ClassicClassCard
+                  key={classicClass?.programDayId}
+                  classicClass={classicClass}
+                />
+              ))
+            ) : (
+              <p className="text-gray-500 text-center">
+                Select a Focus Area to view programs
+              </p>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

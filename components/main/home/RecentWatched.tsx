@@ -15,11 +15,16 @@ export default function RecentWatched() {
           <span>View All</span>
         </Button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
-        {recentVideos?.map((recentVideo) => (
-          <RecentWatchedCard key={recentVideo?.id} recentVideo={recentVideo} />
-        ))}
-      </div>
+      {data && recentVideos?.length && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
+          {recentVideos?.map((recentVideo) => (
+            <RecentWatchedCard
+              key={recentVideo?.id}
+              recentVideo={recentVideo}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

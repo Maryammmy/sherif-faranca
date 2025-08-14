@@ -7,8 +7,6 @@ import { IDiscoverProgram } from "@/interfaces/main/home";
 export default function DiscoverPrograms() {
   const { data } = useHome();
   const discoverPrograms: IDiscoverProgram[] = data?.data?.discoverProgram;
-
-  console.log(discoverPrograms);
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -19,14 +17,16 @@ export default function DiscoverPrograms() {
           <span>View All</span>
         </Button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
-        {discoverPrograms.map((discoverProgram) => (
-          <DiscoverProgramsCard
-            key={discoverProgram?.id}
-            discoverProgram={discoverProgram}
-          />
-        ))}
-      </div>
+      {data && discoverPrograms?.length && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
+          {discoverPrograms?.map((discoverProgram) => (
+            <DiscoverProgramsCard
+              key={discoverProgram?.id}
+              discoverProgram={discoverProgram}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
