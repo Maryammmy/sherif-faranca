@@ -1,3 +1,4 @@
+"use server";
 import { getServerData } from "./server";
 
 export const headerAPI = async () => {
