@@ -15,7 +15,7 @@ export default function NotificationList() {
       <div className="relative bg-primary h-[400px] rounded-b-3xl">
         <div className="flex items-center justify-between gap-2 text-white padding-layout">
           <Link href="/">
-            <MoveLeft className="w-6 h-6" />
+            <MoveLeft className="size-6" />
           </Link>
           <header>
             <h1 className="sm:text-2xl font-bold">Notification</h1>

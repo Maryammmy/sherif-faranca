@@ -25,10 +25,10 @@ function SelectGoal({ goals, selectedGoal, handleSelectGoal }: IProps) {
           {selectedGoal === id && (
             <CheckCircle2 className="absolute top-2 right-2 text-primary w-6 h-6 transition-opacity opacity-100" />
           )}
-          <h5 className="text-center text-gray-700 font-bold text-2xl capitalize">
+          <h5 className="text-center text-gray-700 font-bold text-xl sm:text-base xl:text-xl capitalize">
             {name}
           </h5>
-          <div className="w-40 h-[200px] relative rounded-2xl overflow-hidden">
+          <div className="w-50 sm:w-30 md:w-40 h-[150px] shrink-0 relative rounded-2xl overflow-hidden">
             <Image src={imageUrl} alt={name} fill />
           </div>
         </Button>

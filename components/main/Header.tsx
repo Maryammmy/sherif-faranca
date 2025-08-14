@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useSidebar } from "@/context/sidebar";
-import { useHeader } from "@/hooks/header";
+import { useHeader } from "@/hooks";
 import { IHeader } from "@/interfaces/main/header";
-import { Bell, Menu, Search } from "lucide-react";
+import { Bell, ListFilter, Menu, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import CircularRing from "../ui/CircularRing";
@@ -13,13 +13,11 @@ import CircularRing from "../ui/CircularRing";
 export default function Header() {
   const { toggleMobileSidebar } = useSidebar();
   const { data } = useHeader();
-
-  console.log(data);
   if (!data) return null;
   const { userName, activeGoals, greeting, trainingPerWeek }: IHeader = data;
   const progressValue = (activeGoals % trainingPerWeek) * 100;
   return (
-    <header className="flex items-center justify-between p-5 pb-3 border-b">
+    <header className="flex gap-5 items-center justify-between p-5 pb-3 border-b">
       {/* Left side: */}
       <div className="flex items-center gap-4">
         <Button
@@ -53,23 +51,12 @@ export default function Header() {
             className="pl-10 pr-4 py-2 border rounded-lg bg-white w-48 md:w-64"
           />
         </div>
-        <Button className="p-2 border rounded-lg bg-white hidden sm:block">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 10H15M2.5 5H17.5M7.5 15H12.5"
-              stroke="#344054"
-              strokeWidth="1.67"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Button>
+        <Link
+          href="/filters"
+          className="p-2 border rounded-lg bg-white hidden sm:block"
+        >
+          <ListFilter />
+        </Link>
         <div className="w-10 h-10">
           <CircularRing
             textColor="#3e1492"
