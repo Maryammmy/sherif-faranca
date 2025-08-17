@@ -51,12 +51,6 @@ export default function Header() {
             className="pl-10 pr-4 py-2 border rounded-lg bg-white w-48 md:w-64"
           />
         </div>
-        <Link
-          href="/filters"
-          className="p-2 border rounded-lg bg-white hidden sm:block"
-        >
-          <ListFilter />
-        </Link>
         <div className="w-10 h-10">
           <CircularRing
             textColor="#3e1492"
@@ -66,6 +60,9 @@ export default function Header() {
             text={`${activeGoals}/${trainingPerWeek}`}
           />
         </div>
+        <Link href="/filters" className="p-2 border rounded-lg bg-white">
+          <ListFilter />
+        </Link>
         <Link href="/notifications" className="relative p-2">
           <Bell className="w-6 h-6 text-gray-600" />
           <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>

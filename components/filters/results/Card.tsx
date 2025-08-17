@@ -1,12 +1,13 @@
-import { IClass } from "@/interfaces/main/home";
-import { Clock12, Flame, TrendingUp } from "lucide-react";
+import { IFiltersResult } from "@/interfaces/filters";
+import { TrendingUp, Clock12, Flame } from "lucide-react";
 import Image from "next/image";
+import React from "react";
 
 interface IProps {
-  classicClass: IClass;
+  result: IFiltersResult;
 }
-export default function ClassicClassCard({ classicClass }: IProps) {
-  const { title, level, totalCalories, totalDuration, imageUrl } = classicClass;
+function FiltersResultCard({ result }: IProps) {
+  const { title, imageUrl, level, calories, durationMinutes } = result;
   return (
     <div className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
@@ -23,13 +24,15 @@ export default function ClassicClassCard({ classicClass }: IProps) {
         </div>
         <div className="flex justify-center items-center gap-1 text-gray-400 text-sm font-medium">
           <Clock12 />
-          <span>{totalDuration}</span>
+          <span>{durationMinutes}</span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame />
-          <span className="truncate">{totalCalories}Kcal</span>
+          <span className="truncate">{calories}Kcal</span>
         </div>
       </div>
     </div>
   );
 }
+
+export default FiltersResultCard;

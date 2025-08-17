@@ -7,13 +7,14 @@ interface IProps {
   recommendForYou: IRecommendedForYou;
 }
 export default function RecommendCard({ recommendForYou }: IProps) {
-  const { classesCount, levelName, title, totalCalories } = recommendForYou;
+  const { classesCount, levelName, title, totalCalories, imageUrl } =
+    recommendForYou;
   return (
     <div className="space-y-2">
       <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
         <Image
-          src="/recommend-card.jpg"
-          alt="Workout"
+          src={imageUrl}
+          alt={title}
           fill
           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover"

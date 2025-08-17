@@ -13,7 +13,7 @@ export interface IRecentWatched {
 export interface IRecommendedForYou {
   classesCount: number;
   id: number;
-  imageUrl: number;
+  imageUrl: string;
   levelName: string;
   title: string;
   totalCalories: number;

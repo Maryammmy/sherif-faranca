@@ -4,14 +4,12 @@ import ClassicClassCard from "@/components/main/home/ClassicClassCard";
 import { Button } from "@/components/ui/Button";
 import { useHome } from "@/hooks";
 import { IClassicClass } from "@/interfaces/main/home";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data } = useHome();
   const classicClasses: IClassicClass[] = data?.data?.classicClasses;
-
   // هات الـ programs الخاصة بالـ selectedId
   const selectedClasses = classicClasses?.find(
     (item) => item.focusAreaId === selectedId
@@ -47,14 +45,7 @@ export default function ClassicClass() {
           </div>
 
           {/* عرض البرامج */}
-          <div
-            className={cn(
-              "grid gap-5 py-5",
-              selectedClasses?.length
-                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-                : "grid-cols-1"
-            )}
-          >
+          <div className="grid gap-5 py-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {selectedClasses?.length ? (
               selectedClasses?.map((classicClass) => (
                 <ClassicClassCard
@@ -63,7 +54,7 @@ export default function ClassicClass() {
                 />
               ))
             ) : (
-              <p className="text-gray-500 text-center">
+              <p className="col-span-full text-gray-500 text-center font-medium">
                 Select a Focus Area to view programs
               </p>
             )}

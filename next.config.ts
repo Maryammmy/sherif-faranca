@@ -29,6 +29,31 @@ const nextConfig: NextConfig = {
         hostname: "img.icons8.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "blog.nasm.org",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "stayfitcentral.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i0.wp.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "youfit.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.marcypro.com",
+        pathname: "/**",
+      },
     ],
   },
 };

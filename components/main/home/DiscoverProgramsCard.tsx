@@ -7,16 +7,12 @@ interface IProps {
   discoverProgram: IDiscoverProgram;
 }
 export default function DiscoverProgramsCard({ discoverProgram }: IProps) {
-  const { id, classesCount, levelName, title, totalCalories } = discoverProgram;
+  const { id, classesCount, levelName, title, totalCalories, imageUrl } =
+    discoverProgram;
   return (
     <div className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
-        <Image
-          src="/recent-watched-card.jpg"
-          alt="classic-class"
-          className="object-cover"
-          fill
-        />
+        <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
 
       <div>
