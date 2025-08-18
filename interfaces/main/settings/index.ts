@@ -14,3 +14,12 @@ export interface IInputSettings {
   labelClassname: string;
   inputClassname: string;
 }
+export interface IProfile {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  birthDate?: string;
+  country?: string;
+  picture?: string;
+  genderId?: number;
+}

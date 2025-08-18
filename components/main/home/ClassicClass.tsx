@@ -10,6 +10,7 @@ export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data } = useHome();
   const classicClasses: IClassicClass[] = data?.data?.classicClasses;
+  const randomClasses: IClassicClass[] = data?.data?.randomClasses;
   // هات الـ programs الخاصة بالـ selectedId
   const selectedClasses = classicClasses?.find(
     (item) => item.focusAreaId === selectedId
@@ -45,17 +46,30 @@ export default function ClassicClass() {
           </div>
 
           {/* عرض البرامج */}
+          {/* عرض البرامج */}
           <div className="grid gap-5 py-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {selectedClasses?.length ? (
-              selectedClasses?.map((classicClass) => (
+              // لو في selectedClasses
+              selectedClasses.map((classicClass) => (
                 <ClassicClassCard
                   key={classicClass?.programDayId}
                   classicClass={classicClass}
                 />
               ))
+            ) : randomClasses?.length ? (
+              // لو مفيش selectedClasses → اعرض الـ programs اللي جوا randomClasses
+              randomClasses
+                .flatMap((randomClass) => randomClass.programs)
+                .map((program) => (
+                  <ClassicClassCard
+                    key={program?.programDayId}
+                    classicClass={program}
+                  />
+                ))
             ) : (
+              // fallback لو مفيش أي حاجة
               <p className="col-span-full text-gray-500 text-center font-medium">
-                Select a Focus Area to view programs
+                No programs available
               </p>
             )}
           </div>

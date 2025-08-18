@@ -3,29 +3,33 @@ import { Label } from "@/components/ui/Label";
 import PasswordInput from "@/components/ui/PasswordInput";
 import { IInputSettings } from "@/interfaces/main/settings";
 import { ReactNode } from "react";
+import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 
-interface IProps {
+interface IProps<T extends FieldValues> {
   input: IInputSettings;
   icon?: ReactNode;
   withWrapper?: boolean;
   wrapperClassName?: string;
+  register?: UseFormRegister<T>;
 }
 
-function SettingsInput({
+function SettingsInput<T extends FieldValues>({
   input,
   icon,
   withWrapper = false,
   wrapperClassName = "flex items-center border rounded-md px-3 py-1 gap-2",
-}: IProps) {
+  register,
+}: IProps<T>) {
   const { id, label, name, placeholder, type, labelClassname, inputClassname } =
     input;
 
   const inputProps = {
     id,
-    name,
     placeholder,
     className: inputClassname,
+    ...(register ? register(name as Path<T>) : {}),
   };
+
   const renderInput = () => {
     if (type === "password")
       return (
@@ -33,6 +37,7 @@ function SettingsInput({
           <PasswordInput {...inputProps} />
         </div>
       );
+
     if (withWrapper) {
       return (
         <div className={wrapperClassName}>

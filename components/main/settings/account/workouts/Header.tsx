@@ -8,7 +8,7 @@ function Header() {
         <MoveLeft className="sm:size-10" />
       </Link>
       <header className="flex-grow text-center text-lg sm:text-4xl font-bold">
-        <h1>About My Workout</h1>
+        <h1>About My Workouts</h1>
       </header>
     </div>
   );

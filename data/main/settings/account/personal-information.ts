@@ -6,11 +6,19 @@ const defaultStyles = {
 };
 export const personalInformationForm: IInputSettings[] = [
   {
-    id: "name",
-    name: "name",
+    id: "firstName",
+    name: "firstName",
     placeholder: "Mohmoud",
     type: "text",
-    label: "Name",
+    label: "First name",
+    ...defaultStyles,
+  },
+  {
+    id: "lastName",
+    name: "lastName",
+    placeholder: "Ali",
+    type: "text",
+    label: "Last name",
     ...defaultStyles,
   },
   {
@@ -22,16 +30,8 @@ export const personalInformationForm: IInputSettings[] = [
     ...defaultStyles,
   },
   {
-    id: "last_name",
-    name: "last_name",
-    placeholder: "Ali",
-    type: "text",
-    label: "Last name",
-    ...defaultStyles,
-  },
-  {
-    id: "phone_number",
-    name: "phone_number",
+    id: "phoneNumber",
+    name: "phoneNumber",
     placeholder: "011111223344",
     type: "text",
     label: "Phone number",
