@@ -31,7 +31,7 @@ export interface ISupQuestion {
   name: string;
 }
 export interface IPreferences {
-  ismale: boolean;
+  isMale: boolean;
   goalId: number;
   bodyShapeId: number;
   levelId?: number;

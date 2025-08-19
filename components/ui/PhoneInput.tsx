@@ -4,23 +4,26 @@ import PhoneInput, { CountryData } from "react-phone-input-2";
 interface IProps {
   value: string;
   onChange: (fullValue: string, phoneOnly: string, countryCode: string) => void;
-  country?: string;
-  placeholder?: string;
+  country: string;
+  disabled: boolean;
 }
 
 const PhoneInputField: React.FC<IProps> = ({
   value,
   onChange,
-  country = "eg",
-  placeholder = "+20 10 12345678",
+  country,
+  disabled,
 }) => {
   return (
     <PhoneInput
       country={country}
       enableSearch
-      disableCountryCode={true}
-      placeholder={placeholder}
+      placeholder="+20 10 12345678"
       value={value}
+      disableDropdown={disabled}
+      inputProps={{
+        readOnly: disabled,
+      }}
       onChange={(value, country: CountryData) => {
         const dialCode = country?.dialCode || "";
         const numberOnly = value.slice(dialCode.length);

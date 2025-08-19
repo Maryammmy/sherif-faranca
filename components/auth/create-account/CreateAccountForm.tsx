@@ -91,7 +91,11 @@ export default function CreateAccountForm() {
       <div className="flex flex-col gap-1">
         <Label className="font-medium text-secondary">Birth Date</Label>
         <div className="flex items-center gap-1 p-3 border rounded-md">
-          <DatePicker name="birthDate" resetTrigger={resetFieldsTrigger} />
+          <DatePicker
+            name="birthDate"
+            resetTrigger={resetFieldsTrigger}
+            serverAction
+          />
         </div>
         {state.errors?.birthDate && (
           <InputErrorMessage msg={state.errors.birthDate[0]} />
@@ -104,6 +108,7 @@ export default function CreateAccountForm() {
         <div className="flex items-center gap-1 p-3 border rounded-md">
           <PhoneField
             resetTrigger={resetFieldsTrigger}
+            serverAction
             numberName="phoneNumber"
             countryCodeName="countryCode"
           />

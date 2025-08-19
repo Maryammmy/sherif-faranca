@@ -20,13 +20,26 @@ function SettingsInput<T extends FieldValues>({
   wrapperClassName = "flex items-center border rounded-md px-3 py-1 gap-2",
   register,
 }: IProps<T>) {
-  const { id, label, name, placeholder, type, labelClassname, inputClassname } =
-    input;
+  const {
+    id,
+    label,
+    name,
+    placeholder,
+    type,
+    labelClassname,
+    inputClassname,
+    readonly,
+    disabled,
+  } = input;
 
   const inputProps = {
     id,
+    type,
+    name,
     placeholder,
     className: inputClassname,
+    readonly,
+    disabled,
     ...(register ? register(name as Path<T>) : {}),
   };
 

@@ -1,3 +1,4 @@
+import { isAtLeast13 } from "@/lib/utils";
 import { z } from "zod";
 
 export const createAccountWithEmailSchema = z
@@ -14,9 +15,10 @@ export const createAccountWithEmailSchema = z
     lastName: z.string().nonempty({ message: "Last name is required" }),
     birthDate: z
       .string()
-      .nonempty({ message: "Birth date is required" })
-      .refine((val) => !isNaN(Date.parse(val)), {
-        message: "Invalid date format",
+      .nonempty("Birth date is required")
+      .datetime("Invalid date format")
+      .refine((val) => isAtLeast13(val), {
+        message: "You must be at least 13 years old",
       }),
 
     phoneNumber: z

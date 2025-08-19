@@ -63,6 +63,7 @@ export default function SignupNumberForm() {
         <div className="flex p-3 gap-2 items-center border border-gray-400 rounded-md">
           <PhoneField
             resetTrigger={resetFieldsTrigger}
+            serverAction
             numberName="mobile"
             countryCodeName="countryCode"
           />

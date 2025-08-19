@@ -1,4 +1,4 @@
-import { IInputSettings } from "@/interfaces/main/settings";
+import { IGender, IInputSettings } from "@/interfaces/main/settings";
 
 const defaultStyles = {
   labelClassname: "font-medium text-gray-400",
@@ -27,22 +27,12 @@ export const personalInformationForm: IInputSettings[] = [
     placeholder: "Mohmoud@gmail.com",
     type: "email",
     label: "Email",
+    readonly: true,
+    disabled: true,
     ...defaultStyles,
   },
-  {
-    id: "phoneNumber",
-    name: "phoneNumber",
-    placeholder: "011111223344",
-    type: "text",
-    label: "Phone number",
-    ...defaultStyles,
-  },
-  {
-    id: "birth_day",
-    name: "birth_day",
-    placeholder: "11-8-1998",
-    type: "date",
-    label: "Birthday",
-    ...defaultStyles,
-  },
+];
+export const genders: IGender[] = [
+  { label: "Male", value: true },
+  { label: "Female", value: false },
 ];

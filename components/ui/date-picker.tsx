@@ -14,10 +14,7 @@ import { formatDateToYYYYMMDD } from "@/lib/utils";
 import { useEffect } from "react";
 
 function formatDate(date: Date | undefined) {
-  if (!date) {
-    return "";
-  }
-
+  if (!date) return "";
   return date.toLocaleDateString("en-US", {
     day: "2-digit",
     month: "long",
@@ -26,42 +23,66 @@ function formatDate(date: Date | undefined) {
 }
 
 function isValidDate(date: Date | undefined) {
-  if (!date) {
-    return false;
-  }
-  return !isNaN(date.getTime());
+  return !!date && !isNaN(date.getTime());
 }
 
 interface IProps {
   name: string;
-  resetTrigger: boolean;
+  value?: string; // <-- string بدل Date
+  onChange?: (date: string | undefined) => void; // <-- يرجع string
+  resetTrigger?: boolean;
+  serverAction?: boolean;
 }
-export function DatePicker({ name, resetTrigger }: IProps) {
+
+export function DatePicker({
+  name,
+  value: propValue,
+  onChange,
+  resetTrigger,
+  serverAction = false,
+}: IProps) {
   const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState<Date | undefined>(undefined);
+  const [date, setDate] = React.useState<Date | undefined>(
+    propValue ? new Date(propValue) : undefined
+  );
   const [month, setMonth] = React.useState<Date | undefined>(date);
-  const [value, setValue] = React.useState(formatDate(date));
+  const [displayValue, setDisplayValue] = React.useState(formatDate(date));
+
+  // لو حصل reset
   useEffect(() => {
     if (resetTrigger) {
       setDate(undefined);
       setMonth(undefined);
-      setValue("");
+      setDisplayValue("");
     }
   }, [resetTrigger]);
+
+  // لو propValue اتغيرت من بره
+  useEffect(() => {
+    if (propValue) {
+      const d = new Date(propValue);
+      if (isValidDate(d)) {
+        setDate(d);
+        setMonth(d);
+        setDisplayValue(formatDate(d));
+      }
+    }
+  }, [propValue]);
 
   return (
     <div className="relative flex justify-between gap-2 items-center w-full">
       <Input
         id="date"
-        value={value}
+        value={displayValue}
         placeholder="June 01, 2025"
         className="w-full"
         onChange={(e) => {
-          const date = new Date(e.target.value);
-          setValue(e.target.value);
-          if (isValidDate(date)) {
-            setDate(date);
-            setMonth(date);
+          const d = new Date(e.target.value);
+          setDisplayValue(e.target.value);
+          if (isValidDate(d)) {
+            setDate(d);
+            setMonth(d);
+            onChange?.(formatDateToYYYYMMDD(d)); // نبعته كـ string
           }
         }}
         onKeyDown={(e) => {
@@ -71,32 +92,34 @@ export function DatePicker({ name, resetTrigger }: IProps) {
           }
         }}
       />
-      {/* ✅ Hidden input to send ISO format date */}
-      <Input type="hidden" name={name} value={formatDateToYYYYMMDD(date)} />
+
+      {/* hidden input هيتبعت كـ string ISO */}
+      {serverAction && (
+        <Input
+          type="hidden"
+          name={name}
+          value={date ? formatDateToYYYYMMDD(date) : ""}
+        />
+      )}
 
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button id="date-picker">
             <CalendarIcon className="size-5 text-primary" />
-            <span className="sr-only">Select date</span>
           </Button>
         </PopoverTrigger>
-        <PopoverContent
-          className="w-auto overflow-hidden p-0"
-          align="end"
-          alignOffset={-8}
-          sideOffset={10}
-        >
+        <PopoverContent className="w-auto p-0" align="end" sideOffset={10}>
           <Calendar
             mode="single"
             selected={date}
-            captionLayout="dropdown"
             month={month}
             onMonthChange={setMonth}
-            onSelect={(date) => {
-              setDate(date);
-              setValue(formatDate(date));
+            onSelect={(d) => {
+              if (!d) return;
+              setDate(d);
+              setDisplayValue(formatDate(d));
               setOpen(false);
+              onChange?.(formatDateToYYYYMMDD(d)); // string ISO
             }}
           />
         </PopoverContent>

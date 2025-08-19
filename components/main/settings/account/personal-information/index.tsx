@@ -17,7 +17,7 @@ function PersonalInformation({ open, onClose }: IProps) {
         <div className="relative bg-primary h-[200px] rounded-b-3xl">
           <Header />
           <div className="padding-layout overflow-y-auto absolute top-[68] sm:top-[108px] left-1/2 -translate-x-1/2 w-[calc(100%-20px)] sm:w-[calc(100%-40px)] rounded-t-3xl h-[calc(80vh-68px)] sm:h-[calc(80vh-108px)] bg-white">
-            <PersonalInformationForm />
+            <PersonalInformationForm close={onClose} />
           </div>
         </div>
       </div>

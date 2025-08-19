@@ -6,16 +6,16 @@ import Shared from "@/components/questions/Shared";
 function Gender() {
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
   useEffect(() => {
-    const savedIsMale = sessionStorage.getItem("ismale");
-    if (savedIsMale !== null) {
-      const isMale = JSON.parse(savedIsMale);
+    const savedisMale = sessionStorage.getItem("isMale");
+    if (savedisMale !== null) {
+      const isMale = JSON.parse(savedisMale);
       setSelectedGender(isMale ? "male" : "female");
     }
   }, []);
   const handleSelectGender = (gender: string) => {
     setSelectedGender(gender);
     const isMale = gender.toLowerCase() === "male";
-    sessionStorage.setItem("ismale", JSON.stringify(isMale));
+    sessionStorage.setItem("isMale", JSON.stringify(isMale));
   };
   return (
     <Shared

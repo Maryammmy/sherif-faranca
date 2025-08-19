@@ -18,7 +18,7 @@ const getPreferencesFromStorage = () => {
   return {
     goalId: Number(sessionStorage.getItem("goalId")),
     heightCm: Number(sessionStorage.getItem("heightCm")),
-    ismale: sessionStorage.getItem("ismale") === "true",
+    isMale: sessionStorage.getItem("isMale") === "true",
     selectedHeight: Number(sessionStorage.getItem("selectedHeight")),
     selectedTrainingAreaIds: JSON.parse(
       sessionStorage.getItem("selectedTrainingAreaIds") || "[]"
