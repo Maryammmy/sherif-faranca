@@ -34,7 +34,8 @@ export const createAccountWithEmailSchema = z
     password: z
       .string()
       .nonempty({ message: "Password is required" })
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .min(8, { message: "Password must be at least 8 characters" })
+      .max(50, { message: "Password must be at most 50 characters" }),
     confirmPassword: z
       .string()
       .nonempty({ message: "Confirm password is required" }),

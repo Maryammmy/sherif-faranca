@@ -6,24 +6,24 @@ const defaultStyles = {
 };
 export const changePasswordForm: IInputSettings[] = [
   {
-    id: "password",
-    name: "password",
+    id: "currentPassword",
+    name: "currentPassword",
     placeholder: "Enter current password",
     type: "password",
     label: "Password",
     ...defaultStyles,
   },
   {
-    id: "new_password",
-    name: "new_password",
+    id: "newPassword",
+    name: "newPassword",
     placeholder: "Enter new password",
     type: "password",
     label: "New password",
     ...defaultStyles,
   },
   {
-    id: "confirm_password",
-    name: "confirm_password",
+    id: "confirmPassword",
+    name: "confirmPassword",
     placeholder: "Enter confirm password",
     type: "password",
     label: "Confirm password",

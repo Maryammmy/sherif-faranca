@@ -73,7 +73,6 @@ function PersonalInformationForm({ close }: IProps) {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         {personalInformationForm.map((input) => {
           const error = errors[input.name as keyof Profile];
-
           return (
             <div key={input.id}>
               <SettingsInput input={input} register={register} />
@@ -115,6 +114,7 @@ function PersonalInformationForm({ close }: IProps) {
         </div>
         <GenderSelector />
         <Button
+          disabled={isSubmitting}
           type="submit"
           className="bg-primary py-3 font-medium text-white rounded-md"
         >

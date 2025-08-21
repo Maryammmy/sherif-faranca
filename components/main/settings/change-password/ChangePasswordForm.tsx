@@ -1,15 +1,62 @@
+"use client";
 import { Button } from "@/components/ui/Button";
 import { changePasswordForm } from "@/data/main/settings/change-password";
 import SettingsInput from "../SettingsInput";
+import { useForm } from "react-hook-form";
+import {
+  ChangePassword,
+  changePasswordSchema,
+} from "@/schema/main/settings/changePassword";
+import { zodResolver } from "@hookform/resolvers/zod";
+import InputErrorMessage from "@/components/InputErrorMsg";
+import Loader from "@/components/loader/Loader";
+import toast from "react-hot-toast";
+import { changePasswordAPI } from "@/services/users";
+import { handleClientError } from "@/lib/utils";
 
-function ChangePasswordForm() {
+interface IProps {
+  close: () => void;
+}
+function ChangePasswordForm({ close }: IProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ChangePassword>({
+    resolver: zodResolver(changePasswordSchema),
+    mode: "onChange",
+  });
+  const onSubmit = async (data: ChangePassword) => {
+    // console.log("Form submitted:", data);
+    try {
+      const response = await changePasswordAPI(data);
+      if (response?.success) {
+        toast.success(response?.message);
+        setTimeout(() => {
+          close();
+        }, 500);
+      }
+    } catch (error) {
+      handleClientError(error);
+    }
+  };
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-5">
-      {changePasswordForm.map((input) => (
-        <SettingsInput key={input.id} input={input} />
-      ))}
-      <Button className="bg-primary py-3 font-medium text-white rounded-md">
-        Change password
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+      {changePasswordForm.map((input) => {
+        const error = errors[input.name as keyof ChangePassword];
+        return (
+          <div key={input.id}>
+            <SettingsInput input={input} register={register} />
+            {error && <InputErrorMessage msg={error.message} />}
+          </div>
+        );
+      })}
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="bg-primary py-3 font-medium text-white rounded-md"
+      >
+        {isSubmitting ? <Loader /> : "Change password"}
       </Button>
     </form>
   );

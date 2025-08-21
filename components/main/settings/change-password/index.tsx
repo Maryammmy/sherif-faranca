@@ -14,7 +14,7 @@ function ChangePassword({ open, onClose }: IProps) {
       titleClassName="text-gray-700 text-center font-bold"
       contentClassName="sm:max-w-[400px]"
     >
-      <ChangePasswordForm />
+      <ChangePasswordForm close={onClose} />
     </Modal>
   );
 }
