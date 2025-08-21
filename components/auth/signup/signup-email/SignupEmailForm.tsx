@@ -23,12 +23,12 @@ export default function SignupEmailForm() {
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
       const result = await sendRegistrationWithEmailAction(prevState, formData);
-      if (result.message) {
+      if (result?.message) {
         console.log(result);
-        if (result.success) {
-          toast.success(result.message);
+        if (result?.success) {
+          toast.success(result?.message);
         } else {
-          toast.error(result.message);
+          toast.error(result?.message);
         }
       }
       return result;

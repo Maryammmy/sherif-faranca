@@ -10,7 +10,6 @@ import { IProfile } from "@/interfaces/main/settings";
 import { Label } from "@/components/ui/Label";
 import { DatePicker } from "@/components/ui/date-picker";
 import PhoneField from "@/components/ui/PhoneField";
-import { handleClientError } from "@/lib/utils";
 import { updateProfileAPI } from "@/services/users";
 import Loader from "@/components/loader/Loader";
 import toast from "react-hot-toast";
@@ -54,17 +53,15 @@ function PersonalInformationForm({ close }: IProps) {
   // submit handler
   const onSubmit = async (data: IProfile) => {
     // console.log("Form submitted:", data);
-    try {
-      const response = await updateProfileAPI(data);
-      if (response?.success) {
-        toast.success(response?.message);
-        await refetch();
-        setTimeout(() => {
-          close();
-        }, 500);
-      }
-    } catch (error) {
-      handleClientError(error);
+    const response = await updateProfileAPI(data);
+    if (response?.success) {
+      toast.success(response?.message);
+      await refetch();
+      setTimeout(() => {
+        close();
+      }, 500);
+    } else {
+      toast(response?.message);
     }
   };
 

@@ -1,4 +1,4 @@
-// "use server";
+"use server";
 
 import { IProfile } from "@/interfaces/main/settings";
 import { getServerData, putServerData } from "./server";

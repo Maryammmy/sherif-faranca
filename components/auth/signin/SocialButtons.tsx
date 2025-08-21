@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/Button";
 import { socialButtons } from "@/data/auth";
-import { handleClientError, setToken, useQueryParams } from "@/lib/utils";
+import { setToken, useQueryParams } from "@/lib/utils";
 import { getFacebookAuthUrlAPI, getGoogleAuthUrlAPI } from "@/services/auth";
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function SocialButtons() {
   const type = useQueryParams("type");
@@ -25,25 +26,25 @@ function SocialButtons() {
     }
   }, [token, isAnswered, router]);
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
-    try {
-      const authAPIs = {
-        Google: getGoogleAuthUrlAPI,
-        Facebook: getFacebookAuthUrlAPI,
-      };
-      const getAuthUrl = authAPIs[provider];
-      if (!getAuthUrl) {
-        console.error(`Unsupported provider: ${provider}`);
-        return;
-      }
-      const response = await getAuthUrl();
-      const url = response?.url;
+    const authAPIs = {
+      Google: getGoogleAuthUrlAPI,
+      Facebook: getFacebookAuthUrlAPI,
+    };
+    const getAuthUrl = authAPIs[provider];
+    if (!getAuthUrl) {
+      console.error(`Unsupported provider: ${provider}`);
+      return;
+    }
+    const response = await getAuthUrl();
+    if (response?.success) {
+      const url = response?.data?.url;
       if (url) {
         window.location.href = url; // Redirect user to OAuth consent screen
       } else {
         console.error("Auth URL not found in response:", response);
       }
-    } catch (error) {
-      handleClientError(error);
+    } else {
+      toast.error(response?.message);
     }
   };
   return (

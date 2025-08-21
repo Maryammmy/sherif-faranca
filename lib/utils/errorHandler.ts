@@ -1,19 +1,25 @@
 import { IActionState } from "@/interfaces/form";
 import { AxiosError } from "axios";
-import toast from "react-hot-toast";
 
 export function handleServerError(error: unknown): IActionState {
-  const err = error as AxiosError<{ message?: string }>;
+  const err = error as AxiosError<{
+    message?: string;
+    errors?: Record<string, string | string[]>;
+  }>;
+
+  // Normalize errors -> لو string حولة لمصفوفة
+  const normalizedErrors: Record<string, string[]> = {};
+  if (err.response?.data?.errors) {
+    for (const key in err.response.data.errors) {
+      const value = err.response.data.errors[key];
+      normalizedErrors[key] = Array.isArray(value) ? value : [value];
+    }
+  }
+
   return {
     success: false,
     message:
       err.response?.data?.message || err.message || "Something went wrong",
-    errors: {},
+    errors: normalizedErrors,
   };
-}
-export function handleClientError(error: unknown) {
-  const err = error as AxiosError<{ message?: string }>;
-  const errorMessage =
-    err.response?.data?.message || err.message || "Something went wrong";
-  toast.error(errorMessage);
 }

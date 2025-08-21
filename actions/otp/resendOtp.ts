@@ -1,7 +1,6 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleServerError } from "@/lib/utils";
 import { sendRegistrationAPI, sendResetPasswordAPI } from "@/services/auth";
 export async function resendOtpAction(
   prevState: IActionState,
@@ -9,60 +8,36 @@ export async function resendOtpAction(
 ): Promise<IActionState> {
   const type = formData.get("type") as string;
 
-  try {
-    switch (type) {
-      case "register-email": {
-        const email = formData.get("email") as string;
-        if (!email) throw new Error("Email is required");
+  switch (type) {
+    case "register-email": {
+      const email = formData.get("email") as string;
+      if (!email) throw new Error("Email is required");
 
-        const response = await sendRegistrationAPI({ email });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-      case "register-number": {
-        const countryCode = formData.get("countryCode") as string;
-        const mobile = formData.get("mobile") as string;
-        if (!countryCode || !mobile)
-          throw new Error("Country code and phone number are required");
-
-        const response = await sendRegistrationAPI({ countryCode, mobile });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-      case "forget-password-email": {
-        const email = formData.get("email") as string;
-        if (!email) throw new Error("Email is required");
-
-        const response = await sendResetPasswordAPI({ email });
-        return {
-          success: true,
-          message: response?.data?.message,
-          errors: {},
-        };
-      }
-      case "forget-password-number": {
-        const countryCode = formData.get("countryCode") as string;
-        const mobile = formData.get("mobile") as string;
-        if (!countryCode || !mobile)
-          throw new Error("Country code and phone number are required");
-
-        const response = await sendResetPasswordAPI({ countryCode, mobile });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-      default:
-        throw new Error("Invalid type");
+      return await sendRegistrationAPI({ email });
     }
-  } catch (error) {
-    return handleServerError(error);
+    case "register-number": {
+      const countryCode = formData.get("countryCode") as string;
+      const mobile = formData.get("mobile") as string;
+      if (!countryCode || !mobile)
+        throw new Error("Country code and phone number are required");
+
+      return await sendRegistrationAPI({ countryCode, mobile });
+    }
+    case "forget-password-email": {
+      const email = formData.get("email") as string;
+      if (!email) throw new Error("Email is required");
+
+      return await sendResetPasswordAPI({ email });
+    }
+    case "forget-password-number": {
+      const countryCode = formData.get("countryCode") as string;
+      const mobile = formData.get("mobile") as string;
+      if (!countryCode || !mobile)
+        throw new Error("Country code and phone number are required");
+
+      return await sendResetPasswordAPI({ countryCode, mobile });
+    }
+    default:
+      throw new Error("Invalid type");
   }
 }

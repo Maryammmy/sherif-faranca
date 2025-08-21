@@ -5,7 +5,7 @@ import Loader from "@/components/loader/Loader";
 import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import PasswordInput from "@/components/ui/PasswordInput";
-import { handleClientError, setToken } from "@/lib/utils";
+import { setToken } from "@/lib/utils";
 import { SigninWithNumber, signinWithNumberSchema } from "@/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -28,25 +28,23 @@ function SigninNumberForm() {
   } = methods;
 
   const onSubmit = async (data: SigninWithNumber) => {
-    try {
-      const response = await signinWithNumberAPI(data);
-      if (response?.success === true) {
-        const token = response?.token;
-        const isAnswared = response?.isAnswared;
-        if (token) {
-          setToken(token);
-        }
-        toast.success(response?.message);
-        setTimeout(() => {
-          if (isAnswared) {
-            router.push("/");
-          } else {
-            router.push("/questions/1");
-          }
-        }, 500);
+    const response = await signinWithNumberAPI(data);
+    if (response?.success === true) {
+      const token = response?.data?.token;
+      const isAnswared = response?.data?.isAnswared;
+      if (token) {
+        setToken(token);
       }
-    } catch (error) {
-      handleClientError(error);
+      toast.success(response?.message);
+      setTimeout(() => {
+        if (isAnswared) {
+          router.push("/");
+        } else {
+          router.push("/questions/1");
+        }
+      }, 500);
+    } else {
+      toast.error(response?.message);
     }
   };
 

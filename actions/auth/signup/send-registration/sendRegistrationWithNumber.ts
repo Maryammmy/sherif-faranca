@@ -1,7 +1,6 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleServerError } from "@/lib/utils";
 import { signupWithNumberSchema } from "@/schema/auth";
 import { sendRegistrationAPI } from "@/services/auth";
 
@@ -23,18 +22,5 @@ export async function sendRegistrationWithNumberAction(
       message: "",
     };
   }
-  try {
-    const response = await sendRegistrationAPI(parsed.data);
-    return {
-      success: true,
-      errors: {},
-      message: response?.message,
-      data: {
-        countryCode: parsed?.data?.countryCode,
-        mobile: parsed?.data?.mobile,
-      },
-    };
-  } catch (error) {
-    return handleServerError(error);
-  }
+  return await sendRegistrationAPI(parsed.data);
 }

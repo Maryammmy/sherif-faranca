@@ -12,7 +12,6 @@ import InputErrorMessage from "@/components/InputErrorMsg";
 import Loader from "@/components/loader/Loader";
 import toast from "react-hot-toast";
 import { changePasswordAPI } from "@/services/users";
-import { handleClientError } from "@/lib/utils";
 
 interface IProps {
   close: () => void;
@@ -28,16 +27,15 @@ function ChangePasswordForm({ close }: IProps) {
   });
   const onSubmit = async (data: ChangePassword) => {
     // console.log("Form submitted:", data);
-    try {
-      const response = await changePasswordAPI(data);
-      if (response?.success) {
-        toast.success(response?.message);
-        setTimeout(() => {
-          close();
-        }, 500);
-      }
-    } catch (error) {
-      handleClientError(error);
+
+    const response = await changePasswordAPI(data);
+    if (response?.success) {
+      toast.success(response?.message);
+      setTimeout(() => {
+        close();
+      }, 500);
+    } else {
+      toast(response?.message);
     }
   };
   return (

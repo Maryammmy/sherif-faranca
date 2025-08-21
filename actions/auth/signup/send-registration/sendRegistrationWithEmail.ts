@@ -1,7 +1,6 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleServerError } from "@/lib/utils";
 import { signupWithEmailSchema } from "@/schema/auth";
 import { sendRegistrationAPI } from "@/services/auth";
 
@@ -22,16 +21,5 @@ export async function sendRegistrationWithEmailAction(
       message: "",
     };
   }
-  try {
-    const response = await sendRegistrationAPI(parsed.data);
-    console.log("API response:", response?.message);
-    return {
-      success: true,
-      errors: {},
-      message: response?.message,
-      data: { email: parsed.data.email },
-    };
-  } catch (error) {
-    return handleServerError(error);
-  }
+  return await sendRegistrationAPI(parsed.data);
 }

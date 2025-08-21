@@ -1,10 +1,10 @@
 import { IApplyFilters } from "@/interfaces/filters";
-import { handleClientError } from "@/lib/utils";
 import { applyFiltersAPI } from "@/services/filters";
 import { useState } from "react";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface IProps {
   filters: IApplyFilters;
@@ -14,21 +14,20 @@ function ApplyFilters({ filters, isDisabled }: IProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const applyFilters = async () => {
-    try {
-      setLoading(true);
-      const response = await applyFiltersAPI(filters);
-      if (response) {
-        sessionStorage.setItem("filtersResults", JSON.stringify(response));
-        setTimeout(() => {
-          router.push("/filters/results");
-        }, 500);
-      }
-    } catch (error) {
-      handleClientError(error);
-    } finally {
-      setLoading(false);
+    setLoading(true);
+    const response = await applyFiltersAPI(filters);
+    if (response.success) {
+      sessionStorage.setItem("filtersResults", JSON.stringify(response.data));
+      setTimeout(() => {
+        router.push("/filters/results");
+      }, 500);
+    } else {
+      toast.error(response.message);
     }
+
+    setLoading(false);
   };
+
   return (
     <Button
       disabled={isDisabled || loading}

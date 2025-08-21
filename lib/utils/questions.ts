@@ -1,7 +1,6 @@
 import { preferencesAPI } from "@/services/questions";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import toast from "react-hot-toast";
-import { handleClientError } from "./errorHandler";
 
 const getPreferencesFromStorage = () => {
   const selectedMusicIdsValue = sessionStorage.getItem("selectedMusicIds");
@@ -47,20 +46,17 @@ const getPreferencesFromStorage = () => {
 };
 
 export const sendPreference = async (router: AppRouterInstance) => {
-  try {
-    const payload = getPreferencesFromStorage();
-    const response = await preferencesAPI(payload);
-    if (response?.success === true) {
-      console.log(response);
-      toast.success(response?.message);
-      if (router) {
-        setTimeout(() => {
-          router.push("/");
-        }, 500);
-      }
+  const payload = getPreferencesFromStorage();
+  const response = await preferencesAPI(payload);
+  if (response?.success === true) {
+    console.log(response);
+    toast.success(response?.message);
+    if (router) {
+      setTimeout(() => {
+        router.push("/");
+      }, 500);
     }
-    return response;
-  } catch (error) {
-    handleClientError(error);
+  } else {
+    toast.error(response?.message);
   }
 };

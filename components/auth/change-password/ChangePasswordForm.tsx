@@ -5,7 +5,7 @@ import Loader from "@/components/loader/Loader";
 import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import PasswordInput from "@/components/ui/PasswordInput";
-import { handleClientError, useQueryParams } from "@/lib/utils";
+import { useQueryParams } from "@/lib/utils";
 import { ResetPassword, resetPasswordSchema } from "@/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -25,25 +25,22 @@ function ChangePasswordForm() {
     mode: "onChange",
   });
   const onSubmit = async (data: ResetPassword) => {
-    try {
-      const payload = isNumber
-        ? {
-            countryCode,
-            phoneNumber: number,
-          }
-        : {
-            email,
-          };
-      const response = await resetPasswordAPI({ ...data, ...payload });
-
-      if (response?.success === true) {
-        toast.success(response?.message);
-        setTimeout(() => {
-          router.push(isNumber ? "/signin?type=number" : "/signin?type=email");
-        }, 500);
-      }
-    } catch (error) {
-      handleClientError(error);
+    const payload = isNumber
+      ? {
+          countryCode,
+          phoneNumber: number,
+        }
+      : {
+          email,
+        };
+    const response = await resetPasswordAPI({ ...data, ...payload });
+    if (response?.success === true) {
+      toast.success(response?.message);
+      setTimeout(() => {
+        router.push(isNumber ? "/signin?type=number" : "/signin?type=email");
+      }, 500);
+    } else {
+      toast.error(response?.message);
     }
   };
 

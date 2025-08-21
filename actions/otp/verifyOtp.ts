@@ -1,7 +1,6 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleServerError } from "@/lib/utils";
 import {
   verifyRegistrationWithEmailAPI,
   verifyRegistrationWithNumberAPI,
@@ -16,71 +15,47 @@ export async function verifyOtpAction(
   const otp = formData.get("otp") as string;
   const type = formData.get("type") as string;
 
-  try {
-    if (!otp) throw new Error("OTP is required");
+  if (!otp) throw new Error("OTP is required");
 
-    switch (type) {
-      case "register-email": {
-        const email = formData.get("email") as string;
-        if (!email) throw new Error("Email is required");
+  switch (type) {
+    case "register-email": {
+      const email = formData.get("email") as string;
+      if (!email) throw new Error("Email is required");
 
-        const response = await verifyRegistrationWithEmailAPI({ email, otp });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-
-      case "register-number": {
-        const countryCode = formData.get("countryCode") as string;
-        const mobile = formData.get("mobile") as string;
-        if (!countryCode || !mobile)
-          throw new Error("Country code and phone number are required");
-
-        const response = await verifyRegistrationWithNumberAPI({
-          countryCode,
-          mobile,
-          otp,
-        });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-      case "forget-password-email": {
-        const email = formData.get("email") as string;
-        if (!email) throw new Error("Email is required");
-
-        const response = await verifyResetPasswordWithEmailAPI({ email, otp });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-      case "forget-password-number": {
-        const countryCode = formData.get("countryCode") as string;
-        const mobile = formData.get("mobile") as string;
-        if (!countryCode || !mobile)
-          throw new Error("Country code and phone number are required");
-
-        const response = await verifyResetPasswordWithNumberAPI({
-          countryCode,
-          mobile,
-          otp,
-        });
-        return {
-          success: true,
-          message: response?.message,
-          errors: {},
-        };
-      }
-      default:
-        throw new Error("Invalid type");
+      return await verifyRegistrationWithEmailAPI({ email, otp });
     }
-  } catch (error) {
-    return handleServerError(error);
+
+    case "register-number": {
+      const countryCode = formData.get("countryCode") as string;
+      const mobile = formData.get("mobile") as string;
+      if (!countryCode || !mobile)
+        throw new Error("Country code and phone number are required");
+
+      return await verifyRegistrationWithNumberAPI({
+        countryCode,
+        mobile,
+        otp,
+      });
+    }
+    case "forget-password-email": {
+      const email = formData.get("email") as string;
+      if (!email) throw new Error("Email is required");
+
+      return await verifyResetPasswordWithEmailAPI({ email, otp });
+    }
+    case "forget-password-number": {
+      const countryCode = formData.get("countryCode") as string;
+      const mobile = formData.get("mobile") as string;
+      if (!countryCode || !mobile)
+        throw new Error("Country code and phone number are required");
+
+      return await verifyResetPasswordWithNumberAPI({
+        countryCode,
+        mobile,
+        otp,
+      });
+    }
+    default:
+      throw new Error("Invalid type");
   }
 }

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import PasswordInput from "@/components/ui/PasswordInput";
-import { handleClientError, setToken } from "@/lib/utils";
+import { setToken } from "@/lib/utils";
 import { SigninWithEmail, signinWithEmailSchema } from "@/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
@@ -27,25 +27,23 @@ function SignInEmailForm() {
   });
 
   const onSubmit = async (data: SigninWithEmail) => {
-    try {
-      const response = await signinWithEmailAPI(data);
-      if (response?.success === true) {
-        const token = response?.token;
-        const isAnswared = response?.isAnswared;
-        if (token) {
-          setToken(token);
-        }
-        toast.success(response?.message);
-        setTimeout(() => {
-          if (isAnswared) {
-            router.push("/");
-          } else {
-            router.push("/questions/1");
-          }
-        }, 500);
+    const response = await signinWithEmailAPI(data);
+    if (response?.success === true) {
+      const token = response?.data?.token;
+      const isAnswared = response?.data?.isAnswared;
+      if (token) {
+        setToken(token);
       }
-    } catch (error) {
-      handleClientError(error);
+      toast.success(response?.message);
+      setTimeout(() => {
+        if (isAnswared) {
+          router.push("/");
+        } else {
+          router.push("/questions/1");
+        }
+      }, 500);
+    } else {
+      toast.error(response?.message);
     }
   };
 

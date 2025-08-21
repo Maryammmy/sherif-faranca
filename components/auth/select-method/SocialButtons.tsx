@@ -2,32 +2,31 @@
 
 import { Button } from "@/components/ui/Button";
 import { socialButtons } from "@/data/auth";
-import { handleClientError } from "@/lib/utils";
 import { getFacebookAuthUrlAPI, getGoogleAuthUrlAPI } from "@/services/auth";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 function SocialButtons() {
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
-    try {
-      const authAPIs = {
-        Google: getGoogleAuthUrlAPI,
-        Facebook: getFacebookAuthUrlAPI,
-      };
-      const getAuthUrl = authAPIs[provider];
-      if (!getAuthUrl) {
-        console.error(`Unsupported provider: ${provider}`);
-        return;
-      }
-      const response = await getAuthUrl();
-      const url = response?.url;
-
+    const authAPIs = {
+      Google: getGoogleAuthUrlAPI,
+      Facebook: getFacebookAuthUrlAPI,
+    };
+    const getAuthUrl = authAPIs[provider];
+    if (!getAuthUrl) {
+      console.error(`Unsupported provider: ${provider}`);
+      return;
+    }
+    const response = await getAuthUrl();
+    if (response?.success) {
+      const url = response?.data?.url;
       if (url) {
         window.location.href = url; // Redirect user to OAuth consent screen
       } else {
         console.error("Auth URL not found in response:", response);
       }
-    } catch (error) {
-      handleClientError(error);
+    } else {
+      toast.error(response?.message);
     }
   };
 

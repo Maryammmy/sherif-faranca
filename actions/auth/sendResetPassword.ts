@@ -1,7 +1,6 @@
 "use server";
 
 import { IActionState } from "@/interfaces/form";
-import { handleServerError } from "@/lib/utils";
 import { sendResetPasswordSchema } from "@/schema/auth";
 import { sendResetPasswordAPI } from "@/services/auth";
 import type { SendResetPassword } from "@/types/auth";
@@ -34,27 +33,15 @@ export async function sendResetPasswordAction(
     };
   }
 
-  try {
-    let payload: SendResetPassword;
+  let payload: SendResetPassword;
 
-    if (parsed.data.type === "number") {
-      payload = {
-        countryCode: parsed.data.countryCode,
-        mobile: parsed.data.mobile,
-      };
-    } else {
-      payload = { email: parsed.data.email };
-    }
-
-    const response = await sendResetPasswordAPI(payload);
-
-    return {
-      success: true,
-      errors: {},
-      message: response?.message,
-      data: payload as unknown as Record<string, string>,
+  if (parsed.data.type === "number") {
+    payload = {
+      countryCode: parsed.data.countryCode,
+      mobile: parsed.data.mobile,
     };
-  } catch (error) {
-    return handleServerError(error);
+  } else {
+    payload = { email: parsed.data.email };
   }
+  return await sendResetPasswordAPI(payload);
 }
