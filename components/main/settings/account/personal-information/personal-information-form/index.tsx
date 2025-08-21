@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { personalInformationForm } from "@/data/main/settings/account/personal-information";
 import GenderSelector from "./GenderSelector";
@@ -37,7 +37,6 @@ function PersonalInformationForm({ close }: IProps) {
     control,
     formState: { errors, isSubmitting },
   } = methods;
-  console.log(profile);
   // لما تيجي بيانات الـ profile من الـ API نزودها في الفورم
   useEffect(() => {
     if (data && profile) {
@@ -84,39 +83,35 @@ function PersonalInformationForm({ close }: IProps) {
         })}
         <div className="flex flex-col gap-1">
           <Label className="text-gray-400 font-medium">Phone number</Label>
-          <>
-            <div className="border-b">
-              <PhoneField
-                numberName="phoneNumber"
-                countryCodeName="countryCode"
-                disabled
-              />
-            </div>
-            {errors.phoneNumber && (
-              <InputErrorMessage msg={errors?.phoneNumber?.message} />
-            )}
-          </>
+          <div className="border-b">
+            <PhoneField
+              numberName="phoneNumber"
+              countryCodeName="countryCode"
+              disabled
+            />
+          </div>
+          {errors.phoneNumber && (
+            <InputErrorMessage msg={errors?.phoneNumber?.message} />
+          )}
         </div>
         <div className="flex flex-col gap-1">
           <Label className="font-medium text-gray-400">Birthday</Label>
-          <>
-            <div className="border-b">
-              <Controller
-                name="birthDate"
-                control={control}
-                render={({ field }) => (
-                  <DatePicker
-                    name={field.name}
-                    value={field?.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
-            </div>
-            {errors.birthDate && (
-              <InputErrorMessage msg={errors?.birthDate?.message} />
-            )}
-          </>
+          <div className="border-b">
+            <Controller
+              name="birthDate"
+              control={control}
+              render={({ field }) => (
+                <DatePicker
+                  name={field.name}
+                  value={field?.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+          </div>
+          {errors.birthDate && (
+            <InputErrorMessage msg={errors?.birthDate?.message} />
+          )}
         </div>
         <GenderSelector />
         <Button

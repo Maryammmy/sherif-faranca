@@ -22,7 +22,7 @@ function Auth() {
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-10 font-medium">
           <Link
-            href="/signin"
+            href="/signin?type=email"
             className="text-white bg-primary w-full sm:w-48 py-3 rounded text-center block"
           >
             Have Account Sign in

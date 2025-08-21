@@ -1,12 +1,11 @@
-import SignInComponent from "@/components/auth/signin";
+import SigninComponent from "@/components/auth/signin";
 import { Suspense } from "react";
 
-function SignIn() {
+function Signin() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <SignInComponent />
+      <SigninComponent />
     </Suspense>
   );
 }
-
-export default SignIn;
+export default Signin;

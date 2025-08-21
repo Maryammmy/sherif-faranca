@@ -11,3 +11,8 @@ export interface IVerifyResetPasswordWithEmail {
   otp: string;
   email: string;
 }
+export interface IVerifyResetPasswordWithNumber {
+  otp: string;
+  mobile: string;
+  countryCode: string;
+}

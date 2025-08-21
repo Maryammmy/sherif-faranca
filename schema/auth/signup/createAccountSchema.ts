@@ -9,29 +9,32 @@ export const createAccountWithEmailSchema = z
       .email("Invalid email address"),
     firstName: z
       .string()
+      .nonempty({ message: "First name is required" })
       .min(3, { message: "min length 3 and max is 50" })
-      .max(50, { message: "min length 3 and max is 50" })
-      .nonempty({ message: "First name is required" }),
-    lastName: z.string().nonempty({ message: "Last name is required" }),
+      .max(50, { message: "min length 3 and max is 50" }),
+    lastName: z
+      .string()
+      .nonempty({ message: "Last name is required" })
+      .min(3, { message: "min length 3 and max is 50" })
+      .max(50, { message: "min length 3 and max is 50" }),
     birthDate: z
       .string()
       .nonempty("Birth date is required")
-      .datetime("Invalid date format")
       .refine((val) => isAtLeast13(val), {
         message: "You must be at least 13 years old",
       }),
 
     phoneNumber: z
       .string()
+      .nonempty({ message: "Phone number is required" })
       .regex(/^\d+$/, { message: "Phone number must contain only digits" })
       .min(9, { message: "Phone number must be at least 9 digits" })
-      .max(15, { message: "Phone number can't be more than 15 digits" })
-      .nonempty({ message: "Phone number is required" }),
+      .max(15, { message: "Phone number can't be more than 15 digits" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" })
-      .nonempty({ message: "Password is required" }),
+      .nonempty({ message: "Password is required" })
+      .min(8, { message: "Password must be at least 8 characters" }),
     confirmPassword: z
       .string()
       .nonempty({ message: "Confirm password is required" }),
@@ -44,10 +47,14 @@ export const createAccountWithNumberSchema = z
   .object({
     firstName: z
       .string()
+      .nonempty({ message: "First name is required" })
       .min(3, { message: "min length 3 and max is 50" })
-      .max(50, { message: "min length 3 and max is 50" })
-      .nonempty({ message: "First name is required" }),
-    lastName: z.string().nonempty({ message: "Last name is required" }),
+      .max(50, { message: "min length 3 and max is 50" }),
+    lastName: z
+      .string()
+      .nonempty({ message: "Last name is required" })
+      .min(3, { message: "min length 3 and max is 50" })
+      .max(50, { message: "min length 3 and max is 50" }),
     birthDate: z
       .string()
       .nonempty({ message: "Birth date is required" })
@@ -57,15 +64,15 @@ export const createAccountWithNumberSchema = z
 
     phoneNumber: z
       .string()
+      .nonempty({ message: "Phone number is required" })
       .regex(/^\d+$/, { message: "Phone number must contain only digits" })
       .min(9, { message: "Phone number must be at least 9 digits" })
-      .max(15, { message: "Phone number can't be more than 15 digits" })
-      .nonempty({ message: "Phone number is required" }),
+      .max(15, { message: "Phone number can't be more than 15 digits" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" })
-      .nonempty({ message: "Password is required" }),
+      .nonempty({ message: "Password is required" })
+      .min(8, { message: "Password must be at least 8 characters" }),
     confirmPassword: z
       .string()
       .nonempty({ message: "Confirm password is required" }),

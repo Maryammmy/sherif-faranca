@@ -21,7 +21,7 @@ function SelectFitnessLevel({
           key={id}
           onClick={() => handleSelectFitnessLevel(id)}
           className={cn(
-            "bg-white relative flex flex-col gap-3 p-4 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col gap-3 p-6 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedFitnessLevel === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}
@@ -33,7 +33,7 @@ function SelectFitnessLevel({
             <div className="relative w-8 h-8 shrink-0">
               <Image src={imageUrl} alt={name} fill />
             </div>
-            <h5 className="text-center capitalize text-secondary font-medium text-xl">
+            <h5 className="capitalize text-secondary font-medium text-xl">
               {name}
             </h5>
           </div>

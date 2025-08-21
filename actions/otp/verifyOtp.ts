@@ -6,6 +6,7 @@ import {
   verifyRegistrationWithEmailAPI,
   verifyRegistrationWithNumberAPI,
   verifyResetPasswordWithEmailAPI,
+  verifyResetPasswordWithNumberAPI,
 } from "@/services/otp";
 
 export async function verifyOtpAction(
@@ -35,7 +36,7 @@ export async function verifyOtpAction(
         const countryCode = formData.get("countryCode") as string;
         const mobile = formData.get("mobile") as string;
         if (!countryCode || !mobile)
-          throw new Error("Country code and mobile are required");
+          throw new Error("Country code and phone number are required");
 
         const response = await verifyRegistrationWithNumberAPI({
           countryCode,
@@ -48,11 +49,28 @@ export async function verifyOtpAction(
           errors: {},
         };
       }
-      case "forget-password": {
+      case "forget-password-email": {
         const email = formData.get("email") as string;
         if (!email) throw new Error("Email is required");
 
         const response = await verifyResetPasswordWithEmailAPI({ email, otp });
+        return {
+          success: true,
+          message: response?.message,
+          errors: {},
+        };
+      }
+      case "forget-password-number": {
+        const countryCode = formData.get("countryCode") as string;
+        const mobile = formData.get("mobile") as string;
+        if (!countryCode || !mobile)
+          throw new Error("Country code and phone number are required");
+
+        const response = await verifyResetPasswordWithNumberAPI({
+          countryCode,
+          mobile,
+          otp,
+        });
         return {
           success: true,
           message: response?.message,

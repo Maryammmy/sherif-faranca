@@ -21,7 +21,7 @@ function SelectIdealBodyTime({
           key={id}
           onClick={() => handleSelectIdealBody(id)}
           className={cn(
-            "bg-white relative flex flex-col gap-3 justify-center items-center p-4 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col gap-3 justify-center items-center p-6 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedIdealBody === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}
@@ -32,9 +32,7 @@ function SelectIdealBodyTime({
           <div className="relative w-8 h-8 rounded overflow-hidden">
             <Image src={imageUrl} alt={name} fill />
           </div>
-          <h5 className="text-center text-secondary font-medium text-xl">
-            {name}
-          </h5>
+          <span className="text-secondary font-medium text-xl">{name}</span>
         </Button>
       ))}
     </div>

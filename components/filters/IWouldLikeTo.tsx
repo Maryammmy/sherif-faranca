@@ -23,16 +23,16 @@ function IWouldLikeTo({ iWouldLikeTo, value, onChange }: IProps) {
               key={id}
               onClick={() => onChange(id)}
               className={cn(
-                "bg-white relative flex flex-col sm:flex-row gap-4 sm:justify-between items-center p-4 sm:px-6 sm:py-8 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+                "bg-white relative flex flex-col sm:flex-row gap-4 sm:justify-between items-center px-6 py-8 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
                 isActive && "border-2 border-primary ring-2 ring-primary/30"
               )}
             >
               {isActive && (
                 <CheckCircle2 className="absolute top-2 right-2 text-primary w-6 h-6 transition-opacity opacity-100" />
               )}
-              <h5 className="text-center text-gray-700 font-bold text-xl sm:text-base xl:text-xl capitalize">
+              <span className="text-gray-700 font-bold text-xl sm:text-base xl:text-xl capitalize">
                 {name}
-              </h5>
+              </span>
               <div className="w-50 sm:w-30 md:w-40 xl:w-50 h-[150px] shrink-0 relative rounded-2xl overflow-hidden">
                 <Image src={imageUrl} alt={name} fill />
               </div>

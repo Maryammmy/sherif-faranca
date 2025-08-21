@@ -18,14 +18,14 @@ export default function SelectMethod() {
         </h2>
         <div className="flex flex-col gap-5 pb-6">
           <Link
-            href="/signup-email"
+            href="/signup?type=email"
             className="w-full bg-primary text-white py-3 rounded-lg font-medium flex items-center justify-center gap-4"
           >
             <Mail className="w-5 h-5" />
             <span>Continue with Email</span>
           </Link>
           <Link
-            href="/signup-number"
+            href="/signup?type=number"
             className="w-full border border-primary text-primary py-3 rounded-lg font-medium flex items-center justify-center gap-4"
           >
             <Phone className="w-5 h-5" />
@@ -42,7 +42,7 @@ export default function SelectMethod() {
         <div className="text-center text-gray-400 mb-8">
           have an account ?{" "}
           <Link
-            href="/signin"
+            href="/signin?type=email"
             className="text-primary font-semibold hover:underline"
           >
             sign in

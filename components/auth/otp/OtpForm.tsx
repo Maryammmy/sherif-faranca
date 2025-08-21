@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import ResendOtp from "./ResendOtp";
 import { verifyOtpAction } from "@/actions/otp";
 import { IActionState } from "@/interfaces/form";
+import { Input } from "@/components/ui/Input";
 
 interface IProps {
   queryParams: Record<string, string>;
@@ -28,7 +29,7 @@ export default function OtpForm({ queryParams }: IProps) {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const router = useRouter();
-  const { type, email, countryCode, mobile } = queryParams;
+  const { type, email, countryCode, number } = queryParams;
 
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
@@ -72,8 +73,11 @@ export default function OtpForm({ queryParams }: IProps) {
         case "register-number":
           destination = `/create-account?type=${type}`;
           break;
-        case "forget-password":
-          destination = `/change-password?email=${email}`;
+        case "forget-password-email":
+          destination = `/change-password?type=email&email=${email}`;
+          break;
+        case "forget-password-number":
+          destination = `/change-password?type=number&countryCode=${countryCode}&number=${number}`;
           break;
       }
 
@@ -82,7 +86,7 @@ export default function OtpForm({ queryParams }: IProps) {
       const timer = setTimeout(() => router.push(destination), 500);
       return () => clearTimeout(timer);
     }
-  }, [state.success, type, router, email]);
+  }, [state.success, type, router, email, countryCode, number]);
 
   return (
     <div className="py-5 space-y-5">
@@ -101,16 +105,19 @@ export default function OtpForm({ queryParams }: IProps) {
               </InputOTPGroup>
             </InputOTP>
             {/* Hidden inputs for the form */}
-            <input type="hidden" name="otp" value={otp} />
-            <input type="hidden" name="type" value={type} />
-            {(type === "register-email" || type === "forget-password") &&
-              email && <input type="hidden" name="email" value={email} />}
-            {type === "register-number" && countryCode && mobile && (
-              <>
-                <input type="hidden" name="countryCode" value={countryCode} />
-                <input type="hidden" name="mobile" value={mobile} />
-              </>
-            )}
+            <Input type="hidden" name="otp" value={otp} />
+            <Input type="hidden" name="type" value={type} />
+            {(type === "register-email" || type === "forget-password-email") &&
+              email && <Input type="hidden" name="email" value={email} />}
+            {(type === "register-number" ||
+              type === "forget-password-number") &&
+              countryCode &&
+              number && (
+                <>
+                  <Input type="hidden" name="countryCode" value={countryCode} />
+                  <Input type="hidden" name="mobile" value={number} />
+                </>
+              )}
           </div>
           <p className="text-sm text-secondary font-semibold text-center mb-4">
             {timeLeft > 0

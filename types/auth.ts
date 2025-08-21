@@ -7,14 +7,14 @@ export type SendResetPassword =
 export type ResetPassword =
   | {
       email: string;
-      mobile?: never;
+      phoneNumber?: never;
       countryCode?: never;
       newPassword: string;
       confirmPassword: string;
     }
   | {
       email?: never;
-      mobile: string;
+      phoneNumber: string;
       countryCode: string;
       newPassword: string;
       confirmPassword: string;

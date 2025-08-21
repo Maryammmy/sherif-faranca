@@ -17,7 +17,7 @@ function SelectGoal({ goals, selectedGoal, handleSelectGoal }: IProps) {
           key={id}
           onClick={() => handleSelectGoal(id)}
           className={cn(
-            "bg-white relative flex flex-col sm:flex-row gap-4 sm:justify-between items-center p-4 sm:px-6 sm:py-8 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col sm:flex-row gap-4 sm:justify-between items-center px-6 py-8 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedGoal === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}

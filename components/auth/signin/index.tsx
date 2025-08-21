@@ -1,8 +1,8 @@
-import SignInForm from "./SignInForm";
+import SigninForm from "./SigninForm";
 import SocialButtons from "./SocialButtons";
 import Image from "next/image";
 
-function SignIn() {
+function Signin() {
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-20 place-items-center my-5">
       <div className="space-y-5 w-full max-w-lg">
@@ -14,9 +14,7 @@ function SignIn() {
         <h5 className="text-gray-800 text-xl sm:text-2xl font-semibold">
           You’ve been missed!
         </h5>
-        <div>
-          <SignInForm />
-        </div>
+        <SigninForm />
         <div>
           <SocialButtons />
         </div>
@@ -28,4 +26,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default Signin;

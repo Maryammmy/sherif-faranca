@@ -6,31 +6,40 @@ import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import PasswordInput from "@/components/ui/PasswordInput";
 import { handleClientError, useQueryParams } from "@/lib/utils";
-import { ResetPasswordData, resetPasswordSchema } from "@/schema/auth";
+import { ResetPassword, resetPasswordSchema } from "@/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { resetPasswordAPI } from "@/services/auth";
 function ChangePasswordForm() {
+  const { type, email, countryCode, number } = useQueryParams();
+  const isNumber = type === "number";
   const router = useRouter();
-  const email = useQueryParams("email");
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<ResetPasswordData>({
+  } = useForm<ResetPassword>({
     resolver: zodResolver(resetPasswordSchema),
     mode: "onChange",
   });
-  const onSubmit = async (data: ResetPasswordData) => {
+  const onSubmit = async (data: ResetPassword) => {
     try {
-      const response = await resetPasswordAPI({ ...data, email });
+      const payload = isNumber
+        ? {
+            countryCode,
+            phoneNumber: number,
+          }
+        : {
+            email,
+          };
+      const response = await resetPasswordAPI({ ...data, ...payload });
 
       if (response?.success === true) {
         toast.success(response?.message);
         setTimeout(() => {
-          router.push("/signin");
+          router.push(isNumber ? "/signin?type=number" : "/signin?type=email");
         }, 500);
       }
     } catch (error) {

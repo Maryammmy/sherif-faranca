@@ -45,10 +45,10 @@ export default function SignupNumberForm() {
   useEffect(() => {
     if (state.success) {
       const countryCode = state.data?.countryCode;
-      const mobile = state.data?.mobile;
+      const number = state.data?.mobile;
       const timer = setTimeout(() => {
         router.push(
-          `/otp?type=register-number&countryCode=${countryCode}&mobile=${mobile}`
+          `/otp?type=register-number&countryCode=${countryCode}&number=${number}`
         );
       }, 500);
 

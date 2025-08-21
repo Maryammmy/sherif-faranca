@@ -17,7 +17,7 @@ function SelectShape({ shapes, selectedShape, handleSelectShape }: IProps) {
           key={id}
           onClick={() => handleSelectShape(id)}
           className={cn(
-            "bg-white relative flex flex-col sm:flex-row gap-4 items-center sm:justify-between p-4 sm:px-6 sm:py-8 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col sm:flex-row gap-4 items-center sm:justify-between px-6 py-8 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedShape === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}

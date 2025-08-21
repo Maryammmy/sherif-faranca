@@ -6,6 +6,7 @@ import {
 } from "@/types/auth";
 import {
   ISigninWithEmail,
+  ISigninWithNumber,
   ISignupWithEmail,
   ISignupWithNumber,
 } from "@/interfaces/auth";
@@ -26,6 +27,10 @@ export const signupWithNumberAPI = async (payload: ISignupWithNumber) => {
 };
 export const signinWithEmailAPI = async (payload: ISigninWithEmail) => {
   const data = await postServerData("/api/Auth/login/email", payload);
+  return data;
+};
+export const signinWithNumberAPI = async (payload: ISigninWithNumber) => {
+  const data = await postServerData("/api/Auth/login/phone", payload);
   return data;
 };
 export const sendResetPasswordAPI = async (payload: SendResetPassword) => {

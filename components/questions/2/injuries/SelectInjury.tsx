@@ -18,7 +18,7 @@ function SelectInjury({ injuries, selectedInjuries, toggleInjury }: IProps) {
           key={id}
           onClick={() => toggleInjury(id)}
           className={cn(
-            "bg-white relative flex flex-col gap-2 justify-center items-center p-4 sm:p-6 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col gap-2 justify-center items-center p-6 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedInjuries.includes(id) &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}
@@ -29,9 +29,7 @@ function SelectInjury({ injuries, selectedInjuries, toggleInjury }: IProps) {
           <div className="relative w-12 h-12 rounded-md overflow-hidden">
             <Image src={imageUrl} alt={name} fill />
           </div>
-          <h5 className="text-center text-secondary font-medium text-xl">
-            {name}
-          </h5>
+          <span className="text-secondary font-medium text-xl">{name}</span>
         </Button>
       ))}
     </div>

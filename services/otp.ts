@@ -3,6 +3,7 @@ import {
   IVerifyRegistrationWithEmail,
   IVerifyRegistrationWithNumber,
   IVerifyResetPasswordWithEmail,
+  IVerifyResetPasswordWithNumber,
 } from "@/interfaces/otp";
 import { postServerData } from "./server";
 
@@ -28,5 +29,11 @@ export const verifyResetPasswordWithEmailAPI = async (
   payload: IVerifyResetPasswordWithEmail
 ) => {
   const data = await postServerData("/api/Otp/verify-reset-email", payload);
+  return data;
+};
+export const verifyResetPasswordWithNumberAPI = async (
+  payload: IVerifyResetPasswordWithNumber
+) => {
+  const data = await postServerData("/api/Otp/verify-reset-mobile", payload);
   return data;
 };

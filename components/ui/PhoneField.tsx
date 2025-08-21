@@ -21,7 +21,7 @@ export default function PhoneField({
   disabled = false,
 }: IProps) {
   const [phone, setPhone] = useState("");
-  const [countryCode, setCountryCode] = useState("");
+  const [countryCode, setCountryCode] = useState("20");
   const [fullNumber, setFullNumber] = useState("");
   const form = useFormContext();
   const setValue = form?.setValue;
@@ -41,7 +41,7 @@ export default function PhoneField({
     if (resetTrigger) {
       setFullNumber("");
       setPhone("");
-      setCountryCode("");
+      setCountryCode("20");
     }
   }, [resetTrigger]);
   return (

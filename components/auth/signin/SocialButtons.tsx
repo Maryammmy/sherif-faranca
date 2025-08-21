@@ -4,12 +4,15 @@ import { Button } from "@/components/ui/Button";
 import { socialButtons } from "@/data/auth";
 import { handleClientError, setToken, useQueryParams } from "@/lib/utils";
 import { getFacebookAuthUrlAPI, getGoogleAuthUrlAPI } from "@/services/auth";
+import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 function SocialButtons() {
+  const type = useQueryParams("type");
+  const isNumber = type === "number";
   const { token, isAnswered } = useQueryParams();
   const router = useRouter();
   useEffect(() => {
@@ -51,15 +54,29 @@ function SocialButtons() {
         </p>
       </div>
       <div className="flex gap-5 justify-center py-5">
-        {socialButtons.map(({ icon, alt }, index) => (
-          <Button
-            onClick={() => handleSocialLogin(alt)} // Trigger API call
-            key={index}
-            className="border-2 rounded-md px-2 py-1 gap-2 text-[#8F8F8F26] flex justify-center items-center"
-          >
-            <Image src={icon} alt={alt} width={25} height={25} />
-          </Button>
-        ))}
+        <div className="flex gap-5 justify-center">
+          {socialButtons.map(({ icon, alt }, index) => (
+            <Button
+              onClick={() => handleSocialLogin(alt)} // Trigger API call
+              key={index}
+              className="border-2 rounded-md px-2 py-1 gap-2 flex justify-center items-center"
+            >
+              <div className="relative size-8">
+                <Image src={icon} alt={alt} fill />
+              </div>
+            </Button>
+          ))}
+        </div>
+        <Link
+          href={isNumber ? "/signin?type=email" : "/signin?type=number"}
+          className="border-2 rounded-md px-2 py-1 gap-2 flex justify-center items-center"
+        >
+          {isNumber ? (
+            <Mail className="size-8 text-gray-400" />
+          ) : (
+            <Phone className="size-8 text-gray-400" />
+          )}
+        </Link>
       </div>
       <div className="flex gap-1 justify-center items-center font-medium">
         <p className="text-[#253248]">Don&apos;t have account ?</p>

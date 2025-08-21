@@ -16,7 +16,7 @@ const initialState: IActionState = {
   errors: {},
 };
 function ResendOtp({ queryParams, onResend }: IProps) {
-  const { type, email, countryCode, mobile } = queryParams;
+  const { type, email, countryCode, number } = queryParams;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
@@ -37,15 +37,16 @@ function ResendOtp({ queryParams, onResend }: IProps) {
   return (
     <form action={formAction}>
       <Input type="hidden" name="type" value={type} />
-      {(type === "register-email" || type === "forget-password") && email && (
-        <Input type="hidden" name="email" value={email} />
-      )}
-      {type === "register-number" && countryCode && mobile && (
-        <>
-          <Input type="hidden" name="countryCode" value={countryCode} />
-          <Input type="hidden" name="mobile" value={mobile} />
-        </>
-      )}
+      {(type === "register-email" || type === "forget-password-email") &&
+        email && <Input type="hidden" name="email" value={email} />}
+      {(type === "register-number" || type === "forget-password-number") &&
+        countryCode &&
+        number && (
+          <>
+            <Input type="hidden" name="countryCode" value={countryCode} />
+            <Input type="hidden" name="mobile" value={number} />
+          </>
+        )}
       <Button
         type="submit"
         className="text-primary w-full disabled:text-gray-400 font-medium"

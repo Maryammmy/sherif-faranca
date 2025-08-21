@@ -16,7 +16,7 @@ function SelectGender({ selectedGender, handleSelectGender }: IProps) {
           key={gender}
           onClick={() => handleSelectGender(gender)}
           className={cn(
-            "bg-white relative flex flex-col gap-2 items-center justify-center p-4 shadow rounded-2xl cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col gap-2 items-center justify-center p-6 shadow rounded-2xl cursor-pointer transition-all duration-300 ease-in-out",
             selectedGender === gender &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}

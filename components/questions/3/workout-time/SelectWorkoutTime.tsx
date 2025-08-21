@@ -20,7 +20,7 @@ function SelectWorkoutTime({
           key={id}
           onClick={() => handleSelectWorkoutTime(id)}
           className={cn(
-            "bg-white relative flex flex-col gap-3 p-4 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col gap-3 p-6 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedWorkoutTime === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}
@@ -28,9 +28,9 @@ function SelectWorkoutTime({
           {selectedWorkoutTime === id && (
             <CheckCircle2 className="absolute top-2 right-2 text-primary w-6 h-6 transition-opacity opacity-100" />
           )}
-          <h5 className="text-start text-secondary font-medium text-xl">
+          <span className="text-start text-secondary font-medium text-xl">
             {name}
-          </h5>
+          </span>
         </Button>
       ))}
     </div>

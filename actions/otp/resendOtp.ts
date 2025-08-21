@@ -26,16 +26,16 @@ export async function resendOtpAction(
         const countryCode = formData.get("countryCode") as string;
         const mobile = formData.get("mobile") as string;
         if (!countryCode || !mobile)
-          throw new Error("Country code and mobile are required");
+          throw new Error("Country code and phone number are required");
 
         const response = await sendRegistrationAPI({ countryCode, mobile });
         return {
           success: true,
-          message: response?.data?.message,
+          message: response?.message,
           errors: {},
         };
       }
-      case "forget-password": {
+      case "forget-password-email": {
         const email = formData.get("email") as string;
         if (!email) throw new Error("Email is required");
 
@@ -43,6 +43,19 @@ export async function resendOtpAction(
         return {
           success: true,
           message: response?.data?.message,
+          errors: {},
+        };
+      }
+      case "forget-password-number": {
+        const countryCode = formData.get("countryCode") as string;
+        const mobile = formData.get("mobile") as string;
+        if (!countryCode || !mobile)
+          throw new Error("Country code and phone number are required");
+
+        const response = await sendResetPasswordAPI({ countryCode, mobile });
+        return {
+          success: true,
+          message: response?.message,
           errors: {},
         };
       }

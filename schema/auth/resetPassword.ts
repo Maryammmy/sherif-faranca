@@ -1,10 +1,21 @@
 import { z } from "zod";
-export const resetPasswordWithEmailSchema = z.object({
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Invalid email address"),
-});
+export const sendResetPasswordSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("email"),
+    email: z
+      .string()
+      .nonempty("Email is required")
+      .email("Invalid email address"),
+    countryCode: z.never().optional(),
+    mobile: z.never().optional(),
+  }),
+  z.object({
+    type: z.literal("number"),
+    countryCode: z.string().nonempty("Country code is required"),
+    mobile: z.string().nonempty("Phone number is required"),
+    email: z.never().optional(),
+  }),
+]);
 export const resetPasswordSchema = z
   .object({
     newPassword: z
@@ -19,4 +30,4 @@ export const resetPasswordSchema = z
     path: ["confirmPassword"],
     message: "Passwords must match",
   });
-export type ResetPasswordData = z.infer<typeof resetPasswordSchema>;
+export type ResetPassword = z.infer<typeof resetPasswordSchema>;

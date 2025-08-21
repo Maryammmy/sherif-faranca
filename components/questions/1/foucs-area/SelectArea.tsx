@@ -26,10 +26,10 @@ export default function SelectArea({
             className={cn(
               "w-40 px-2 py-3 bg-white font-medium rounded-md border text-gray-700 transition-all duration-300 ease-in-out",
               selectedAreas.includes(id) &&
-                "flex justify-between border-2 border-primary ring-2 ring-primary/30"
+                "flex justify-between gap-2 border-2 border-primary ring-2 ring-primary/30"
             )}
           >
-            {name}
+            <span>{name}</span>
             {selectedAreas.includes(id) && (
               <CheckCircle2 className="text-primary w-6 h-6 transition-opacity opacity-100" />
             )}
