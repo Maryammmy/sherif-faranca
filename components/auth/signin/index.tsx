@@ -1,4 +1,4 @@
-import SigninForm from "./SigninForm";
+import SigninForm from "./Form";
 import SocialButtons from "./SocialButtons";
 import Image from "next/image";
 
