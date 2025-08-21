@@ -1,4 +1,4 @@
-import SignupForm from "./SignUpForm";
+import SignupForm from "./SignupForm";
 import Header from "./Header";
 import Image from "next/image";
 
