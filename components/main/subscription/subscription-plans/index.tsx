@@ -1,12 +1,20 @@
 "use client";
 import Modal from "@/components/ui/Modal";
 import Header from "./Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SubscriptionPlanList from "./SubscriptionPlanList";
 import PeriodFilters from "./PeriodFilters";
 
 function SubscriptionPlans() {
-  const [subscriptionPlansOpen, setSubscriptionPlansOpen] = useState(true);
+  const [subscriptionPlansOpen, setSubscriptionPlansOpen] = useState(false);
+  useEffect(() => {
+    const alreadyOpened = sessionStorage.getItem("subscriptionPlansShown");
+
+    if (!alreadyOpened) {
+      setSubscriptionPlansOpen(true);
+      sessionStorage.setItem("subscriptionPlansShown", "true");
+    }
+  }, []);
   return (
     <Modal
       open={subscriptionPlansOpen}

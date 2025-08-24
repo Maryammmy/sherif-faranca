@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import SettingsPanel from "../settings/settings-panel";
+import { useHeader } from "@/hooks";
 export default function SidebarContent({
   isExpanded,
   onLinkClick,
@@ -16,9 +17,18 @@ export default function SidebarContent({
 }) {
   const pathname = usePathname();
   const [settingPanelOpen, setSettingPanelOpen] = useState(false);
+  const { data } = useHeader();
+  const name = data?.userName;
+  const handleLogoClick = () => {
+    window.location.href = "/"; // refresh + redirect to /
+  };
+
   return (
     <>
-      <div className="py-5 px-2 flex items-center gap-2">
+      <Button
+        onClick={handleLogoClick}
+        className="py-5 px-2 flex items-center gap-2"
+      >
         <div
           className={cn(
             "relative shrink-0 w-12 h-12",
@@ -41,7 +51,7 @@ export default function SidebarContent({
             SHERIF FARANCA
           </h1>
         )}
-      </div>
+      </Button>
       <nav className="flex-1 px-2 space-y-2">
         {mainNavItems.map((item) =>
           item.label === "Settings" && !item?.href ? (
@@ -92,7 +102,7 @@ export default function SidebarContent({
             href={item.href!}
             onClick={onLinkClick}
             className={cn(
-              "flex items-center gap-3 py-3 rounded-lg text-secondary font-medium hover:bg-gray-100 transition-colors",
+              "flex items-center gap-3 py-3 rounded-lg text-secondary font-medium hover:bg-purple-100 hover:text-primary transition-colors",
               isExpanded ? "px-4 justify-start" : "justify-center"
             )}
           >
@@ -120,7 +130,11 @@ export default function SidebarContent({
                 "whitespace-nowrap overflow-hidden transition-all duration-300"
               )}
             >
-              <p className="font-semibold text-gray-800">Hey Sara Ali</p>
+              {name && (
+                <p className="font-semibold text-gray-800 capitalize">
+                  Hey {name}
+                </p>
+              )}
             </div>
           )}
         </div>
