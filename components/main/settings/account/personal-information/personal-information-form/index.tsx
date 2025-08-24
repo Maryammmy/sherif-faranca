@@ -61,7 +61,7 @@ function PersonalInformationForm({ close }: IProps) {
         close();
       }, 500);
     } else {
-      toast(response?.message);
+      toast.error(response?.message);
     }
   };
 

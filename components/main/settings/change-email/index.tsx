@@ -3,19 +3,20 @@ import Modal from "@/components/ui/Modal";
 import ChangeEmailForm from "./ChangeEmailForm";
 import Content from "./Content";
 import { useState } from "react";
-import ConfirmEmail from "./confirm-email";
+import VerifyChangeEmail from "./verify-change-email";
 
 interface IProps {
   open: boolean;
   onClose: () => void;
 }
 function ChangeEmail({ open, onClose }: IProps) {
-  const [confirmEmailOpen, setConfirmEmailOpen] = useState(false);
-  const handleConfirmEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [verifyEmailOpen, setVerifyEmailOpen] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const handleChangeEmail = (email: string) => {
+    setNewEmail(email);
     setTimeout(() => {
       onClose();
-      setConfirmEmailOpen(true);
+      setVerifyEmailOpen(true);
     }, 500);
   };
   return (
@@ -29,11 +30,12 @@ function ChangeEmail({ open, onClose }: IProps) {
         closeButtonClassname="text-gray-800 border-gray-800"
       >
         <Content />
-        <ChangeEmailForm handleConfirmEmail={handleConfirmEmail} />
+        <ChangeEmailForm handleChangeEmail={handleChangeEmail} />
       </Modal>
-      <ConfirmEmail
-        open={confirmEmailOpen}
-        onClose={() => setConfirmEmailOpen(false)}
+      <VerifyChangeEmail
+        open={verifyEmailOpen}
+        onClose={() => setVerifyEmailOpen(false)}
+        newEmail={newEmail}
       />
     </>
   );

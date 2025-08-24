@@ -1,2 +1,2 @@
-export * from "./createAccountSchema";
+export * from "./create-account";
 export * from "./signup";

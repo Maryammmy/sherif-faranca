@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import {
   ChangePassword,
   changePasswordSchema,
-} from "@/schema/main/settings/changePassword";
+} from "@/schema/main/settings/change-password";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputErrorMessage from "@/components/InputErrorMsg";
 import Loader from "@/components/loader/Loader";
@@ -26,8 +26,6 @@ function ChangePasswordForm({ close }: IProps) {
     mode: "onChange",
   });
   const onSubmit = async (data: ChangePassword) => {
-    // console.log("Form submitted:", data);
-
     const response = await changePasswordAPI(data);
     if (response?.success) {
       toast.success(response?.message);
@@ -35,7 +33,7 @@ function ChangePasswordForm({ close }: IProps) {
         close();
       }, 500);
     } else {
-      toast(response?.message);
+      toast.error(response?.message);
     }
   };
   return (

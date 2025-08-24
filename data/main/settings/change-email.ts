@@ -1,8 +1,8 @@
 import { IInputSettings } from "@/interfaces/main/settings";
 
 export const email: IInputSettings = {
-  id: "email",
-  name: "email",
+  id: "newEmail",
+  name: "newEmail",
   placeholder: "Enter new email",
   type: "email",
   label: "New email",
