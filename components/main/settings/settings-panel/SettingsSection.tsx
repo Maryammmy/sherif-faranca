@@ -4,10 +4,12 @@ import SettingsPanelCard from "./Card";
 import { useState } from "react";
 import ChangePassword from "../change-password";
 import ChangeEmail from "../change-email";
+import ChangePhone from "../change-phone";
 
 function SettingsSection() {
   const [changePasswordOpen, setChangePasswordOpen] = useState(false);
   const [changeEmailOpen, setChangeEmailOpen] = useState(false);
+  const [changePhoneOpen, setChangePhoneOpen] = useState(false);
   return (
     <>
       <div className="settings-panel-section">
@@ -25,6 +27,9 @@ function SettingsSection() {
               {...(item.label === "change email" && {
                 handleOpenChangeEmail: () => setChangeEmailOpen(true),
               })}
+              {...(item.label === "change phone number" && {
+                handleOpenChangePhone: () => setChangePhoneOpen(true),
+              })}
             />
           ))}
         </div>
@@ -36,6 +41,10 @@ function SettingsSection() {
       <ChangeEmail
         open={changeEmailOpen}
         onClose={() => setChangeEmailOpen(false)}
+      />
+      <ChangePhone
+        open={changePhoneOpen}
+        onClose={() => setChangePhoneOpen(false)}
       />
     </>
   );

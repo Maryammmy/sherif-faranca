@@ -1,4 +1,4 @@
-import { email } from "@/data/main/settings/change-email";
+import { email } from "@/data/main/settings";
 import { Mail } from "lucide-react";
 import React from "react";
 import SettingsInput from "../SettingsInput";
@@ -42,7 +42,7 @@ export default function ChangeEmailForm({ handleChangeEmail }: IProps) {
           <SettingsInput
             input={email}
             withWrapper
-            wrapperClassName="border border-gray-400 rounded-md py-3 px-3 flex gap-2 items-center justify-between"
+            wrapperClassName="border border-gray-400 rounded-md p-3 flex gap-2 items-center justify-between"
             icon={<Mail size={22} className="text-primary" />}
             register={register}
           />

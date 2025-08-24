@@ -25,8 +25,7 @@ export const profileSchema = z.object({
     .regex(/^\d+$/, { message: "Phone number must contain only digits" })
     .min(9, { message: "Phone number must be at least 9 digits" })
     .max(15, { message: "Phone number can't be more than 15 digits" }),
-  countryCode: z.string().min(1, "Country code is required").optional(),
-
+  countryCode: z.string().min(1, "Country code is required"),
   birthDate: z
     .string()
     .nonempty("Birthday is required")

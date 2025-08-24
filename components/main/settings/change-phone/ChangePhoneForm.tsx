@@ -1,0 +1,61 @@
+import React from "react";
+import { Button } from "@/components/ui/Button";
+import { FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Loader from "@/components/loader/Loader";
+import InputErrorMessage from "@/components/InputErrorMsg";
+import toast from "react-hot-toast";
+import { sendChangePhoneAPI } from "@/services/users";
+import PhoneField from "@/components/ui/PhoneField";
+import {
+  ChangePhone,
+  changePhoneSchema,
+} from "@/schema/main/settings/change-phone";
+
+interface IProps {
+  handleChangePhone: (phone: ChangePhone) => void;
+}
+export default function ChangePhoneForm({ handleChangePhone }: IProps) {
+  const methods = useForm<ChangePhone>({
+    resolver: zodResolver(changePhoneSchema),
+    mode: "onChange",
+  });
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = methods;
+
+  const onSubmit = async (data: ChangePhone) => {
+    const response = await sendChangePhoneAPI(data);
+    if (response?.success) {
+      toast.success(response?.message);
+      handleChangePhone(data);
+    } else {
+      toast.error(response?.message);
+    }
+  };
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        <div className="">
+          <div className="border border-gray-400 rounded-md py-3 px-1">
+            <PhoneField
+              numberName="phoneNumber"
+              countryCodeName="countryCode"
+            />
+          </div>
+          {errors?.phoneNumber && (
+            <InputErrorMessage msg={errors.phoneNumber.message} />
+          )}
+        </div>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-primary py-3 font-medium text-white rounded-md"
+        >
+          {isSubmitting ? <Loader /> : "Change phone number"}
+        </Button>
+      </form>
+    </FormProvider>
+  );
+}

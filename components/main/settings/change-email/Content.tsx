@@ -9,7 +9,7 @@ function Content() {
       <div className="w-14 h-14 rounded-full flex justify-center items-center bg-primary">
         <MailPlus className="text-white" />
       </div>
-      <span className="text-secondary font-medium">Current Email</span>
+      <span className="text-secondary font-medium">Current email</span>
       <div>
         <p className="text-gray-600 font-medium leading-none">
           {data?.message}

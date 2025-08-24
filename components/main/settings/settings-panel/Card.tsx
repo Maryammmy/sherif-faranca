@@ -8,6 +8,7 @@ interface IProps {
   handleOpenPersonalInfo?: () => void;
   handleOpenChangePassword?: () => void;
   handleOpenChangeEmail?: () => void;
+  handleOpenChangePhone?: () => void;
   handleOpenGoals?: () => void;
 }
 
@@ -16,6 +17,7 @@ function SettingsPanelCard({
   handleOpenPersonalInfo,
   handleOpenChangePassword,
   handleOpenChangeEmail,
+  handleOpenChangePhone,
   handleOpenGoals,
 }: IProps) {
   const { icon: Icon, label, href } = setting;
@@ -26,6 +28,8 @@ function SettingsPanelCard({
       handleOpenChangePassword();
     } else if (label === "change email" && handleOpenChangeEmail) {
       handleOpenChangeEmail();
+    } else if (label === "change phone number" && handleOpenChangePhone) {
+      handleOpenChangePhone();
     } else if (label === "my goal" && handleOpenGoals) {
       handleOpenGoals();
     }

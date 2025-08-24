@@ -5,33 +5,37 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import {
-  VerifyEmail,
-  verifyEmailSchema,
-} from "@/schema/main/settings/change-email";
-import { verifyChangeEmailAPI } from "@/services/users";
+import { verifyPhoneAPI } from "@/services/users";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ResendOtp from "./ResendOtp";
+import {
+  ChangePhone,
+  VerifyPhone,
+  verifyPhoneSchema,
+} from "@/schema/main/settings/change-phone";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
   onClose: () => void;
-  newEmail: string;
+  newPhone: ChangePhone;
 }
 
-function VerifyEmailForm({ onClose, newEmail }: IProps) {
+function VerifyPhoneForm({ onClose, newPhone }: IProps) {
+  const queryClient = useQueryClient();
   const {
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting },
-  } = useForm<VerifyEmail>({
-    resolver: zodResolver(verifyEmailSchema),
+  } = useForm<VerifyPhone>({
+    resolver: zodResolver(verifyPhoneSchema),
     mode: "onChange",
     defaultValues: {
       otp: "",
-      newEmail,
+      countryCode: newPhone.countryCode,
+      phoneNumber: newPhone.phoneNumber,
     },
   });
 
@@ -56,10 +60,11 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  const onSubmit = async (data: VerifyEmail) => {
-    const response = await verifyChangeEmailAPI(data);
+  const onSubmit = async (data: VerifyPhone) => {
+    const response = await verifyPhoneAPI(data);
     if (response?.success) {
       toast.success(response?.message);
+      queryClient.invalidateQueries({ queryKey: ["phoneNumber"] });
       setTimeout(() => {
         onClose();
       }, 500);
@@ -95,7 +100,7 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
             {String(timeLeft % 60).padStart(2, "0")}
           </p>
         ) : (
-          <ResendOtp newEmail={newEmail} resetTimer={resetTimer} />
+          <ResendOtp newPhone={newPhone} resetTimer={resetTimer} />
         )}
       </div>
 
@@ -111,4 +116,4 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
   );
 }
 
-export default VerifyEmailForm;
+export default VerifyPhoneForm;

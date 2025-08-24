@@ -4,6 +4,7 @@ import { IProfile } from "@/interfaces/main/settings";
 import { getServerData, postServerData, putServerData } from "./server";
 import { ChangeEmail, VerifyEmail } from "@/schema/main/settings/change-email";
 import { ChangePassword } from "@/schema/main/settings/change-password";
+import { ChangePhone, VerifyPhone } from "@/schema/main/settings/change-phone";
 
 export const profileAPI = async () => {
   const data = await getServerData("/api/Users/profile");
@@ -28,7 +29,22 @@ export const sendChangeEmailAPI = async (payload: ChangeEmail) => {
   );
   return data;
 };
-export const verifyChangeEmailAPI = async (payload: VerifyEmail) => {
+export const verifyEmailAPI = async (payload: VerifyEmail) => {
   const data = await postServerData("/api/Users/verify-change-email", payload);
+  return data;
+};
+export const phoneAPI = async () => {
+  const data = await getServerData("/api/Users/current-PhoneNumber");
+  return data;
+};
+export const sendChangePhoneAPI = async (payload: ChangePhone) => {
+  const data = await postServerData(
+    "/api/Users/send-change-phonenumber-otp",
+    payload
+  );
+  return data;
+};
+export const verifyPhoneAPI = async (payload: VerifyPhone) => {
+  const data = await postServerData("/api/Users/verify-change-mobile", payload);
   return data;
 };

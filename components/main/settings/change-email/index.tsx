@@ -3,7 +3,7 @@ import Modal from "@/components/ui/Modal";
 import ChangeEmailForm from "./ChangeEmailForm";
 import Content from "./Content";
 import { useState } from "react";
-import VerifyChangeEmail from "./verify-change-email";
+import VerifyChangeEmail from "./verify-email";
 
 interface IProps {
   open: boolean;

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/Button";
-import { changePasswordForm } from "@/data/main/settings/change-password";
+import { changePasswordForm } from "@/data/main/settings";
 import SettingsInput from "../SettingsInput";
 import { useForm } from "react-hook-form";
 import {
