@@ -13,7 +13,7 @@ import PhoneField from "../../ui/PhoneField";
 import { DatePicker } from "@/src/components/ui/date-picker";
 import PasswordInput from "@/src/components/ui/PasswordInput";
 import { IActionState } from "@/src/interfaces/form";
-import { useQueryParams } from "@/src/lib/utils";
+import { setToken, useQueryParams } from "@/src/lib/utils";
 import TermsAndConditionsModal from "../signup/TermsAndConditionsModal";
 
 const initialState: IActionState = {
@@ -35,6 +35,10 @@ export default function CreateAccountForm() {
       if (result.message) {
         console.log(result);
         if (result.success) {
+          const token = result?.data?.token;
+          if (token) {
+            setToken(token);
+          }
           toast.success(result.message);
         } else {
           toast.error(result.message);
