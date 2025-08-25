@@ -54,6 +54,11 @@ const nextConfig: NextConfig = {
         hostname: "www.marcypro.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "clientapi.sherif-faranca.com",
+        pathname: "/**",
+      },
     ],
   },
 };

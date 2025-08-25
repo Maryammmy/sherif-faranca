@@ -1,7 +1,6 @@
 import { email } from "@/data/main/settings";
 import { Mail } from "lucide-react";
 import React from "react";
-import SettingsInput from "../SettingsInput";
 import { Button } from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
 import {
@@ -13,6 +12,7 @@ import Loader from "@/components/loader/Loader";
 import InputErrorMessage from "@/components/InputErrorMsg";
 import toast from "react-hot-toast";
 import { sendChangeEmailAPI } from "@/services/users";
+import SettingsInput from "../../SettingsInput";
 
 interface IProps {
   handleChangeEmail: (email: string) => void;

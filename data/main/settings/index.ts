@@ -31,7 +31,7 @@ export const settings: ISetting[] = [
   { icon: Phone, label: "change phone number" },
 ];
 export const reachOut: ISetting[] = [
-  { icon: UserRoundSearch, label: "about us" },
+  { icon: UserRoundSearch, label: "about us", href: "about-us" },
   { icon: Headphones, label: "contact us" },
 ];
 

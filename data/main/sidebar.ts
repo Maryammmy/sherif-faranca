@@ -19,7 +19,7 @@ export const mainNavItems: INavItem[] = [
 ];
 
 export const secondaryNavItems: INavItem[] = [
-  { href: "/about", icon: Info, label: "About US" },
-  { href: "/privacy", icon: ShieldCheck, label: "Privacy Policy" },
+  { href: "/about-us", icon: Info, label: "About US" },
+  { href: "/privacy-policy", icon: ShieldCheck, label: "Privacy Policy" },
   { href: "/terms", icon: FileText, label: "Terms & Conditions" },
 ];

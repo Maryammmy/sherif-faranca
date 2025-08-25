@@ -20,7 +20,7 @@ export const postServerData = async (endpoint: string, payload: unknown) => {
     const api = await baseAPI();
     const response = await api.post(endpoint, payload);
     return {
-      success: response?.data?.isSuccess ?? false,
+      success: response?.data?.isSuccess ?? true,
       data: response?.data,
       message: response?.data?.message || "OK",
       errors: {},
@@ -34,7 +34,7 @@ export const putServerData = async (endpoint: string, payload: unknown) => {
     const api = await baseAPI();
     const response = await api.put(endpoint, payload);
     return {
-      success: response?.data?.isSuccess ?? false,
+      success: response?.data?.isSuccess ?? true,
       data: response?.data,
       message: response?.data?.message || "OK",
       errors: {},

@@ -2,9 +2,9 @@
 import { settings } from "@/data/main/settings";
 import SettingsPanelCard from "./Card";
 import { useState } from "react";
-import ChangePassword from "../change-password";
-import ChangeEmail from "../change-email";
-import ChangePhone from "../change-phone";
+import ChangePassword from "../settings/change-password";
+import ChangeEmail from "../settings/change-email";
+import ChangePhone from "../settings/change-phone";
 
 function SettingsSection() {
   const [changePasswordOpen, setChangePasswordOpen] = useState(false);

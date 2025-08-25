@@ -24,7 +24,7 @@ function Otp() {
               number ? (
                 <>
                   Number{" "}
-                  <span className="text-primary">
+                  <span className="text-primary break-all">
                     (+{countryCode}
                     {number})
                   </span>
@@ -32,7 +32,7 @@ function Otp() {
               ) : (
                 <>
                   Email{" "}
-                  <span className="text-primary wrap-anywhere">({email})</span>
+                  <span className="text-primary break-all">({email})</span>
                 </>
               )}
             </span>

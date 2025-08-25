@@ -22,7 +22,7 @@ function Header() {
         <h2 className="text-xs sm:text-lg font-bold leading-none capitalize">
           Welcome {firstName}
         </h2>
-        <p className="font-medium text-xs sm:text-base leading-none !wrap-anywhere">
+        <p className="font-medium text-xs sm:text-base leading-none break-all">
           {email}
         </p>
       </div>
