@@ -13,11 +13,21 @@ export const setToken = async (value: string) => {
     name: TOKEN_KEY,
     value: value,
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
     path: "/",
-    maxAge: 60 * 60 * 24 * 365,
+    maxAge: 60 * 60 * 24 * 365, // سنة واحدة
   });
 };
 export const removeToken = async () => {
   const cookieStore = await cookies();
-  cookieStore.delete(TOKEN_KEY);
+  cookieStore.set({
+    name: TOKEN_KEY,
+    value: "",
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
+    maxAge: 0, // expires immediately
+  });
 };

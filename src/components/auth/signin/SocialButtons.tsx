@@ -9,6 +9,7 @@ import {
 } from "@/src/services/queries/social-auth";
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -21,7 +22,19 @@ function SocialButtons() {
   const router = useRouter();
   useEffect(() => {
     if (!token) return;
-    setToken(token);
+
+    // Set token only once
+    const setTokenOnce = async () => {
+      try {
+        await setToken(token);
+        console.log("Token set successfully");
+      } catch (error) {
+        console.error("Failed to set token:", error);
+      }
+    };
+
+    setTokenOnce();
+
     if (isAnswered === "true") {
       router.push("/");
     } else if (isAnswered === "false") {
@@ -65,8 +78,8 @@ function SocialButtons() {
               key={index}
               className="border-2 rounded-md px-2 py-1 gap-2 flex justify-center items-center"
             >
-              <div className="relative size-8">
-                <Image src={icon} alt={alt} fill />
+              <div>
+                <Image src={icon} alt={alt} width={32} height={32} />
               </div>
             </Button>
           ))}

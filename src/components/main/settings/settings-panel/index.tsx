@@ -4,8 +4,7 @@ import TrainingStats from "./TrainingStats";
 import AccountSection from "./AccountSection";
 import SettingsSection from "./SettingsSection";
 import ReachOutSection from "./ReachOutSection";
-import { Button } from "@/src/components/ui/Button";
-import { LogOut } from "lucide-react";
+import Logout from "./Logout";
 
 interface IProps {
   open: boolean;
@@ -23,10 +22,7 @@ function SettingsPanel({ open, onClose }: IProps) {
               <AccountSection />
               <SettingsSection />
               <ReachOutSection />
-              <Button className="p-3 rounded-md bg-[#DA2828E5] font-medium text-white flex justify-between gap-2">
-                <span>Logout</span>
-                <LogOut />
-              </Button>
+              <Logout />
             </div>
           </div>
         </div>
