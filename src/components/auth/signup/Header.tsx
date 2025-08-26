@@ -1,15 +1,15 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { useQueryParams } from "@/src/lib/utils";
 
 function Header() {
-  const pathname = usePathname();
+  const type = useQueryParams("type");
   return (
     <div className="space-y-3">
       <header>
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-11">
           SIGN UP{" "}
           <span className="text-primary">
-            {pathname === "signup/number" ? "WITH NUMBER" : "WITH EMAIL"}
+            {type === "number" ? "WITH NUMBER" : "WITH EMAIL"}
           </span>
         </h1>
       </header>
