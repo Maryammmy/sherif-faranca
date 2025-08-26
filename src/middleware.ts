@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getToken } from "./lib/utils";
 
 const PUBLIC_ROUTES = [
   "/auth",
@@ -13,9 +12,8 @@ const PUBLIC_ROUTES = [
   "/signup",
 ];
 
-export async function middleware(request: NextRequest) {
-  const token = await getToken();
-
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get("token")?.value || null;
   const { pathname } = request.nextUrl;
 
   if (PUBLIC_ROUTES.some((route) => pathname.startsWith(route))) {
