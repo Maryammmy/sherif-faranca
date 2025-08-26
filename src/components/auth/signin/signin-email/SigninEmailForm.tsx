@@ -32,7 +32,7 @@ function SignInEmailForm() {
       const token = response?.data?.token;
       const isAnswared = response?.data?.isAnswared;
       if (token) {
-        setToken(token);
+        await setToken(token);
       }
       toast.success(response?.message);
       setTimeout(() => {

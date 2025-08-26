@@ -37,7 +37,7 @@ export default function CreateAccountForm() {
         if (result.success) {
           const token = result?.data?.token;
           if (token) {
-            setToken(token);
+            await setToken(token);
           }
           toast.success(result.message);
         } else {

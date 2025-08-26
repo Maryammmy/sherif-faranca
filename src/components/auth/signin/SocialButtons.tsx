@@ -19,13 +19,17 @@ function SocialButtons() {
   const { token, isAnswered } = useQueryParams();
   const router = useRouter();
   useEffect(() => {
-    if (!token) return;
-    setToken(token);
-    if (isAnswered === "true") {
-      router.push("/");
-    } else if (isAnswered === "false") {
-      router.push("/questions/1/intro");
-    }
+    const run = async () => {
+      if (!token) return;
+      await setToken(token);
+      if (isAnswered === "true") {
+        router.push("/");
+      } else if (isAnswered === "false") {
+        router.push("/questions/1/intro");
+      }
+    };
+
+    run();
   }, [token, isAnswered, router]);
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
     const authAPIs = {
