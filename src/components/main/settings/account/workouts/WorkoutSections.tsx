@@ -2,12 +2,23 @@ import { Button } from "@/src/components/ui/Button";
 import { workoutSections } from "@/src/data/main/settings/account/workouts";
 import { cn } from "@/src/lib/utils";
 import WorkoutTimeFilters from "./WorkoutTimeFilters";
+import {
+  WorkoutHistoryTime,
+  WorkoutSection,
+} from "@/src/types/main/settings/account/workouts";
 
 interface IProps {
   selectedSection: string;
-  handleSelectSection: (setion: string) => void;
+  handleSelectSection: (section: WorkoutSection) => void;
+  selectedTime: string;
+  handleSelectTime: (time: WorkoutHistoryTime) => void;
 }
-function WorkoutSections({ selectedSection, handleSelectSection }: IProps) {
+function WorkoutSections({
+  selectedSection,
+  handleSelectSection,
+  selectedTime,
+  handleSelectTime,
+}: IProps) {
   return (
     <>
       <div className="grid grid-cols-3 place-items-center sm:flex sm:items-center sm:justify-center gap-5">
@@ -26,7 +37,12 @@ function WorkoutSections({ selectedSection, handleSelectSection }: IProps) {
           </Button>
         ))}
       </div>
-      {selectedSection === "history" && <WorkoutTimeFilters />}
+      {selectedSection === "history" && (
+        <WorkoutTimeFilters
+          selectedTime={selectedTime}
+          handleSelectTime={handleSelectTime}
+        />
+      )}
     </>
   );
 }

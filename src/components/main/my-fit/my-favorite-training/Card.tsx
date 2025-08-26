@@ -1,18 +1,13 @@
 import { Button } from "@/src/components/ui/Button";
-import { IFavWorkout } from "@/src/interfaces/main/settings/account/workouts";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 
-interface IProps {
-  fav: IFavWorkout;
-}
-function FavoriteWorkoutCard({ fav }: IProps) {
-  const { imageUrl, title } = fav;
+function FavoriteTrainingCard() {
   return (
     <div className="p-4 rounded-2xl border space-y-2 bg-gray-50">
-      <div className="relative overflow-hidden rounded-2xl w-full h-[250px]">
+      <div className="relative overflow-hidden rounded-2xl h-[250px] w-full">
         <Image
-          src={imageUrl}
+          src="/exercise.gif"
           alt="Workout"
           fill
           className="object-cover"
@@ -29,10 +24,10 @@ function FavoriteWorkoutCard({ fav }: IProps) {
         </div>
       </div>
       <div>
-        <h2 className="font-bold text-gray-700">{title}</h2>
+        <h2 className="font-bold text-gray-700">Jumping Jacks</h2>
       </div>
     </div>
   );
 }
 
-export default FavoriteWorkoutCard;
+export default FavoriteTrainingCard;

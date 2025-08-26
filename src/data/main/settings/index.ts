@@ -19,7 +19,7 @@ export const account: ISetting[] = [
   {
     icon: BookmarkCheck,
     label: "my workouts",
-    href: "/settings/account/workouts",
+    href: "/settings/account/workouts?section=history&time=today",
   },
   { icon: BadgeCheck, label: "my goal" },
 ];

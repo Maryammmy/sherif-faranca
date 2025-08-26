@@ -1,5 +1,14 @@
-export const workoutSections: string[] = ["history", "recent", "favorite"];
-export const workoutTimeFilters: string[] = [
+import {
+  WorkoutHistoryTime,
+  WorkoutSection,
+} from "@/src/types/main/settings/account/workouts";
+
+export const workoutSections: WorkoutSection[] = [
+  "history",
+  "recent",
+  "favorite",
+];
+export const workoutTimeFilters: WorkoutHistoryTime[] = [
   "today",
   "this week",
   "this month",

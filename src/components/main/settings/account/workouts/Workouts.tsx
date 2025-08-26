@@ -1,25 +1,53 @@
-import { cn } from "@/src/lib/utils";
-import WorkoutsCard from "./Card";
-import FavoriteWorkoutsCard from "./FavoriteCard";
+import { cn, useQueryParams } from "@/src/lib/utils";
+import HistoryWorkoutCard from "./HistoryCard";
+import FavoriteWorkoutCard from "./FavoriteCard";
+import { useFavWorkouts, useWorkouts } from "@/src/hooks";
+import {
+  IFavWorkout,
+  IHistoryWorkout,
+  IRecentWorkout,
+} from "@/src/interfaces/main/settings/account/workouts";
+import RecentWorkoutCard from "./RecentCard";
 
-interface IProps {
-  selectedSection: string;
-}
-function Workouts({ selectedSection }: IProps) {
+function Workouts() {
+  const { section = "history", time = "today" } = useQueryParams();
+
+  const isFav = section === "favorite";
+  const isRecent = section === "recent";
+  const isHistory = section === "history";
+
+  const { data } = useWorkouts(section, time);
+  const { data: favData } = useFavWorkouts(section);
+
+  const historyWorkouts: IHistoryWorkout[] = data?.data;
+  const recentWorkouts: IRecentWorkout[] = data;
+  const favs: IFavWorkout[] = favData;
+  console.log(section);
+  console.log(time);
+  console.log(recentWorkouts);
   return (
     <div
       className={cn(
-        "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5",
-        selectedSection === "favorite" && "place-items-center"
+        "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5"
+        // isFav && "place-items-center"
       )}
     >
-      {Array.from({ length: 10 }).map((_, index) =>
-        selectedSection === "favorite" ? (
-          <FavoriteWorkoutsCard key={index} />
-        ) : (
-          <WorkoutsCard key={index} />
-        )
-      )}
+      {isFav &&
+        favData &&
+        favs?.length > 0 &&
+        favs?.map((fav) => <FavoriteWorkoutCard key={fav?.id} fav={fav} />)}
+      {isRecent &&
+        data &&
+        recentWorkouts?.length > 0 &&
+        recentWorkouts?.map((recent) => (
+          <RecentWorkoutCard key={recent?.id} recent={recent} />
+        ))}
+      {isHistory &&
+        data &&
+        historyWorkouts?.length > 0 &&
+        historyWorkouts?.map((history) => (
+          <HistoryWorkoutCard key={history?.id} history={history} />
+        ))}
     </div>
   );
 }

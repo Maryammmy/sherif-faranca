@@ -7,3 +7,28 @@ export function formatDateToYYYYMMDD(date?: Date): string {
 
   return `${year}-${month}-${day}`;
 }
+
+/**
+ * Format ISO string to "26 August"
+ * @param {string} isoString
+ * @returns {string}
+ */
+export function formatDateOnly(isoString: string): string {
+  const dateObj = new Date(isoString);
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleString("en-US", { month: "long" });
+  return `${day} ${month}`;
+}
+
+/**
+ * Format ISO string to "5:15 AM"
+ * @param {string} isoString
+ * @returns {string}
+ */
+export function formatTimeOnly(isoString: string): string {
+  const dateObj = new Date(isoString);
+  return dateObj.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}

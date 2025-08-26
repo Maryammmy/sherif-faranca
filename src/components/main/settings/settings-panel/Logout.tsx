@@ -1,11 +1,13 @@
 import { Button } from "@/src/components/ui/Button";
 import { removeToken } from "@/src/lib/utils";
 import { LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 function Logout() {
+  const router = useRouter();
   const handleLogout = async () => {
     await removeToken();
-    window.location.href = "/signin?type=email";
+    router.push("/signin?type=email");
   };
   return (
     <Button

@@ -1,4 +1,4 @@
-import WorkoutsCard from "../../settings/account/workouts/Card";
+import WorkoutsCard from "./Card";
 
 function TrainingHistories() {
   return (

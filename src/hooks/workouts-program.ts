@@ -1,16 +1,35 @@
 import { useCustomQuery } from ".";
 import {
-  workoutHistoryMonthAPI,
-  workoutHistoryTodayAPI,
-  workoutHistoryWeekAPI,
+  favWorkoutsAPI,
+  recentWorkoutsAPI,
+  workoutsHistoryMonthAPI,
+  workoutsHistoryTodayAPI,
+  workoutsHistoryWeekAPI,
 } from "../services/queries/workouts-program";
 
-export function useWorkoutHistoryToday() {
-  return useCustomQuery(["workoutHistoryToday"], workoutHistoryTodayAPI);
+export function useWorkouts(
+  section: string = "history",
+  time: string = "today"
+) {
+  let api;
+
+  if (section === "recent") {
+    api = recentWorkoutsAPI;
+  } else {
+    api =
+      time === "this week"
+        ? workoutsHistoryWeekAPI
+        : time === "this month"
+        ? workoutsHistoryMonthAPI
+        : workoutsHistoryTodayAPI;
+  }
+
+  return useCustomQuery(["workouts", section, time], api, {
+    enabled: section !== "favorite" && !!section && !!time,
+  });
 }
-export function useWorkoutHistoryWeek() {
-  return useCustomQuery(["workoutHistoryWeek"], workoutHistoryWeekAPI);
-}
-export function useWorkoutHistoryMonth() {
-  return useCustomQuery(["workoutHistoryMonth"], workoutHistoryMonthAPI);
+export function useFavWorkouts(section: string) {
+  return useCustomQuery(["favWorkouts"], favWorkoutsAPI, {
+    enabled: section === "favorite",
+  });
 }
