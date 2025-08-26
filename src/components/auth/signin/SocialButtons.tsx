@@ -9,11 +9,9 @@ import {
 } from "@/src/services/queries/social-auth";
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 
 function SocialButtons() {
   const type = useQueryParams("type");
@@ -22,23 +20,11 @@ function SocialButtons() {
   const router = useRouter();
   useEffect(() => {
     if (!token) return;
-
-    // Set token only once
-    const setTokenOnce = async () => {
-      try {
-        await setToken(token);
-        console.log("Token set successfully");
-      } catch (error) {
-        console.error("Failed to set token:", error);
-      }
-    };
-
-    setTokenOnce();
-
+    setToken(token);
     if (isAnswered === "true") {
       router.push("/");
     } else if (isAnswered === "false") {
-      router.push("/questions/1");
+      router.push("/questions/1/intro");
     }
   }, [token, isAnswered, router]);
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
@@ -52,15 +38,11 @@ function SocialButtons() {
       return;
     }
     const response = await getAuthUrl();
-    if (response?.success) {
-      const url = response?.data?.url;
-      if (url) {
-        window.location.href = url; // Redirect user to OAuth consent screen
-      } else {
-        console.error("Auth URL not found in response:", response);
-      }
+    const url = response?.url;
+    if (url) {
+      window.location.href = url; // Redirect user to OAuth consent screen
     } else {
-      toast.error(response?.message);
+      console.error("Auth URL not found in response:", response);
     }
   };
   return (

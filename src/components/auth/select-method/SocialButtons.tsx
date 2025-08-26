@@ -7,7 +7,6 @@ import {
   getGoogleAuthUrlAPI,
 } from "@/src/services/queries/social-auth";
 import Image from "next/image";
-import toast from "react-hot-toast";
 
 function SocialButtons() {
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
@@ -21,15 +20,11 @@ function SocialButtons() {
       return;
     }
     const response = await getAuthUrl();
-    if (response?.success) {
-      const url = response?.data?.url;
-      if (url) {
-        window.location.href = url; // Redirect user to OAuth consent screen
-      } else {
-        console.error("Auth URL not found in response:", response);
-      }
+    const url = response?.url;
+    if (url) {
+      window.location.href = url; // Redirect user to OAuth consent screen
     } else {
-      toast.error(response?.message);
+      console.error("Auth URL not found in response:", response);
     }
   };
 
