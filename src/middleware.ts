@@ -1,35 +1,37 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+// import { NextResponse } from "next/server";
+// import type { NextRequest } from "next/server";
+// import { getToken } from "./lib/utils";
 
-const PUBLIC_ROUTES = [
-  "/auth",
-  "/change-password",
-  "/create-account",
-  "/otp",
-  "/select-language",
-  "/select-method",
-  "/signin",
-  "/signup",
-];
+// const PUBLIC_ROUTES = [
+//   "/auth",
+//   "/change-password",
+//   "/create-account",
+//   "/otp",
+//   "/select-language",
+//   "/select-method",
+//   "/signin",
+//   "/signup",
+// ];
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get("token")?.value || null;
-  const { pathname } = request.nextUrl;
+// export async function middleware(request: NextRequest) {
+//   const token = await getToken();
 
-  if (PUBLIC_ROUTES.some((route) => pathname.startsWith(route))) {
-    return NextResponse.next();
-  }
+//   const { pathname } = request.nextUrl;
 
-  if (!token) {
-    const signinUrl = new URL("/signin?type=email", request.url);
-    return NextResponse.redirect(signinUrl);
-  }
+//   if (PUBLIC_ROUTES.some((route) => pathname.startsWith(route))) {
+//     return NextResponse.next();
+//   }
 
-  return NextResponse.next();
-}
+//   if (!token) {
+//     const signinUrl = new URL("/signin?type=email", request.url);
+//     return NextResponse.redirect(signinUrl);
+//   }
 
-export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|api|uploads|images|.*\\.svg).*)",
-  ],
-};
+//   return NextResponse.next();
+// }
+
+// export const config = {
+//   matcher: [
+//     "/((?!_next/static|_next/image|favicon.ico|api|uploads|images|.*\\.svg).*)",
+//   ],
+// };
