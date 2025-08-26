@@ -107,7 +107,7 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
       <Button
         type="submit"
         className="w-full bg-primary text-white p-3 rounded-md font-medium"
-        disabled={isSubmitting}
+        disabled={isSubmitting || otp.length < 5}
       >
         {isSubmitting ? <Loader /> : "Verify"}
       </Button>

@@ -129,7 +129,7 @@ export default function OtpForm({ queryParams }: IProps) {
           <Button
             type="submit"
             className="w-full bg-primary text-white p-3 rounded-md font-medium"
-            disabled={isPending}
+            disabled={isPending || otp.length < 5}
           >
             {isPending ? <Loader /> : "Verify"}
           </Button>
