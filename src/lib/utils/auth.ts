@@ -14,7 +14,7 @@ export const setToken = async (value: string) => {
     value: value,
     httpOnly: true,
     // secure: true,
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
     path: "/",
     maxAge: 60 * 60 * 24 * 365, // سنة واحدة
@@ -27,7 +27,7 @@ export const removeToken = async () => {
     value: "",
     httpOnly: true,
     // secure: true,
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
     path: "/",
     maxAge: 0, // expires immediately
