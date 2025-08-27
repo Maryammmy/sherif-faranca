@@ -1,13 +1,11 @@
 import { cn, useQueryParams } from "@/src/lib/utils";
-import HistoryWorkoutCard from "./HistoryCard";
 import FavoriteWorkoutCard from "./FavoriteCard";
 import { useFavWorkouts, useWorkouts } from "@/src/hooks";
 import {
   IFavWorkout,
-  IHistoryWorkout,
-  IRecentWorkout,
+  IWorkout,
 } from "@/src/interfaces/main/settings/account/workouts";
-import RecentWorkoutCard from "./RecentCard";
+import WorkoutCard from "./Card";
 
 function Workouts() {
   const { section = "history", time = "today" } = useQueryParams();
@@ -19,12 +17,9 @@ function Workouts() {
   const { data } = useWorkouts(section, time);
   const { data: favData } = useFavWorkouts(section);
 
-  const historyWorkouts: IHistoryWorkout[] = data?.data;
-  const recentWorkouts: IRecentWorkout[] = data;
+  const historyWorkouts: IWorkout[] = data?.data;
+  const recentWorkouts: IWorkout[] = data;
   const favs: IFavWorkout[] = favData;
-  console.log(section);
-  console.log(time);
-  console.log(recentWorkouts);
   return (
     <div
       className={cn(
@@ -40,13 +35,13 @@ function Workouts() {
         data &&
         recentWorkouts?.length > 0 &&
         recentWorkouts?.map((recent) => (
-          <RecentWorkoutCard key={recent?.id} recent={recent} />
+          <WorkoutCard key={recent?.id} workout={recent} />
         ))}
       {isHistory &&
         data &&
         historyWorkouts?.length > 0 &&
         historyWorkouts?.map((history) => (
-          <HistoryWorkoutCard key={history?.id} history={history} />
+          <WorkoutCard key={history?.id} workout={history} />
         ))}
     </div>
   );
