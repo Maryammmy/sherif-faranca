@@ -1,38 +1,33 @@
-import { IFiltersResult } from "@/src/interfaces/filters";
-import { TrendingUp, Clock12, Flame } from "lucide-react";
+import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-interface IProps {
-  result: IFiltersResult;
-}
-function FiltersResultCard({ result }: IProps) {
-  const { title, imageUrl, level, calories, durationMinutes } = result;
+function FatBurningCard() {
   return (
     <div className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
-        <Image src={imageUrl} alt={title} className="object-cover" fill />
+        <Image src="/workout.jpg" alt="workout" className="object-cover" fill />
       </div>
 
       <div>
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-gray-600 font-medium capitalize">Abs Work Out</h3>
       </div>
       <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <TrendingUp />
-          <span className="truncate">{level}</span>
+          <span className="truncate">beginners</span>
         </div>
         <div className="flex justify-center items-center gap-1 text-gray-400 text-sm font-medium">
           <Clock12 />
-          <span>{durationMinutes}</span>
+          <span>20 min</span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame />
-          <span className="truncate">{calories}Kcal</span>
+          <span className="truncate">100Kcal</span>
         </div>
       </div>
     </div>
   );
 }
 
-export default FiltersResultCard;
+export default FatBurningCard;

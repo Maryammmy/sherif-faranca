@@ -21,12 +21,12 @@ function WorkoutCard({ workout }: IProps) {
         <div>
           <h2 className="sm:text-lg text-gray-700 font-bold">{title}</h2>
         </div>
-        <div className="grid grid-cols-3 gap-2 text-secondary text-sm font-medium">
+        <div className="grid grid-cols-3 gap-2 capitalize text-secondary text-sm font-medium">
           <span className="truncate">{formatDateOnly(watchedDate)}</span>
           <span className="truncate">Direction</span>
           <span className="truncate">Calories</span>
         </div>
-        <div className="grid grid-cols-3 gap-2 text-secondary font-medium">
+        <div className="grid grid-cols-3 gap-2 capitalize text-secondary font-medium">
           <span className="truncate">{formatTimeOnly(watchedDate)}</span>
           <span className="truncate">{durationMinutes} Min</span>
           <span className="truncate">{calories} Calories</span>

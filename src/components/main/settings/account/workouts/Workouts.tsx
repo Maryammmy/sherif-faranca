@@ -1,4 +1,4 @@
-import { cn, useQueryParams } from "@/src/lib/utils";
+import { cn } from "@/src/lib/utils";
 import FavoriteWorkoutCard from "./FavoriteCard";
 import { useFavWorkouts, useWorkouts } from "@/src/hooks";
 import {
@@ -7,9 +7,11 @@ import {
 } from "@/src/interfaces/main/settings/account/workouts";
 import WorkoutCard from "./Card";
 
-function Workouts() {
-  const { section = "history", time = "today" } = useQueryParams();
-
+interface IProps {
+  section: string;
+  time: string;
+}
+function Workouts({ section, time }: IProps) {
   const isFav = section === "favorite";
   const isRecent = section === "recent";
   const isHistory = section === "history";

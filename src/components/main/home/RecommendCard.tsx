@@ -37,7 +37,7 @@ export default function RecommendCard({ recommendForYou }: IProps) {
       <div>
         <h3 className="text-gray-600 font-medium">{title}</h3>
       </div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <TrendingUp />
           <span className="truncate">{levelName}</span>
