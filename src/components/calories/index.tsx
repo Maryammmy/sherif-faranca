@@ -32,7 +32,7 @@ const Calories = () => {
           <MoveLeft className="size-6" />
         </Link>
         <header className="flex-1 flex justify-center">
-          <h1 className="text-2xl font-bold text-center mb-6 text-gray-700">
+          <h1 className="text-2xl font-bold text-center text-gray-700">
             Calories
           </h1>
         </header>
