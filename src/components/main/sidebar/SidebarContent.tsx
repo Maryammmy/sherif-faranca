@@ -41,6 +41,7 @@ export default function SidebarContent({
               alt="logo"
               fill
               className="w-full h-full transition-transform duration-300"
+              priority
             />
           </div>
         )}
@@ -59,6 +60,7 @@ export default function SidebarContent({
               height={35}
               width={200}
               className="transition-transform duration-300"
+              priority
             />
           </div>
         )}
