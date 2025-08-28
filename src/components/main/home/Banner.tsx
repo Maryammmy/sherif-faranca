@@ -16,7 +16,7 @@ export default function Banner() {
       slides={merchantBanners?.map(({ imageUrl }, i) => (
         <div
           key={i}
-          className="relative w-full h-[400px] rounded-3xl overflow-hidden"
+          className="relative w-full h-[200px] md:h-[300px] 2xl:h-[400px] rounded-3xl overflow-hidden"
         >
           <Image
             src={imageUrl}
