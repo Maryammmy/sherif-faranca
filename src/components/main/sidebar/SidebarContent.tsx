@@ -27,29 +27,40 @@ export default function SidebarContent({
     <>
       <Button
         onClick={handleLogoClick}
-        className="py-5 px-2 flex items-center gap-2"
+        className="py-5 px-2 flex items-center justify-center gap-2"
       >
-        <div
-          className={cn(
-            "relative shrink-0 w-12 h-12",
-            !isExpanded && "mx-auto"
-          )}
-        >
-          <Image
-            src="/favicon.svg"
-            alt="logo"
-            fill
-            className="w-full h-full transition-transform duration-300"
-          />
-        </div>
-        {isExpanded && (
-          <h1
+        {!isExpanded && (
+          <div
             className={cn(
-              "text-xl font-bold text-primary whitespace-nowrap overflow-hidden transition-all duration-300"
+              "relative shrink-0 w-12 h-12",
+              !isExpanded && "mx-auto"
             )}
           >
-            SHERIF FARANCA
-          </h1>
+            <Image
+              src="/favicon.svg"
+              alt="logo"
+              fill
+              className="w-full h-full transition-transform duration-300"
+            />
+          </div>
+        )}
+        {isExpanded && (
+          // <h1
+          //   className={cn(
+          //     "text-3xl font-bold text-primary whitespace-nowrap overflow-hidden transition-all duration-300"
+          //   )}
+          // >
+          //   SHERIF FARANCA
+          // </h1>
+          <div className="shrink-0">
+            <Image
+              src="/sherif-faranca.svg"
+              alt="website name"
+              height={35}
+              width={200}
+              className="transition-transform duration-300"
+            />
+          </div>
         )}
       </Button>
       <nav className="flex-1 px-2 space-y-2">
@@ -82,7 +93,7 @@ export default function SidebarContent({
                 "flex items-center gap-3 py-3 rounded-lg text-secondary font-medium hover:bg-purple-100 hover:text-primary transition-colors",
                 isExpanded ? "px-4 justify-start" : "justify-center",
                 pathname === item.href &&
-                  "bg-primary text-white hover:bg-primary/90"
+                  "bg-primary text-white hover:bg-primary/90 hover:text-white"
               )}
             >
               <item.icon className="w-6 h-6 shrink-0" />

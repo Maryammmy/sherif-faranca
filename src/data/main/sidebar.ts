@@ -2,18 +2,18 @@ import { INavItem } from "@/src/interfaces/main/sidebar";
 import {
   Compass,
   FileText,
-  HeartPulse,
   Home,
   Info,
   Settings,
   ShieldCheck,
+  SquareActivity,
   User,
 } from "lucide-react";
 
 export const mainNavItems: INavItem[] = [
   { href: "/", icon: Home, label: "Home" },
   { href: "/personal", icon: User, label: "Personal" },
-  { href: "/my-fit", icon: HeartPulse, label: "My Fit" },
+  { href: "/my-fit", icon: SquareActivity, label: "My Fit" },
   { href: "/discover", icon: Compass, label: "Discover" },
   { icon: Settings, label: "Settings" },
 ];
