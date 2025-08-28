@@ -1,7 +1,6 @@
 "use client";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 
 interface IProps {
   value: number;

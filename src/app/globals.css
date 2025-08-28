@@ -2,6 +2,10 @@
 @import "tw-animate-css";
 @plugin 'tailwind-scrollbar';
 @import "react-phone-input-2/lib/style.css";
+@import "react-circular-progressbar/dist/styles.css";
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
 
 @custom-variant dark (&:is(.dark *));
 @theme {
@@ -201,17 +205,25 @@ span {
 }
 .swiper-button-prev,
 .swiper-button-next {
-  color: white !important;
+  color: white;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  font-size: 30px !important;
-  font-weight: 800 !important;
+  font-size: 18px;
+  font-weight: 900;
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  color: var(--color-primary) !important;
+  color: var(--color-primary);
 }
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: white !important;
+  background: white;
 }

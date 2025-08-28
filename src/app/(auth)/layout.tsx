@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Logo from "@/src/components/auth/Logo";
 
 export default function AuthLayout({
   children,
@@ -7,9 +7,7 @@ export default function AuthLayout({
 }>) {
   return (
     <div className="p-5 pb-0 sm:p-8 sm:pb-0">
-      <div>
-        <Image src="/logo.png" alt="logo" width={150} height={150} priority />
-      </div>
+      <Logo />
       <div className="min-h-[calc(100vh-170px)]">{children}</div>
       <div className="py-5">
         <p className="text-center text-[#475467] font-medium">

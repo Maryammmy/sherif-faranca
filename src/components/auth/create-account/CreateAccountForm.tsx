@@ -8,7 +8,6 @@ import { Button } from "@/src/components/ui/Button";
 import { Input } from "@/src/components/ui/Input";
 import { Label } from "@/src/components/ui/Label";
 import InputErrorMessage from "@/src/components/InputErrorMsg";
-import "react-phone-input-2/lib/style.css";
 import PhoneField from "../../ui/PhoneField";
 import { DatePicker } from "@/src/components/ui/date-picker";
 import PasswordInput from "@/src/components/ui/PasswordInput";

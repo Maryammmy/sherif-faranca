@@ -7,20 +7,19 @@ import SwiperSlider from "../../ui/SwiperSlider";
 
 export default function Banner() {
   const { data } = useHome();
-  const merchantBanner: IMerchantBanner = data?.data?.merchantBanners;
+  const merchantBanners: IMerchantBanner[] = data?.data?.merchantBanners;
   if (!data) return null;
-  console.log(merchantBanner);
-  // const { imageUrl, title } = merchantBanner;
-  const images = ["/about-us.jpg", "/banner.png"];
+  console.log(merchantBanners);
+  // const images = ["/about-us.jpg", "/banner.png"];
   return (
     <SwiperSlider
-      slides={images.map((src, i) => (
+      slides={merchantBanners?.map(({ imageUrl }, i) => (
         <div
           key={i}
           className="relative w-full h-[400px] rounded-3xl overflow-hidden"
         >
           <Image
-            src={src}
+            src={imageUrl}
             alt={`Slide ${i + 1}`}
             fill
             className="object-center"

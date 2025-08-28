@@ -2,9 +2,11 @@
 
 import ClassicClassCard from "@/src/components/main/home/ClassicClassCard";
 import { Button } from "@/src/components/ui/Button";
+import { navBreakpoints } from "@/src/data";
 import { useHome } from "@/src/hooks";
 import { IClassicClass } from "@/src/interfaces/main/home";
 import { useState } from "react";
+import SwiperSlider from "../../ui/SwiperSlider";
 
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -26,14 +28,14 @@ export default function ClassicClass() {
       {data && classicClasses?.length && (
         <>
           {/* أزرار الفوكس أريا */}
-          <div className="flex justify-center items-center gap-5 pt-5">
-            {classicClasses?.map(({ focusAreaId, focusAreaName }) => {
+          <SwiperSlider
+            slides={classicClasses?.map(({ focusAreaId, focusAreaName }) => {
               const isSelected = selectedId === focusAreaId;
               return (
                 <Button
                   key={focusAreaId}
                   onClick={() => setSelectedId(focusAreaId)}
-                  className={`px-4 py-2 rounded-lg cursor-pointer font-medium transition-colors ${
+                  className={`w-full p-2 rounded-md cursor-pointer font-medium transition-colors ${
                     isSelected
                       ? "bg-primary text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -43,9 +45,13 @@ export default function ClassicClass() {
                 </Button>
               );
             })}
-          </div>
-
-
+            slidesPerView={2}
+            spaceBetween={20}
+            pagination={false}
+            breakpoints={navBreakpoints}
+            loop={false}
+            className="mt-5"
+          />
           {/* عرض البرامج */}
           <div className="grid gap-5 py-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {selectedClasses?.length ? (

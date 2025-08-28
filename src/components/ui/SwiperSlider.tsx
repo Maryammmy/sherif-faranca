@@ -2,9 +2,7 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import { SwiperBreakpoints } from "@/src/types";
 
 interface IProps {
   slides: React.ReactNode[];
@@ -13,8 +11,10 @@ interface IProps {
   autoplay?: boolean;
   pagination?: boolean;
   navigation?: boolean;
+  centerInsufficientSlides?: boolean;
   loop?: boolean;
   className?: string;
+  breakpoints?: SwiperBreakpoints;
 }
 
 export default function SwiperSlider({
@@ -24,8 +24,10 @@ export default function SwiperSlider({
   autoplay = false,
   pagination = true,
   navigation = false,
+  centerInsufficientSlides = true,
   loop = true,
   className = "",
+  breakpoints,
 }: IProps) {
   return (
     <Swiper
@@ -33,10 +35,12 @@ export default function SwiperSlider({
       slidesPerView={slidesPerView}
       spaceBetween={spaceBetween}
       loop={loop}
+      centerInsufficientSlides={centerInsufficientSlides}
       pagination={pagination ? { clickable: true } : false}
       autoplay={autoplay ? { delay: 3000 } : false}
       navigation={navigation}
       className={`w-full ${className}`}
+      breakpoints={breakpoints}
     >
       {slides.map((slide, i) => (
         <SwiperSlide key={i}>{slide}</SwiperSlide>
