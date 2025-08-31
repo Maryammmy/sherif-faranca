@@ -14,3 +14,11 @@ export interface IHabit {
   goal: string;
   icon: ReactNode;
 }
+export interface ICalories {
+  dailyCalories: IDailyCalories[];
+  totalWeekCalories: number;
+}
+export interface IDailyCalories {
+  calories: number;
+  date: string;
+}

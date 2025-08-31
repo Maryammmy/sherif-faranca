@@ -14,6 +14,7 @@ import TodayCalories from "./TodayCalories";
 import WeeklySummary from "./WeeklySummary";
 import { MoveLeft } from "lucide-react";
 import Link from "next/link";
+import { useTotalCalories } from "@/src/hooks";
 
 ChartJS.register(
   ArcElement,
@@ -25,6 +26,8 @@ ChartJS.register(
 );
 
 const Calories = () => {
+  const { data } = useTotalCalories();
+  if (!data) return null;
   return (
     <div className="max-w-7xl mx-auto padding-layout">
       <div className="flex justify-between items-center gap-2 text-gray-700 pb-5">
@@ -38,8 +41,8 @@ const Calories = () => {
         </header>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <TodayCalories />
-        <WeeklySummary />
+        <TodayCalories data={data?.todayCalories} />
+        <WeeklySummary data={data} />
       </div>
     </div>
   );

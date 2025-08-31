@@ -1,5 +1,10 @@
 import { useCustomQuery } from ".";
-import { emailAPI, phoneAPI, profileAPI } from "@/src/services/queries/users";
+import {
+  emailAPI,
+  phoneAPI,
+  profileAPI,
+  totalCalories,
+} from "@/src/services/queries/users";
 
 export function useProfile() {
   return useCustomQuery(["profile"], profileAPI);
@@ -9,4 +14,7 @@ export function useEmail() {
 }
 export function usePhone() {
   return useCustomQuery(["phoneNumber"], phoneAPI);
+}
+export function useTotalCalories() {
+  return useCustomQuery(["totalCalories"], totalCalories);
 }

@@ -3,7 +3,7 @@ import FavoriteTrainingHeader from "./Header";
 
 function FavoriteTraining() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="padding-layout">
       <FavoriteTrainingHeader />
       <FavoriteTrainings />
     </div>

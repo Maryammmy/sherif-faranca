@@ -1,12 +1,12 @@
-// import WorkoutTimeFilters from "../../settings/account/workouts/WorkoutTimeFilters";
 import TrainingHistories from "./TrainingHistories";
 import TrainingHistoryHeader from "./Header";
+import TrainingHistoryTime from "./Time";
 
 function TrainingHistory() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="padding-layout">
       <TrainingHistoryHeader />
-      {/* <WorkoutTimeFilters /> */}
+      <TrainingHistoryTime />
       <TrainingHistories />
     </div>
   );

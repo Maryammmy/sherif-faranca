@@ -1,7 +1,10 @@
 import { Doughnut } from "react-chartjs-2";
 
-const TodayCalories = () => {
-  const todayCalories = 1842;
+interface IProps {
+  data: number;
+}
+const TodayCalories = ({ data }: IProps) => {
+  const todayCalories = data;
 
   const doughnutData = {
     labels: ["Running", "Dancing", "Workout", "Yoga", "Walking"],
