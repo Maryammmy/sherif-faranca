@@ -74,7 +74,7 @@ export default function SelectHeight() {
                 shouldHighlight={shouldHighlight}
                 onClick={() => {
                   setSelectedHeight(height);
-                  sessionStorage.setItem("heightCm", selectedHeight.toString());
+                  sessionStorage.setItem("heightCm", height.toString());
                 }}
               />
             );

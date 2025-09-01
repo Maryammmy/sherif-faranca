@@ -7,10 +7,11 @@ function Introduction() {
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-20 place-items-center min-h-screen padding-layout">
       <div className="space-y-5 w-full max-w-lg">
-        <header>
+        <header className="flex items-center gap-2">
           <h1 className="text-3xl sm:text-5xl font-bold text-gray-700">
-            Hello ! 👋
+            Hello !
           </h1>
+          <Image src="/hello-hand.svg" alt="logo" width={50} height={50} />
         </header>
         <div className="space-y-2">
           <h5 className="text-lg text-gray-700">This data will help us</h5>
