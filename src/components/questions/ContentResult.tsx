@@ -13,10 +13,10 @@ function ContentResult({ img, title, coloredTitle, description }: Props) {
     <div className="questions-layout">
       <div className="pt-6 space-y-4">
         <div className="flex justify-center items-center">
-          <Image src={`/${img}.png`} alt={img} width={300} height={300} />
+          <Image src={`/${img}.png`} alt={img} width={250} height={250} />
         </div>
         <header>
-          <h1 className="uppercase text-gray-700 text-2xl sm:text-4xl font-bold leading-11 sm:leading-14 sm:text-center max-w-lg">
+          <h1 className="uppercase text-gray-700 text-2xl sm:text-3xl font-bold leading-11 sm:text-center max-w-lg">
             {coloredTitle?.firstColoredText && (
               <span className="text-primary">
                 {coloredTitle?.firstColoredText}

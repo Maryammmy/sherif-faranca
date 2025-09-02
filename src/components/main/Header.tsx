@@ -9,11 +9,14 @@ import { Bell, ListFilter, Menu, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import CircularRing from "../ui/CircularRing";
+import { SkeletonCard } from "../skeleton/Card";
 
 export default function Header() {
   const { toggleMobileSidebar } = useSidebar();
   const { data } = useHeader();
-  if (!data) return null;
+  if (!data) {
+    return <SkeletonCard count={1} className="h-[80px] rounded-none" />;
+  }
   const { userName, activeGoals, greeting, trainingPerWeek }: IHeader = data;
   const progressValue = (activeGoals % trainingPerWeek) * 100;
   return (
