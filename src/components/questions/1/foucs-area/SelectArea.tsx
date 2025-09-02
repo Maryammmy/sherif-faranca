@@ -39,42 +39,52 @@ export default function SelectArea({
       {/* Image + Glow Overlays */}
       <div className="relative w-[300px] h-[350px]">
         <Image src="/male.png" alt="body" fill className="object-cover" />
-        {/* SHOULDER */}
-        {selectedAreas.includes(2) && (
+        {/* Highlight Overlay */}
+        {/* Highlight Overlay */}
+        {selectedAreas.includes(6) ? (
+          // FULL BODY highlight (يغطي الجسم كله)
+          <div className="absolute inset-0 flex justify-center items-center">
+            <div className="shadow-[0_0_200px_120px_rgba(255,0,0,0.9)]" />
+          </div>
+        ) : (
           <>
-            <div className="absolute left-[104px] top-[70px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
-            <div className="absolute right-[110px] top-[70px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
-          </>
-        )}
+            {/* SHOULDER */}
+            {selectedAreas.includes(2) && (
+              <>
+                <div className="absolute left-[104px] top-[70px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
+                <div className="absolute right-[110px] top-[70px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
+              </>
+            )}
 
-        {/* ARM */}
-        {selectedAreas.includes(1) && (
-          <>
-            <div className="absolute left-[95px] top-[100px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
-            <div className="absolute right-[102px] top-[100px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
+            {/* ARM */}
+            {selectedAreas.includes(1) && (
+              <>
+                <div className="absolute left-[95px] top-[100px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
+                <div className="absolute right-[102px] top-[100px] w-[15px] h-[15px] rounded-full shadow-[0_0_60px_35px_rgba(255,0,0,0.7)]" />
+              </>
+            )}
+
+            {/* CHEST */}
+            {selectedAreas.includes(3) && (
+              <>
+                <div className="absolute left-[120px] top-[90px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
+                <div className="absolute right-[125px] top-[90px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
+              </>
+            )}
+
+            {/* ABS */}
+            {selectedAreas.includes(4) && (
+              <div className="absolute left-[140px] top-[150px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
+            )}
+
+            {/* LEG */}
+            {selectedAreas.includes(5) && (
+              <>
+                <div className="absolute left-[109px] top-[240px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
+                <div className="absolute right-[117px] top-[240px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
+              </>
+            )}
           </>
-        )}
-        {/* CHEST */}
-        {selectedAreas.includes(3) && (
-          <>
-            <div className="absolute left-[120px] top-[90px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
-            <div className="absolute right-[125px] top-[90px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
-          </>
-        )}
-        {/* ABS */}
-        {selectedAreas.includes(4) && (
-          <div className="absolute left-[140px] top-[150px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
-        )}
-        {/* LEG */}
-        {selectedAreas.includes(5) && (
-          <>
-            <div className="absolute left-[109px] top-[240px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
-            <div className="absolute right-[117px] top-[240px] w-[15px] h-[15px] rounded-full shadow-[0_0_70px_40px_rgba(255,0,0,0.7)]" />
-          </>
-        )}
-        {/* FULL BODY */}
-        {selectedAreas.includes(6) && (
-          <div className="absolute left-[120px] top-[160px] shadow-[0_0_200px_100px_rgba(255,0,0,0.7)]" />
         )}
       </div>
     </div>

@@ -32,7 +32,7 @@ export default function SelectHeight() {
         newHeight <= maxHeight
       ) {
         setSelectedHeight(newHeight);
-        sessionStorage.setItem("heightCm", selectedHeight.toString());
+        sessionStorage.setItem("heightCm", newHeight.toString());
       }
     }
   };
