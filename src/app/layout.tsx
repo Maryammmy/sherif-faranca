@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen">
           <QueryProvider>{children}</QueryProvider>
-          <Toaster />
+          <Toaster position="top-right" />
         </div>
       </body>
     </html>

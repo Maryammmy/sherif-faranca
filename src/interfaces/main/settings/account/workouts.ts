@@ -10,4 +10,10 @@ export interface IFavWorkout {
   id: number;
   imageUrl: string;
   title: string;
+  isProgram: boolean;
+  isFavorite: boolean;
+}
+export interface IToggleWorkout {
+  itemId: number;
+  isProgram: boolean;
 }

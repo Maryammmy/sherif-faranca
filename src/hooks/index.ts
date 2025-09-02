@@ -5,3 +5,4 @@ export * from "./filters";
 export * from "./users";
 export * from "./services";
 export * from "./workouts-program";
+export * from "./my-fit";

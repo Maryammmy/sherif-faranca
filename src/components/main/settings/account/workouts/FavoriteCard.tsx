@@ -1,13 +1,33 @@
 import { Button } from "@/src/components/ui/Button";
-import { IFavWorkout } from "@/src/interfaces/main/settings/account/workouts";
+import { IFav } from "@/src/interfaces/fav";
+import { toggleWorkoutsFavAPI } from "@/src/services/mutations/workouts-program";
+import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface IProps {
-  fav: IFavWorkout;
+  fav: IFav;
 }
 function FavoriteWorkoutCard({ fav }: IProps) {
-  const { imageUrl, title } = fav;
+  const queryClient = useQueryClient();
+  const { imageUrl, title, id, isProgram } = fav;
+  const toggleWorkoutsFav = async () => {
+    const payload = {
+      itemId: id,
+      isProgram: isProgram,
+    };
+    const response = await toggleWorkoutsFavAPI(payload);
+    if (response?.success === true) {
+      queryClient.refetchQueries({
+        queryKey: ["favWorkouts"],
+      });
+      toast.success(response?.message);
+    } else {
+      toast.error(response?.message);
+    }
+  };
+
   return (
     <div className="p-4 rounded-2xl border space-y-2 bg-gray-50">
       <div className="relative overflow-hidden rounded-2xl w-full h-[250px]">
@@ -22,7 +42,10 @@ function FavoriteWorkoutCard({ fav }: IProps) {
         />
         <div className="absolute z-20 inset-0 p-4 flex flex-col justify-between gap-2">
           <div className="flex justify-end">
-            <Button className="w-8 h-8 rounded-full bg-gray-100/70 flex items-center justify-center">
+            <Button
+              onClick={toggleWorkoutsFav}
+              className="w-8 h-8 rounded-full bg-gray-100/70 flex items-center justify-center"
+            >
               <Heart size={20} className="text-[#F95555] fill-[#F95555]" />
             </Button>
           </div>
