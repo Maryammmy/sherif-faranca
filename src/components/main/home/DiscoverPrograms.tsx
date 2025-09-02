@@ -3,6 +3,7 @@ import DiscoverProgramsCard from "@/src/components/main/home/DiscoverProgramsCar
 import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IDiscoverProgram } from "@/src/interfaces/main/home";
+import { SkeletonCard } from "../../skeleton/Card";
 
 export default function DiscoverPrograms() {
   const { data } = useHome();
@@ -17,16 +18,22 @@ export default function DiscoverPrograms() {
           <span>View All</span>
         </Button>
       </div>
-      {data && discoverPrograms?.length && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
-          {discoverPrograms?.map((discoverProgram) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
+        {!data ? (
+          <SkeletonCard count={4} />
+        ) : discoverPrograms?.length ? (
+          discoverPrograms?.map((discoverProgram) => (
             <DiscoverProgramsCard
               key={discoverProgram?.id}
               discoverProgram={discoverProgram}
             />
-          ))}
-        </div>
-      )}
+          ))
+        ) : (
+          <p className="col-span-full text-center text-secondary font-medium">
+            No discover programs found
+          </p>
+        )}
+      </div>
     </div>
   );
 }
