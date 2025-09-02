@@ -9,6 +9,12 @@ export default function SelectWeight() {
   const maxWeight = 200;
   const rulerRef = useRef<HTMLDivElement>(null);
   const [selectedWeight, setSelectedWeight] = useState(60);
+
+  // --- Drag state ---
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+
   useEffect(() => {
     const stored = sessionStorage.getItem("weightKg");
     if (stored) {
@@ -25,6 +31,7 @@ export default function SelectWeight() {
       const centerOffset = rulerRef.current.offsetWidth / 2;
       const centerPosition = scrollLeft + centerOffset - itemWidth / 2;
       const newWeight = minWeight + Math.round(centerPosition / itemWidth);
+
       if (
         newWeight !== selectedWeight &&
         newWeight >= minWeight &&
@@ -46,6 +53,42 @@ export default function SelectWeight() {
     }
   }, [selectedWeight]);
 
+  // --- Handle Mouse Drag ---
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!rulerRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX;
+    scrollLeftStart.current = rulerRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !rulerRef.current) return;
+    const dx = e.pageX - startX.current;
+    rulerRef.current.scrollLeft = scrollLeftStart.current - dx;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  // --- Handle Touch Drag (Mobile) ---
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!rulerRef.current) return;
+    isDragging.current = true;
+    startX.current = e.touches[0].pageX;
+    scrollLeftStart.current = rulerRef.current.scrollLeft;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging.current || !rulerRef.current) return;
+    const dx = e.touches[0].pageX - startX.current;
+    rulerRef.current.scrollLeft = scrollLeftStart.current - dx;
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+  };
+
   return (
     <div className="grid grid-cols-1 place-items-center gap-10 pt-5">
       <div className="bg-gray-100 px-6 py-3 rounded-lg text-lg font-semibold text-secondary">
@@ -53,9 +96,16 @@ export default function SelectWeight() {
         <span className="text-primary">{selectedWeight}KG</span>
       </div>
       <div
-        className="relative w-full max-w-7xl overflow-x-scroll scrollbar-none"
+        className="relative w-full max-w-7xl overflow-x-scroll scrollbar-none cursor-grab active:cursor-grabbing"
         ref={rulerRef}
         onScroll={handleScroll}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="relative h-24 w-[2000px] flex items-end">
           {Array.from({ length: maxWeight - minWeight + 1 }, (_, i) => {
@@ -68,7 +118,7 @@ export default function SelectWeight() {
             return (
               <RulerTick
                 key={weight}
-                weight={weight}
+                value={weight}
                 isMajor={isMajor}
                 shouldHighlight={shouldHighlight}
                 onClick={() => {

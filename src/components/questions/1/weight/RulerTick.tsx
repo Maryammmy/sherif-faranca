@@ -2,14 +2,14 @@ import { Button } from "@/src/components/ui/Button";
 import { cn } from "@/src/lib/utils";
 
 interface IProps {
-  weight: number;
+  value: number;
   isMajor: boolean;
   shouldHighlight: boolean;
   onClick: () => void;
 }
 
 export default function RulerTick({
-  weight,
+  value,
   isMajor,
   shouldHighlight,
   onClick,
@@ -39,7 +39,7 @@ export default function RulerTick({
             shouldHighlight ? "text-primary" : "text-gray-700"
           )}
         >
-          {weight}
+          {value}
         </span>
       )}
     </Button>

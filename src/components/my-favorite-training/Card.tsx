@@ -19,10 +19,14 @@ function FavoriteTrainingCard({ fav }: IProps) {
     };
     const response = await toggleMyFitFavAPI(payload);
     if (response?.success === true) {
-      toast.success(response?.message);
+      toast.success(response?.message, {
+        position: "top-right",
+      });
       queryClient.invalidateQueries({ queryKey: ["myFitFav"] });
     } else {
-      toast.error(response?.message);
+      toast.error(response?.message, {
+        position: "top-right",
+      });
     }
   };
   return (

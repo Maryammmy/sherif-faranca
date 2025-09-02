@@ -22,9 +22,13 @@ function FavoriteWorkoutCard({ fav }: IProps) {
       queryClient.refetchQueries({
         queryKey: ["favWorkouts"],
       });
-      toast.success(response?.message);
+      toast.success(response?.message, {
+        position: "top-right",
+      });
     } else {
-      toast.error(response?.message);
+      toast.error(response?.message, {
+        position: "top-right",
+      });
     }
   };
 
