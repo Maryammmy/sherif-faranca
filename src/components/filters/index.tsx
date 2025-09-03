@@ -4,12 +4,13 @@ import Durations from "./Durations";
 import FilterBodyFocusArea from "./FilterBodyFocusArea";
 import IWouldLikeTo from "./IWouldLikeTo";
 import Levels from "./Levels";
-import WhatWorkOutPrefer from "./WhatWorkOutPrefer";
+import WhatWorkoutPrefer from "./WhatWorkoutPrefer";
 import { useFilters } from "@/src/hooks";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
 import ApplyFilters from "./ApplyFilters";
 import { useState } from "react";
+import { SkeletonCard } from "../skeleton/Card";
 
 function Filters() {
   const { data } = useFilters();
@@ -25,7 +26,29 @@ function Filters() {
   const [duration, setDuration] = useState<IDuration | null>(null);
   const [levelId, setLevelId] = useState<number | null>(null);
 
-  if (!data) return null;
+  if (!data)
+    return (
+      <div className="padding-layout space-y-5">
+        <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <SkeletonCard count={6} className="w-20 h-20 rounded-full" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10">
+          <SkeletonCard count={3} className="h-[200px]" />
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+          <SkeletonCard count={6} className="h-10" />
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+          <SkeletonCard count={6} className="h-10" />
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+          <SkeletonCard count={3} className="h-10" />
+        </div>
+        <div>
+          <SkeletonCard count={1} className="h-10 sm:w-50" />
+        </div>
+      </div>
+    );
 
   const {
     filterBodyFocsArea,
@@ -96,9 +119,8 @@ function Filters() {
         value={i_dLikeToId}
         onChange={handleSelectLikeTo}
       />
-
-      <WhatWorkOutPrefer
-        whatWorkOutPrefer={whatWorkOutPrefer}
+      <WhatWorkoutPrefer
+        whatWorkoutPrefer={whatWorkOutPrefer}
         value={whatWorkOutPreferIds}
         onChange={handleSelectWorkOutPrefer}
       />

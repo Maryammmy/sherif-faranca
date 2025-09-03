@@ -14,29 +14,35 @@ function Durations({ durations, value, onChange }: IProps) {
     <div>
       <h2 className="text-gray-700 font-bold">Durations</h2>
       <div className="py-5 flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
-        {durations?.map((duration, index) => {
-          const isActive =
-            value?.minDuration === duration.minDuration &&
-            value?.maxDuration === duration.maxDuration;
+        {durations?.length ? (
+          durations?.map((duration, index) => {
+            const isActive =
+              value?.minDuration === duration.minDuration &&
+              value?.maxDuration === duration.maxDuration;
 
-          return (
-            <Button
-              key={index}
-              className={cn(
-                "flex items-center gap-2 border rounded-md px-3 py-2 transition",
-                isActive ? "border-primary bg-primary/5" : "border-gray-200"
-              )}
-              onClick={() => onChange(duration)}
-            >
-              <span className="text-primary shrink-0">
-                <Clock12 size={20} />
-              </span>
-              <span className="text-secondary">
-                {duration.minDuration}-{duration.maxDuration} Minute
-              </span>
-            </Button>
-          );
-        })}
+            return (
+              <Button
+                key={index}
+                className={cn(
+                  "flex items-center gap-2 border rounded-md px-3 py-2 transition",
+                  isActive ? "border-primary bg-primary/5" : "border-gray-200"
+                )}
+                onClick={() => onChange(duration)}
+              >
+                <span className="text-primary shrink-0">
+                  <Clock12 size={20} />
+                </span>
+                <span className="text-secondary">
+                  {duration.minDuration}-{duration.maxDuration} Minute
+                </span>
+              </Button>
+            );
+          })
+        ) : (
+          <p className="col-span-full text-gray-500 text-center font-medium">
+            No durations to found
+          </p>
+        )}
       </div>
     </div>
   );
