@@ -4,7 +4,7 @@ import Durations from "./Durations";
 import FilterBodyFocusArea from "./FilterBodyFocusArea";
 import IWouldLikeTo from "./IWouldLikeTo";
 import Levels from "./Levels";
-import WhatWorkoutPrefer from "./WhatWorkoutPrefer";
+import WorkoutPrefer from "./WorkoutPrefer";
 import { useFilters } from "@/src/hooks";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
@@ -119,7 +119,7 @@ function Filters() {
         value={i_dLikeToId}
         onChange={handleSelectLikeTo}
       />
-      <WhatWorkoutPrefer
+      <WorkoutPrefer
         whatWorkoutPrefer={whatWorkOutPrefer}
         value={whatWorkOutPreferIds}
         onChange={handleSelectWorkOutPrefer}

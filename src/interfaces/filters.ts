@@ -1,16 +1,16 @@
 export interface IFilters {
   filterBodyFocsArea: IFilter[];
   i_dLikeTo: IFilter[];
-  whatWorkOutPrefer: ISupFilter[];
+  whatWorkOutPrefer: ISubFilter[];
   durationRanges: IDuration[];
-  levels: ISupFilter[];
+  levels: ISubFilter[];
 }
 export interface IFilter {
   id: number;
   name: string;
   imageUrl: string;
 }
-export interface ISupFilter {
+export interface ISubFilter {
   id: number;
   name: string;
 }

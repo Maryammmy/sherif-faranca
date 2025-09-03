@@ -1,9 +1,9 @@
-import { ISupFilter } from "@/src/interfaces/filters";
+import { ISubFilter } from "@/src/interfaces/filters";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 
 interface IProps {
-  levels: ISupFilter[];
+  levels: ISubFilter[];
   value: number | null;
   onChange: (id: number) => void;
 }

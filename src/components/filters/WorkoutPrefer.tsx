@@ -1,9 +1,9 @@
-import { ISupFilter } from "@/src/interfaces/filters";
+import { ISubFilter } from "@/src/interfaces/filters";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 
 interface IProps {
-  whatWorkoutPrefer: ISupFilter[];
+  whatWorkoutPrefer: ISubFilter[];
   value: number[];
   onChange: (id: number) => void;
 }
