@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import SelectWorkoutTime from "./SelectWorkoutTime";
 import Shared from "@/src/components/questions/Shared";
-import { ISupQuestion } from "@/src/interfaces/questions";
+import { ISubQuestion } from "@/src/interfaces/questions";
 
 interface IProps {
-  workoutTimes: ISupQuestion[];
+  workoutTimes: ISubQuestion[];
 }
 function WorkoutTime({ workoutTimes }: IProps) {
   const [selectedWorkoutTime, setSelectedWorkoutTime] = useState<number | null>(

@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import SelectMusicPreference from "./SelectMusicPreference";
 import Shared from "@/src/components/questions/Shared";
-import { ISupQuestion } from "@/src/interfaces/questions";
+import { ISubQuestion } from "@/src/interfaces/questions";
 
 interface IProps {
-  musicPreferences: ISupQuestion[];
+  musicPreferences: ISubQuestion[];
 }
 function MusicPreference({ musicPreferences }: IProps) {
   const [selectedMusicPreferences, setSelectedMusicPreferences] = useState<

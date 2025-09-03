@@ -11,7 +11,7 @@ export function SkeletonCard({ count, className }: IProps) {
         <div
           key={index}
           className={cn(
-            "rounded-md bg-stone-200 animate-pulse h-[250px]",
+            "rounded-md bg-stone-200 animate-pulse h-[250px] w-full",
             className
           )}
         />

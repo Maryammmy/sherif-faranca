@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Button } from "@/src/components/ui/Button";
 import SettingsPanel from "../settings/settings-panel";
 import { useHeader } from "@/src/hooks";
+import { SkeletonCard } from "../../skeleton/Card";
 export default function SidebarContent({
   isExpanded,
   onLinkClick,
@@ -143,7 +144,9 @@ export default function SidebarContent({
                 "whitespace-nowrap overflow-hidden transition-all duration-300"
               )}
             >
-              {name && (
+              {!data ? (
+                <SkeletonCard count={1} className="h-10 w-40" />
+              ) : (
                 <p className="font-semibold text-gray-800 capitalize">
                   Hey {name}
                 </p>

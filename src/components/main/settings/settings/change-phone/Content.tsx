@@ -1,11 +1,16 @@
+import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { usePhone } from "@/src/hooks";
 import { ChangePhone } from "@/src/schemas/main/settings/change-phone";
 import { Phone } from "lucide-react";
 
 function Content() {
   const { data } = usePhone();
-  console.log(data);
-  if (!data) return null;
+  if (!data)
+    return (
+      <div className="flex flex-col items-center gap-1 border-b pb-5">
+        <SkeletonCard count={1} className="h-8 w-40" />
+      </div>
+    );
   const { countryCode, phoneNumber }: ChangePhone = data?.data;
   return (
     <div className="flex flex-col items-center gap-1 border-b pb-5">

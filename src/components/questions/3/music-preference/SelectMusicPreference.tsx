@@ -1,10 +1,10 @@
 import { Button } from "@/src/components/ui/Button";
-import { ISupQuestion } from "@/src/interfaces/questions";
+import { ISubQuestion } from "@/src/interfaces/questions";
 import { cn } from "@/src/lib/utils";
 import { CheckCircle2 } from "lucide-react";
 
 interface IProps {
-  musicPreferences: ISupQuestion[];
+  musicPreferences: ISubQuestion[];
   selectedMusicPreferences: number[];
   toggleMusic: (id: number) => void;
 }

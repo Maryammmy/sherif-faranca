@@ -1,10 +1,9 @@
-"use client";
 import Image from "next/image";
-import { usePrivacyPolicy } from "@/src/hooks";
 
-function Details() {
-  const { data } = usePrivacyPolicy();
-  if (!data) return null;
+interface IProps {
+  data: string;
+}
+function Details({ data }: IProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
       <div

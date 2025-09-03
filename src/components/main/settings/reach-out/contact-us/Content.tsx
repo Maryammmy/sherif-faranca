@@ -1,11 +1,18 @@
 "use client";
 
+import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { useContactUs } from "@/src/hooks";
 import { IContactUs } from "@/src/interfaces/main/services";
 
 function Content() {
   const { data } = useContactUs();
-  if (!data) return null;
+  if (!data)
+    return (
+      <div className="flex flex-col gap-4">
+        <SkeletonCard count={1} className="h-12" />
+        <SkeletonCard count={1} className="h-12" />
+      </div>
+    );
   const { hotline, mail }: IContactUs = data;
   return (
     <div className="flex flex-col gap-4">

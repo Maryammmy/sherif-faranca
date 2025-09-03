@@ -34,7 +34,7 @@ function Workouts({ section, time }: IProps) {
       {isFav && (
         <>
           {!favData ? (
-            <SkeletonCard count={10} />
+            <SkeletonCard count={10} className="h-[315px]" />
           ) : favs?.length ? (
             favs.map((fav) => <FavoriteWorkoutCard key={fav?.id} fav={fav} />)
           ) : (
@@ -45,7 +45,7 @@ function Workouts({ section, time }: IProps) {
       {isRecent && (
         <>
           {!data ? (
-            <SkeletonCard count={10} />
+            <SkeletonCard count={10} className="h-[315px]" />
           ) : recentWorkouts?.length ? (
             recentWorkouts?.map((recent) => (
               <WorkoutCard key={recent?.id} workout={recent} />
@@ -58,7 +58,7 @@ function Workouts({ section, time }: IProps) {
       {isHistory && (
         <>
           {!data ? (
-            <SkeletonCard count={10} />
+            <SkeletonCard count={10} className="h-[315px]" />
           ) : historyWorkouts?.length ? (
             historyWorkouts?.map((history) => (
               <WorkoutCard key={history?.id} workout={history} />

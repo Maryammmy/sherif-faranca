@@ -7,7 +7,7 @@ interface IProps {
 export default function Details({ data }: IProps) {
   const { description, imageUrl, title, version } = data;
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="order-2 lg:order-1 p-6">
         <h2 className="text-lg md:text-xl font-extrabold text-[#3e1492]">
           About <span className="text-gray-900">{title}</span>

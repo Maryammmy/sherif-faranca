@@ -28,7 +28,7 @@ function SelectShape({ shapes, selectedShape, handleSelectShape }: IProps) {
           <h5 className="text-center text-gray-700 font-bold text-2xl capitalize">
             {name}
           </h5>
-          <div className="w-40 sm:w-56 h-[200px] relative rounded-2xl overflow-hidden">
+          <div className="w-50 sm:w-30 md:w-40 h-[150px] relative rounded-2xl overflow-hidden">
             <Image src={imageUrl} alt={name} fill />
           </div>
         </Button>

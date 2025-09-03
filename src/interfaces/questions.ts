@@ -26,7 +26,7 @@ export interface IFitnessLevel {
   imageUrl: string;
   description: string;
 }
-export interface ISupQuestion {
+export interface ISubQuestion {
   id: number;
   name: string;
 }
