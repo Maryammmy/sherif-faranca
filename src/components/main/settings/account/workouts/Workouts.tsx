@@ -6,6 +6,8 @@ import {
   IWorkout,
 } from "@/src/interfaces/main/settings/account/workouts";
 import WorkoutCard from "./Card";
+import { SkeletonCard } from "@/src/components/skeleton/Card";
+import { EmptyStatePage } from "@/src/components/ui/empty-state/EmptyStatePage";
 
 interface IProps {
   section: string;
@@ -29,22 +31,43 @@ function Workouts({ section, time }: IProps) {
         // isFav && "place-items-center"
       )}
     >
-      {isFav &&
-        favData &&
-        favs?.length > 0 &&
-        favs?.map((fav) => <FavoriteWorkoutCard key={fav?.id} fav={fav} />)}
-      {isRecent &&
-        data &&
-        recentWorkouts?.length > 0 &&
-        recentWorkouts?.map((recent) => (
-          <WorkoutCard key={recent?.id} workout={recent} />
-        ))}
-      {isHistory &&
-        data &&
-        historyWorkouts?.length > 0 &&
-        historyWorkouts?.map((history) => (
-          <WorkoutCard key={history?.id} workout={history} />
-        ))}
+      {isFav && (
+        <>
+          {!favData ? (
+            <SkeletonCard count={10} />
+          ) : favs?.length ? (
+            favs.map((fav) => <FavoriteWorkoutCard key={fav?.id} fav={fav} />)
+          ) : (
+            <EmptyStatePage message="No favorite workouts found" />
+          )}
+        </>
+      )}
+      {isRecent && (
+        <>
+          {!data ? (
+            <SkeletonCard count={10} />
+          ) : recentWorkouts?.length ? (
+            recentWorkouts?.map((recent) => (
+              <WorkoutCard key={recent?.id} workout={recent} />
+            ))
+          ) : (
+            <EmptyStatePage message="No recent workouts found" />
+          )}
+        </>
+      )}
+      {isHistory && (
+        <>
+          {!data ? (
+            <SkeletonCard count={10} />
+          ) : historyWorkouts?.length ? (
+            historyWorkouts?.map((history) => (
+              <WorkoutCard key={history?.id} workout={history} />
+            ))
+          ) : (
+            <EmptyStatePage message="No history workouts found" />
+          )}
+        </>
+      )}
     </div>
   );
 }

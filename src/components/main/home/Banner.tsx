@@ -5,13 +5,13 @@ import { IMerchantBanner } from "@/src/interfaces/main/home";
 import Image from "next/image";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { SkeletonCard } from "../../skeleton/Card";
+import { EmptyState } from "../../ui/empty-state/EmptyState";
 
 export default function Banner() {
   const { data } = useHome();
   const merchantBanners: IMerchantBanner[] = data?.data?.merchantBanners;
-  console.log(merchantBanners);
   return (
-    <>
+    <div className="py-5">
       {!data ? (
         <SkeletonCard
           count={1}
@@ -40,10 +40,8 @@ export default function Banner() {
           className="rounded-3xl overflow-hidden"
         />
       ) : (
-        <p className="col-span-full text-gray-500 text-center font-medium">
-          No banner found
-        </p>
+        <EmptyState message="No banner found" />
       )}
-    </>
+    </div>
   );
 }

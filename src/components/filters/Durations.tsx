@@ -2,6 +2,7 @@ import { IDuration } from "@/src/interfaces/filters";
 import { Clock12 } from "lucide-react";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
+import { EmptyState } from "../ui/empty-state/EmptyState";
 
 interface IProps {
   durations: IDuration[];
@@ -39,9 +40,7 @@ function Durations({ durations, value, onChange }: IProps) {
             );
           })
         ) : (
-          <p className="col-span-full text-gray-500 text-center font-medium">
-            No durations to found
-          </p>
+          <EmptyState message="No durations found" />
         )}
       </div>
     </div>

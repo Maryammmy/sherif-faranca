@@ -3,6 +3,7 @@ import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import { EmptyState } from "../ui/empty-state/EmptyState";
 
 interface IProps {
   iWouldLikeTo: IFilter[];
@@ -41,9 +42,7 @@ function IWouldLikeTo({ iWouldLikeTo, value, onChange }: IProps) {
             );
           })
         ) : (
-          <p className="col-span-full text-gray-500 text-center font-medium">
-            No i&apos;d like to found
-          </p>
+          <EmptyState message="No i'd like to found" />
         )}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { ISubFilter } from "@/src/interfaces/filters";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
+import { EmptyState } from "../ui/empty-state/EmptyState";
 
 interface IProps {
   levels: ISubFilter[];
@@ -33,9 +34,7 @@ function Levels({ levels, value, onChange }: IProps) {
             );
           })
         ) : (
-          <p className="col-span-full text-gray-500 text-center font-medium">
-            No levels found
-          </p>
+          <EmptyState message="No levels found" />
         )}
       </div>
     </div>

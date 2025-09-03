@@ -2,6 +2,7 @@ import { IFilter } from "@/src/interfaces/filters";
 import Image from "next/image";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
+import { EmptyStateGrid } from "../ui/empty-state/EmptyStateGrid";
 
 interface IProps {
   filterBodyFocusArea: IFilter[];
@@ -50,9 +51,7 @@ function FilterBodyFocusArea({ filterBodyFocusArea, value, onChange }: IProps) {
             );
           })
         ) : (
-          <p className="col-span-full text-gray-500 text-center font-medium">
-            No foucs area found
-          </p>
+          <EmptyStateGrid message="No foucs area found" />
         )}
       </div>
     </div>

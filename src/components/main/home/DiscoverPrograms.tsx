@@ -4,6 +4,7 @@ import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IDiscoverProgram } from "@/src/interfaces/main/home";
 import { SkeletonCard } from "../../skeleton/Card";
+import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
 
 export default function DiscoverPrograms() {
   const { data } = useHome();
@@ -31,9 +32,7 @@ export default function DiscoverPrograms() {
             />
           ))
         ) : (
-          <p className="col-span-full text-center text-secondary font-medium">
-            No discover programs found
-          </p>
+          <EmptyStateGrid message="No discover programs found" />
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ import { useHome } from "@/src/hooks";
 import { IRecommendedForYou } from "@/src/interfaces/main/home";
 import { cn } from "@/src/lib/utils";
 import { SkeletonCard } from "../../skeleton/Card";
+import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
 
 interface IProps {
   screen3xl?: boolean;
@@ -40,9 +41,7 @@ export default function RecommendForYou({ screen3xl }: IProps) {
             />
           ))
         ) : (
-          <p className="col-span-full font-medium text-center text-secondary">
-            No recommended for you found
-          </p>
+          <EmptyStateGrid message="No recommended for you found" />
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import { SkeletonCard } from "../../skeleton/Card";
+import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
 
 export default function RecentWatched() {
   const { data } = useHome();
@@ -33,9 +34,7 @@ export default function RecentWatched() {
             />
           ))
         ) : (
-          <p className="col-span-full text-center text-secondary font-medium">
-            No recent watched found
-          </p>
+          <EmptyStateGrid message="No recent watched found" />
         )}
       </div>
     </div>

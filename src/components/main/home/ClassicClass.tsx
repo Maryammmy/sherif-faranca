@@ -8,6 +8,7 @@ import { IClassicClass } from "@/src/interfaces/main/home";
 import { useState } from "react";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { SkeletonCard } from "../../skeleton/Card";
+import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
 
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -82,9 +83,7 @@ export default function ClassicClass() {
                     />
                   ))
               ) : (
-                <p className="col-span-full text-gray-500 text-center font-medium">
-                  No classic classes found
-                </p>
+                <EmptyStateGrid message="No classic classes found" />
               )}
             </div>
           </>
