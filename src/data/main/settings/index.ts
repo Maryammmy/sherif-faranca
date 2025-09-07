@@ -2,14 +2,12 @@ import { IInputSettings, ISetting } from "@/src/interfaces/main/settings";
 import {
   BadgeCheck,
   BookmarkCheck,
-  Headphones,
   Languages,
   LockKeyhole,
   MailCheck,
   Phone,
   Settings,
   UserRound,
-  UserRoundSearch,
 } from "lucide-react";
 
 export const account: ISetting[] = [
@@ -28,11 +26,6 @@ export const settings: ISetting[] = [
   { icon: MailCheck, label: "change email" },
   { icon: Phone, label: "change phone number" },
 ];
-export const reachOut: ISetting[] = [
-  { icon: UserRoundSearch, label: "about us", href: "about-us" },
-  { icon: Headphones, label: "contact us" },
-];
-
 export const email: IInputSettings = {
   id: "newEmail",
   name: "newEmail",

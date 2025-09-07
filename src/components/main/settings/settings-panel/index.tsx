@@ -3,7 +3,6 @@ import Header from "./Header";
 import TrainingStats from "./TrainingStats";
 import AccountSection from "./AccountSection";
 import SettingsSection from "./SettingsSection";
-import ReachOutSection from "./ReachOutSection";
 import Logout from "./Logout";
 
 interface IProps {
@@ -21,7 +20,6 @@ function SettingsPanel({ open, onClose }: IProps) {
               <TrainingStats />
               <AccountSection />
               <SettingsSection />
-              <ReachOutSection />
               <Logout />
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UserCircle } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { mainNavItems, secondaryNavItems } from "@/src/data/main/sidebar";
@@ -9,6 +9,7 @@ import { Button } from "@/src/components/ui/Button";
 import SettingsPanel from "../settings/settings-panel";
 import { useHeader } from "@/src/hooks";
 import { SkeletonCard } from "../../skeleton/Card";
+import ContactUs from "../settings/reach-out/contact-us";
 export default function SidebarContent({
   isExpanded,
   onLinkClick,
@@ -16,10 +17,13 @@ export default function SidebarContent({
   isExpanded: boolean;
   onLinkClick?: () => void;
 }) {
+  const router = useRouter();
   const pathname = usePathname();
   const [settingPanelOpen, setSettingPanelOpen] = useState(false);
+  const [contactUsOpen, setContactUsOpen] = useState(false);
   const { data } = useHeader();
   const name = data?.userName;
+
   const handleLogoClick = () => {
     window.location.href = "/"; // refresh + redirect to /
   };
@@ -47,13 +51,6 @@ export default function SidebarContent({
           </div>
         )}
         {isExpanded && (
-          // <h1
-          //   className={cn(
-          //     "text-3xl font-bold text-primary whitespace-nowrap overflow-hidden transition-all duration-300"
-          //   )}
-          // >
-          //   SHERIF FARANCA
-          // </h1>
           <div className="shrink-0">
             <Image
               src="/logo.svg"
@@ -110,28 +107,54 @@ export default function SidebarContent({
         )}
       </nav>
       <nav className="px-2 py-6 space-y-2 border-t">
-        {secondaryNavItems.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href!}
-            onClick={onLinkClick}
-            className={cn(
-              "flex items-center gap-3 py-3 rounded-lg text-secondary font-medium hover:bg-purple-100 hover:text-primary transition-colors",
-              isExpanded ? "px-4 justify-start" : "justify-center"
-            )}
-          >
-            <item.icon className="w-6 h-6 shrink-0" />
-            {isExpanded && (
-              <span
-                className={cn(
-                  "whitespace-nowrap overflow-hidden transition-all duration-300"
-                )}
-              >
-                {item.label}
-              </span>
-            )}
-          </Link>
-        ))}
+        {secondaryNavItems.map((item) =>
+          item.label === "Contact US" && !item?.href ? (
+            <Button
+              key={item.label}
+              onClick={() => {
+                router.push("/");
+                setContactUsOpen((prev) => !prev);
+                onLinkClick?.();
+              }}
+              className={cn(
+                "w-full flex items-center gap-3 py-3 rounded-lg text-secondary font-medium hover:bg-purple-100 hover:text-primary transition-colors",
+                isExpanded ? "px-4 justify-start" : "justify-center"
+              )}
+            >
+              <item.icon className="w-6 h-6 shrink-0" />
+              {isExpanded && (
+                <span
+                  className={cn(
+                    "whitespace-nowrap overflow-hidden transition-all duration-300"
+                  )}
+                >
+                  {item.label}
+                </span>
+              )}
+            </Button>
+          ) : (
+            <Link
+              key={item.label}
+              href={item.href!}
+              onClick={onLinkClick}
+              className={cn(
+                "flex items-center gap-3 py-3 rounded-lg text-secondary font-medium hover:bg-purple-100 hover:text-primary transition-colors",
+                isExpanded ? "px-4 justify-start" : "justify-center"
+              )}
+            >
+              <item.icon className="w-6 h-6 shrink-0" />
+              {isExpanded && (
+                <span
+                  className={cn(
+                    "whitespace-nowrap overflow-hidden transition-all duration-300"
+                  )}
+                >
+                  {item.label}
+                </span>
+              )}
+            </Link>
+          )
+        )}
       </nav>
       <div className="p-4 border-t">
         <div className="flex items-center gap-3">
@@ -159,6 +182,7 @@ export default function SidebarContent({
         open={settingPanelOpen}
         onClose={() => setSettingPanelOpen(false)}
       />
+      <ContactUs open={contactUsOpen} onClose={() => setContactUsOpen(false)} />
     </>
   );
 }
