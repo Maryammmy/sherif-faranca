@@ -4,24 +4,20 @@ import {
   SendRegistration,
   SendResetPassword,
 } from "@/src/types/auth";
-import {
-  ISigninWithEmail,
-  ISigninWithNumber,
-  ISignupWithEmail,
-  ISignupWithNumber,
-} from "@/src/interfaces/auth";
+import { ISigninWithEmail, ISigninWithNumber } from "@/src/interfaces/auth";
 import { postServerData } from "../server";
+import { SignupWithEmail, SignupWithNumber } from "@/src/schemas/auth";
 
 export const sendRegistrationAPI = async (payload: SendRegistration) => {
   const data = await postServerData("/api/Otp/send-registration", payload);
   return data;
 };
-export const signupWithEmailAPI = async (payload: ISignupWithEmail) => {
+export const signupWithEmailAPI = async (payload: SignupWithEmail) => {
   const data = await postServerData("/api/Auth/signup-with-email", payload);
   return data;
 };
 
-export const signupWithNumberAPI = async (payload: ISignupWithNumber) => {
+export const signupWithNumberAPI = async (payload: SignupWithNumber) => {
   const data = await postServerData("api/Auth/signup-with-mobile", payload);
   return data;
 };

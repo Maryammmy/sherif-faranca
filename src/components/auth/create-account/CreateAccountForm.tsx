@@ -1,9 +1,17 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { createAccountAction } from "@/src/actions/auth";
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  FormProvider,
+} from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
 import { Button } from "@/src/components/ui/Button";
 import { Input } from "@/src/components/ui/Input";
 import { Label } from "@/src/components/ui/Label";
@@ -11,163 +19,195 @@ import InputErrorMessage from "@/src/components/InputErrorMsg";
 import PhoneField from "../../ui/PhoneField";
 import { DatePicker } from "@/src/components/ui/date-picker";
 import PasswordInput from "@/src/components/ui/PasswordInput";
-import { IActionState } from "@/src/interfaces/form";
-import { setToken, useQueryParams } from "@/src/lib/utils";
 import TermsAndConditionsModal from "../signup/TermsAndConditionsModal";
 
-const initialState: IActionState = {
-  success: false,
-  errors: {},
-  message: "",
-};
+import {
+  createAccountWithEmailSchema,
+  createAccountWithNumberSchema,
+} from "@/src/schemas/auth";
+import {
+  signupWithEmailAPI,
+  signupWithNumberAPI,
+} from "@/src/services/mutations/auth";
+import { setToken, useQueryParams } from "@/src/lib/utils";
 
 export default function CreateAccountForm() {
   const router = useRouter();
-  const [termsOpen, setTermsOpen] = useState(false);
-  const [resetFieldsTrigger, setResetFieldsTrigger] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
   const { type, email } = useQueryParams();
-  const [state, formAction, isPending] = useActionState<IActionState, FormData>(
-    async (prevState, formData) => {
-      setResetFieldsTrigger(true);
-      const result = await createAccountAction(prevState, formData);
-      if (result.message) {
-        console.log(result);
-        if (result.success) {
-          const token = result?.data?.token;
-          if (token) {
-            await setToken(token);
-          }
-          toast.success(result.message);
-        } else {
-          toast.error(result.message);
-        }
-      }
-      return result;
-    },
-    initialState
-  );
-  useEffect(() => {
-    if (state.success) {
-      setTermsOpen(false);
-      const timer = setTimeout(() => {
-        router.push(`/account-created`);
-      }, 500);
-      return () => clearTimeout(timer);
+  const [termsOpen, setTermsOpen] = useState(false);
+
+  // choose schema based on registration type
+  const schema =
+    type === "register-email"
+      ? createAccountWithEmailSchema
+      : createAccountWithNumberSchema;
+
+  type FormValues = z.infer<typeof schema>;
+  const methods = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+    defaultValues:
+      type === "register-email"
+        ? ({
+            birthDate: "",
+            phoneNumber: "",
+            email: email || "",
+          } as Partial<FormValues>)
+        : ({ birthDate: "", phoneNumber: "" } as Partial<FormValues>),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors, isSubmitting },
+  } = methods;
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    let result;
+    if (type === "register-email") {
+      // inject email from query params
+      result = await signupWithEmailAPI({
+        ...data,
+        email: email,
+      });
     } else {
-      setTermsOpen(false);
+      result = await signupWithNumberAPI(data);
     }
-  }, [state.success, router]);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => setResetFieldsTrigger(false), 100);
-    return () => clearTimeout(timeoutId);
-  }, [resetFieldsTrigger]);
+    if (result.success) {
+      const token = result?.data?.token;
+      if (token) {
+        await setToken(token);
+      }
+      toast.success(result.message);
+      setTermsOpen(false);
+      setTimeout(() => {
+        router.push("/account-created");
+      }, 500);
+    } else {
+      toast.error(result.message);
+    }
+  };
 
   return (
-    <form ref={formRef} action={formAction} className="space-y-5 py-3">
-      <Input type="hidden" name="type" value={type} />
-      {/* Email */}
-      {email && <Input type="hidden" name="email" value={email} />}
-      {/* First Name */}
-      <div className="flex flex-col gap-1">
-        <Label className="font-medium text-secondary">First Name</Label>
-        <div className="flex items-center gap-1 p-3 border rounded-md">
-          <Input name="firstName" placeholder="First name" className="w-full" />
-        </div>
-        {state.errors?.firstName && (
-          <InputErrorMessage msg={state.errors.firstName[0]} />
-        )}
-      </div>
-
-      {/* Last Name */}
-      <div className="flex flex-col gap-1">
-        <Label className="font-medium text-secondary">Last Name</Label>
-        <div className="flex items-center gap-1 p-3 border rounded-md">
-          <Input name="lastName" placeholder="Last name" className="w-full" />
-        </div>
-        {state.errors?.lastName && (
-          <InputErrorMessage msg={state.errors.lastName[0]} />
-        )}
-      </div>
-
-      {/* Birth date */}
-      <div className="flex flex-col gap-1">
-        <Label className="font-medium text-secondary">Birth Date</Label>
-        <div className="flex items-center gap-1 p-3 border rounded-md">
-          <DatePicker
-            name="birthDate"
-            resetTrigger={resetFieldsTrigger}
-            serverAction
-          />
-        </div>
-        {state.errors?.birthDate && (
-          <InputErrorMessage msg={state.errors.birthDate[0]} />
-        )}
-      </div>
-
-      {/* Phone Number */}
-      <div className="flex flex-col gap-1">
-        <Label className="text-secondary font-medium">Phone number</Label>
-        <div className="flex items-center gap-1 p-3 border rounded-md">
-          <PhoneField
-            resetTrigger={resetFieldsTrigger}
-            serverAction
-            numberName="phoneNumber"
-            countryCodeName="countryCode"
-          />
-        </div>
-        {state.errors?.phoneNumber && (
-          <InputErrorMessage msg={state.errors.phoneNumber[0]} />
-        )}
-      </div>
-
-      {/* Password */}
-      <div className="flex flex-col gap-1">
-        <Label className="font-medium text-secondary">Password</Label>
-        <div className="flex items-center gap-1 p-3 border rounded-md">
-          <PasswordInput
-            name="password"
-            className="w-full"
-            placeholder="Password"
-          />
-        </div>
-        {state.errors?.password && (
-          <InputErrorMessage msg={state.errors.password[0]} />
-        )}
-      </div>
-
-      {/* Confirm Password */}
-      <div className="flex flex-col gap-1">
-        <Label className="font-medium text-secondary">Confirm Password</Label>
-        <div className="flex items-center gap-1 p-3 border rounded-md">
-          <PasswordInput
-            name="confirmPassword"
-            className="w-full"
-            placeholder="Confirm password"
-          />
-        </div>
-        {state.errors?.confirmPassword && (
-          <InputErrorMessage msg={state.errors.confirmPassword[0]} />
-        )}
-      </div>
-
-      <Button
-        onClick={() => setTermsOpen(true)}
-        type="button"
-        className="w-full bg-primary text-white p-3 rounded-md font-medium"
+    <FormProvider {...methods}>
+      <form
+        onSubmit={handleSubmit(() => setTermsOpen(true))}
+        className="space-y-5 py-3"
       >
-        Create new account
-      </Button>
-      {termsOpen && (
-        <TermsAndConditionsModal
-          open={termsOpen}
-          onClose={() => setTermsOpen(false)}
-          isPending={isPending}
-          onAgree={() => {
-            formRef.current?.requestSubmit(); // ✅ هنا بنبعت الفورم يدويًا
-          }}
-        />
-      )}
-    </form>
+        {/* First Name */}
+        <div className="flex flex-col gap-1">
+          <Label className="font-medium text-secondary">First Name</Label>
+          <div className="flex items-center gap-1 p-3 border rounded-md">
+            <Input
+              {...register("firstName")}
+              placeholder="First name"
+              className="w-full"
+            />
+          </div>
+          {errors.firstName && (
+            <InputErrorMessage msg={errors.firstName.message} />
+          )}
+        </div>
+
+        {/* Last Name */}
+        <div className="flex flex-col gap-1">
+          <Label className="font-medium text-secondary">Last Name</Label>
+          <div className="flex items-center gap-1 p-3 border rounded-md">
+            <Input
+              {...register("lastName")}
+              placeholder="Last name"
+              className="w-full"
+            />
+          </div>
+          {errors.lastName && (
+            <InputErrorMessage msg={errors.lastName.message} />
+          )}
+        </div>
+
+        {/* Birth Date */}
+        <div className="flex flex-col gap-1">
+          <Label className="font-medium text-secondary">Birth Date</Label>
+          <div className="flex items-center gap-1 p-3 border rounded-md">
+            <Controller
+              name="birthDate"
+              control={control}
+              render={({ field }) => (
+                <DatePicker
+                  name={field.name}
+                  value={field?.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+          </div>
+          {errors.birthDate && (
+            <InputErrorMessage msg={errors.birthDate.message} />
+          )}
+        </div>
+
+        {/* Phone Number */}
+        <div className="flex flex-col gap-1">
+          <Label className="text-secondary font-medium">Phone number</Label>
+          <div className="flex items-center gap-1 p-3 border rounded-md">
+            <PhoneField
+              numberName="phoneNumber"
+              countryCodeName="countryCode"
+            />
+          </div>
+          {errors.phoneNumber && (
+            <InputErrorMessage msg={errors.phoneNumber.message} />
+          )}
+        </div>
+
+        {/* Password */}
+        <div className="flex flex-col gap-1">
+          <Label className="font-medium text-secondary">Password</Label>
+          <div className="flex items-center gap-1 p-3 border rounded-md">
+            <PasswordInput
+              {...register("password")}
+              className="w-full"
+              placeholder="Password"
+            />
+          </div>
+          {errors.password && (
+            <InputErrorMessage msg={errors.password.message} />
+          )}
+        </div>
+
+        {/* Confirm Password */}
+        <div className="flex flex-col gap-1">
+          <Label className="font-medium text-secondary">Confirm Password</Label>
+          <div className="flex items-center gap-1 p-3 border rounded-md">
+            <PasswordInput
+              {...register("confirmPassword")}
+              className="w-full"
+              placeholder="Confirm password"
+            />
+          </div>
+          {errors.confirmPassword && (
+            <InputErrorMessage msg={errors.confirmPassword.message} />
+          )}
+        </div>
+
+        {/* Button */}
+        <Button
+          type="submit"
+          className="w-full bg-primary text-white p-3 rounded-md font-medium"
+        >
+          Create new account
+        </Button>
+
+        {termsOpen && (
+          <TermsAndConditionsModal
+            open={termsOpen}
+            onClose={() => setTermsOpen(false)}
+            isPending={isSubmitting}
+            onAgree={() => {
+              handleSubmit(onSubmit)();
+            }}
+          />
+        )}
+      </form>
+    </FormProvider>
   );
 }

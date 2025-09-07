@@ -33,7 +33,7 @@ export default function SidebarContent({
         {!isExpanded && (
           <div
             className={cn(
-              "relative shrink-0 w-12 h-12",
+              "relative shrink-0 w-15 h-15",
               !isExpanded && "mx-auto"
             )}
           >
@@ -56,7 +56,7 @@ export default function SidebarContent({
           // </h1>
           <div className="shrink-0">
             <Image
-              src="/sherif-faranca.svg"
+              src="/logo.svg"
               alt="website name"
               height={35}
               width={200}

@@ -13,25 +13,16 @@ import {
 import { formatDateToYYYYMMDD } from "@/src/lib/utils";
 import { useEffect } from "react";
 
-function formatDate(date: Date | undefined) {
-  if (!date) return "";
-  return date.toLocaleDateString("en-US", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-}
-
-function isValidDate(date: Date | undefined) {
-  return !!date && !isNaN(date.getTime());
-}
-
 interface IProps {
   name: string;
   value?: string; // <-- string بدل Date
   onChange?: (date: string | undefined) => void; // <-- يرجع string
   resetTrigger?: boolean;
   serverAction?: boolean;
+}
+
+function isValidDate(date: Date | undefined) {
+  return !!date && !isNaN(date.getTime());
 }
 
 export function DatePicker({
@@ -46,9 +37,11 @@ export function DatePicker({
     propValue ? new Date(propValue) : undefined
   );
   const [month, setMonth] = React.useState<Date | undefined>(date);
-  const [displayValue, setDisplayValue] = React.useState(formatDate(date));
+  const [displayValue, setDisplayValue] = React.useState(
+    date ? formatDateToYYYYMMDD(date) : ""
+  );
 
-  // لو حصل reset
+  // reset
   useEffect(() => {
     if (resetTrigger) {
       setDate(undefined);
@@ -57,32 +50,33 @@ export function DatePicker({
     }
   }, [resetTrigger]);
 
-  // لو propValue اتغيرت من بره
+  // propValue اتغير من بره
   useEffect(() => {
     if (propValue) {
       const d = new Date(propValue);
       if (isValidDate(d)) {
         setDate(d);
         setMonth(d);
-        setDisplayValue(formatDate(d));
+        setDisplayValue(formatDateToYYYYMMDD(d));
       }
     }
   }, [propValue]);
-
   return (
     <div className="relative flex justify-between gap-2 items-center w-full">
       <Input
         id="date"
         value={displayValue}
-        placeholder="June 01, 2025"
+        placeholder="YYYY-MM-DD"
         className="w-full"
         onChange={(e) => {
-          const d = new Date(e.target.value);
-          setDisplayValue(e.target.value);
-          if (isValidDate(d)) {
-            setDate(d);
-            setMonth(d);
-            onChange?.(formatDateToYYYYMMDD(d)); // نبعته كـ string
+          const val = e.target.value;
+          setDisplayValue(val);
+
+          // لو المستخدم مسح كل شيء → رجّع ""
+          if (val.trim() === "") {
+            onChange?.("");
+          } else {
+            onChange?.(val); // أي نص مكتوب يروح زي ما هو
           }
         }}
         onKeyDown={(e) => {
@@ -92,8 +86,6 @@ export function DatePicker({
           }
         }}
       />
-
-      {/* hidden input هيتبعت كـ string ISO */}
       {serverAction && (
         <Input
           type="hidden"
@@ -111,15 +103,16 @@ export function DatePicker({
         <PopoverContent className="w-auto p-0" align="end" sideOffset={10}>
           <Calendar
             mode="single"
+            captionLayout="dropdown"
             selected={date}
             month={month}
             onMonthChange={setMonth}
             onSelect={(d) => {
               if (!d) return;
               setDate(d);
-              setDisplayValue(formatDate(d));
+              setDisplayValue(formatDateToYYYYMMDD(d)); // 👈 هنا برضه YYYY-MM-DD
               setOpen(false);
-              onChange?.(formatDateToYYYYMMDD(d)); // string ISO
+              onChange?.(formatDateToYYYYMMDD(d));
             }}
           />
         </PopoverContent>

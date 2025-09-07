@@ -1,7 +1,6 @@
 import { IInputSettings, ISetting } from "@/src/interfaces/main/settings";
 import {
   BadgeCheck,
-  Bell,
   BookmarkCheck,
   Headphones,
   Languages,
@@ -24,7 +23,6 @@ export const account: ISetting[] = [
   { icon: BadgeCheck, label: "my goal" },
 ];
 export const settings: ISetting[] = [
-  { icon: Bell, label: "notification settings" },
   { icon: Languages, label: "language" },
   { icon: LockKeyhole, label: "change password" },
   { icon: MailCheck, label: "change email" },

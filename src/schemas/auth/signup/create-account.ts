@@ -20,6 +20,7 @@ export const createAccountWithEmailSchema = z
     birthDate: z
       .string()
       .nonempty("Birth date is required")
+      .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format")
       .refine((val) => isAtLeast13(val), {
         message: "You must be at least 13 years old",
       }),
@@ -58,9 +59,10 @@ export const createAccountWithNumberSchema = z
       .max(50, { message: "min length 3 and max is 50" }),
     birthDate: z
       .string()
-      .nonempty({ message: "Birth date is required" })
-      .refine((val) => !isNaN(Date.parse(val)), {
-        message: "Invalid date format",
+      .nonempty("Birth date is required")
+      .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format")
+      .refine((val) => isAtLeast13(val), {
+        message: "You must be at least 13 years old",
       }),
 
     phoneNumber: z
@@ -82,3 +84,5 @@ export const createAccountWithNumberSchema = z
     path: ["confirmPassword"],
     message: "Passwords must match",
   });
+export type SignupWithEmail = z.infer<typeof createAccountWithEmailSchema>;
+export type SignupWithNumber = z.infer<typeof createAccountWithNumberSchema>;

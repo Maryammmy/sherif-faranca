@@ -23,6 +23,15 @@ const PhoneInputField: React.FC<IProps> = ({
       disableDropdown={disabled}
       inputProps={{
         readOnly: disabled,
+        onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const form = (e.target as HTMLInputElement).form;
+            if (form) {
+              form.requestSubmit(); // بيعمل submit للـ form
+            }
+          }
+        },
       }}
       onChange={(value, country: CountryData) => {
         const dialCode = country?.dialCode || "";

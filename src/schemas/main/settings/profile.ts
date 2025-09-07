@@ -28,7 +28,8 @@ export const profileSchema = z.object({
   countryCode: z.string().min(1, "Country code is required"),
   birthDate: z
     .string()
-    .nonempty("Birthday is required")
+    .nonempty("Birth date is required")
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format")
     .refine((val) => isAtLeast13(val), {
       message: "You must be at least 13 years old",
     }),
