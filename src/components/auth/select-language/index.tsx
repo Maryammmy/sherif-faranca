@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/src/components/ui/Button";
-import { languages } from "@/src/data/auth";
+import { languages } from "@/src/data";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

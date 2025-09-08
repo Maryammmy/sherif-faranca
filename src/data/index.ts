@@ -1,3 +1,4 @@
+import { ILanguage } from "../interfaces";
 import { SwiperBreakpoints } from "../types";
 
 export const navBreakpoints: SwiperBreakpoints = {
@@ -7,3 +8,20 @@ export const navBreakpoints: SwiperBreakpoints = {
   1440: { slidesPerView: 6 },
   1536: { slidesPerView: 8 },
 };
+export const languages: ILanguage[] = [
+  {
+    code: "en",
+    label: "English",
+    flag: "/us-flag.svg",
+  },
+  {
+    code: "fr",
+    label: "French",
+    flag: "/fr-flag.svg",
+  },
+  {
+    code: "ar",
+    label: "العربية",
+    flag: "/ar-flag.svg",
+  },
+];

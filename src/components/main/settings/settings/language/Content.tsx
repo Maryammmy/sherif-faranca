@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/src/components/ui/Button";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
-import { languages } from "@/src/data/auth";
+import { languages } from "@/src/data";
 import Image from "next/image";
 
 export default function Content() {

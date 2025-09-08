@@ -1,8 +1,3 @@
-export interface ILanguage {
-  code: string;
-  label: string;
-  flag: string;
-}
 export interface ISigninWithEmail {
   email: string;
   password: string;
