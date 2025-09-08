@@ -5,8 +5,10 @@ import { useState } from "react";
 import ChangePassword from "../settings/change-password";
 import ChangeEmail from "../settings/change-email";
 import ChangePhone from "../settings/change-phone";
+import Language from "../settings/language";
 
 function SettingsSection() {
+  const [changeLanguage, setChangeLanguageOpen] = useState(false);
   const [changePasswordOpen, setChangePasswordOpen] = useState(false);
   const [changeEmailOpen, setChangeEmailOpen] = useState(false);
   const [changePhoneOpen, setChangePhoneOpen] = useState(false);
@@ -21,6 +23,9 @@ function SettingsSection() {
             <SettingsPanelCard
               key={item.label}
               setting={item}
+              {...(item.label === "language" && {
+                handleOpenChangeLanguage: () => setChangeLanguageOpen(true),
+              })}
               {...(item.label === "change password" && {
                 handleOpenChangePassword: () => setChangePasswordOpen(true),
               })}
@@ -34,6 +39,10 @@ function SettingsSection() {
           ))}
         </div>
       </div>
+      <Language
+        open={changeLanguage}
+        onClose={() => setChangeLanguageOpen(false)}
+      />
       <ChangePassword
         open={changePasswordOpen}
         onClose={() => setChangePasswordOpen(false)}

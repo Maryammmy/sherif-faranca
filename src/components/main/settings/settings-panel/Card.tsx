@@ -6,6 +6,7 @@ import Link from "next/link";
 interface IProps {
   setting: ISetting;
   handleOpenPersonalInfo?: () => void;
+  handleOpenChangeLanguage?: () => void;
   handleOpenChangePassword?: () => void;
   handleOpenChangeEmail?: () => void;
   handleOpenChangePhone?: () => void;
@@ -14,6 +15,7 @@ interface IProps {
 
 function SettingsPanelCard({
   setting,
+  handleOpenChangeLanguage,
   handleOpenPersonalInfo,
   handleOpenChangePassword,
   handleOpenChangeEmail,
@@ -24,6 +26,8 @@ function SettingsPanelCard({
   const handleClick = () => {
     if (label === "personal information" && handleOpenPersonalInfo) {
       handleOpenPersonalInfo();
+    } else if (label === "language" && handleOpenChangeLanguage) {
+      handleOpenChangeLanguage();
     } else if (label === "change password" && handleOpenChangePassword) {
       handleOpenChangePassword();
     } else if (label === "change email" && handleOpenChangeEmail) {
