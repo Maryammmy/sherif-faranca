@@ -11,8 +11,8 @@ function Header() {
         <CloseButtonPanel closeButtonClassname="text-white border-white" />
         <SkeletonCard count={1} className="w-10 h-10 rounded-full shrink-0" />
         <div className="flex flex-col gap-2">
-          <SkeletonCard count={1} className="h-6 w-20" />
-          <SkeletonCard count={1} className="h-6 w-40" />
+          <SkeletonCard count={1} className="h-4 w-20" />
+          <SkeletonCard count={1} className="h-4 w-40" />
         </div>
       </div>
     );

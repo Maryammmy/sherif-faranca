@@ -9,7 +9,7 @@ import { Button } from "@/src/components/ui/Button";
 import SettingsPanel from "../settings/settings-panel";
 import { useHeader } from "@/src/hooks";
 import { SkeletonCard } from "../../skeleton/Card";
-import ContactUs from "../settings/reach-out/contact-us";
+import ContactUs from "../contact-us";
 export default function SidebarContent({
   isExpanded,
   onLinkClick,

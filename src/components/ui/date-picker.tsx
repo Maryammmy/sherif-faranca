@@ -15,8 +15,8 @@ import { useEffect } from "react";
 
 interface IProps {
   name: string;
-  value?: string; // <-- string بدل Date
-  onChange?: (date: string | undefined) => void; // <-- يرجع string
+  value?: string;
+  onChange?: (date: string | undefined) => void;
   resetTrigger?: boolean;
   serverAction?: boolean;
 }
@@ -37,11 +37,9 @@ export function DatePicker({
     propValue ? new Date(propValue) : undefined
   );
   const [month, setMonth] = React.useState<Date | undefined>(date);
-  const [displayValue, setDisplayValue] = React.useState(
-    date ? formatDateToYYYYMMDD(date) : ""
-  );
+  const [displayValue, setDisplayValue] = React.useState(propValue || "");
 
-  // reset
+  // Reset input
   useEffect(() => {
     if (resetTrigger) {
       setDate(undefined);
@@ -50,17 +48,18 @@ export function DatePicker({
     }
   }, [resetTrigger]);
 
-  // propValue اتغير من بره
+  // Update when propValue changes
   useEffect(() => {
     if (propValue) {
+      setDisplayValue(propValue);
       const d = new Date(propValue);
       if (isValidDate(d)) {
         setDate(d);
         setMonth(d);
-        setDisplayValue(formatDateToYYYYMMDD(d));
       }
     }
   }, [propValue]);
+
   return (
     <div className="relative flex justify-between gap-2 items-center w-full">
       <Input
@@ -70,14 +69,8 @@ export function DatePicker({
         className="w-full"
         onChange={(e) => {
           const val = e.target.value;
-          setDisplayValue(val);
-
-          // لو المستخدم مسح كل شيء → رجّع ""
-          if (val.trim() === "") {
-            onChange?.("");
-          } else {
-            onChange?.(val); // أي نص مكتوب يروح زي ما هو
-          }
+          setDisplayValue(val); // show exactly what user types
+          onChange?.(val); // update RHF state for live validation
         }}
         onKeyDown={(e) => {
           if (e.key === "ArrowDown") {
@@ -86,6 +79,7 @@ export function DatePicker({
           }
         }}
       />
+
       {serverAction && (
         <Input
           type="hidden"
@@ -100,6 +94,7 @@ export function DatePicker({
             <CalendarIcon className="size-5 text-primary" />
           </Button>
         </PopoverTrigger>
+
         <PopoverContent className="w-auto p-0" align="end" sideOffset={10}>
           <Calendar
             mode="single"
@@ -110,9 +105,10 @@ export function DatePicker({
             onSelect={(d) => {
               if (!d) return;
               setDate(d);
-              setDisplayValue(formatDateToYYYYMMDD(d)); // 👈 هنا برضه YYYY-MM-DD
+              const formatted = formatDateToYYYYMMDD(d);
+              setDisplayValue(formatted); // format only when calendar selects
               setOpen(false);
-              onChange?.(formatDateToYYYYMMDD(d));
+              onChange?.(formatted);
             }}
           />
         </PopoverContent>

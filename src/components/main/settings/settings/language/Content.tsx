@@ -24,7 +24,7 @@ export default function Content() {
                   height={30}
                 />
               </div>
-              <span>{l.label}</span>
+              <span className="font-medium">{l.label}</span>
             </div>
             <RadioGroupItem className="w-6 h-6" value={l.code} />
           </div>
