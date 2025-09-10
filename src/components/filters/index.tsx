@@ -6,7 +6,7 @@ import IWouldLikeTo from "./IWouldLikeTo";
 import Levels from "./Levels";
 import WorkoutPrefer from "./WorkoutPrefer";
 import { useFilters } from "@/src/hooks";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { MoveLeft } from "lucide-react";
 import ApplyFilters from "./ApplyFilters";
 import { useState } from "react";

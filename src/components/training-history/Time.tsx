@@ -2,7 +2,7 @@
 import { WorkoutHistoryTime } from "@/src/types/main/settings/account/workouts";
 import WorkoutTimeFilters from "../main/settings/account/workouts/WorkoutTimeFilters";
 import { useQueryParams } from "@/src/lib/utils";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 
 function TrainingHistoryTime() {
   const { time = "today" } = useQueryParams();

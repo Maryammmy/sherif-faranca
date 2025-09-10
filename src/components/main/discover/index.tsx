@@ -1,7 +1,7 @@
 "use client";
 
 import { DiscoverSection } from "@/src/types/main/discover";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import DiscoverSections from "./DiscoverSections";
 import { useQueryParams } from "@/src/lib/utils";
 import Sections from "./sections";

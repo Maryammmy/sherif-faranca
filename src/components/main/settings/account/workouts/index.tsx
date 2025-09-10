@@ -6,7 +6,7 @@ import {
   WorkoutHistoryTime,
   WorkoutSection,
 } from "@/src/types/main/settings/account/workouts";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import { useQueryParams } from "@/src/lib/utils";
 
 function WorkoutsGroup() {

@@ -1,5 +1,5 @@
 import { IHabit } from "@/src/interfaces/main/my-fit";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 interface IProps {
   habit: IHabit;

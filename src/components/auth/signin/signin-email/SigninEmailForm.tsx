@@ -10,10 +10,9 @@ import { setToken } from "@/src/lib/utils";
 import { SigninWithEmail, signinWithEmailSchema } from "@/src/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
-import Link from "next/link";
+import { Link, useRouter } from "@/src/i18n/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { signinWithEmailAPI } from "@/src/services/mutations/auth";
 function SignInEmailForm() {
   const router = useRouter();

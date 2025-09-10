@@ -10,7 +10,7 @@ import { ResetPassword, resetPasswordSchema } from "@/src/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import { resetPasswordAPI } from "@/src/services/mutations/auth";
 function ChangePasswordForm() {
   const { type, email, countryCode, number } = useQueryParams();

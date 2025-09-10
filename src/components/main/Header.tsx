@@ -7,7 +7,7 @@ import { useHeader } from "@/src/hooks";
 import { IHeader } from "@/src/interfaces/main/header";
 import { Bell, ListFilter, Menu, Search } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import CircularRing from "../ui/CircularRing";
 import { SkeletonCard } from "../skeleton/Card";
 

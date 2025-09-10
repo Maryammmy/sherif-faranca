@@ -1,6 +1,6 @@
 import { Clock12, Flame, CircleCheck } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 interface IProps {
   exerciseId: number;
   programId: string;

@@ -1,7 +1,7 @@
 import { Button } from "@/src/components/ui/Button";
 import { Clock12, Heart, MoveLeft, Play, TrendingUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 interface IProps {
   href: string;
 }

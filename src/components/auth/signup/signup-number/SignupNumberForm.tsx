@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import { useActionState, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Button } from "@/src/components/ui/Button";

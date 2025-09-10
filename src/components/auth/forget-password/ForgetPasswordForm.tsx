@@ -9,7 +9,7 @@ import PhoneField from "@/src/components/ui/PhoneField";
 import { IActionState } from "@/src/interfaces/form";
 import { useQueryParams } from "@/src/lib/utils";
 import { Mail } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import { useActionState, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 

@@ -2,7 +2,7 @@
 
 import { MoveLeft } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import Notification from "./Notification";
 import { notifications } from "@/src/data/notifications";
 import { Button } from "../ui/Button";

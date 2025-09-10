@@ -8,10 +8,9 @@ import PasswordInput from "@/src/components/ui/PasswordInput";
 import { setToken } from "@/src/lib/utils";
 import { SigninWithNumber, signinWithNumberSchema } from "@/src/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
+import { Link, useRouter } from "@/src/i18n/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import PhoneField from "@/src/components/ui/PhoneField";
 import { signinWithNumberAPI } from "@/src/services/mutations/auth";
 function SigninNumberForm() {

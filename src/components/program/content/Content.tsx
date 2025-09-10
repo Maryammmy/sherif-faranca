@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/src/components/ui/Button";
 import { Calendar1, Clock4, Dumbbell, House, ShieldCheck } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 interface IProps {
   programId: string;
 }

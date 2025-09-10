@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import { useActionState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { Mail } from "lucide-react";

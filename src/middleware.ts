@@ -14,14 +14,20 @@
 // ];
 
 // export async function middleware(request: NextRequest) {
-//   const token = await getToken();
+//   const token = await getToken(); // pass request if needed
 
 //   const { pathname } = request.nextUrl;
 
-//   if (PUBLIC_ROUTES.some((route) => pathname.startsWith(route))) {
+//   // Allow access to public routes and their subpaths
+//   if (
+//     PUBLIC_ROUTES.some(
+//       (route) => pathname === route || pathname.startsWith(`${route}/`)
+//     )
+//   ) {
 //     return NextResponse.next();
 //   }
 
+//   // Redirect if no token
 //   if (!token) {
 //     const signinUrl = new URL("/signin?type=email", request.url);
 //     return NextResponse.redirect(signinUrl);
@@ -32,12 +38,19 @@
 
 // export const config = {
 //   matcher: [
-//     "/((?!_next/static|_next/image|favicon.ico|api|uploads|images|.*\\.svg).*)",
+//     "/((?!_next/static|_next/image|favicon.ico|api|uploads|images|.*\\..*).*)",
 //   ],
 // };
+
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "./lib/utils";
+
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
+
+// ✅ i18n middleware
+const intlMiddleware = createMiddleware(routing);
 
 const PUBLIC_ROUTES = [
   "/auth",
@@ -51,30 +64,36 @@ const PUBLIC_ROUTES = [
 ];
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken(); // pass request if needed
+  // 🟢 أول حاجة: ندي فرصة لـ next-intl يعدل الـ URL لو ناقصه locale
+  const response = intlMiddleware(request);
 
   const { pathname } = request.nextUrl;
+  const token = await getToken(); // ممكن تضيف request هنا لو محتاج
 
-  // Allow access to public routes and their subpaths
+  // ⛔️ نشيل الـ locale prefix من الـ pathname
+  const pathWithoutLocale = pathname.replace(/^\/(en|fr|ar)(\/|$)/, "/");
+
+  // 🟢 Public routes: اسمح بيها
   if (
     PUBLIC_ROUTES.some(
-      (route) => pathname === route || pathname.startsWith(`${route}/`)
+      (route) =>
+        pathWithoutLocale === route || pathWithoutLocale.startsWith(`${route}/`)
     )
   ) {
-    return NextResponse.next();
+    return response;
   }
 
-  // Redirect if no token
+  // 🔒 Protected routes: لو مفيش token → redirect للـ signin بالـ locale
   if (!token) {
-    const signinUrl = new URL("/signin?type=email", request.url);
+    const locale = pathname.split("/")[1] || routing.defaultLocale;
+    const signinUrl = new URL(`/${locale}/signin?type=email`, request.url);
     return NextResponse.redirect(signinUrl);
   }
 
-  return NextResponse.next();
+  return response;
 }
 
+// ✅ config مشترك
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|api|uploads|images|.*\\..*).*)",
-  ],
+  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 };

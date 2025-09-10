@@ -1,6 +1,5 @@
 "use client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/src/i18n/navigation";
 import { Button } from "../ui/Button";
 import { useState } from "react";
 import { sendPreference } from "@/src/lib/utils";

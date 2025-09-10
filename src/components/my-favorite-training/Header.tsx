@@ -1,5 +1,5 @@
 import { MoveLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 function FavoriteTrainingHeader() {
   return (

@@ -1,10 +1,10 @@
 "use client";
 import { sendPreference } from "@/src/lib/utils";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useState } from "react";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 
 interface IProps {
   continueHref: string;

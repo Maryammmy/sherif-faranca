@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["FARANCA", "favs", "Foucs"]
+  "cSpell.words": ["FARANCA", "favs", "Foucs"],
+  "i18n-ally.localesPaths": [
+    "messages",
+    "src/i18n",
+    "src/messages",
+    "src/components/main/settings/settings/language"
+  ]
 }

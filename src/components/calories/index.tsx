@@ -13,7 +13,7 @@ import {
 import TodayCalories from "./TodayCalories";
 import WeeklySummary from "./WeeklySummary";
 import { MoveLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useTotalCalories } from "@/src/hooks";
 
 ChartJS.register(

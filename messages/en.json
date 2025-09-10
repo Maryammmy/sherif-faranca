@@ -1,0 +1,24 @@
+{
+  "auth": {
+    "description": " Discover fun and effective dance workouts for all levels. No\n            experience needed – just move to the beat! Unleash your inner dancer\n            and discover a fun way to achieve your fitness goals.",
+    "name": "Sherif Faranca platform",
+    "signin": "Have Account Sign in",
+    "signup": "New User Sign Up",
+    "welcome": "Welcome to"
+  },
+  "sidebar": {
+    "aboutUs": "About US",
+    "contactUs": "Contact US",
+    "discover": "Discover",
+    "hey": "Hey",
+    "home": "Home",
+    "myFit": "My Fit",
+    "privacyPolicy": "Privacy Policy",
+    "settings": "Settings",
+    "termsAndConditions": "Terms & Conditions"
+  },
+  "signin": {
+    "title": "You’ve been missed!",
+    "welcome": "Welcome Back!"
+  }
+}

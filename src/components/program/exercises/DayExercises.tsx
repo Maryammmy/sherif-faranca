@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import ExerciseCard from "./ExerciseCard";
 import RecommendForYou from "@/src/components/main/home/RecommendForYou";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 interface IProps {
   programId: string;
 }

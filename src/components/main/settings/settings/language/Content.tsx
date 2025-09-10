@@ -1,11 +1,26 @@
+"use client";
+
 import { useState } from "react";
+import Image from "next/image";
+import { useRouter, usePathname } from "@/src/i18n/navigation";
+import { useLocale } from "next-intl";
 import { Button } from "@/src/components/ui/Button";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { languages } from "@/src/data";
-import Image from "next/image";
 
 export default function Content() {
-  const [lang, setLang] = useState("en");
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [lang, setLang] = useState(locale);
+
+  const handleSave = () => {
+    if (lang !== locale) {
+      router.replace(pathname, { locale: lang });
+      router.refresh();
+    }
+  };
 
   return (
     <div className="flex flex-col gap-5">
@@ -16,21 +31,22 @@ export default function Content() {
             className="flex items-center justify-between border-b pb-2"
           >
             <div className="flex items-center gap-2">
-              <div>
-                <Image
-                  src={l.flag}
-                  alt={`${l.label} language`}
-                  width={30}
-                  height={30}
-                />
-              </div>
+              <Image
+                src={l.flag}
+                alt={`${l.label} language`}
+                width={30}
+                height={30}
+              />
               <span className="font-medium">{l.label}</span>
             </div>
             <RadioGroupItem className="w-6 h-6" value={l.code} />
           </div>
         ))}
       </RadioGroup>
-      <Button className="bg-primary py-3 font-medium text-white rounded-md">
+      <Button
+        className="bg-primary py-3 font-medium text-white rounded-md"
+        onClick={handleSave}
+      >
         Save
       </Button>
     </div>

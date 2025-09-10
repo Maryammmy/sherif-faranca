@@ -11,15 +11,15 @@ import {
 } from "lucide-react";
 
 export const mainNavItems: INavItem[] = [
-  { href: "/", icon: Home, label: "Home" },
-  { href: "/my-fit", icon: SquareActivity, label: "My Fit" },
-  { href: "/discover", icon: Compass, label: "Discover" },
-  { icon: Settings, label: "Settings" },
+  { href: "/", icon: Home, label: "home" },
+  { href: "/my-fit", icon: SquareActivity, label: "myFit" },
+  { href: "/discover", icon: Compass, label: "discover" },
+  { icon: Settings, label: "settings" },
 ];
 
 export const secondaryNavItems: INavItem[] = [
-  { href: "/about-us", icon: Info, label: "About US" },
-  { icon: Headphones, label: "Contact US" },
-  { href: "/privacy-policy", icon: ShieldCheck, label: "Privacy Policy" },
-  { href: "/terms", icon: FileText, label: "Terms & Conditions" },
+  { href: "/about-us", icon: Info, label: "aboutUs" },
+  { icon: Headphones, label: "contactUs" },
+  { href: "/privacy-policy", icon: ShieldCheck, label: "privacyPolicy" },
+  { href: "/terms", icon: FileText, label: "termsAndConditions" },
 ];

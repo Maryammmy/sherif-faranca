@@ -9,8 +9,7 @@ import {
 } from "@/src/services/queries/social-auth";
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/src/i18n/navigation";
 import { useEffect } from "react";
 
 function SocialButtons() {

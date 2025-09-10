@@ -3,7 +3,7 @@
 import { Button } from "@/src/components/ui/Button";
 import { cn } from "@/src/lib/utils";
 import { Award, Calendar, MoveRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 interface IProps {

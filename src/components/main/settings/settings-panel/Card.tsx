@@ -1,7 +1,7 @@
 import { Button } from "@/src/components/ui/Button";
 import { ISetting } from "@/src/interfaces/main/settings";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 interface IProps {
   setting: ISetting;

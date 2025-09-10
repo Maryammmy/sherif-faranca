@@ -2,7 +2,7 @@ import VideoSection from "./video-section";
 import Sessions from "./sessions";
 import FocusArea from "./focus-area";
 import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 interface IProps {
   programId: string;

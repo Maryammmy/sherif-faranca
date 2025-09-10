@@ -4,20 +4,27 @@ import { Button } from "@/src/components/ui/Button";
 import { languages } from "@/src/data";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 
 export default function SelectLanguage() {
-  const [selected, setSelected] = useState("en");
+  const locale = useLocale();
   const router = useRouter();
 
-  // Handle language selection with animation
+  const [selected, setSelected] = useState(locale);
+
+  // Handle language selection
   const handleLanguageSelect = (langCode: string) => {
     setSelected(langCode);
   };
 
+  // Handle Next button: change locale and navigate
   const handleNext = () => {
-    router.push("/select-method");
+    if (selected !== locale) {
+      router.push("/select-method", { locale: selected }); // change locale
+      router.refresh(); // refresh translations
+    }
   };
 
   return (
@@ -35,7 +42,7 @@ export default function SelectLanguage() {
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
           {languages.map((lang) => (
             <Button
-              onClick={() => handleLanguageSelect(lang?.code)}
+              onClick={() => handleLanguageSelect(lang.code)}
               key={lang.code}
               className={cn(
                 "flex flex-col gap-3 items-center border rounded-xl px-8 py-4 sm:w-32 transition-all duration-150",
@@ -47,7 +54,7 @@ export default function SelectLanguage() {
               <div>
                 <Image
                   src={lang.flag}
-                  alt="Select Language Illustration"
+                  alt={`${lang.label} flag`}
                   width={100}
                   height={100}
                 />

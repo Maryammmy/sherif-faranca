@@ -3,7 +3,7 @@ import { applyFiltersAPI } from "@/src/services/mutations/filters";
 import { useState } from "react";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import toast from "react-hot-toast";
 
 interface IProps {

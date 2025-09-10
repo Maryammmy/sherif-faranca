@@ -1,8 +1,8 @@
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/src/i18n/navigation";
 import { UserCircle } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { mainNavItems, secondaryNavItems } from "@/src/data/main/sidebar";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/src/components/ui/Button";
@@ -10,6 +10,7 @@ import SettingsPanel from "../settings/settings-panel";
 import { useHeader } from "@/src/hooks";
 import { SkeletonCard } from "../../skeleton/Card";
 import ContactUs from "../contact-us";
+import { useTranslations } from "next-intl";
 export default function SidebarContent({
   isExpanded,
   onLinkClick,
@@ -19,6 +20,7 @@ export default function SidebarContent({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("sidebar");
   const [settingPanelOpen, setSettingPanelOpen] = useState(false);
   const [contactUsOpen, setContactUsOpen] = useState(false);
   const { data } = useHeader();
@@ -65,7 +67,7 @@ export default function SidebarContent({
       </Button>
       <nav className="flex-1 px-2 space-y-2">
         {mainNavItems.map((item) =>
-          item.label === "Settings" && !item?.href ? (
+          item.label === "settings" && !item?.href ? (
             <Button
               key={item.label}
               onClick={() => {
@@ -80,7 +82,7 @@ export default function SidebarContent({
               <item.icon className="w-6 h-6 shrink-0" />
               {isExpanded && (
                 <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
-                  {item.label}
+                  {t(item.label)}
                 </span>
               )}
             </Button>
@@ -99,7 +101,7 @@ export default function SidebarContent({
               <item.icon className="w-6 h-6 shrink-0" />
               {isExpanded && (
                 <span className="whitespace-nowrap overflow-hidden transition-all duration-300">
-                  {item.label}
+                  {t(item.label)}
                 </span>
               )}
             </Link>
@@ -108,7 +110,7 @@ export default function SidebarContent({
       </nav>
       <nav className="px-2 py-6 space-y-2 border-t">
         {secondaryNavItems.map((item) =>
-          item.label === "Contact US" && !item?.href ? (
+          item.label === "contactUs" && !item?.href ? (
             <Button
               key={item.label}
               onClick={() => {
@@ -128,7 +130,7 @@ export default function SidebarContent({
                     "whitespace-nowrap overflow-hidden transition-all duration-300"
                   )}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </span>
               )}
             </Button>
@@ -149,7 +151,7 @@ export default function SidebarContent({
                     "whitespace-nowrap overflow-hidden transition-all duration-300"
                   )}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </span>
               )}
             </Link>
@@ -171,7 +173,7 @@ export default function SidebarContent({
                 <SkeletonCard count={1} className="h-10 w-40" />
               ) : (
                 <p className="font-semibold text-gray-800 capitalize">
-                  Hey {name}
+                  {t("hey")} {name}
                 </p>
               )}
             </div>
