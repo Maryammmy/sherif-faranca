@@ -25,7 +25,7 @@ export default function SidebarContent({
   const [contactUsOpen, setContactUsOpen] = useState(false);
   const { data } = useHeader();
   const name = data?.userName;
-
+  console.log("maryam");
   const handleLogoClick = () => {
     window.location.href = "/"; // refresh + redirect to /
   };
