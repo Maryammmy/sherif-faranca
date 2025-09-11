@@ -9,6 +9,26 @@
   "price": {
     "egp": "EGP"
   },
+  "selectLanguage": {
+    "arabic": "Arabic",
+    "choose": "CHOOSE YOUR LANGUAGE",
+    "description": "You Can Change The Language In Your Profile Setting After Sign In",
+    "english": "English",
+    "french": "French",
+    "next": "Next"
+  },
+  "selectMethod": {
+    "account": "have an account ?",
+    "change": "CHANGE",
+    "email": "Continue with Email",
+    "facebook": "Continue with Facebook",
+    "google": "Continue with Google",
+    "number": "Continue with Number",
+    "or": "Or",
+    "register": "REGISTER TO",
+    "signin": "sign in",
+    "start": "START FITNESS JOURNEY"
+  },
   "sidebar": {
     "aboutUs": "About US",
     "contactUs": "Contact US",

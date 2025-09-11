@@ -6,9 +6,11 @@ import {
   getFacebookAuthUrlAPI,
   getGoogleAuthUrlAPI,
 } from "@/src/services/queries/social-auth";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 function SocialButtons() {
+  const t = useTranslations("selectMethod");
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
     const authAPIs = {
       Google: getGoogleAuthUrlAPI,
@@ -37,7 +39,7 @@ function SocialButtons() {
           onClick={() => handleSocialLogin(btn.alt)} // Trigger API call
         >
           <Image src={btn.icon} alt={btn.alt} width={22} height={22} />
-          {btn.label}
+          {t(btn.label)}
         </Button>
       ))}
     </div>

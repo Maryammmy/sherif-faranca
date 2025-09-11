@@ -11,17 +11,17 @@ export const navBreakpoints: SwiperBreakpoints = {
 export const languages: ILanguage[] = [
   {
     code: "en",
-    label: "English",
+    label: "english",
     flag: "/us-flag.svg",
   },
   {
     code: "fr",
-    label: "French",
+    label: "french",
     flag: "/fr-flag.svg",
   },
   {
     code: "ar",
-    label: "العربية",
+    label: "arabic",
     flag: "/ar-flag.svg",
   },
 ];

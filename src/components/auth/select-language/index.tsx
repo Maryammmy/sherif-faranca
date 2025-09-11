@@ -5,10 +5,11 @@ import { languages } from "@/src/data";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useRouter } from "@/src/i18n/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 export default function SelectLanguage() {
+  const t = useTranslations("selectLanguage");
   const locale = useLocale();
   const router = useRouter();
 
@@ -24,6 +25,8 @@ export default function SelectLanguage() {
     if (selected !== locale) {
       router.push("/select-method", { locale: selected }); // change locale
       router.refresh(); // refresh translations
+    } else {
+      router.push("/select-method");
     }
   };
 
@@ -33,12 +36,10 @@ export default function SelectLanguage() {
       <div className="w-full max-w-lg">
         <header>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-11 mb-3">
-            CHOOSE YOUR LANGUAGE
+            {t("choose")}
           </h1>
         </header>
-        <p className="text-gray-400 font-medium mb-8">
-          You Can Change The Language In Your Profile Setting After Sign In
-        </p>
+        <p className="text-gray-400 font-medium mb-8">{t("description")}</p>
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
           {languages.map((lang) => (
             <Button
@@ -60,7 +61,7 @@ export default function SelectLanguage() {
                 />
               </div>
               <span className="font-semibold text-gray-700 text-lg">
-                {lang.label}
+                {t(lang.label)}
               </span>
             </Button>
           ))}
@@ -69,7 +70,7 @@ export default function SelectLanguage() {
           className="w-full bg-primary text-white py-3 rounded-lg font-medium mt-2 mb-8"
           onClick={handleNext}
         >
-          Next
+          {t("next")}
         </Button>
       </div>
       {/* Right Side */}
