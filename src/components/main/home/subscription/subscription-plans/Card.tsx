@@ -1,19 +1,21 @@
 import { Button } from "@/src/components/ui/Button";
-import { ISubscriptionPlan } from "@/src/interfaces/main/subscription-plans";
+import { ISubscription } from "@/src/interfaces";
 import { cn } from "@/src/lib/utils";
 import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface IProps {
-  subscriptionPlan: ISubscriptionPlan;
+  subscriptionPlan: ISubscription;
 }
 
 function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
-  const { title, price, content } = subscriptionPlan;
-  const premiumPlan = title === "Premium Plan";
+  const t = useTranslations("price");
+  const { planName, priceEGP, features } = subscriptionPlan;
+  const premiumPlan = planName === "Premium Plan";
   return (
     <div
       className={cn(
-        "p-3 rounded-lg flex flex-col gap-8",
+        "p-3 rounded-lg flex flex-col gap-8 min-h-[300px] lg:min-h-[350px]",
         premiumPlan ? "bg-primary" : "bg-white border border-primary"
       )}
     >
@@ -25,7 +27,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
               premiumPlan ? "text-white" : "text-neutral-800"
             )}
           >
-            {title}
+            {planName}
           </h2>
           <p
             className={cn(
@@ -33,11 +35,11 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
               premiumPlan ? "text-white" : "text-primary"
             )}
           >
-            {price}
+            {priceEGP} {t("egp")}
           </p>
         </div>
         <div className="flex flex-col gap-3">
-          {content?.map((item, index) => (
+          {features?.map((feature, index) => (
             <div key={index} className="flex items-center gap-2">
               <span
                 className={cn(
@@ -53,7 +55,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
                   premiumPlan ? "text-white" : "text-gray-700"
                 )}
               >
-                {item}
+                {feature}
               </p>
             </div>
           ))}

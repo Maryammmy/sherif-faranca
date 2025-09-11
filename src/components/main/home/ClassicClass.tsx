@@ -15,7 +15,6 @@ export default function ClassicClass() {
   const { data } = useHome();
   const classicClasses: IClassicClass[] = data?.data?.classicClasses;
   const randomClasses: IClassicClass[] = data?.data?.randomClasses;
-  console.log(data);
   // هات الـ programs الخاصة بالـ selectedId
   const selectedClasses = classicClasses?.find(
     (item) => item.focusAreaId === selectedId

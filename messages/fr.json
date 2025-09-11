@@ -6,6 +6,9 @@
     "signup": "Inscription d'un nouvel utilisateur",
     "welcome": "Bienvenue à"
   },
+  "price": {
+    "egp": "EGP"
+  },
   "sidebar": {
     "aboutUs": "À propos de nous",
     "contactUs": "Contactez-nous",

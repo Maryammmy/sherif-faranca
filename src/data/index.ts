@@ -25,3 +25,4 @@ export const languages: ILanguage[] = [
     flag: "/ar-flag.svg",
   },
 ];
+export const periods: string[] = ["monthly", "yearly"];
