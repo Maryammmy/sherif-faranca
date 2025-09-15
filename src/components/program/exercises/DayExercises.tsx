@@ -2,7 +2,7 @@
 import { ChevronRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import ExerciseCard from "./ExerciseCard";
-import RecommendForYou from "@/src/components/main/home/RecommendForYou";
+// import RecommendForYou from "@/src/components/main/home/RecommendForYou";
 import { Link } from "@/src/i18n/navigation";
 interface IProps {
   programId: string;
@@ -79,7 +79,7 @@ function DayExercises({ programId }: IProps) {
             Start Training
           </Link>
         </div>
-        <RecommendForYou screen3xl={true} />
+        {/* <RecommendForYou screen3xl={true} /> */}
       </div>
     </div>
   );

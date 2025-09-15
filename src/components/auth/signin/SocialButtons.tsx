@@ -10,9 +10,11 @@ import {
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import { Link, useRouter } from "@/src/i18n/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SystemLoader from "../../loader/SystemLoader";
 
 function SocialButtons() {
+  const [loading, setLoading] = useState(false);
   const type = useQueryParams("type");
   const isNumber = type === "number";
   const { token, isAnswered } = useQueryParams();
@@ -20,16 +22,20 @@ function SocialButtons() {
   useEffect(() => {
     const run = async () => {
       if (!token) return;
+      setLoading(true); // شغل اللودر
       await setToken(token);
+
       if (isAnswered === "true") {
         router.push("/");
       } else if (isAnswered === "false") {
         router.push("/questions/1/intro");
       }
+      setLoading(false); // ممكن مش ضروري لو هتعمل redirect
     };
 
     run();
   }, [token, isAnswered, router]);
+
   const handleSocialLogin = async (provider: "Google" | "Facebook") => {
     const authAPIs = {
       Google: getGoogleAuthUrlAPI,
@@ -48,6 +54,7 @@ function SocialButtons() {
       console.error("Auth URL not found in response:", response);
     }
   };
+  if (loading) return <SystemLoader />;
   return (
     <div>
       <div>

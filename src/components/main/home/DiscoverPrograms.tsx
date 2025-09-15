@@ -3,8 +3,10 @@ import DiscoverProgramsCard from "@/src/components/main/home/DiscoverProgramsCar
 import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IDiscoverProgram } from "@/src/interfaces/main/home";
-import { SkeletonCard } from "../../skeleton/Card";
-import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
+import { SingleSkeletonCard } from "../../skeleton/Card";
+import { HomeBreakpoints } from "@/src/data";
+import SwiperSlider from "../../ui/SwiperSlider";
+import { EmptyState } from "../../ui/empty-state/EmptyState";
 
 export default function DiscoverPrograms() {
   const { data } = useHome();
@@ -21,18 +23,32 @@ export default function DiscoverPrograms() {
           </Button>
         </div>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
+      <div className="py-5">
         {!data ? (
-          <SkeletonCard count={4} />
+          <SwiperSlider
+            slides={Array.from({ length: 4 }).map((_, index) => (
+              <SingleSkeletonCard key={index} />
+            ))}
+            spaceBetween={20}
+            pagination={false}
+            breakpoints={HomeBreakpoints}
+            loop={false}
+          />
         ) : discoverPrograms?.length ? (
-          discoverPrograms?.map((discoverProgram) => (
-            <DiscoverProgramsCard
-              key={discoverProgram?.id}
-              discoverProgram={discoverProgram}
-            />
-          ))
+          <SwiperSlider
+            slides={discoverPrograms?.map((discoverProgram) => (
+              <DiscoverProgramsCard
+                key={discoverProgram?.id}
+                discoverProgram={discoverProgram}
+              />
+            ))}
+            spaceBetween={20}
+            pagination={false}
+            breakpoints={HomeBreakpoints}
+            loop={false}
+          />
         ) : (
-          <EmptyStateGrid message="No discover programs found" />
+          <EmptyState message="No discover programs found" />
         )}
       </div>
     </div>

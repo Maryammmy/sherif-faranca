@@ -2,13 +2,13 @@
 
 import ClassicClassCard from "@/src/components/main/home/ClassicClassCard";
 import { Button } from "@/src/components/ui/Button";
-import { navBreakpoints } from "@/src/data";
+import { HomeBreakpoints, navBreakpoints } from "@/src/data";
 import { useHome } from "@/src/hooks";
 import { IClassicClass } from "@/src/interfaces/main/home";
 import { useState } from "react";
 import SwiperSlider from "../../ui/SwiperSlider";
-import { SkeletonCard } from "../../skeleton/Card";
-import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
+import { SingleSkeletonCard } from "../../skeleton/Card";
+import { EmptyState } from "../../ui/empty-state/EmptyState";
 
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -30,10 +30,15 @@ export default function ClassicClass() {
         </div>
       )}
       {!data ? (
-        // shimmer effect skeleton loader
-        <div className="grid gap-5 py-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-          <SkeletonCard count={4} />
-        </div>
+        <SwiperSlider
+          slides={Array.from({ length: 4 }).map((_, index) => (
+            <SingleSkeletonCard key={index} />
+          ))}
+          spaceBetween={20}
+          pagination={false}
+          breakpoints={HomeBreakpoints}
+          loop={false}
+        />
       ) : (
         classicClasses?.length > 0 && (
           <>
@@ -60,29 +65,42 @@ export default function ClassicClass() {
               pagination={false}
               breakpoints={navBreakpoints}
               loop={false}
+              centerInsufficientSlides
               className="mt-5"
             />
 
             {/* عرض البرامج */}
-            <div className="grid gap-5 py-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+            <div className="py-5">
               {selectedClasses?.length ? (
-                selectedClasses.map((classicClass) => (
-                  <ClassicClassCard
-                    key={classicClass?.programDayId}
-                    classicClass={classicClass}
-                  />
-                ))
-              ) : randomClasses?.length ? (
-                randomClasses
-                  .flatMap((randomClass) => randomClass.programs)
-                  .map((program) => (
+                <SwiperSlider
+                  slides={selectedClasses.map((classicClass) => (
                     <ClassicClassCard
-                      key={program?.programDayId}
-                      classicClass={program}
+                      key={classicClass?.programDayId}
+                      classicClass={classicClass}
                     />
-                  ))
+                  ))}
+                  spaceBetween={20}
+                  pagination={false}
+                  breakpoints={HomeBreakpoints}
+                  loop={false}
+                />
+              ) : randomClasses?.length ? (
+                <SwiperSlider
+                  slides={randomClasses
+                    .flatMap((randomClass) => randomClass.programs)
+                    .map((program) => (
+                      <ClassicClassCard
+                        key={program?.programDayId}
+                        classicClass={program}
+                      />
+                    ))}
+                  spaceBetween={20}
+                  pagination={false}
+                  breakpoints={HomeBreakpoints}
+                  loop={false}
+                />
               ) : (
-                <EmptyStateGrid message="No classic classes found" />
+                <EmptyState message="No classic classes found" />
               )}
             </div>
           </>

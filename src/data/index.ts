@@ -8,6 +8,11 @@ export const navBreakpoints: SwiperBreakpoints = {
   1440: { slidesPerView: 6 },
   1536: { slidesPerView: 8 },
 };
+export const HomeBreakpoints: SwiperBreakpoints = {
+  640: { slidesPerView: 2 },
+  1280: { slidesPerView: 3 },
+  1536: { slidesPerView: 4 },
+};
 export const languages: ILanguage[] = [
   {
     code: "en",

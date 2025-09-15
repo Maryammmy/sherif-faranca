@@ -24,7 +24,7 @@ export default function SwiperSlider({
   autoplay = false,
   pagination = true,
   navigation = false,
-  centerInsufficientSlides = true,
+  centerInsufficientSlides = false,
   loop = true,
   className = "",
   breakpoints,

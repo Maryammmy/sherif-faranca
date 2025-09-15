@@ -12,7 +12,7 @@ export const postServerData = async (endpoint: string, payload: unknown) => {
     return {
       success: response?.data?.isSuccess ?? true,
       data: response?.data,
-      message: response?.data?.message || "OK",
+      message: response?.data?.message || response?.data?.data?.message || "OK",
       errors: {},
     };
   } catch (error) {

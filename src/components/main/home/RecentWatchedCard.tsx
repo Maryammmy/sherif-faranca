@@ -23,7 +23,7 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
     watchProgressPercentage,
   } = recentVideo;
   return (
-    <div className="relative rounded-2xl overflow-hidden text-white h-[250px] shadow-lg w-full">
+    <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
       {/* Background image */}
       <Image src={imageUrl} alt={title} fill className="object-cover" />
       {/* Overlay */}

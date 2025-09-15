@@ -1,9 +1,10 @@
 import ForgetPasswordComponent from "@/src/components/auth/forget-password";
+import SystemLoader from "@/src/components/loader/SystemLoader";
 import { Suspense } from "react";
 
 function ForgetPassword() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<SystemLoader />}>
       <ForgetPasswordComponent />
     </Suspense>
   );

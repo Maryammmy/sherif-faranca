@@ -4,8 +4,10 @@ import RecentWatchedCard from "@/src/components/main/home/RecentWatchedCard";
 import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IRecentWatched } from "@/src/interfaces/main/home";
-import { SkeletonCard } from "../../skeleton/Card";
-import { EmptyStateGrid } from "../../ui/empty-state/EmptyStateGrid";
+import { SingleSkeletonCard } from "../../skeleton/Card";
+import SwiperSlider from "../../ui/SwiperSlider";
+import { HomeBreakpoints } from "@/src/data";
+import { EmptyState } from "../../ui/empty-state/EmptyState";
 
 export default function RecentWatched() {
   const { data } = useHome();
@@ -23,18 +25,32 @@ export default function RecentWatched() {
           </Button>
         </div>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-5">
+      <div className="py-5">
         {!data ? (
-          <SkeletonCard count={4} />
+          <SwiperSlider
+            slides={Array.from({ length: 4 }).map((_, index) => (
+              <SingleSkeletonCard key={index} />
+            ))}
+            spaceBetween={20}
+            pagination={false}
+            breakpoints={HomeBreakpoints}
+            loop={false}
+          />
         ) : recentVideos?.length ? (
-          recentVideos.map((recentVideo) => (
-            <RecentWatchedCard
-              key={recentVideo?.id}
-              recentVideo={recentVideo}
-            />
-          ))
+          <SwiperSlider
+            slides={recentVideos.map((recentVideo) => (
+              <RecentWatchedCard
+                key={recentVideo?.id}
+                recentVideo={recentVideo}
+              />
+            ))}
+            spaceBetween={20}
+            pagination={false}
+            breakpoints={HomeBreakpoints}
+            loop={false}
+          />
         ) : (
-          <EmptyStateGrid message="No recent watched found" />
+          <EmptyState message="No recent watched found" />
         )}
       </div>
     </div>

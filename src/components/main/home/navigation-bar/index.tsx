@@ -13,6 +13,7 @@ export default function NavigationBar() {
       spaceBetween={20}
       pagination={false}
       breakpoints={navBreakpoints}
+      centerInsufficientSlides
       loop={false}
       className="mb-5"
     />

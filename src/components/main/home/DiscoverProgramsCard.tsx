@@ -11,7 +11,7 @@ export default function DiscoverProgramsCard({ discoverProgram }: IProps) {
     discoverProgram;
   return (
     <div className="space-y-2">
-      <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
+      <div className="h-[250px] w-full shadow-xl rounded-2xl overflow-hidden relative">
         <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
 

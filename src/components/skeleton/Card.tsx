@@ -19,3 +19,17 @@ export function SkeletonCard({ count, className }: IProps) {
     </>
   );
 }
+
+interface ISingleSkeletonCardProps {
+  className?: string;
+}
+export function SingleSkeletonCard({ className }: ISingleSkeletonCardProps) {
+  return (
+    <div
+      className={cn(
+        "rounded-md bg-stone-200 animate-pulse h-[250px] w-full",
+        className
+      )}
+    />
+  );
+}

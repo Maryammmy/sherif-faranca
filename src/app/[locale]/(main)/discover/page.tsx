@@ -1,8 +1,9 @@
+import SystemLoader from "@/src/components/loader/SystemLoader";
 import DiscoverComponent from "@/src/components/main/discover";
 import { Suspense } from "react";
 function Discover() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<SystemLoader />}>
       <DiscoverComponent />
     </Suspense>
   );
