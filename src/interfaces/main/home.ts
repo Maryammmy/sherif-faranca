@@ -17,6 +17,8 @@ export interface IRecommendedForYou {
   levelName: string;
   title: string;
   totalCalories: number;
+  isFavorite: boolean;
+  isProgram: boolean;
 }
 export interface IClassicClass {
   focusAreaId: number;

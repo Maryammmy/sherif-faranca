@@ -10,7 +10,6 @@ import { EmptyState } from "../../ui/empty-state/EmptyState";
 export default function Banner() {
   const { data } = useHome();
   const merchantBanners: IMerchantBanner[] = data?.data?.merchantBanners;
-  console.log(data);
   return (
     <div className="py-5">
       {!data ? (

@@ -1,14 +1,43 @@
 import { Button } from "@/src/components/ui/Button";
 import { IRecommendedForYou } from "@/src/interfaces/main/home";
+import { toggleFavAPI } from "@/src/services/mutations/fav";
+import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
 }
 export default function RecommendCard({ recommendForYou }: IProps) {
-  const { classesCount, levelName, title, totalCalories, imageUrl } =
-    recommendForYou;
+  const queryClient = useQueryClient();
+  const {
+    classesCount,
+    levelName,
+    title,
+    totalCalories,
+    imageUrl,
+    id,
+    isProgram,
+    isFavorite,
+  } = recommendForYou;
+  const toggleFav = async () => {
+    const payload = {
+      itemId: id,
+      isProgram,
+    };
+    const response = await toggleFavAPI(payload);
+    if (response?.success === true) {
+      toast.success(response?.message, {
+        position: "top-right",
+      });
+      queryClient.invalidateQueries({ queryKey: ["home"] });
+    } else {
+      toast.error(response?.message, {
+        position: "top-right",
+      });
+    }
+  };
   return (
     <div className="space-y-2">
       <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
@@ -26,9 +55,16 @@ export default function RecommendCard({ recommendForYou }: IProps) {
         <div className="absolute z-20 inset-0 p-4 flex flex-col justify-between gap-2">
           {/* Top Section */}
           <div className="flex justify-end">
-            <Button className="w-8 h-8 rounded-full bg-white/60 flex items-center justify-center">
-              <span className="text-gray-800">
-                <Heart size={20} />
+            <Button
+              onClick={toggleFav}
+              className="w-8 h-8 rounded-full bg-white/60 flex items-center justify-center"
+            >
+              <span>
+                {isFavorite ? (
+                  <Heart size={20} className="text-[#F95555] fill-[#F95555]" />
+                ) : (
+                  <Heart size={20} className="text-gray-800" />
+                )}
               </span>
             </Button>
           </div>

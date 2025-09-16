@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import DisplayVideo from "./DisplayVideo";
-import ResetVideo from "./ResetVideo";
+import Buttons from "./Buttons";
 
 const VideoSection = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -61,7 +61,7 @@ const VideoSection = () => {
         formattedTime={formattedTime}
         kcal={kcal}
       />
-      <ResetVideo handleReset={handleReset} />
+      <Buttons handleReset={handleReset} />
     </div>
   );
 };

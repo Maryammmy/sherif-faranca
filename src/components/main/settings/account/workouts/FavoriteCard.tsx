@@ -1,6 +1,6 @@
 import { Button } from "@/src/components/ui/Button";
 import { IFav } from "@/src/interfaces/fav";
-import { toggleWorkoutsFavAPI } from "@/src/services/mutations/workouts-program";
+import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import Image from "next/image";
@@ -17,7 +17,7 @@ function FavoriteWorkoutCard({ fav }: IProps) {
       itemId: id,
       isProgram: isProgram,
     };
-    const response = await toggleWorkoutsFavAPI(payload);
+    const response = await toggleFavAPI(payload);
     if (response?.success === true) {
       queryClient.refetchQueries({
         queryKey: ["favWorkouts"],
