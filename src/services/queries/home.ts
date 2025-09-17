@@ -22,3 +22,9 @@ export const discoverProgramsAPI = async () => {
   );
   return data;
 };
+export const recentWatchedAPI = async () => {
+  const data = await getServerData(
+    "/api/Home/Viewall-RecentWatch?page=1&pageSize=10"
+  );
+  return data;
+};

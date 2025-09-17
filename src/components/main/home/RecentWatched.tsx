@@ -1,13 +1,13 @@
 "use client";
 
 import RecentWatchedCard from "@/src/components/main/home/RecentWatchedCard";
-import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import { SingleSkeletonCard } from "../../skeleton/Card";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { HomeBreakpoints } from "@/src/data";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
+import Link from "next/link";
 
 export default function RecentWatched() {
   const { data } = useHome();
@@ -20,9 +20,12 @@ export default function RecentWatched() {
           <h2 className="text-gray-800 text-xl font-semibold">
             Recent Watched
           </h2>
-          <Button className="border-b border-secondary text-secondary font-medium">
+          <Link
+            href="/recent-watched"
+            className="border-b border-secondary text-secondary font-medium"
+          >
             <span>View All</span>
-          </Button>
+          </Link>
         </div>
       )}
       <div className="py-5">

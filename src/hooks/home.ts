@@ -1,3 +1,4 @@
+import { recentWatchedAPI } from "./../services/queries/home";
 import {
   classesAPI,
   discoverProgramsAPI,
@@ -16,5 +17,8 @@ export function useClasses() {
   return useCustomQuery(["classes"], classesAPI);
 }
 export function useDiscoverPrograms() {
-  return useCustomQuery(["classes"], discoverProgramsAPI);
+  return useCustomQuery(["discoverPrograms"], discoverProgramsAPI);
+}
+export function useRecentWatched() {
+  return useCustomQuery(["recentWatched"], recentWatchedAPI);
 }
