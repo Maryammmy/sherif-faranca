@@ -9,6 +9,7 @@ import { useState } from "react";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { SingleSkeletonCard } from "../../skeleton/Card";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
+import Link from "next/link";
 
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -24,9 +25,12 @@ export default function ClassicClass() {
       {data && (
         <div className="flex items-center justify-between">
           <h2 className="text-gray-800 text-xl font-semibold">Classic Class</h2>
-          <Button className="border-b border-secondary text-secondary font-medium">
+          <Link
+            href="/classes"
+            className="border-b border-secondary text-secondary font-medium"
+          >
             <span>View All</span>
-          </Button>
+          </Link>
         </div>
       )}
       {!data ? (

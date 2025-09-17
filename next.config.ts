@@ -60,6 +60,11 @@ const nextConfig: NextConfig = {
         hostname: "clientapi.sherif-faranca.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+        pathname: "/**",
+      },
     ],
   },
 };

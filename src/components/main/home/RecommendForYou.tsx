@@ -1,12 +1,12 @@
 "use client";
 import RecommendCard from "@/src/components/main/home/RecommendCard";
-import { Button } from "@/src/components/ui/Button";
 import { useHome } from "@/src/hooks";
 import { IRecommendedForYou } from "@/src/interfaces/main/home";
 import { SingleSkeletonCard } from "../../skeleton/Card";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { HomeBreakpoints } from "@/src/data";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
+import Link from "next/link";
 
 export default function RecommendForYou() {
   const { data } = useHome();
@@ -18,9 +18,12 @@ export default function RecommendForYou() {
           <h2 className="text-gray-800 text-xl font-semibold">
             Recommend For You
           </h2>
-          <Button className="border-b border-secondary text-secondary font-medium">
+          <Link
+            href="/recommend-for-you"
+            className="border-b border-secondary text-secondary font-medium"
+          >
             <span>View All</span>
-          </Button>
+          </Link>
         </div>
       )}
       <div className="py-5">

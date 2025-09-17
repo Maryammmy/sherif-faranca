@@ -36,6 +36,7 @@ export interface IClass {
 }
 export interface IMerchantBanner {
   imageUrl: string;
+  url: string;
 }
 export interface IDiscoverProgram {
   classesCount: number;

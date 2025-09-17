@@ -1,12 +1,12 @@
 "use client";
-import DiscoverProgramsCard from "@/src/components/main/home/DiscoverProgramsCard";
-import { Button } from "@/src/components/ui/Button";
+import DiscoverProgramCard from "@/src/components/main/home/DiscoverProgramsCard";
 import { useHome } from "@/src/hooks";
 import { IDiscoverProgram } from "@/src/interfaces/main/home";
 import { SingleSkeletonCard } from "../../skeleton/Card";
 import { HomeBreakpoints } from "@/src/data";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
+import Link from "next/link";
 
 export default function DiscoverPrograms() {
   const { data } = useHome();
@@ -18,9 +18,12 @@ export default function DiscoverPrograms() {
           <h2 className="text-gray-800 text-xl font-semibold">
             Discover Programs
           </h2>
-          <Button className="border-b border-secondary text-secondary font-medium">
+          <Link
+            href="/discover-programs"
+            className="border-b border-secondary text-secondary font-medium"
+          >
             <span>View All</span>
-          </Button>
+          </Link>
         </div>
       )}
       <div className="py-5">
@@ -37,7 +40,7 @@ export default function DiscoverPrograms() {
         ) : discoverPrograms?.length ? (
           <SwiperSlider
             slides={discoverPrograms?.map((discoverProgram) => (
-              <DiscoverProgramsCard
+              <DiscoverProgramCard
                 key={discoverProgram?.id}
                 discoverProgram={discoverProgram}
               />

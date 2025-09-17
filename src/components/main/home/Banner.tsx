@@ -3,13 +3,12 @@
 import { useHome } from "@/src/hooks";
 import { IMerchantBanner } from "@/src/interfaces/main/home";
 import Image from "next/image";
-import SwiperSlider from "../../ui/SwiperSlider";
 import { SkeletonCard } from "../../skeleton/Card";
-import { EmptyState } from "../../ui/empty-state/EmptyState";
+import Link from "next/link";
 
 export default function Banner() {
   const { data } = useHome();
-  const merchantBanners: IMerchantBanner[] = data?.data?.merchantBanners;
+  const merchantBanner: IMerchantBanner = data?.data?.merchantBanners;
   return (
     <div className="py-5">
       {!data ? (
@@ -17,30 +16,20 @@ export default function Banner() {
           count={1}
           className="h-[200px] md:h-[300px] 2xl:h-[400px]"
         />
-      ) : merchantBanners?.length ? (
-        <SwiperSlider
-          slides={merchantBanners?.map(({ imageUrl }, i) => (
-            <div
-              key={i}
-              className="relative w-full h-[200px] md:h-[300px] 2xl:h-[400px] rounded-3xl overflow-hidden"
-            >
-              <Image
-                src={imageUrl}
-                alt={`Slide ${i + 1}`}
-                fill
-                className="object-center"
-                priority={i === 0}
-              />
-            </div>
-          ))}
-          slidesPerView={1}
-          autoplay={true}
-          pagination={true}
-          navigation={true}
-          className="rounded-3xl overflow-hidden"
-        />
       ) : (
-        <EmptyState message="No banner found" />
+        <Link
+          href={merchantBanner?.url}
+          target="_blank"
+          className="relative block w-full h-[200px] md:h-[300px] 2xl:h-[400px] rounded-3xl overflow-hidden"
+        >
+          <Image
+            src={merchantBanner?.imageUrl}
+            alt="Banner"
+            fill
+            className="object-center"
+            priority
+          />
+        </Link>
       )}
     </div>
   );
