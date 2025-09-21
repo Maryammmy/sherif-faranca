@@ -11,7 +11,9 @@ export const recommendForYouAPI = async () => {
   return data;
 };
 export const randomClassesAPI = async () => {
-  const data = await getServerData("/api/Home/Viewall-RandomClass");
+  const data = await getServerData(
+    "/api/Home/Viewall-RandomClass?page=1&pageSize=20"
+  );
   return data;
 };
 export const classesAPI = async () => {
