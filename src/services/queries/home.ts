@@ -10,6 +10,10 @@ export const recommendForYouAPI = async () => {
   );
   return data;
 };
+export const randomClassesAPI = async () => {
+  const data = await getServerData("/api/Home/Viewall-RandomClass");
+  return data;
+};
 export const classesAPI = async () => {
   const data = await getServerData(
     "/api/Home/Viewall-Classes?page=1&pageSize=20"

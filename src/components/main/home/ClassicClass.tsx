@@ -14,9 +14,11 @@ import Link from "next/link";
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data } = useHome();
+
   const classicClasses: IClassicClass[] = data?.data?.classicClasses;
   const randomClasses: IClassicClass[] = data?.data?.randomClasses;
-  // هات الـ programs الخاصة بالـ selectedId
+
+  // البرامج الخاصة بالـ selectedId
   const selectedClasses = classicClasses?.find(
     (item) => item.focusAreaId === selectedId
   )?.programs;
@@ -34,6 +36,7 @@ export default function ClassicClass() {
         </div>
       )}
       {!data ? (
+        // Skeleton loading
         <SwiperSlider
           slides={Array.from({ length: 4 }).map((_, index) => (
             <SingleSkeletonCard key={index} />
@@ -60,7 +63,7 @@ export default function ClassicClass() {
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    <h3>{focusAreaName}</h3>
+                    {focusAreaName}
                   </Button>
                 );
               })}
@@ -75,7 +78,28 @@ export default function ClassicClass() {
 
             {/* عرض البرامج */}
             <div className="py-5">
-              {selectedClasses?.length ? (
+              {selectedId === null ? (
+                // Default → Random Classes
+                randomClasses?.length ? (
+                  <SwiperSlider
+                    slides={randomClasses
+                      .flatMap((randomClass) => randomClass.programs)
+                      .map((program) => (
+                        <ClassicClassCard
+                          key={program?.programDayId}
+                          classicClass={program}
+                        />
+                      ))}
+                    spaceBetween={20}
+                    pagination={false}
+                    breakpoints={HomeBreakpoints}
+                    loop={false}
+                  />
+                ) : (
+                  <EmptyState message="No classic classes found" />
+                )
+              ) : selectedClasses?.length ? (
+                // لو اخترت focus area وعنده برامج
                 <SwiperSlider
                   slides={selectedClasses.map((classicClass) => (
                     <ClassicClassCard
@@ -88,22 +112,8 @@ export default function ClassicClass() {
                   breakpoints={HomeBreakpoints}
                   loop={false}
                 />
-              ) : randomClasses?.length ? (
-                <SwiperSlider
-                  slides={randomClasses
-                    .flatMap((randomClass) => randomClass.programs)
-                    .map((program) => (
-                      <ClassicClassCard
-                        key={program?.programDayId}
-                        classicClass={program}
-                      />
-                    ))}
-                  spaceBetween={20}
-                  pagination={false}
-                  breakpoints={HomeBreakpoints}
-                  loop={false}
-                />
               ) : (
+                // لو اخترت focus area ومفيش برامج
                 <EmptyState message="No classic classes found" />
               )}
             </div>

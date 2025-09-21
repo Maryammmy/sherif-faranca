@@ -1,4 +1,4 @@
-import { recentWatchedAPI } from "./../services/queries/home";
+import { randomClassesAPI, recentWatchedAPI } from "./../services/queries/home";
 import {
   classesAPI,
   discoverProgramsAPI,
@@ -12,6 +12,9 @@ export function useHome() {
 }
 export function useRecommendForYou() {
   return useCustomQuery(["recommendForYou"], recommendForYouAPI);
+}
+export function useRandomClasses() {
+  return useCustomQuery(["randomClasses"], randomClassesAPI);
 }
 export function useClasses() {
   return useCustomQuery(["classes"], classesAPI);
