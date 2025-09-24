@@ -11,7 +11,6 @@ import Link from "next/link";
 export default function Banner() {
   const { data } = useHome();
   const merchantBanners: IMerchantBanner[] = data?.data?.merchantBanners;
-  console.log(data);
   return (
     <div className="py-5">
       {!data ? (
