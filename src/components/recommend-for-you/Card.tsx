@@ -4,7 +4,6 @@ import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "next/image";
-import toast from "react-hot-toast";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
@@ -28,14 +27,7 @@ export default function RecommendForYouCard({ recommendForYou }: IProps) {
     };
     const response = await toggleFavAPI(payload);
     if (response?.success === true) {
-      toast.success(response?.message, {
-        position: "top-right",
-      });
       queryClient.invalidateQueries({ queryKey: ["recommendForYou"] });
-    } else {
-      toast.error(response?.message, {
-        position: "top-right",
-      });
     }
   };
   return (

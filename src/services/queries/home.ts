@@ -19,7 +19,7 @@ export const recommendForYouAPI = async (page: number) => {
   return data;
 };
 export const foucsAreaAPI = async () => {
-  const data = await getServerData("/api/Questions/Focas-area");
+  const data = await getServerData("/api/Home/FocusAreas");
   return data;
 };
 export const classesAPI = async (focusAreaId: number | null, page: number) => {

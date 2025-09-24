@@ -2,20 +2,19 @@
 
 import { useClasses, useFoucsAreas } from "@/src/hooks";
 import { SkeletonCard } from "../skeleton/Card";
-import { IClass } from "@/src/interfaces/main/home";
+import { IClass, IFoucsArea } from "@/src/interfaces/main/home";
 import ClassicClassCard from "./Card";
 import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/Button";
 import SwiperSlider from "../ui/SwiperSlider";
 import { navBreakpoints } from "@/src/data";
-import { IArea } from "@/src/interfaces/questions";
 import Loader from "../loader/Loader";
 
 function ClassList() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data: foucsAreas } = useFoucsAreas();
-  const foucsAreaList: IArea[] = foucsAreas;
+  const foucsAreaList: IFoucsArea[] = foucsAreas;
 
   // الفوكاس أريا + الكلاسات (بـ infinite query)
   const {
@@ -31,7 +30,7 @@ function ClassList() {
   );
   useEffect(() => {
     if (foucsAreaList?.length > 0 && selectedId === null) {
-      setSelectedId(foucsAreaList[0]?.id);
+      setSelectedId(foucsAreaList[0]?.focusAreaId);
     }
   }, [foucsAreaList, selectedId]);
 
@@ -44,19 +43,19 @@ function ClassList() {
           <>
             {/* أزرار الفوكس أريا */}
             <SwiperSlider
-              slides={foucsAreaList?.map(({ id, name }) => {
-                const isSelected = selectedId === id;
+              slides={foucsAreaList?.map(({ focusAreaId, focusAreaName }) => {
+                const isSelected = selectedId === focusAreaId;
                 return (
                   <Button
-                    key={id}
-                    onClick={() => setSelectedId(id)}
+                    key={focusAreaId}
+                    onClick={() => setSelectedId(focusAreaId)}
                     className={`w-full p-3 rounded-md font-medium transition-colors ${
                       isSelected
                         ? "bg-primary text-white"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    {name}
+                    {focusAreaName}
                   </Button>
                 );
               })}

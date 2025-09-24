@@ -4,7 +4,6 @@ import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import Image from "next/image";
-import toast from "react-hot-toast";
 
 interface IProps {
   fav: IFav;
@@ -21,13 +20,6 @@ function FavoriteWorkoutCard({ fav }: IProps) {
     if (response?.success === true) {
       queryClient.refetchQueries({
         queryKey: ["favWorkouts"],
-      });
-      toast.success(response?.message, {
-        position: "top-right",
-      });
-    } else {
-      toast.error(response?.message, {
-        position: "top-right",
       });
     }
   };

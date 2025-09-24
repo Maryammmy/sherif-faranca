@@ -1,6 +1,5 @@
 import { Button } from "@/src/components/ui/Button";
 import { IFav } from "@/src/interfaces/fav";
-import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import Image from "next/image";
@@ -19,14 +18,7 @@ function FavoriteTrainingCard({ fav }: IProps) {
     };
     const response = await toggleFavAPI(payload);
     if (response?.success === true) {
-      toast.success(response?.message, {
-        position: "top-right",
-      });
       queryClient.invalidateQueries({ queryKey: ["myFitFav"] });
-    } else {
-      toast.error(response?.message, {
-        position: "top-right",
-      });
     }
   };
   return (

@@ -35,6 +35,7 @@ export interface IClass {
   totalDuration: number;
 }
 export interface IMerchantBanner {
+  id: number;
   imageUrl: string;
   url: string;
 }
@@ -49,4 +50,8 @@ export interface IDiscoverProgram {
 export interface INavItem {
   icon: LucideIcon;
   label: string;
+}
+export interface IFoucsArea {
+  focusAreaId: number;
+  focusAreaName: string;
 }
