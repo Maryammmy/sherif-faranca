@@ -38,7 +38,7 @@ function SigninNumberForm() {
       setTimeout(() => {
         const path = isAnswared ? "/" : "/questions/1";
         router.push(path);
-        router.refresh();
+        window.location.reload();
       }, 500);
     } else {
       toast.error(response?.message);
