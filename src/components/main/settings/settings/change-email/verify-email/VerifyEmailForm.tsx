@@ -17,6 +17,7 @@ import toast from "react-hot-toast";
 import ResendOtp from "./ResendOtp";
 import { useQueryClient } from "@tanstack/react-query";
 import { verifyEmailAPI } from "@/src/services/mutations/users";
+import { useRouter } from "@/src/i18n/navigation";
 
 interface IProps {
   onClose: () => void;
@@ -24,6 +25,7 @@ interface IProps {
 }
 
 function VerifyEmailForm({ onClose, newEmail }: IProps) {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const {
     handleSubmit,
@@ -66,6 +68,7 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
       queryClient.invalidateQueries({ queryKey: ["email"] });
       setTimeout(() => {
         onClose();
+        router.refresh();
       }, 500);
     } else {
       toast.error(response?.message);
