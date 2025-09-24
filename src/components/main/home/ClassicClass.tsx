@@ -26,7 +26,7 @@ export default function ClassicClass() {
     <div>
       {data && (
         <div className="flex items-center justify-between">
-          <h2 className="text-gray-800 text-xl font-semibold">Classic Class</h2>
+          <h2 className="text-gray-800 text-xl font-semibold">Classes</h2>
           <Link
             href="/classes"
             className="border-b border-secondary text-secondary font-medium"
@@ -96,7 +96,7 @@ export default function ClassicClass() {
                     loop={false}
                   />
                 ) : (
-                  <EmptyState message="No classic classes found" />
+                  <EmptyState message="No classes found" />
                 )
               ) : selectedClasses?.length ? (
                 // لو اخترت focus area وعنده برامج
@@ -114,7 +114,7 @@ export default function ClassicClass() {
                 />
               ) : (
                 // لو اخترت focus area ومفيش برامج
-                <EmptyState message="No classic classes found" />
+                <EmptyState message="No classes found" />
               )}
             </div>
           </>

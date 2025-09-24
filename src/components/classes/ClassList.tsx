@@ -1,52 +1,62 @@
 "use client";
 
-import { useClasses, useRandomClasses } from "@/src/hooks";
+import { useClasses, useFoucsAreas } from "@/src/hooks";
 import { SkeletonCard } from "../skeleton/Card";
-import { IClassicClass } from "@/src/interfaces/main/home";
+import { IClass } from "@/src/interfaces/main/home";
 import ClassicClassCard from "./Card";
 import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/Button";
 import SwiperSlider from "../ui/SwiperSlider";
 import { navBreakpoints } from "@/src/data";
+import { IArea } from "@/src/interfaces/questions";
+import Loader from "../loader/Loader";
 
 function ClassList() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const { data: foucsAreas } = useFoucsAreas();
+  const foucsAreaList: IArea[] = foucsAreas;
 
-  // random classes (للـ default)
-  const { data } = useRandomClasses();
-  const randomClassList: IClassicClass[] = data;
+  // الفوكاس أريا + الكلاسات (بـ infinite query)
+  const {
+    data: classes,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useClasses(selectedId);
 
-  // الفوكاس أريا + الكلاسات
-  const { data: classes } = useClasses();
-  const classList: IClassicClass[] = classes?.data;
+  // جمع كل الـ items من كل pages
+  const classList: IClass[] | undefined = classes?.pages.flatMap(
+    (page) => page?.data?.items?.[0]?.programs
+  );
+  useEffect(() => {
+    if (foucsAreaList?.length > 0 && selectedId === null) {
+      setSelectedId(foucsAreaList[0]?.id);
+    }
+  }, [foucsAreaList, selectedId]);
 
-  // الكلاسات المختارة حسب الفوكاس أريا
-  const selectedClasses = classList?.find(
-    (item) => item.focusAreaId === selectedId
-  )?.programs;
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-5">
-      {!data || !classes ? (
+    <div className="py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-5">
+      {!foucsAreas || !classes ? (
         <SkeletonCard count={5} />
       ) : (
-        classList?.length > 0 && (
+        foucsAreaList?.length > 0 && (
           <>
             {/* أزرار الفوكس أريا */}
             <SwiperSlider
-              slides={classList?.map(({ focusAreaId, focusAreaName }) => {
-                const isSelected = selectedId === focusAreaId;
+              slides={foucsAreaList?.map(({ id, name }) => {
+                const isSelected = selectedId === id;
                 return (
                   <Button
-                    key={focusAreaId}
-                    onClick={() => setSelectedId(focusAreaId)}
+                    key={id}
+                    onClick={() => setSelectedId(id)}
                     className={`w-full p-3 rounded-md font-medium transition-colors ${
                       isSelected
                         ? "bg-primary text-white"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    {focusAreaName}
+                    {name}
                   </Button>
                 );
               })}
@@ -59,31 +69,29 @@ function ClassList() {
               className="col-span-full"
             />
 
-            {/* عرض البرامج */}
-            {selectedId === null ? (
-              // default → random classes
-              randomClassList?.length ? (
-                randomClassList
-                  .flatMap((randomClass) => randomClass.programs)
-                  .map((program) => (
-                    <ClassicClassCard
-                      key={program?.programDayId}
-                      classicClass={program}
-                    />
-                  ))
-              ) : (
-                <EmptyStatePage message="No classes found" />
-              )
-            ) : selectedClasses?.length ? (
-              // لو مختار focus area ومعاه برامج
-              selectedClasses.map((classicClass) => (
-                <ClassicClassCard
-                  key={classicClass?.programDayId}
-                  classicClass={classicClass}
-                />
-              ))
+            {classList?.length ? (
+              <>
+                {classList.map((classicClass) => (
+                  <ClassicClassCard
+                    key={classicClass?.programDayId}
+                    classicClass={classicClass}
+                  />
+                ))}
+
+                {/* زرار تحميل المزيد */}
+                {hasNextPage && (
+                  <div className="col-span-full flex justify-center">
+                    <Button
+                      className="bg-primary w-28 p-2 text-white font-medium rounded-md"
+                      onClick={() => fetchNextPage()}
+                      disabled={isFetchingNextPage}
+                    >
+                      {isFetchingNextPage ? <Loader /> : "Show More"}
+                    </Button>
+                  </div>
+                )}
+              </>
             ) : (
-              // لو مختار focus area ومفيش برامج
               <EmptyStatePage message="No classes found" />
             )}
           </>

@@ -1,36 +1,38 @@
+import { PAGE_SIZE } from "@/src/constants";
 import { getServerData } from "../server";
 
 export const homeAPI = async () => {
   const data = await getServerData("/api/Home");
   return data;
 };
-export const recommendForYouAPI = async () => {
+export const recentWatchedAPI = async (page: number) => {
   const data = await getServerData(
-    "/api/Home/Viewall-Recommend?page=1&pageSize=20"
+    `/api/Home/Viewall-RecentWatch?page=${page}&pageSize=${PAGE_SIZE}`
   );
   return data;
 };
-export const randomClassesAPI = async () => {
+
+export const recommendForYouAPI = async (page: number) => {
   const data = await getServerData(
-    "/api/Home/Viewall-RandomClass?page=1&pageSize=20"
+    `/api/Home/Viewall-Recommend?page=${page}&pageSize=${PAGE_SIZE}`
   );
   return data;
 };
-export const classesAPI = async () => {
+export const foucsAreaAPI = async () => {
+  const data = await getServerData("/api/Questions/Focas-area");
+  return data;
+};
+export const classesAPI = async (focusAreaId: number | null, page: number) => {
+  if (!focusAreaId) return null;
+
   const data = await getServerData(
-    "/api/Home/Viewall-Classes?page=1&pageSize=20"
+    `/api/Home/Viewall-Classes?focusAreaId=${focusAreaId}&page=${page}&pageSize=${PAGE_SIZE}`
   );
   return data;
 };
-export const discoverProgramsAPI = async () => {
+export const discoverProgramsAPI = async (page: number) => {
   const data = await getServerData(
-    "/api/Home/Viewall-Discover?page=1&pageSize=20"
-  );
-  return data;
-};
-export const recentWatchedAPI = async () => {
-  const data = await getServerData(
-    "/api/Home/Viewall-RecentWatch?page=1&pageSize=10"
+    `/api/Home/Viewall-Discover?page=${page}&pageSize=${PAGE_SIZE}`
   );
   return data;
 };

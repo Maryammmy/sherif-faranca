@@ -5,21 +5,44 @@ import { SkeletonCard } from "../skeleton/Card";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
 import RecentWatchedCard from "./Card";
+import { Button } from "../ui/Button";
+import Loader from "../loader/Loader";
 
 function RecentWatchedList() {
-  const { data } = useRecentWatched();
-  const recentWatchedList: IRecentWatched[] = data?.data?.items;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useRecentWatched();
+
+  // دمج كل الـ pages في Array واحد
+  const recentWatchedList: IRecentWatched[] | undefined = data?.pages.flatMap(
+    (page) => page?.data?.items
+  );
+
   return (
     <div className="py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-5">
       {!data ? (
         <SkeletonCard count={5} />
       ) : recentWatchedList?.length ? (
-        recentWatchedList.map((recentWatched) => (
-          <RecentWatchedCard
-            key={recentWatched?.id}
-            recentWatched={recentWatched}
-          />
-        ))
+        <>
+          {recentWatchedList.map((recentWatched) => (
+            <RecentWatchedCard
+              key={recentWatched?.id}
+              recentWatched={recentWatched}
+            />
+          ))}
+
+          {/* زرار تحميل المزيد */}
+          {hasNextPage && (
+            <div className="col-span-full flex justify-center">
+              <Button
+                className="bg-primary w-28 p-2 text-white font-medium rounded-md"
+                onClick={() => fetchNextPage()}
+                disabled={isFetchingNextPage}
+              >
+                {isFetchingNextPage ? <Loader /> : "Show More"}
+              </Button>
+            </div>
+          )}
+        </>
       ) : (
         <EmptyStatePage message="No recent watched found" />
       )}
