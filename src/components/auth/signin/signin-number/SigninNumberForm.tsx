@@ -36,11 +36,9 @@ function SigninNumberForm() {
       }
       toast.success(response?.message);
       setTimeout(() => {
-        if (isAnswared) {
-          router.push("/");
-        } else {
-          router.push("/questions/1");
-        }
+        const path = isAnswared ? "/" : "/questions/1";
+        router.push(path);
+        router.refresh();
       }, 500);
     } else {
       toast.error(response?.message);
