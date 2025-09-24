@@ -5,8 +5,6 @@ import { Phone } from "lucide-react";
 
 function Content() {
   const { data } = usePhone();
-  console.log(data);
-
   if (!data)
     return (
       <div className="flex flex-col items-center gap-1 border-b pb-5">
@@ -26,7 +24,7 @@ function Content() {
 
       <span className="text-secondary font-medium">Current phone number</span>
 
-      <div>
+      <div className="text-center">
         {hasPhone ? (
           <p className="text-gray-600 font-medium leading-none">
             {`+${countryCode}${phoneNumber}`}
