@@ -10,12 +10,11 @@ import { setToken } from "@/src/lib/utils";
 import { SigninWithEmail, signinWithEmailSchema } from "@/src/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
-import { Link, useRouter } from "@/src/i18n/navigation";
+import { Link } from "@/src/i18n/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { signinWithEmailAPI } from "@/src/services/mutations/auth";
 function SignInEmailForm() {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -36,8 +35,7 @@ function SignInEmailForm() {
       toast.success(response?.message);
       setTimeout(() => {
         const path = isAnswared ? "/" : "/questions/1";
-        router.push(path);
-        window.location.reload();
+        window.location.href = path; // redirect + reload مع بعض
       }, 500);
     } else {
       toast.error(response?.message);

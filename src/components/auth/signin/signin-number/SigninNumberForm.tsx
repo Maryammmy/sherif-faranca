@@ -8,13 +8,12 @@ import PasswordInput from "@/src/components/ui/PasswordInput";
 import { setToken } from "@/src/lib/utils";
 import { SigninWithNumber, signinWithNumberSchema } from "@/src/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useRouter } from "@/src/i18n/navigation";
+import { Link } from "@/src/i18n/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import PhoneField from "@/src/components/ui/PhoneField";
 import { signinWithNumberAPI } from "@/src/services/mutations/auth";
 function SigninNumberForm() {
-  const router = useRouter();
   const methods = useForm<SigninWithNumber>({
     resolver: zodResolver(signinWithNumberSchema),
     mode: "onChange",
@@ -37,8 +36,7 @@ function SigninNumberForm() {
       toast.success(response?.message);
       setTimeout(() => {
         const path = isAnswared ? "/" : "/questions/1";
-        router.push(path);
-        window.location.reload();
+        window.location.href = path; // redirect + reload مع بعض
       }, 500);
     } else {
       toast.error(response?.message);

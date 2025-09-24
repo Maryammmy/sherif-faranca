@@ -66,7 +66,7 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
       queryClient.invalidateQueries({ queryKey: ["email"] });
       setTimeout(() => {
         onClose();
-        window.location.reload();
+        queryClient.invalidateQueries({ queryKey: ["profile"] });
       }, 500);
     } else {
       toast.error(response?.message);
