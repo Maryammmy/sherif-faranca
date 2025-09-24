@@ -5,6 +5,7 @@ import { Phone } from "lucide-react";
 
 function Content() {
   const { data } = usePhone();
+  console.log(data);
   if (!data)
     return (
       <div className="flex flex-col items-center gap-1 border-b pb-5">
