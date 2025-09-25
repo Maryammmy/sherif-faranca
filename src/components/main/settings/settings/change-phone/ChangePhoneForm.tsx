@@ -11,13 +11,18 @@ import {
   ChangePhone,
   changePhoneSchema,
 } from "@/src/schemas/main/settings/change-phone";
+import { usePhone } from "@/src/hooks";
 
 interface IProps {
   handleChangePhone: (phone: ChangePhone) => void;
 }
 export default function ChangePhoneForm({ handleChangePhone }: IProps) {
+  const { data } = usePhone();
+  const currentPhone = data?.data
+    ? `${data.data.countryCode}${data.data.phoneNumber}`
+    : "";
   const methods = useForm<ChangePhone>({
-    resolver: zodResolver(changePhoneSchema),
+    resolver: zodResolver(changePhoneSchema(currentPhone)),
     mode: "onChange",
   });
   const {

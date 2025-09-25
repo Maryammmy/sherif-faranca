@@ -10,8 +10,13 @@ interface IProps {
 
 function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
   const t = useTranslations("price");
-  const { planName, priceEGP, features } = subscriptionPlan;
+  const { planName, features, beforePrice, afterPrice, isSpecialOffer } =
+    subscriptionPlan;
   const premiumPlan = planName === "Premium Plan";
+
+  const showSpecialOffer =
+    isSpecialOffer && beforePrice && afterPrice && beforePrice !== afterPrice;
+
   return (
     <div
       className={cn(
@@ -20,6 +25,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
       )}
     >
       <div className="flex-1 flex flex-col gap-10">
+        {/* Title + Price */}
         <div className="flex flex-col gap-0.5 items-center">
           <h2
             className={cn(
@@ -29,15 +35,32 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
           >
             {planName}
           </h2>
-          <p
-            className={cn(
-              "text-2xl font-bold",
-              premiumPlan ? "text-white" : "text-primary"
+
+          {/* الأسعار */}
+          <div className="flex items-center gap-2">
+            {showSpecialOffer && (
+              <p
+                className={cn(
+                  "text-lg font-medium line-through",
+                  premiumPlan ? "text-gray-200" : "text-gray-500"
+                )}
+              >
+                {beforePrice} {t("egp")}
+              </p>
             )}
-          >
-            {priceEGP} {t("egp")}
-          </p>
+
+            <p
+              className={cn(
+                "text-2xl font-bold",
+                premiumPlan ? "text-white" : "text-primary"
+              )}
+            >
+              {afterPrice ?? beforePrice} {t("egp")}
+            </p>
+          </div>
         </div>
+
+        {/* المميزات */}
         <div className="flex flex-col gap-3">
           {features?.map((feature, index) => (
             <div key={index} className="flex items-center gap-2">
@@ -61,6 +84,8 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
           ))}
         </div>
       </div>
+
+      {/* زرار */}
       <div>
         <Button
           className={cn(

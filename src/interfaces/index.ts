@@ -4,8 +4,16 @@ export interface ILanguage {
   flag: string;
 }
 export interface ISubscription {
-  id: string;
-  planName: string;
+  afterPrice: number;
+  beforePrice: number;
+  discountPercentage: number;
   features: string[];
-  priceEGP: number;
+  freeTrialDays: number;
+  hasFreeTrial: boolean;
+  id: number;
+  isOriginalPrice: boolean;
+  isSpecialOffer: boolean;
+  isTimeLimited: boolean;
+  planName: string;
+  timeEnd: string;
 }
