@@ -13,17 +13,19 @@ import InputErrorMessage from "@/src/components/InputErrorMsg";
 import toast from "react-hot-toast";
 import { sendChangeEmailAPI } from "@/src/services/mutations/users";
 import SettingsInput from "../../SettingsInput";
+import { useEmail } from "@/src/hooks";
 
 interface IProps {
   handleChangeEmail: (email: string) => void;
 }
 export default function ChangeEmailForm({ handleChangeEmail }: IProps) {
+  const { data } = useEmail();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<ChangeEmail>({
-    resolver: zodResolver(changeEmailSchema),
+    resolver: zodResolver(changeEmailSchema(data?.message || "")),
     mode: "onChange",
   });
   const onSubmit = async (data: ChangeEmail) => {

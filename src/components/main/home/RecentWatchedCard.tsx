@@ -8,6 +8,7 @@ import {
 import { Button } from "@/src/components/ui/Button";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import CircularRing from "@/src/components/ui/CircularRing";
+import Link from "next/link";
 
 interface IProps {
   recentVideo: IRecentWatched;
@@ -21,9 +22,13 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
     title,
     videoType,
     watchProgressPercentage,
+    id,
   } = recentVideo;
   return (
-    <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
+    <Link
+      href={`/programs/${id}`}
+      className="block relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg"
+    >
       {/* Background image */}
       <Image src={imageUrl} alt={title} fill className="object-cover" />
       {/* Overlay */}
@@ -82,6 +87,6 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

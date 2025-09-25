@@ -1,14 +1,16 @@
 import { IClass } from "@/src/interfaces/main/home";
 import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IProps {
   classicClass: IClass;
 }
 export default function ClassicClassCard({ classicClass }: IProps) {
-  const { title, level, totalCalories, totalDuration, imageUrl } = classicClass;
+  const { title, level, totalCalories, totalDuration, imageUrl, programDayId } =
+    classicClass;
   return (
-    <div className="space-y-2">
+    <Link href={`/programs/${programDayId}`} className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
         <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
@@ -30,6 +32,6 @@ export default function ClassicClassCard({ classicClass }: IProps) {
           <span className="truncate">{totalCalories}Kcal</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

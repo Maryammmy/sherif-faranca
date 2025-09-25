@@ -4,6 +4,7 @@ import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
@@ -20,7 +21,8 @@ export default function RecommendCard({ recommendForYou }: IProps) {
     isProgram,
     isFavorite,
   } = recommendForYou;
-  const toggleFav = async () => {
+  const toggleFav = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const payload = {
       itemId: id,
       isProgram,
@@ -31,7 +33,7 @@ export default function RecommendCard({ recommendForYou }: IProps) {
     }
   };
   return (
-    <div className="space-y-2">
+    <Link href={`/programs/${id}`} className="space-y-2">
       <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
         <Image
           src={imageUrl}
@@ -79,6 +81,6 @@ export default function RecommendCard({ recommendForYou }: IProps) {
           <span className="truncate">{totalCalories}Kcal</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

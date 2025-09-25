@@ -3,7 +3,7 @@ import { Clock12 } from "lucide-react";
 
 function Duration() {
   return (
-    <div className="border rounded-xl flex-1 min-h-0 h-full flex flex-col gap-1 py-5 justify-between items-center">
+    <div className="border rounded-xl flex flex-col gap-1 py-5 justify-between items-center">
       <div className="flex items-center gap-3">
         <Button className="w-10 h-10 rounded-full bg-gray-200/70 flex items-center justify-center">
           <Clock12 size={20} />

@@ -1,13 +1,17 @@
 import z from "zod";
 
-export const changeEmailSchema = z.object({
-  newEmail: z
-    .string()
-    .nonempty("Email is required")
-    .email("Please enter a valid email"),
-});
+export const changeEmailSchema = (currentEmail: string) =>
+  z.object({
+    newEmail: z
+      .string()
+      .nonempty("Email is required")
+      .email("Please enter a valid email")
+      .refine((val) => val !== currentEmail, {
+        message: "New email cannot be the same as current email",
+      }),
+  });
 
-export type ChangeEmail = z.infer<typeof changeEmailSchema>;
+export type ChangeEmail = z.infer<ReturnType<typeof changeEmailSchema>>;
 
 export const verifyEmailSchema = z.object({
   otp: z
