@@ -1,5 +1,5 @@
 import { IAboutUs } from "@/src/interfaces/main/services";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 interface IProps {
   data: IAboutUs;

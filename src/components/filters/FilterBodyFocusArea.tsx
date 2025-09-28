@@ -1,5 +1,5 @@
 import { IFilter } from "@/src/interfaces/filters";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 import { EmptyStateGrid } from "../ui/empty-state/EmptyStateGrid";

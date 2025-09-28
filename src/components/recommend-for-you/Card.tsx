@@ -3,7 +3,7 @@ import { IRecommendedForYou } from "@/src/interfaces/main/home";
 import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;

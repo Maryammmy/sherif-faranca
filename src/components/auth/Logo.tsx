@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { Button } from "../ui/Button";
 
 function Logo() {

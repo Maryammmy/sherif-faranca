@@ -5,18 +5,26 @@ import { cn } from "@/src/lib/utils";
 import { Award, Calendar, MoveRight } from "lucide-react";
 import { useRouter } from "@/src/i18n/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { IProgramDays } from "@/src/interfaces/program";
 
 interface IProps {
   programId: string;
+  data: IProgramDays;
 }
-const WEEKS = 4;
-const DAYS_PER_WEEK = 7;
 
-export default function SelectDay({ programId }: IProps) {
+export default function SelectDay({ programId, data }: IProps) {
   const router = useRouter();
-  const [activeDay, setActiveDay] = useState({ week: 1, day: 1 });
+  const { totalDays, completedDays, weeks } = data;
+
+  const [activeDay, setActiveDay] = useState<{
+    week: number | null;
+    day: number | null;
+    dayId: number | null;
+  }>({ week: null, day: null, dayId: null });
+
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
+
   useEffect(() => {
     const updateHeight = () => {
       if (contentRef.current) {
@@ -30,32 +38,85 @@ export default function SelectDay({ programId }: IProps) {
     };
   }, []);
 
+  // أول يوم مسموح تبدأه (أول يوم مش مخلص)
+  const getFirstIncompleteDay = () => {
+    for (const week of weeks) {
+      for (const day of week?.days) {
+        if (!day.isCompleted) {
+          return day;
+        }
+      }
+    }
+    // لو كله مخلص، رجّع آخر يوم
+    const lastWeek = weeks[weeks?.length - 1];
+    return lastWeek?.days[lastWeek?.days?.length - 1];
+  };
+
+  const handleStartTraining = () => {
+    if (!weeks?.length) return;
+    let targetDayId = activeDay?.dayId;
+
+    if (!targetDayId) {
+      const firstIncompleteDay = getFirstIncompleteDay();
+      targetDayId = firstIncompleteDay?.dayId;
+    }
+
+    router.push(`/programs/${programId}/days/${targetDayId}/exercises`);
+  };
+
+  // check: اليوم متاح ولا لأ
+  const isDayUnlocked = (weekIdx: number, dayIdx: number) => {
+    const flatDays = weeks?.flatMap((w) => w.days);
+    const currentDay = flatDays?.find(
+      (d) => d?.dayNumber === dayIdx + 1 && d === weeks[weekIdx]?.days[dayIdx]
+    );
+
+    const prevDay = currentDay
+      ? flatDays?.find((d) => d?.dayId === currentDay?.dayId - 1) || null
+      : null;
+
+    // أول يوم دايمًا مفتوح
+    if (weekIdx === 0 && dayIdx === 0) return true;
+
+    // مسموح تفتح اليوم لو هو مخلص، أو اليوم اللي قبله مخلص
+    if (currentDay?.isCompleted) return true;
+    if (prevDay?.isCompleted) return true;
+
+    return false;
+  };
+
   return (
     <div className="program-layout">
       <div className="flex flex-col gap-6">
         <div>
-          <p className="text-sm text-muted-foreground">0/28 Days Finished</p>
+          <p className="text-sm text-muted-foreground">
+            {completedDays}/{totalDays} Days Finished
+          </p>
           <div className="w-full h-2 bg-gray-200 rounded-full mt-2">
             <div
               className="h-2 bg-primary rounded-full"
-              style={{ width: "3.6%" }}
+              style={{
+                width: `${(completedDays / totalDays) * 100}%`,
+              }}
             />
           </div>
         </div>
-        {Array.from({ length: WEEKS }, (_, weekIdx) => (
-          <div key={weekIdx}>
+        {weeks.map((week) => (
+          <div key={week.weekNumber}>
             <div className="-ms-1.5 flex items-center gap-1.5 mb-3">
               <div
                 className={cn(
                   "w-5 h-5 rounded-full shrink-0",
-                  activeDay.week === weekIdx + 1 ? "bg-primary" : "bg-gray-200"
+                  activeDay.week === week.weekNumber
+                    ? "bg-primary"
+                    : "bg-gray-200"
                 )}
               ></div>
               <span className="shrink-0 text-primary">
                 <Calendar />
               </span>
               <h3 className="text-gray-700 text-lg font-semibold">
-                Week {weekIdx + 1}
+                Week {week.weekNumber}
               </h3>
             </div>
             <div className="flex items-center gap-2">
@@ -66,7 +127,7 @@ export default function SelectDay({ programId }: IProps) {
                 <div
                   className="bg-primary rounded-full"
                   style={{
-                    height: activeDay.week === weekIdx + 1 ? "14.3%" : "0%",
+                    height: activeDay.week === week.weekNumber ? "14.3%" : "0%",
                   }}
                 />
               </div>
@@ -74,25 +135,36 @@ export default function SelectDay({ programId }: IProps) {
                 ref={contentRef}
                 className="py-2 flex flex-wrap items-center lg:justify-between gap-3 w-full"
               >
-                {Array.from({ length: DAYS_PER_WEEK }, (_, dayIdx) => {
+                {week?.days?.map((day, dayIdx) => {
                   const isActive =
-                    activeDay.week === weekIdx + 1 &&
-                    activeDay.day === dayIdx + 1;
+                    activeDay.week === week.weekNumber &&
+                    activeDay.day === day.dayNumber;
+
+                  const unlocked = isDayUnlocked(week.weekNumber - 1, dayIdx);
+
                   return (
-                    <Fragment key={dayIdx}>
+                    <Fragment key={day.dayId}>
                       <Button
                         onClick={() =>
-                          setActiveDay({ week: weekIdx + 1, day: dayIdx + 1 })
+                          unlocked &&
+                          setActiveDay({
+                            week: week.weekNumber,
+                            day: day.dayNumber,
+                            dayId: day.dayId,
+                          })
                         }
+                        disabled={!unlocked}
                         className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full sm:rounded-2xl border
-                    ${
-                      isActive
-                        ? "bg-primary text-white"
-                        : "bg-gray-100 text-gray-700"
-                    }
-                  `}
+                          ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : unlocked
+                              ? "bg-gray-100 text-gray-700"
+                              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                          }
+                        `}
                       >
-                        {dayIdx + 1}
+                        {day.dayNumber}
                       </Button>
                       <MoveRight
                         className={cn(
@@ -112,7 +184,7 @@ export default function SelectDay({ programId }: IProps) {
         ))}
         <div>
           <Button
-            onClick={() => router.push(`/programs/${programId}/exercises`)}
+            onClick={handleStartTraining}
             className="bg-primary hover:bg-primary/80 font-medium text-white py-3 w-full sm:w-60 rounded-md"
           >
             Start Training

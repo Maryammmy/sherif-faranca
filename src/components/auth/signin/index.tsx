@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import SigninForm from "./Form";
 import SocialButtons from "./SocialButtons";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function Signin() {
   const t = useTranslations("signin");

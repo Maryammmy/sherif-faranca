@@ -1,5 +1,5 @@
 import { IHabit, IRing } from "@/src/interfaces/main/my-fit";
-import { Droplet, Footprints, Flame } from "lucide-react";
+import { Droplet, Footprints, Flame, Clock12 } from "lucide-react";
 const baseScale = 1;
 const spacing = 0.18;
 
@@ -28,13 +28,13 @@ export const habits: IHabit[] = [
     goal: "Goal 3K steps",
     icon: <Footprints className="text-green-400" size={24} />,
   },
-  // {
-  //   title: "Sleep",
-  //   value: "7.30",
-  //   unit: "hours",
-  //   goal: "Goal 8 Hours Sleep",
-  //   icon: <BedDouble className="text-gray-400" size={24} />,
-  // },
+  {
+    title: "Duration",
+    value: "1,45",
+    unit: "hours",
+    goal: "Goal 8 Hours",
+    icon: <Clock12 className="text-gray-400" size={24} />,
+  },
   {
     title: "Calories",
     value: "1700",

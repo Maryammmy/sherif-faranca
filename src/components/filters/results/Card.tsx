@@ -1,6 +1,6 @@
 import { IFiltersResult } from "@/src/interfaces/filters";
 import { TrendingUp, Clock12, Flame } from "lucide-react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import React from "react";
 
 interface IProps {

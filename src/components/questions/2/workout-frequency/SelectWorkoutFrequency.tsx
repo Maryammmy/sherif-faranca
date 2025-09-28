@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { cn } from "@/src/lib/utils";
 import { workoutFrequencies } from "@/src/data/questions";
 import { Button } from "@/src/components/ui/Button";

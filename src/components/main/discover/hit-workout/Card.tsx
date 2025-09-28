@@ -1,5 +1,5 @@
 import { Clock12, Flame, TrendingUp } from "lucide-react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import React from "react";
 
 function HitWorkoutCard() {

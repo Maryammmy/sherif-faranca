@@ -1,6 +1,6 @@
 import { IWorkout } from "@/src/interfaces/main/settings/account/workouts";
 import { formatDateOnly, formatTimeOnly } from "@/src/lib/utils";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 interface IProps {
   workout: IWorkout;

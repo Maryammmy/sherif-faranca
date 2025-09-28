@@ -1,7 +1,7 @@
 import { IFilter } from "@/src/interfaces/filters";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { CheckCircle2 } from "lucide-react";
 import { EmptyState } from "../ui/empty-state/EmptyState";
 

@@ -1,6 +1,6 @@
 import SignupForm from "./SignupForm";
 import Header from "./Header";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function Signup() {
   return (

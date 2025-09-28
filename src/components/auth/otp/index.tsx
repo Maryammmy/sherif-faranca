@@ -1,7 +1,7 @@
 "use client";
 import OtpForm from "@/src/components/auth/otp/OtpForm";
 import { useQueryParams } from "@/src/lib/utils";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function Otp() {
   const queryParams = useQueryParams();

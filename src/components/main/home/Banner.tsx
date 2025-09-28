@@ -2,7 +2,7 @@
 
 import { useHome } from "@/src/hooks";
 import { IMerchantBanner } from "@/src/interfaces/main/home";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { SkeletonCard } from "../../skeleton/Card";
 import { EmptyState } from "../../ui/empty-state/EmptyState";

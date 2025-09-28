@@ -1,5 +1,5 @@
 import ForgetPasswordForm from "./ForgetPasswordForm";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function ForgetPassword() {
   return (

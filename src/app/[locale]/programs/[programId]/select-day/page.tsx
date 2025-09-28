@@ -1,5 +1,4 @@
-import Background from "@/src/components/program/Background";
-import SelectDay from "@/src/components/program/select-day/SelectDay";
+import ProgramDaysComponent from "@/src/components/program/select-day";
 
 async function ProgramDays({
   params,
@@ -9,8 +8,7 @@ async function ProgramDays({
   const { programId } = await params;
   return (
     <>
-      <Background href={`/programs/${programId}`} />
-      <SelectDay programId={programId} />
+      <ProgramDaysComponent programId={programId} />
     </>
   );
 }

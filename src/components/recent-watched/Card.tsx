@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import {
   Clock12,
   EllipsisVertical,

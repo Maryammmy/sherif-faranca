@@ -31,3 +31,9 @@ export const languages: ILanguage[] = [
   },
 ];
 export const periods: string[] = ["monthly", "yearly"];
+export const ProgramBreakpoints: SwiperBreakpoints = {
+  640: { slidesPerView: 2 },
+  1024: { slidesPerView: 3 },
+  1280: { slidesPerView: 3 },
+  1536: { slidesPerView: 5 },
+};

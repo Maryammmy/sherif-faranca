@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import {
   Clock12,
   EllipsisVertical,
@@ -14,6 +14,7 @@ interface IProps {
   recentVideo: IRecentWatched;
 }
 export default function RecentWatchedCard({ recentVideo }: IProps) {
+  console.log(recentVideo);
   const {
     imageUrl,
     categoryName,

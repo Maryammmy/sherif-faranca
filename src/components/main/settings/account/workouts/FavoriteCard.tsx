@@ -3,7 +3,7 @@ import { IFav } from "@/src/interfaces/fav";
 import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 interface IProps {
   fav: IFav;

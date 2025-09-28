@@ -1,38 +1,39 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import ExerciseCard from "./ExerciseCard";
-// import RecommendForYou from "@/src/components/main/home/RecommendForYou";
 import { Link } from "@/src/i18n/navigation";
+import { IProgramDay } from "@/src/interfaces/program";
+import RecommendForYou from "./RecommendForYou";
 interface IProps {
   programId: string;
+  dayId: string;
+  data: IProgramDay;
 }
-function DayExercises({ programId }: IProps) {
-  const searchParams = useSearchParams();
-  const day = searchParams.get("day");
-
+function DayExercises({ programId, dayId, data }: IProps) {
+  const {
+    dayDescription,
+    dayTitle,
+    programTitle,
+    level,
+    totalTimeMinutes,
+    focusArea,
+    exercises,
+    suggestions,
+  } = data;
   return (
     <div className="program-layout">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-1">
-          <header>
-            <h1 className="text-gray-700 font-bold">
-              Massive Upper Body Plane
-            </h1>
-          </header>
-          <h2 className="text-xl text-gray-700 font-bold">DAY {day}</h2>
-          <p className="text-secondary font-medium">
-            Lose belly fat, get ripped in just 4 weeks with this efficient plan.
-            It also helps pump up your arms, strengthen your back & shoulders.
-            No equipment needed!
-          </p>
+          <h2 className="text-gray-700 font-bold">{programTitle}</h2>
+          <h3 className="text-xl text-gray-700 font-bold">{dayTitle}</h3>
+          <p className="text-secondary font-medium">{dayDescription}</p>
         </div>
         <div className="flex items-center justify-between bg-white rounded-xl shadow-sm px-3 sm:px-6 py-4 border text-center text-gray-700 font-medium w-full max-w-md mx-auto">
           {/* Level */}
           <div className="flex-1">
             <div className="flex flex-col gap-px items-start mx-auto w-fit">
               <h3 className="flex justify-center items-center gap-px text-xs sm:text-base">
-                Adjustable{" "}
+                {level}{" "}
                 <span className="text-primary shrink-0">
                   <ChevronRight />
                 </span>
@@ -45,7 +46,7 @@ function DayExercises({ programId }: IProps) {
           {/* Time */}
           <div className="flex-1">
             <div className="flex flex-col gap-px items-start mx-auto w-fit">
-              <h3 className="text-xs sm:text-base">30 Mins</h3>
+              <h3 className="text-xs sm:text-base">{totalTimeMinutes} Mins</h3>
               <p className=" text-xs text-gray-400">Time</p>
             </div>
           </div>
@@ -54,21 +55,24 @@ function DayExercises({ programId }: IProps) {
           {/* Focus Area */}
           <div className="flex-1">
             <div className="flex flex-col gap-px items-start mx-auto w-fit">
-              <h3 className="text-xs sm:text-base">Chest</h3>
+              <h3 className="text-xs sm:text-base">{focusArea}</h3>
               <p className="text-xs text-gray-400">Focus Area</p>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-6">
           <div>
-            <h2 className="text-lg text-gray-700 font-bold">Exercises (11)</h2>
+            <h2 className="text-lg text-gray-700 font-bold">
+              Exercises ({exercises?.length})
+            </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 place-items-center gap-5">
-            {Array.from({ length: 10 }).map((_, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
+            {exercises?.map((exercise) => (
               <ExerciseCard
-                key={index}
-                exerciseId={index + 1}
+                key={exercise?.exerciseId}
                 programId={programId}
+                dayId={dayId}
+                exercise={exercise}
               />
             ))}
           </div>
@@ -79,7 +83,7 @@ function DayExercises({ programId }: IProps) {
             Start Training
           </Link>
         </div>
-        {/* <RecommendForYou screen3xl={true} /> */}
+        <RecommendForYou suggestions={suggestions} />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import {
   getGoogleAuthUrlAPI,
 } from "@/src/services/queries/social-auth";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function SocialButtons() {
   const t = useTranslations("selectMethod");

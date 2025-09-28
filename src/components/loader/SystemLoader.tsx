@@ -1,4 +1,4 @@
-// import Image from "next/image";
+// import Image from "@/src/components/ui/Image";
 import "./system-loader.css";
 
 export default function SystemLoader() {

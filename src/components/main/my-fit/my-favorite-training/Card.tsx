@@ -1,6 +1,6 @@
 import { Button } from "@/src/components/ui/Button";
 import { Heart } from "lucide-react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function FavoriteTrainingCard() {
   return (

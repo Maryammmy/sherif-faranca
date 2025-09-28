@@ -1,5 +1,5 @@
 import { IColoredText } from "@/src/interfaces/questions";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { ReactNode } from "react";
 type Props = {
   img: string;

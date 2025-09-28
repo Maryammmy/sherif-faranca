@@ -1,5 +1,5 @@
 import { IFoucsArea } from "@/src/interfaces/main/discover";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 interface IProps {
   area: IFoucsArea;

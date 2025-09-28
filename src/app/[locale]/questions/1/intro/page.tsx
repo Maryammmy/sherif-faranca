@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
 
 function Introduction() {

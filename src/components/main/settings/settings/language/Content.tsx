@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { useRouter, usePathname } from "@/src/i18n/navigation";
 import { useLocale } from "next-intl";
 import { Button } from "@/src/components/ui/Button";

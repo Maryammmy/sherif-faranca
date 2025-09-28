@@ -3,7 +3,7 @@
 import { Button } from "@/src/components/ui/Button";
 import { languages } from "@/src/data";
 import { cn } from "@/src/lib/utils";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { useRouter } from "@/src/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";

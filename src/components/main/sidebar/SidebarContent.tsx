@@ -3,7 +3,7 @@ import { UserCircle } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { mainNavItems, secondaryNavItems } from "@/src/data/main/sidebar";
 import { Link } from "@/src/i18n/navigation";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { useState } from "react";
 import { Button } from "@/src/components/ui/Button";
 import SettingsPanel from "../settings/settings-panel";

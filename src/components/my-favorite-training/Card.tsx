@@ -2,7 +2,7 @@ import { Button } from "@/src/components/ui/Button";
 import { IFav } from "@/src/interfaces/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 import { toggleFavAPI } from "@/src/services/mutations/fav";
 
 interface IProps {

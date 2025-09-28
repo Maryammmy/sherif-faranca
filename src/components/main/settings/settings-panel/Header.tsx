@@ -1,10 +1,11 @@
 import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { CloseButtonPanel } from "@/src/components/ui/Panel";
 import { useProfile } from "@/src/hooks";
-import Image from "next/image";
+import Image from "@/src/components/ui/Image";
 
 function Header() {
   const { data } = useProfile();
+  console.log(data);
   if (!data)
     return (
       <div className="flex items-center gap-2 py-5 sm:py-10 px-2.5">
@@ -16,17 +17,18 @@ function Header() {
         </div>
       </div>
     );
-  const { firstName, email } = data?.data;
+  const { firstName, email, picture } = data?.data;
   return (
     <div className="flex items-center gap-2 py-5 sm:py-10 px-2.5">
       <CloseButtonPanel closeButtonClassname="text-white border-white" />
       <div className="shrink-0 relative w-10 h-10 rounded-full overflow-hidden">
         <Image
-          src="/user.jpg"
+          src={picture}
           alt="user"
           className="object-cover"
           fill
           sizes="40px"
+          defaultImage="/user-round.svg"
         />
       </div>
       <div className="flex flex-col gap-2 text-white">
