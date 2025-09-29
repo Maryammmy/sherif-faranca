@@ -15,7 +15,6 @@ export function handleServerError(error: unknown): IActionState {
       normalizedErrors[key] = Array.isArray(value) ? value : [value];
     }
   }
-  console.log(err.response?.data?.message, err.message);
   return {
     success: false,
     message:
