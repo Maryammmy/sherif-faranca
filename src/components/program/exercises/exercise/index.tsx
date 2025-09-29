@@ -2,7 +2,7 @@
 import { useProgramExercise } from "@/src/hooks";
 import Background from "../../Background";
 import ExerciseDetails from "./ExerciseDetails";
-import { IProgramBackground } from "@/src/interfaces/program";
+import { IExerciseDetails, IProgramBackground } from "@/src/interfaces/program";
 
 interface IProps {
   programId: string;
@@ -11,12 +11,9 @@ interface IProps {
 }
 function Exercise({ programId, exerciseId, dayId }: IProps) {
   const { data } = useProgramExercise(exerciseId);
-  const exercise = data?.data;
+  const exercise: IExerciseDetails = data?.data;
   const programBackground: IProgramBackground = {
-    title: exercise?.programTitle,
-    category: exercise?.category,
-    level: exercise?.level,
-    timeTotal: exercise?.timetotal,
+    id: exercise?.id,
     imageUrl: exercise?.programImageUrl,
     isFavorite: exercise?.isFavorite,
   };
@@ -28,6 +25,7 @@ function Exercise({ programId, exerciseId, dayId }: IProps) {
           <Background
             href={`/programs/${programId}/days/${dayId}/exercises`}
             programBackground={programBackground}
+            queryKey={["programExercise", exerciseId]}
           />
           <ExerciseDetails data={exercise} />
         </>

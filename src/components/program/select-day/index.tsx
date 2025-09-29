@@ -2,7 +2,7 @@
 import { useProgramCalender } from "@/src/hooks";
 import Background from "../Background";
 import SelectDay from "./SelectDay";
-import { IProgramBackground } from "@/src/interfaces/program";
+import { IProgramBackground, IProgramDays } from "@/src/interfaces/program";
 
 interface IProps {
   programId: string;
@@ -10,12 +10,10 @@ interface IProps {
 function ProgramDays({ programId }: IProps) {
   const { data } = useProgramCalender(programId);
   console.log(data);
-  const programDays = data?.data;
+  const programDays: IProgramDays = data?.data;
   const programBackground: IProgramBackground = {
+    id: programDays?.id,
     title: programDays?.title,
-    category: programDays?.category,
-    level: programDays?.level,
-    timeTotal: programDays?.timetotal,
     imageUrl: programDays?.imageUrl,
     isFavorite: programDays?.isFavorite,
   };
@@ -27,6 +25,7 @@ function ProgramDays({ programId }: IProps) {
           <Background
             href={`/programs/${programId}`}
             programBackground={programBackground}
+            queryKey={["programCalender", programId]}
           />
           <SelectDay programId={programId} data={programDays} />
         </>

@@ -2,7 +2,7 @@
 import { useProgramDay } from "@/src/hooks";
 import Background from "../Background";
 import DayExercises from "./DayExercises";
-import { IProgramBackground } from "@/src/interfaces/program";
+import { IProgramBackground, IProgramDay } from "@/src/interfaces/program";
 
 interface IProps {
   programId: string;
@@ -10,12 +10,9 @@ interface IProps {
 }
 function Exercises({ programId, dayId }: IProps) {
   const { data } = useProgramDay(dayId);
-  const programDay = data?.data;
+  const programDay: IProgramDay = data?.data;
   const programBackground: IProgramBackground = {
-    title: programDay?.programTitle,
-    category: programDay?.category,
-    level: programDay?.level,
-    timeTotal: programDay?.timetotal,
+    id: programDay?.id,
     imageUrl: programDay?.programImageUrl,
     isFavorite: programDay?.isFavorite,
   };
@@ -27,6 +24,7 @@ function Exercises({ programId, dayId }: IProps) {
           <Background
             href={`/programs/${programId}/select-day`}
             programBackground={programBackground}
+            queryKey={["programDay", dayId]}
           />
           <DayExercises programId={programId} dayId={dayId} data={programDay} />
         </>

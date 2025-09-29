@@ -15,11 +15,12 @@ export interface IProgram {
   whatThisProgramOffer: string[];
 }
 export interface IProgramBackground {
-  title: string;
+  id: number;
+  title?: string;
   imageUrl: string;
-  level: string;
-  timeTotal: string;
-  category: string;
+  level?: string;
+  timeTotal?: string;
+  category?: string;
   isFavorite: boolean;
 }
 interface IDay {
@@ -59,6 +60,8 @@ export interface ISuggestion {
   timeMinutes: number;
 }
 export interface IProgramDay {
+  id: number;
+  isFavorite: boolean;
   dayDescription: string;
   dayTitle: string;
   exercises: IExercise[];
@@ -70,6 +73,8 @@ export interface IProgramDay {
   totalTimeMinutes: number;
 }
 export interface IExerciseDetails {
+  id: number;
+  programImageUrl: string;
   description: string;
   exerciseId: number;
   focusAreas: string[];

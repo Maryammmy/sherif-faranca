@@ -6,8 +6,10 @@ import FitnessGoal from "../fitness-goal";
 import WeightGoal from "../weight-goal";
 
 function Goals() {
-  const [fitnessGoalOpen, setFitnessGoalOpen] = useState(false);
+  // const [stepGoalOpen, setStepGoalOpen] = useState(false);
   const [weightGoalOpen, setWeightGoalOpen] = useState(false);
+  const [fitnessGoalOpen, setFitnessGoalOpen] = useState(false);
+
   return (
     <>
       <div className="flex flex-col gap-2 px-3">
@@ -15,22 +17,22 @@ function Goals() {
           <GoalsPanelCard
             key={index}
             goal={goal}
-            {...(goal.label === "fitness goal" && {
-              handleOpenFitnessGoal: () => setFitnessGoalOpen(true),
-            })}
             {...(goal.label === "weight goal" && {
               handleOpenWeightGoal: () => setWeightGoalOpen(true),
+            })}
+            {...(goal.label === "fitness goal" && {
+              handleOpenFitnessGoal: () => setFitnessGoalOpen(true),
             })}
           />
         ))}
       </div>
-      <FitnessGoal
-        open={fitnessGoalOpen}
-        onClose={() => setFitnessGoalOpen(false)}
-      />
       <WeightGoal
         open={weightGoalOpen}
         onClose={() => setWeightGoalOpen(false)}
+      />
+      <FitnessGoal
+        open={fitnessGoalOpen}
+        onClose={() => setFitnessGoalOpen(false)}
       />
     </>
   );

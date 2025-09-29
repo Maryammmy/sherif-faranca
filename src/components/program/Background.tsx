@@ -3,11 +3,30 @@ import { Clock12, Heart, MoveLeft, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
 import { IProgramBackground } from "@/src/interfaces/program";
+import { toggleFavAPI } from "@/src/services/mutations/fav";
+import { useQueryClient } from "@tanstack/react-query";
 interface IProps {
   href: string;
   programBackground: IProgramBackground;
+  queryKey: string[];
 }
-function Background({ href, programBackground }: IProps) {
+function Background({ href, programBackground, queryKey }: IProps) {
+  const queryClient = useQueryClient();
+  const { imageUrl, isFavorite, category, level, timeTotal, title, id } =
+    programBackground;
+  const toggleProgramFav = async () => {
+    const payload = {
+      itemId: id,
+      isProgram: true,
+    };
+    const response = await toggleFavAPI(payload);
+    if (response?.success === true) {
+      queryClient.refetchQueries({
+        queryKey,
+      });
+    }
+  };
+
   return (
     <div>
       <div className="w-full relative h-[250px] sm:h-[300px] lg:h-[320px]">
@@ -21,8 +40,11 @@ function Background({ href, programBackground }: IProps) {
               >
                 <MoveLeft className="text-gray-700 w-4 h-4 sm:w-6 sm:h-6" />
               </Link>
-              <Button className="flex justify-center items-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white">
-                {programBackground?.isFavorite ? (
+              <Button
+                onClick={toggleProgramFav}
+                className="flex justify-center items-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white"
+              >
+                {isFavorite ? (
                   <Heart className="text-[#F95555] fill-[#F95555] w-4 h-4 sm:w-6 sm:h-6" />
                 ) : (
                   <Heart className="text-gray-700 w-4 h-4 sm:w-6 sm:h-6" />
@@ -30,34 +52,33 @@ function Background({ href, programBackground }: IProps) {
               </Button>
             </div>
             <div className="space-y-3">
-              <header>
-                <h1 className="max-w-xs text-2xl sm:text-4xl font-semibold text-white">
-                  {programBackground?.title}
-                </h1>
-              </header>
-              <div className="flex gap-2 xs:gap-4 items-center text-gray-300 text-sm font-medium">
-                <div className="flex items-center gap-1">
-                  <TrendingUp className="shrink-0" />
-                  <span>{programBackground?.level}</span>
+              {title && (
+                <header>
+                  <h1 className="max-w-xs text-2xl sm:text-4xl font-semibold text-white">
+                    {programBackground?.title}
+                  </h1>
+                </header>
+              )}
+              {level && category && timeTotal && (
+                <div className="flex gap-2 xs:gap-4 items-center text-gray-300 text-sm font-medium">
+                  <div className="flex items-center gap-1">
+                    <TrendingUp className="shrink-0" />
+                    <span>{level}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Play className="shrink-0" />
+                    <span>{category}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock12 className="shrink-0" />
+                    <span>{timeTotal}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Play className="shrink-0" />
-                  <span>{programBackground?.category}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Clock12 className="shrink-0" />
-                  <span>{programBackground?.timeTotal}</span>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
-        <Image
-          src={programBackground?.imageUrl}
-          alt="Program background"
-          fill
-          priority
-        />
+        <Image src={imageUrl} alt="Program background" fill priority />
       </div>
     </div>
   );

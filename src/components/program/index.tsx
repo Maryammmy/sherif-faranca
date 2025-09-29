@@ -11,6 +11,7 @@ function Program({ programId }: IProps) {
   const { data } = useProgram(programId);
   const program: IProgram = data?.data;
   const programBackground: IProgramBackground = {
+    id: program?.id,
     title: program?.title,
     category: program?.category,
     level: program?.level,
@@ -23,7 +24,11 @@ function Program({ programId }: IProps) {
       {!data ? null : (
         <>
           {" "}
-          <Background href="/" programBackground={programBackground} />
+          <Background
+            href="/"
+            programBackground={programBackground}
+            queryKey={["program", programId]}
+          />
           <Content programId={programId} data={program} />
         </>
       )}

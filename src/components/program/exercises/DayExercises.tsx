@@ -24,8 +24,14 @@ function DayExercises({ programId, dayId, data }: IProps) {
     <div className="program-layout">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-1">
-          <h2 className="text-gray-700 font-bold">{programTitle}</h2>
-          <h3 className="text-xl text-gray-700 font-bold">{dayTitle}</h3>
+          <header>
+            {" "}
+            <h1 className="text-gray-700 font-bold">{programTitle}</h1>
+          </header>
+          <header>
+            {" "}
+            <h1 className="text-xl text-gray-700 font-bold">{dayTitle}</h1>
+          </header>
           <p className="text-secondary font-medium">{dayDescription}</p>
         </div>
         <div className="flex items-center justify-between bg-white rounded-xl shadow-sm px-3 sm:px-6 py-4 border text-center text-gray-700 font-medium w-full max-w-md mx-auto">
