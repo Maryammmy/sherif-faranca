@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 
 import { IProfile } from "@/src/interfaces/main/settings";
 import { postServerData, putServerData } from "../server";
