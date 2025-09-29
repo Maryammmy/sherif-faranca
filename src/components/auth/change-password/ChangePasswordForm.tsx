@@ -34,6 +34,7 @@ function ChangePasswordForm() {
           email,
         };
     const response = await resetPasswordAPI({ ...data, ...payload });
+    console.log(response);
     if (response?.success === true) {
       toast.success(response?.message);
       setTimeout(() => {
