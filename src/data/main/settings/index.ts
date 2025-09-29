@@ -6,13 +6,12 @@ import {
   LockKeyhole,
   MailCheck,
   Phone,
-  Settings,
+  TableOfContents,
   UserRound,
 } from "lucide-react";
 
 export const account: ISetting[] = [
   { icon: UserRound, label: "personal information" },
-  { icon: Settings, label: "account settings" },
   {
     icon: BookmarkCheck,
     label: "my workouts",
@@ -25,6 +24,7 @@ export const settings: ISetting[] = [
   { icon: LockKeyhole, label: "change password" },
   { icon: MailCheck, label: "change email" },
   { icon: Phone, label: "change phone number" },
+  { icon: TableOfContents, label: "FAQ" },
 ];
 export const email: IInputSettings = {
   id: "newEmail",
