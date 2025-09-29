@@ -14,7 +14,6 @@ interface IProps {
   recentVideo: IRecentWatched;
 }
 export default function RecentWatchedCard({ recentVideo }: IProps) {
-  console.log(recentVideo);
   const {
     imageUrl,
     categoryName,
