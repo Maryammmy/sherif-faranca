@@ -6,12 +6,14 @@ import ChangePassword from "../settings/change-password";
 import ChangeEmail from "../settings/change-email";
 import ChangePhone from "../settings/change-phone";
 import Language from "../settings/language";
+import Faq from "../settings/faq";
 
 function SettingsSection() {
   const [changeLanguage, setChangeLanguageOpen] = useState(false);
   const [changePasswordOpen, setChangePasswordOpen] = useState(false);
   const [changeEmailOpen, setChangeEmailOpen] = useState(false);
   const [changePhoneOpen, setChangePhoneOpen] = useState(false);
+  const [faqOpen, setFaqOpen] = useState(false);
   return (
     <>
       <div className="settings-panel-section">
@@ -35,6 +37,9 @@ function SettingsSection() {
               {...(item.label === "change phone number" && {
                 handleOpenChangePhone: () => setChangePhoneOpen(true),
               })}
+              {...(item.label === "FAQ" && {
+                handleOpenFaq: () => setFaqOpen(true),
+              })}
             />
           ))}
         </div>
@@ -55,6 +60,7 @@ function SettingsSection() {
         open={changePhoneOpen}
         onClose={() => setChangePhoneOpen(false)}
       />
+      <Faq open={faqOpen} onClose={() => setFaqOpen(false)} />
     </>
   );
 }
