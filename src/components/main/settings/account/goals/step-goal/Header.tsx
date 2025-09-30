@@ -4,13 +4,11 @@ import Link from "next/link";
 function Header() {
   return (
     <div className="flex justify-between items-center gap-2 text-gray-700 pb-5">
-      <Link href="/my-fit">
+      <Link href="/">
         <MoveLeft className="size-6" />
       </Link>
       <header className="flex-1 flex justify-center">
-        <h1 className="text-2xl font-bold text-center text-gray-700">
-          Calories
-        </h1>
+        <h1 className="text-2xl font-bold text-center text-gray-700">Step</h1>
       </header>
     </div>
   );

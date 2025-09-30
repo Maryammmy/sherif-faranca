@@ -18,7 +18,7 @@ function HabitCard({ habit }: IProps) {
       </div>
       <div className="text-2xl font-bold flex items-baseline gap-1">
         <span>{value}</span>
-        <span className="text-gray-500 text-base">{unit}</span>
+        <span className="text-secondary text-base">{unit}</span>
       </div>
       <p className="text-gray-400 text-sm font-medium">{goal}</p>
     </Link>

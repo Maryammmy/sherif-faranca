@@ -23,16 +23,17 @@ export interface IRecommendedForYou {
 export interface IClassicClass {
   focusAreaId: number;
   focusAreaName: string;
-  programs: IClass[];
+  videos: IClass[];
 }
 export interface IClass {
-  focusArea: string;
-  imageUrl: string;
-  level: string;
-  programDayId: number;
+  videoId: number;
   title: string;
-  totalCalories: number;
-  totalDuration: number;
+  focusAreas: [];
+  level: string;
+  duration: string;
+  calories: string;
+  imageUrl: string;
+  videoUrl: string;
 }
 export interface IMerchantBanner {
   id: number;

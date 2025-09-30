@@ -14,14 +14,13 @@ import Link from "next/link";
 export default function ClassicClass() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data } = useHome();
-
   const classicClasses: IClassicClass[] = data?.data?.classicClasses;
   const randomClasses: IClassicClass[] = data?.data?.randomClasses;
 
   // البرامج الخاصة بالـ selectedId
   const selectedClasses = classicClasses?.find(
     (item) => item.focusAreaId === selectedId
-  )?.programs;
+  )?.videos;
   return (
     <div>
       {data && (
@@ -83,10 +82,10 @@ export default function ClassicClass() {
                 randomClasses?.length ? (
                   <SwiperSlider
                     slides={randomClasses
-                      .flatMap((randomClass) => randomClass.programs)
+                      .flatMap((randomClass) => randomClass.videos)
                       .map((program) => (
                         <ClassicClassCard
-                          key={program?.programDayId}
+                          key={program?.videoId}
                           classicClass={program}
                         />
                       ))}
@@ -103,7 +102,7 @@ export default function ClassicClass() {
                 <SwiperSlider
                   slides={selectedClasses.map((classicClass) => (
                     <ClassicClassCard
-                      key={classicClass?.programDayId}
+                      key={classicClass?.videoId}
                       classicClass={classicClass}
                     />
                   ))}

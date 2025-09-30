@@ -26,7 +26,7 @@ function ClassList() {
 
   // جمع كل الـ items من كل pages
   const classList: IClass[] | undefined = classes?.pages.flatMap(
-    (page) => page?.data?.items?.[0]?.programs
+    (page) => page?.data?.items?.[0]?.videos
   );
   useEffect(() => {
     if (foucsAreaList?.length > 0 && selectedId === null) {
@@ -72,7 +72,7 @@ function ClassList() {
               <>
                 {classList.map((classicClass) => (
                   <ClassicClassCard
-                    key={classicClass?.programDayId}
+                    key={classicClass?.videoId}
                     classicClass={classicClass}
                   />
                 ))}

@@ -18,7 +18,7 @@ function Session({ session }: IProps) {
       </div>
       <div className="flex flex-col gap-0.5">
         <h2 className="font-bold text-sm">Session {session + 1}</h2>
-        <div className="flex flex-col gap-0.5 text-sm text-gray-500 font-medium">
+        <div className="flex flex-col gap-0.5 text-sm text-secondary font-medium">
           <p>Basic Cardio Dance</p>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-0.5">

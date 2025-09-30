@@ -39,7 +39,7 @@ export default function RecentWatchedCard({ recentWatched }: IProps) {
             </span>
           </div>
           <Button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-            <span className="text-gray-500">
+            <span className="text-secondary">
               <EllipsisVertical />
             </span>
           </Button>

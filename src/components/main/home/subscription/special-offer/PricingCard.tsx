@@ -19,9 +19,9 @@ const PricingCard = () => {
         <p className="text-gray-700 font-semibold">40% Off Special Offer</p>
         <p className="text-gray-900 text-xl sm:text-2xl font-bold">
           $70.99{" "}
-          <span className="text-base font-normal text-gray-500">/ year</span>
+          <span className="text-base font-normal text-secondary">/ year</span>
         </p>
-        <p className="text-gray-500 text-sm line-through">($119.99)</p>
+        <p className="text-secondary text-sm line-through">($119.99)</p>
       </div>
     </div>
   );

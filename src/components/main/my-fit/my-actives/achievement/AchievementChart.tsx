@@ -19,7 +19,7 @@ export default function AchievementChart() {
       {/* Center Text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-xl font-bold">70%</span>
-        <span className="text-sm text-gray-500 font-medium">Goal</span>
+        <span className="text-sm text-secondary font-medium">Goal</span>
       </div>
     </div>
   );

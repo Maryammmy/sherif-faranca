@@ -4,7 +4,7 @@ interface IProps {
 
 export function EmptyStateGrid({ message }: IProps) {
   return (
-    <p className="col-span-full text-gray-500 text-center font-medium">
+    <p className="col-span-full text-secondary text-center font-medium">
       {message}
     </p>
   );

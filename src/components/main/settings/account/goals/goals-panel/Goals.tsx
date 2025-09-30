@@ -6,7 +6,6 @@ import FitnessGoal from "../fitness-goal";
 import WeightGoal from "../weight-goal";
 
 function Goals() {
-  // const [stepGoalOpen, setStepGoalOpen] = useState(false);
   const [weightGoalOpen, setWeightGoalOpen] = useState(false);
   const [fitnessGoalOpen, setFitnessGoalOpen] = useState(false);
 

@@ -7,10 +7,9 @@ interface IProps {
   classicClass: IClass;
 }
 export default function ClassicClassCard({ classicClass }: IProps) {
-  const { title, level, totalCalories, totalDuration, imageUrl, programDayId } =
-    classicClass;
+  const { title, level, calories, duration, imageUrl, videoId } = classicClass;
   return (
-    <Link href={`/programs/${programDayId}`} className="space-y-2">
+    <Link href={`/programs/${videoId}`} className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
         <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
@@ -25,11 +24,11 @@ export default function ClassicClassCard({ classicClass }: IProps) {
         </div>
         <div className="flex justify-center items-center gap-1 text-gray-400 text-sm font-medium">
           <Clock12 />
-          <span>{totalDuration}</span>
+          <span>{duration}</span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame />
-          <span className="truncate">{totalCalories}Kcal</span>
+          <span className="truncate">{calories}Kcal</span>
         </div>
       </div>
     </Link>

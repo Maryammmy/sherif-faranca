@@ -42,7 +42,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
               <p
                 className={cn(
                   "text-lg font-medium line-through",
-                  premiumPlan ? "text-gray-200" : "text-gray-500"
+                  premiumPlan ? "text-gray-200" : "text-secondary"
                 )}
               >
                 {beforePrice} {t("egp")}
