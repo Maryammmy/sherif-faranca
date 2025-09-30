@@ -1,8 +1,6 @@
-import { Button } from "@/src/components/ui/Button";
 import Modal from "@/src/components/ui/Modal";
-import { cn } from "@/src/lib/utils";
-import { Plus, X } from "lucide-react";
 import { useState } from "react";
+import FaqItem from "./FaqItem";
 
 interface IProps {
   open: boolean;
@@ -40,38 +38,16 @@ function Faq({ open, onClose }: IProps) {
 
   return (
     <Modal open={open} onClose={onClose} contentClassName="bg-[#F3F5F6]">
-      <div className="bg-[#F3F5F6] max-h-[355.2] overflow-y-auto">
+      <div className="bg-[#F3F5F6] max-h-[355.2px] overflow-y-auto">
         {faqData.map((item) => (
-          <div
+          <FaqItem
             key={item.id}
-            className={`border-b last:border-b-0 p-4 ${
-              item.id === activeId ? "bg-[#F2EBFD]" : "bg-[#FAF6FF]"
-            }`}
-          >
-            <Button
-              className="flex justify-between gap-2 items-center text-start w-full font-medium"
-              onClick={() => setActiveId(activeId === item.id ? null : item.id)}
-            >
-              <span className="">
-                {String(item.id).padStart(2, "0")} {item.question}
-              </span>
-              <div
-                className={cn(
-                  "w-6 h-6 rounded-full flex justify-center items-center shrink-0",
-                  activeId === item.id ? "bg-black" : "bg-white"
-                )}
-              >
-                {activeId === item.id ? (
-                  <X className="text-white" size={12} strokeWidth={2.5} />
-                ) : (
-                  <Plus className="text-black" size={12} strokeWidth={2.5} />
-                )}
-              </div>
-            </Button>
-            {activeId === item.id && (
-              <p className="mt-2 text-gray-600">{item.answer}</p>
-            )}
-          </div>
+            id={item.id}
+            question={item.question}
+            answer={item.answer}
+            activeId={activeId}
+            setActiveId={setActiveId}
+          />
         ))}
       </div>
     </Modal>
