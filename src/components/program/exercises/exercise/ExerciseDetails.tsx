@@ -6,18 +6,10 @@ interface IProps {
   data: IExerciseDetails;
 }
 function ExerciseDetails({ data }: IProps) {
-  const { imageUrl, focusAreas, musclesImageUrl, title, description } = data;
+  const { imageUrl, focusAreas, musclesImageUrl, instruction } = data;
   return (
     <div className="program-layout">
       <div className="flex flex-col gap-6">
-        <div className="space-y-2">
-          <h2 className="text-xl text-gray-700 font-bold leading-none">
-            {title}
-          </h2>
-          <p className="max-w-2xl font-medium text-gray-600 leading-none">
-            {description}
-          </p>
-        </div>
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-10 lg:gap-20">
           <div className="rounded-2xl overflow-hidden border">
             <Image
@@ -31,12 +23,7 @@ function ExerciseDetails({ data }: IProps) {
           <div>
             <h4 className="text-lg text-gray-700 font-bold">Instruction</h4>
             <div className="max-w-2xl">
-              <p className="text-secondary font-medium">
-                Start with your feet together and your arms by your sides, then
-                jump up with your feet apart and your hands overhead.Return to
-                the start position then do the next rep. This exercise provides
-                a full-body workout and works all your large muscle groups.
-              </p>
+              <p className="text-secondary font-medium">{instruction}</p>
             </div>
           </div>
         </div>

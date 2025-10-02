@@ -60,7 +60,7 @@ export interface ISuggestion {
   timeMinutes: number;
 }
 export interface IProgramDay {
-  id: number;
+  programId: number;
   isFavorite: boolean;
   dayDescription: string;
   dayTitle: string;
@@ -73,14 +73,13 @@ export interface IProgramDay {
   totalTimeMinutes: number;
 }
 export interface IExerciseDetails {
-  id: number;
+  programId: number;
   programImageUrl: string;
-  description: string;
   exerciseId: number;
+  instruction: string;
   focusAreas: string[];
   imageUrl: string;
   isFavorite: boolean;
   musclesImageUrl: string[];
-  title: string;
   videoUrl: string;
 }

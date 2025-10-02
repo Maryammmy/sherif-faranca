@@ -12,7 +12,7 @@ function Exercises({ programId, dayId }: IProps) {
   const { data } = useProgramDay(dayId);
   const programDay: IProgramDay = data?.data;
   const programBackground: IProgramBackground = {
-    id: programDay?.id,
+    id: programDay?.programId,
     imageUrl: programDay?.programImageUrl,
     isFavorite: programDay?.isFavorite,
   };
