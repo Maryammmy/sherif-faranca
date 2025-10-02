@@ -23,13 +23,13 @@ function ProgramDays({ programId }: IProps) {
       {!data ? (
         <>
           <div className="background-layout">
-            <SingleSkeletonCard className="h-full w-full" />
+            <SingleSkeletonCard className="h-full w-full rounded-none" />
           </div>
           <div className="program-layout">
             <div className="pb-5 md:pb-10 grid grid-cols-7 gap-5">
               <SkeletonCard
                 count={21}
-                className="size-7 md:size-20 rounded-full"
+                className="size-7 md:size-20 rounded-full md:rounded-lg"
               />
             </div>
             <SingleSkeletonCard className="h-12 md:w-55" />

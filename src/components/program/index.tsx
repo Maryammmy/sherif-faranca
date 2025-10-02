@@ -25,7 +25,7 @@ function Program({ programId }: IProps) {
       {!data ? (
         <>
           <div className="background-layout">
-            <SingleSkeletonCard className="h-full w-full" />
+            <SingleSkeletonCard className="h-full w-full rounded-none" />
           </div>
           <div className="program-layout">
             <div className="flex flex-col gap-6">
