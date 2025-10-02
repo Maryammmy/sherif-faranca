@@ -29,7 +29,7 @@ function Background({ href, programBackground, queryKey }: IProps) {
 
   return (
     <div>
-      <div className="w-full relative h-[250px] sm:h-[300px] lg:h-[320px]">
+      <div className="background-layout">
         <div className="absolute inset-0 bg-black/50 z-[5] pointer-events-none" />
         <div className="w-full h-full absolute z-10">
           <div className="flex flex-col justify-between gap-5 p-5 pb-10 sm:p-10 sm:pb-20 h-full">

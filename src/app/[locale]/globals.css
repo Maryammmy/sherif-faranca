@@ -41,6 +41,9 @@ span {
   @apply min-h-[calc(100vh-137px)] sm:min-h-[calc(100vh-177px)] max-w-7xl mx-auto flex flex-col justify-center items-center;
 }
 /* Program layout */
+.background-layout {
+  @apply w-full relative h-[250px] sm:h-[300px] lg:h-[320px];
+}
 .program-layout {
   @apply -mt-5 sm:-mt-10 relative z-20 rounded-t-3xl bg-white p-5 pt-2.5 sm:p-10 sm:pt-5;
 }

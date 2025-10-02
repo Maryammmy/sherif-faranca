@@ -3,6 +3,7 @@ import { useProgramCalender } from "@/src/hooks";
 import Background from "../Background";
 import SelectDay from "./SelectDay";
 import { IProgramBackground, IProgramDays } from "@/src/interfaces/program";
+import { SingleSkeletonCard, SkeletonCard } from "../../skeleton/Card";
 
 interface IProps {
   programId: string;
@@ -19,7 +20,19 @@ function ProgramDays({ programId }: IProps) {
   };
   return (
     <>
-      {!data ? null : (
+      {!data ? (
+        <>
+          <div className="background-layout">
+            <SingleSkeletonCard className="h-full w-full" />
+          </div>
+          <div className="program-layout">
+            <div className="pb-5 md:pb-10 grid grid-cols-7 gap-5">
+              <SkeletonCard count={21} className="size-7 md:size-20" />
+            </div>
+            <SingleSkeletonCard className="h-12 md:w-55" />
+          </div>
+        </>
+      ) : (
         <>
           {" "}
           <Background
