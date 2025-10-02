@@ -49,7 +49,7 @@ export default function PhoneField({
       <PhoneInputField
         country={country}
         value={fullNumber}
-        onChange={(full, only, code) => {
+        onChange={(full, only, code, format) => {
           setFullNumber(full);
           setPhone(only);
           setCountryCode(code);
@@ -57,6 +57,10 @@ export default function PhoneField({
             // هنا بنربط القيم بـ RHF
             setValue(numberName, only, { shouldValidate: true });
             setValue(countryCodeName, code, { shouldValidate: true });
+            // مهم: نخزن الـ format كـ internal value
+            if (format) {
+              setValue("phoneFormat", format, { shouldValidate: true });
+            }
           }
         }}
         disabled={disabled}

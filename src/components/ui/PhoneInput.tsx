@@ -3,7 +3,12 @@ import PhoneInput, { CountryData } from "react-phone-input-2";
 
 interface IProps {
   value: string;
-  onChange: (fullValue: string, phoneOnly: string, countryCode: string) => void;
+  onChange: (
+    fullValue: string,
+    phoneOnly: string,
+    countryCode: string,
+    format: string
+  ) => void;
   country: string;
   disabled: boolean;
 }
@@ -34,9 +39,12 @@ const PhoneInputField: React.FC<IProps> = ({
         },
       }}
       onChange={(value, country: CountryData) => {
+        console.log(value, country);
         const dialCode = country?.dialCode || "";
         const numberOnly = value.slice(dialCode.length);
-        onChange(value, numberOnly, dialCode);
+        const format = country?.format || ""; // ناخد الـ format
+        console.log(format);
+        onChange(value, numberOnly, dialCode, format);
       }}
       inputStyle={{
         width: "100%",

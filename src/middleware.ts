@@ -53,3 +53,5 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 };
+// في أعلى الملف
+export const runtime = "nodejs";

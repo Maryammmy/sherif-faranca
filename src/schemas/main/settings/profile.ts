@@ -18,14 +18,8 @@ export const profileSchema = z.object({
     .string()
     .nonempty("Email is required")
     .email("Invalid email address"),
-
-  phoneNumber: z
-    .string()
-    .nonempty({ message: "Phone number is required" })
-    .regex(/^\d+$/, { message: "Phone number must contain only digits" })
-    .min(9, { message: "Phone number must be at least 9 digits" })
-    .max(15, { message: "Phone number can't be more than 15 digits" }),
-  countryCode: z.string().min(1, "Country code is required"),
+  phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+  countryCode: z.string().nonempty({ message: "Country code is required" }),
   birthDate: z
     .string()
     .nonempty("Birth date is required")
@@ -33,9 +27,7 @@ export const profileSchema = z.object({
     .refine((val) => isAtLeast13(val), {
       message: "You must be at least 13 years old",
     }),
-
   country: z.string().optional(),
-
   picture: z.string().url("Invalid picture URL").optional(),
   isMale: z.boolean().refine((val) => val === true || val === false, {
     message: "Gender is required",

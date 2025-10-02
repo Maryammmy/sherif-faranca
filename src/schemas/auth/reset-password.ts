@@ -1,3 +1,4 @@
+import { phoneUtil } from "@/src/lib/utils";
 import { z } from "zod";
 export const sendResetPasswordSchema = z.discriminatedUnion("type", [
   z.object({
@@ -9,12 +10,36 @@ export const sendResetPasswordSchema = z.discriminatedUnion("type", [
     countryCode: z.never().optional(),
     mobile: z.never().optional(),
   }),
-  z.object({
-    type: z.literal("number"),
-    countryCode: z.string().nonempty("Country code is required"),
-    mobile: z.string().nonempty("Phone number is required"),
-    email: z.never().optional(),
-  }),
+  z
+    .object({
+      type: z.literal("number"),
+      mobile: z.string().nonempty({ message: "Phone number is required" }),
+      countryCode: z.string().nonempty({ message: "Country code is required" }),
+      email: z.never().optional(),
+    })
+    .superRefine((data, ctx) => {
+      const { mobile, countryCode } = data;
+
+      // الرقم الدولي كامل مع +
+      const fullNumber = `+${countryCode}${mobile}`;
+
+      try {
+        const number = phoneUtil.parse(fullNumber); // parse بدون country ISO
+        if (!phoneUtil.isValidNumber(number)) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["phoneNumber"],
+            message: "Phone number is invalid",
+          });
+        }
+      } catch {
+        ctx.addIssue({
+          code: "custom",
+          path: ["phoneNumber"],
+          message: "Phone number is invalid",
+        });
+      }
+    }),
 ]);
 export const resetPasswordSchema = z
   .object({

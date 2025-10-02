@@ -1,4 +1,4 @@
-import { isAtLeast13 } from "@/src/lib/utils";
+import { isAtLeast13, phoneUtil } from "@/src/lib/utils";
 import { z } from "zod";
 
 export const createAccountWithEmailSchema = z
@@ -24,13 +24,7 @@ export const createAccountWithEmailSchema = z
       .refine((val) => isAtLeast13(val), {
         message: "You must be at least 13 years old",
       }),
-
-    phoneNumber: z
-      .string()
-      .nonempty({ message: "Phone number is required" })
-      .regex(/^\d+$/, { message: "Phone number must contain only digits" })
-      .min(9, { message: "Phone number must be at least 9 digits" })
-      .max(15, { message: "Phone number can't be more than 15 digits" }),
+    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
     password: z
       .string()
@@ -44,6 +38,29 @@ export const createAccountWithEmailSchema = z
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
     message: "Passwords must match",
+  })
+  .superRefine((data, ctx) => {
+    const { phoneNumber, countryCode } = data;
+
+    // الرقم الدولي كامل مع +
+    const fullNumber = `+${countryCode}${phoneNumber}`;
+
+    try {
+      const number = phoneUtil.parse(fullNumber); // parse بدون country ISO
+      if (!phoneUtil.isValidNumber(number)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["phoneNumber"],
+          message: "Phone number is invalid",
+        });
+      }
+    } catch {
+      ctx.addIssue({
+        code: "custom",
+        path: ["phoneNumber"],
+        message: "Phone number is invalid",
+      });
+    }
   });
 export const createAccountWithNumberSchema = z
   .object({
@@ -64,13 +81,7 @@ export const createAccountWithNumberSchema = z
       .refine((val) => isAtLeast13(val), {
         message: "You must be at least 13 years old",
       }),
-
-    phoneNumber: z
-      .string()
-      .nonempty({ message: "Phone number is required" })
-      .regex(/^\d+$/, { message: "Phone number must contain only digits" })
-      .min(9, { message: "Phone number must be at least 9 digits" })
-      .max(15, { message: "Phone number can't be more than 15 digits" }),
+    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
     password: z
       .string()
@@ -83,6 +94,29 @@ export const createAccountWithNumberSchema = z
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
     message: "Passwords must match",
+  })
+  .superRefine((data, ctx) => {
+    const { phoneNumber, countryCode } = data;
+
+    // الرقم الدولي كامل مع +
+    const fullNumber = `+${countryCode}${phoneNumber}`;
+
+    try {
+      const number = phoneUtil.parse(fullNumber); // parse بدون country ISO
+      if (!phoneUtil.isValidNumber(number)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["phoneNumber"],
+          message: "Phone number is invalid",
+        });
+      }
+    } catch {
+      ctx.addIssue({
+        code: "custom",
+        path: ["phoneNumber"],
+        message: "Phone number is invalid",
+      });
+    }
   });
 export type SignupWithEmail = z.infer<typeof createAccountWithEmailSchema>;
 export type SignupWithNumber = z.infer<typeof createAccountWithNumberSchema>;

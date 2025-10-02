@@ -1,3 +1,4 @@
+import { phoneUtil } from "@/src/lib/utils";
 import { z } from "zod";
 
 export const signinWithEmailSchema = z.object({
@@ -7,16 +8,35 @@ export const signinWithEmailSchema = z.object({
     .email({ message: "Please enter a valid email address" }),
   password: z.string().min(1, { message: "Password is required" }),
 });
-export const signinWithNumberSchema = z.object({
-  phoneNumber: z
-    .string()
-    .nonempty({ message: "Phone number is required" })
-    .regex(/^\d+$/, { message: "Phone number must contain only digits" })
-    .min(9, { message: "Phone number must be at least 9 digits" })
-    .max(15, { message: "Phone number can't be more than 15 digits" }),
-  countryCode: z.string().nonempty({ message: "Country code is required" }),
-  password: z.string().min(1, { message: "Password is required" }),
-});
+export const signinWithNumberSchema = z
+  .object({
+    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+    countryCode: z.string().nonempty({ message: "Country code is required" }),
+    password: z.string().min(1, { message: "Password is required" }),
+  })
+  .superRefine((data, ctx) => {
+    const { phoneNumber, countryCode } = data;
+
+    // الرقم الدولي كامل مع +
+    const fullNumber = `+${countryCode}${phoneNumber}`;
+
+    try {
+      const number = phoneUtil.parse(fullNumber); // parse بدون country ISO
+      if (!phoneUtil.isValidNumber(number)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["phoneNumber"],
+          message: "Phone number is invalid",
+        });
+      }
+    } catch {
+      ctx.addIssue({
+        code: "custom",
+        path: ["phoneNumber"],
+        message: "Phone number is invalid",
+      });
+    }
+  });
 
 export type SigninWithEmail = z.infer<typeof signinWithEmailSchema>;
 export type SigninWithNumber = z.infer<typeof signinWithNumberSchema>;
