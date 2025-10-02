@@ -30,7 +30,7 @@ function Exercises({ programId, dayId }: IProps) {
               <div className="max-w-sm flex flex-col gap-5">
                 <SkeletonCard count={2} className="h-8" />
               </div>
-              <div className="flex justify-center max-w-md m-auto">
+              <div className="max-w-md m-auto">
                 <SingleSkeletonCard className="h-18" />
               </div>
             </div>
