@@ -9,7 +9,7 @@ import {
 } from "@/src/schemas/main/settings/change-email";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Loader from "@/src/components/loader/Loader";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import toast from "react-hot-toast";
 import { sendChangeEmailAPI } from "@/src/services/mutations/users";
 import SettingsInput from "../../SettingsInput";

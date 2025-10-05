@@ -15,7 +15,7 @@ import { z } from "zod";
 import { Button } from "@/src/components/ui/Button";
 import { Input } from "@/src/components/ui/Input";
 import { Label } from "@/src/components/ui/Label";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import PhoneField from "../../ui/PhoneField";
 import { DatePicker } from "@/src/components/ui/date-picker";
 import PasswordInput from "@/src/components/ui/PasswordInput";

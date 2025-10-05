@@ -2,8 +2,10 @@
 import OtpForm from "@/src/components/auth/otp/OtpForm";
 import { useQueryParams } from "@/src/lib/utils";
 import Image from "@/src/components/ui/Image";
+import { useTranslations } from "next-intl";
 
 function Otp() {
+  const t = useTranslations("otp");
   const queryParams = useQueryParams();
   const { type, email, countryCode, number } = queryParams;
   return (
@@ -12,18 +14,18 @@ function Otp() {
         <div className="space-y-3">
           <header>
             <h1 className="font-bold text-gray-800 text-3xl sm:text-4xl leading-11">
-              ENTER VERIFICATION <span className="text-primary">CODE</span>
+              {t("title")} <span className="text-primary">{t("code")}</span>
             </h1>
           </header>
           <p className="text-gray-400 font-medium max-w-sm">
-            A Verification Code Has Been Sent To Your{" "}
+            {t("description")}{" "}
             <span className="text-gray-400">
               {(type === "register-number" ||
                 type === "forget-password-number") &&
               countryCode &&
               number ? (
                 <>
-                  Number <br />
+                  {t("number")} <br />
                   <span className="text-primary break-all">
                     (+{countryCode}
                     {number})
@@ -31,7 +33,7 @@ function Otp() {
                 </>
               ) : (
                 <>
-                  Email <br />
+                  {t("email")} <br />
                   <span className="text-primary break-all">({email})</span>
                 </>
               )}

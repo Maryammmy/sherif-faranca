@@ -3,6 +3,7 @@ import {
   programCalenderAPI,
   programDayAPI,
   programExerciseAPI,
+  singleVideoAPI,
 } from "../services/queries/program";
 import { useCustomQuery } from "./useCustomQuery";
 
@@ -17,4 +18,7 @@ export function useProgramDay(id: string) {
 }
 export function useProgramExercise(id: string) {
   return useCustomQuery(["programExercise", id], () => programExerciseAPI(id));
+}
+export function useVideo(id: string) {
+  return useCustomQuery(["video", id], () => singleVideoAPI(id));
 }

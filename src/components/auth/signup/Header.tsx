@@ -1,22 +1,21 @@
 "use client";
 import { useQueryParams } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 function Header() {
   const type = useQueryParams("type");
+  const t = useTranslations("signup");
   return (
     <div className="space-y-3">
       <header>
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-11">
-          SIGN UP{" "}
+          {t("title")}{" "}
           <span className="text-primary">
-            {type === "number" ? "WITH NUMBER" : "WITH EMAIL"}
+            {type === "number" ? t("withNumber") : t("withEmail")}
           </span>
         </h1>
       </header>
-      <p className="text-gray-400 font-medium">
-        Begin With Creating New Free Account. This Helps You Keep Your Health
-        And Fitness
-      </p>
+      <p className="text-gray-400 font-medium">{t("description")}</p>
     </div>
   );
 }

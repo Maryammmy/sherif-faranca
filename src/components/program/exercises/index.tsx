@@ -46,7 +46,7 @@ function Exercises({ programId, dayId }: IProps) {
             programBackground={programBackground}
             queryKey={["programDay", dayId]}
           />
-          <DayExercises programId={programId} dayId={dayId} data={programDay} />
+          <DayExercises data={programDay} />
         </>
       )}
     </>

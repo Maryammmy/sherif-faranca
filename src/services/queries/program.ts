@@ -12,6 +12,10 @@ export const programDayAPI = async (id: string) => {
   const data = await getServerData(`/api/AboutTheProgram/day-page/${id}`);
   return data;
 };
+export const singleVideoAPI = async (id: string) => {
+  const data = await getServerData(`/api/Video/singleVideo/${id}`);
+  return data;
+};
 export const programExerciseAPI = async (id: string) => {
   const data = await getServerData(`/api/AboutTheProgram/Instruction/${id}`);
   return data;

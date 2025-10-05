@@ -4,8 +4,8 @@ import { z } from "zod";
 export const signupWithEmailSchema = z.object({
   email: z
     .string()
-    .nonempty("Email is required")
-    .email("Invalid email address"),
+    .nonempty("email.errors.required")
+    .email("email.errors.invalid"),
 });
 export const signupWithNumberSchema = z
   .object({

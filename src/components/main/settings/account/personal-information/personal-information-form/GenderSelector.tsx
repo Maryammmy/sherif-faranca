@@ -2,7 +2,7 @@
 
 import { Button } from "@/src/components/ui/Button";
 import { Controller, useFormContext } from "react-hook-form";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import { genders } from "@/src/data/main/settings/account/personal-information";
 
 function GenderSelector() {

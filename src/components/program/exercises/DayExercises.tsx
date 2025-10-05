@@ -5,11 +5,9 @@ import { Link } from "@/src/i18n/navigation";
 import { IProgramDay } from "@/src/interfaces/program";
 import RecommendForYou from "./RecommendForYou";
 interface IProps {
-  programId: string;
-  dayId: string;
   data: IProgramDay;
 }
-function DayExercises({ programId, dayId, data }: IProps) {
+function DayExercises({ data }: IProps) {
   const {
     dayDescription,
     dayTitle,
@@ -74,16 +72,11 @@ function DayExercises({ programId, dayId, data }: IProps) {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
             {exercises?.map((exercise) => (
-              <ExerciseCard
-                key={exercise?.exerciseId}
-                programId={programId}
-                dayId={dayId}
-                exercise={exercise}
-              />
+              <ExerciseCard key={exercise?.exerciseId} exercise={exercise} />
             ))}
           </div>
           <Link
-            href={`/programs/${programId}/video-player`}
+            href={`/`}
             className="bg-primary hover:bg-primary/80 text-center font-medium text-white py-3 w-full sm:w-60 rounded-md"
           >
             Start Training

@@ -22,8 +22,8 @@ function TrainingHistoryCard() {
         </div>
         <div className="flex justify-between items-center gap-5 text-secondary font-medium">
           <span>2.30AM</span>
-          <span>20 Min</span>
-          <span> 120 Calories</span>
+          <span>20Min</span>
+          <span> 120Kcal</span>
         </div>
       </div>
     </div>

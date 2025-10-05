@@ -3,7 +3,7 @@ import { Button } from "@/src/components/ui/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Loader from "@/src/components/loader/Loader";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import toast from "react-hot-toast";
 import { sendChangePhoneAPI } from "@/src/services/mutations/users";
 import PhoneField from "@/src/components/ui/PhoneField";

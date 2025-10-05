@@ -29,11 +29,11 @@ export default function RecommendCard({ suggestion }: IProps) {
       </div>
       <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
-          <TrendingUp />
+          <TrendingUp className="shrink-0" />
           <span className="truncate">{level}</span>
         </div>
         <div className="flex items-center justify-center gap-1 text-gray-400 text-sm font-medium">
-          <Clock12 />
+          <Clock12 className="shrink-0" />
           <span className="truncate">{timeMinutes}Mins</span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">

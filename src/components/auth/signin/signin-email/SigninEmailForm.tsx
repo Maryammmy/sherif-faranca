@@ -1,6 +1,6 @@
 "use client";
 
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import Loader from "@/src/components/loader/Loader";
 import { Button } from "@/src/components/ui/Button";
 import { Input } from "@/src/components/ui/Input";

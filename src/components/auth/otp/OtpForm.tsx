@@ -15,6 +15,7 @@ import ResendOtp from "./ResendOtp";
 import { verifyOtpAction } from "@/src/actions/otp";
 import { IActionState } from "@/src/interfaces/form";
 import { Input } from "@/src/components/ui/Input";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   queryParams: Record<string, string>;
@@ -26,6 +27,7 @@ const initialState: IActionState = {
 };
 
 export default function OtpForm({ queryParams }: IProps) {
+  const t = useTranslations("otp");
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const router = useRouter();
@@ -121,17 +123,17 @@ export default function OtpForm({ queryParams }: IProps) {
           </div>
           <p className="text-sm text-secondary font-semibold text-center mb-4">
             {timeLeft > 0
-              ? `Resend OTP in ${Math.floor(timeLeft / 60)}:${String(
+              ? `${t("resendOtp")} ${Math.floor(timeLeft / 60)}:${String(
                   timeLeft % 60
                 ).padStart(2, "0")}`
-              : `Didn't receive the code?`}
+              : `${t("receiveTheCode")}`}
           </p>
           <Button
             type="submit"
             className="w-full bg-primary text-white p-3 rounded-md font-medium"
             disabled={isPending || otp.length < 5}
           >
-            {isPending ? <Loader /> : "Verify"}
+            {isPending ? <Loader /> : t("button")}
           </Button>
         </div>
       </form>

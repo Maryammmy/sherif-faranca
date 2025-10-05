@@ -1,12 +1,12 @@
-import { IHabit } from "@/src/interfaces/main/my-fit";
+import { IHealthHabit } from "@/src/interfaces/main/my-fit";
 import { Link } from "@/src/i18n/navigation";
 
 interface IProps {
-  habit: IHabit;
+  habit: IHealthHabit;
 }
 
 function HabitCard({ habit }: IProps) {
-  const { goal, icon, title, unit, value } = habit;
+  const { goal, title, progress } = habit;
   return (
     <Link
       href={`/calories`}
@@ -14,11 +14,11 @@ function HabitCard({ habit }: IProps) {
     >
       <div className="flex justify-between items-center">
         <h3 className="text-gray-600 font-medium">{title}</h3>
-        {icon}
+        {/* {icon} */}
       </div>
       <div className="text-2xl font-bold flex items-baseline gap-1">
-        <span>{value}</span>
-        <span className="text-secondary text-base">{unit}</span>
+        <span>{progress}</span>
+        {/* <span className="text-secondary text-base">{unit}</span> */}
       </div>
       <p className="text-gray-400 text-sm font-medium">{goal}</p>
     </Link>

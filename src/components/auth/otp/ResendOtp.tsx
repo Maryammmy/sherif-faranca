@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import { resendOtpAction } from "@/src/actions/otp";
 import { IActionState } from "@/src/interfaces/form";
 import { Input } from "@/src/components/ui/Input";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   queryParams: Record<string, string>;
@@ -16,6 +17,7 @@ const initialState: IActionState = {
   errors: {},
 };
 function ResendOtp({ queryParams, onResend }: IProps) {
+  const t = useTranslations("otp");
   const { type, email, countryCode, number } = queryParams;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, formAction, isPending] = useActionState<IActionState, FormData>(
@@ -52,7 +54,7 @@ function ResendOtp({ queryParams, onResend }: IProps) {
         className="text-primary w-full disabled:text-gray-400 font-medium"
         disabled={isPending}
       >
-        {isPending ? <Loader borderColor="#3e1492" /> : "Send Code Again"}
+        {isPending ? <Loader borderColor="#3e1492" /> : t("resendOtpButton")}
       </Button>
     </form>
   );

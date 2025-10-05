@@ -4,9 +4,11 @@ import MyActives from "./my-actives";
 import FavoriteTraining from "./my-favorite-training";
 import TrainingHistory from "./training-history";
 import { SingleSkeletonCard, SkeletonCard } from "../../skeleton/Card";
+import { IMyFit } from "@/src/interfaces/main/my-fit";
 
 function MyFit() {
   const { data } = useMyFit();
+  const myFit: IMyFit = data;
   console.log(data);
   return (
     <div className="flex flex-col gap-5">
@@ -29,9 +31,12 @@ function MyFit() {
         </>
       ) : (
         <>
-          <MyActives />
-          <TrainingHistory />
-          <FavoriteTraining />
+          <MyActives
+            achievement={myFit?.achievement}
+            healthHabits={myFit?.healthHabits}
+          />
+          <TrainingHistory histories={myFit?.getWatchedHistoryAsync} />
+          <FavoriteTraining favs={myFit?.favoriteItems} />
         </>
       )}
     </div>

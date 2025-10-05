@@ -8,7 +8,7 @@ import {
   changePasswordSchema,
 } from "@/src/schemas/main/settings/change-password";
 import { zodResolver } from "@hookform/resolvers/zod";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import Loader from "@/src/components/loader/Loader";
 import toast from "react-hot-toast";
 import { changePasswordAPI } from "@/src/services/mutations/users";

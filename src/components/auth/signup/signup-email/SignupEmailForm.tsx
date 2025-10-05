@@ -8,9 +8,10 @@ import { Button } from "@/src/components/ui/Button";
 import { Input } from "@/src/components/ui/Input";
 import { Label } from "@/src/components/ui/Label";
 import Loader from "@/src/components/loader/Loader";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import { IActionState } from "@/src/interfaces/form";
 import { sendRegistrationWithEmailAction } from "@/src/actions/auth";
+import { useTranslations } from "next-intl";
 
 const initialState: IActionState = {
   success: false,
@@ -19,6 +20,8 @@ const initialState: IActionState = {
 };
 
 export default function SignupEmailForm() {
+  const t = useTranslations("signup");
+  const tForm = useTranslations("form");
   const router = useRouter();
   const [state, formAction, isPending] = useActionState<IActionState, FormData>(
     async (prevState, formData) => {
@@ -50,10 +53,16 @@ export default function SignupEmailForm() {
   return (
     <form action={formAction} className="py-5 space-y-5">
       <div className="flex flex-col gap-1">
-        <Label className="font-medium text-secondary">Email</Label>
+        <Label className="font-medium text-secondary">
+          {tForm("email.name")}
+        </Label>
         <div className="flex p-3 gap-2 items-center border border-gray-400 rounded-md">
           <Mail className="text-primary" />
-          <Input name="email" className="w-full" placeholder="Email" />
+          <Input
+            name="email"
+            className="w-full"
+            placeholder={tForm("email.name")}
+          />
         </div>
         {state.errors?.email && (
           <InputErrorMessage msg={state.errors.email[0]} />
@@ -64,7 +73,7 @@ export default function SignupEmailForm() {
         className="w-full bg-primary text-white p-3 rounded-md font-medium"
         disabled={isPending}
       >
-        {isPending ? <Loader /> : "Create new account"}
+        {isPending ? <Loader /> : t("button")}
       </Button>
     </form>
   );

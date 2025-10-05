@@ -15,7 +15,7 @@ import Loader from "@/src/components/loader/Loader";
 import toast from "react-hot-toast";
 import { Profile, profileSchema } from "@/src/schemas/main/settings/profile";
 import { zodResolver } from "@hookform/resolvers/zod";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 
 interface IProps {
   close: () => void;

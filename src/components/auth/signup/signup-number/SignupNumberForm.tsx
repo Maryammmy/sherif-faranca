@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { Button } from "@/src/components/ui/Button";
 import { Label } from "@/src/components/ui/Label";
 import Loader from "@/src/components/loader/Loader";
-import InputErrorMessage from "@/src/components/InputErrorMsg";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import { IActionState } from "@/src/interfaces/form";
 import { sendRegistrationWithNumberAction } from "@/src/actions/auth";
 import PhoneField from "@/src/components/ui/PhoneField";
