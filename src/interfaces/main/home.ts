@@ -9,6 +9,8 @@ export interface IRecentWatched {
   title: string;
   videoType: string;
   watchProgressPercentage: number;
+  isFavorite: boolean;
+  isprogram: boolean;
 }
 export interface IRecommendedForYou {
   classesCount: number;
@@ -41,6 +43,8 @@ export interface IMerchantBanner {
   url: string;
 }
 export interface IDiscoverProgram {
+  isFavorite: boolean;
+  isProgram: boolean;
   classesCount: number;
   id: number;
   imageUrl: string;

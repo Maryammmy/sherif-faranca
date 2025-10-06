@@ -2,6 +2,7 @@ import { IClass } from "@/src/interfaces/main/home";
 import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import Link from "next/link";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   classicClass: IClass;
@@ -9,7 +10,7 @@ interface IProps {
 export default function ClassicClassCard({ classicClass }: IProps) {
   const { title, level, calories, duration, imageUrl, videoId } = classicClass;
   return (
-    <Link href={`/programs/${videoId}`} className="space-y-2">
+    <Link href={getHref(videoId)} className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
         <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>

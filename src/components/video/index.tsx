@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { Link } from "@/src/i18n/navigation";
 import { useVideo } from "@/src/hooks";
 import { IVideo } from "@/src/interfaces/video";
+import { SingleSkeletonCard, SkeletonCard } from "../skeleton/Card";
 
 interface IProps {
   videoId: string;
@@ -16,17 +17,39 @@ function Video({ videoId }: IProps) {
   console.log(data);
   return (
     <div className="padding-layout space-y-4">
-      <Link href={`/`} className="flex items-center gap-2">
-        <ChevronLeft />
-        <h2 className="text-lg font-medium text-gray-600">{video?.title}</h2>
-      </Link>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-10">
-        <div className="lg:col-span-2 space-y-4">
-          <VideoSection />
-          <FocusArea areas={video?.focusAreas} />
-        </div>
-        <Sessions />
-      </div>
+      {!data ? (
+        <>
+          <SingleSkeletonCard className="h-10 max-w-sm" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-10">
+            <div className="lg:col-span-2 space-y-4">
+              <SingleSkeletonCard className="h-[500px]" />
+              <div className="flex flex-wrap gap-4">
+                <SkeletonCard count={5} className="w-40 h-10" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 max-h-[500px]">
+              <SkeletonCard count={5} className="h-[100px]" />
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <Link href={`/`} className="flex items-center gap-2">
+            <ChevronLeft />
+            <h2 className="text-lg font-medium text-gray-600">
+              {video?.title}
+            </h2>
+          </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-10">
+            <div className="lg:col-span-2 space-y-4">
+              <VideoSection />
+              <FocusArea areas={video?.focusAreas} />
+            </div>
+            <Sessions />
+          </div>
+        </>
+      )}
     </div>
   );
 }

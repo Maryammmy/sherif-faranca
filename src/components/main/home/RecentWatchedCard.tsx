@@ -9,6 +9,7 @@ import { Button } from "@/src/components/ui/Button";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import CircularRing from "@/src/components/ui/CircularRing";
 import Link from "next/link";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   recentVideo: IRecentWatched;
@@ -23,10 +24,11 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
     videoType,
     watchProgressPercentage,
     id,
+    isprogram,
   } = recentVideo;
   return (
     <Link
-      href={`/programs/${id}`}
+      href={getHref(id, isprogram)}
       className="block relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg"
     >
       {/* Background image */}

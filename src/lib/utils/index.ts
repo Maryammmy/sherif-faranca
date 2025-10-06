@@ -8,3 +8,4 @@ export * from "./questions";
 export * from "./query";
 export * from "./birthDate";
 export * from "./phone";
+export * from "./getHref";

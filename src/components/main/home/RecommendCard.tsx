@@ -5,6 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import Link from "next/link";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
@@ -33,7 +34,7 @@ export default function RecommendCard({ recommendForYou }: IProps) {
     }
   };
   return (
-    <Link href={`/programs/${id}`} className="space-y-2">
+    <Link href={getHref(id, isProgram)} className="space-y-2">
       <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
         <Image
           src={imageUrl}

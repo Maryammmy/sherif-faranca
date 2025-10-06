@@ -2,13 +2,21 @@ import { IDiscoverProgram } from "@/src/interfaces/main/home";
 import { Flame, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   discoverProgram: IDiscoverProgram;
 }
 export default function DiscoverProgramCard({ discoverProgram }: IProps) {
-  const { id, classesCount, levelName, title, totalCalories, imageUrl } =
-    discoverProgram;
+  const {
+    id,
+    classesCount,
+    levelName,
+    title,
+    totalCalories,
+    imageUrl,
+    isProgram,
+  } = discoverProgram;
   return (
     <div className="space-y-2">
       <div className="h-[250px] w-full shadow-xl rounded-2xl overflow-hidden relative">
@@ -33,7 +41,7 @@ export default function DiscoverProgramCard({ discoverProgram }: IProps) {
         </div>
       </div>
       <Link
-        href={`/programs/${id}`}
+        href={getHref(id, isProgram)}
         className="flex justify-center items-center gap-2 bg-primary text-white py-3 px-5 rounded-full w-full font-medium"
       >
         <Play />
