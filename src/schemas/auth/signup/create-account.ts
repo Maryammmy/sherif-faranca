@@ -5,39 +5,41 @@ export const createAccountWithEmailSchema = z
   .object({
     email: z
       .string()
-      .nonempty("Email is required")
-      .email("Invalid email address"),
+      .nonempty("email.errors.required")
+      .email("email.errors.invalid"),
     firstName: z
       .string()
-      .nonempty({ message: "First name is required" })
-      .min(3, { message: "min length 3 and max is 50" })
-      .max(50, { message: "min length 3 and max is 50" }),
+      .nonempty({ message: "firstName.errors.required" })
+      .min(3, { message: "firstName.errors.length" })
+      .max(50, { message: "firstName.errors.length" }),
     lastName: z
       .string()
-      .nonempty({ message: "Last name is required" })
-      .min(3, { message: "min length 3 and max is 50" })
-      .max(50, { message: "min length 3 and max is 50" }),
+      .nonempty({ message: "lastName.errors.required" })
+      .min(3, { message: "lastName.errors.length" })
+      .max(50, { message: "lastName.errors.length" }),
     birthDate: z
       .string()
-      .nonempty("Birth date is required")
-      .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format")
+      .nonempty("birthDate.errors.required")
+      .regex(/^\d{4}-\d{2}-\d{2}$/, "birthDate.errors.invalid")
       .refine((val) => isAtLeast13(val), {
-        message: "You must be at least 13 years old",
+        message: "birthDate.errors.atLastAge",
       }),
-    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+    phoneNumber: z
+      .string()
+      .nonempty({ message: "phoneNumber.errors.required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
     password: z
       .string()
-      .nonempty({ message: "Password is required" })
-      .min(8, { message: "Password must be at least 8 characters" })
-      .max(50, { message: "Password must be at most 50 characters" }),
+      .nonempty({ message: "password.errors.required" })
+      .min(8, { message: "password.errors.min" })
+      .max(50, { message: "password.errors.max" }),
     confirmPassword: z
       .string()
-      .nonempty({ message: "Confirm password is required" }),
+      .nonempty({ message: "confirmPassword.errors.required" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Passwords must match",
+    message: "confirmPassword.errors.match",
   })
   .superRefine((data, ctx) => {
     const { phoneNumber, countryCode } = data;
@@ -51,14 +53,14 @@ export const createAccountWithEmailSchema = z
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message: "Phone number is invalid",
+          message: "phoneNumber.errors.invalid",
         });
       }
     } catch {
       ctx.addIssue({
         code: "custom",
         path: ["phoneNumber"],
-        message: "Phone number is invalid",
+        message: "phoneNumber.errors.invalid",
       });
     }
   });
@@ -66,34 +68,37 @@ export const createAccountWithNumberSchema = z
   .object({
     firstName: z
       .string()
-      .nonempty({ message: "First name is required" })
-      .min(3, { message: "min length 3 and max is 50" })
-      .max(50, { message: "min length 3 and max is 50" }),
+      .nonempty({ message: "firstName.errors.required" })
+      .min(3, { message: "firstName.errors.length" })
+      .max(50, { message: "firstName.errors.length" }),
     lastName: z
       .string()
-      .nonempty({ message: "Last name is required" })
-      .min(3, { message: "min length 3 and max is 50" })
-      .max(50, { message: "min length 3 and max is 50" }),
+      .nonempty({ message: "lastName.errors.required" })
+      .min(3, { message: "lastName.errors.length" })
+      .max(50, { message: "lastName.errors.length" }),
     birthDate: z
       .string()
-      .nonempty("Birth date is required")
-      .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format")
+      .nonempty("birthDate.errors.required")
+      .regex(/^\d{4}-\d{2}-\d{2}$/, "birthDate.errors.invalid")
       .refine((val) => isAtLeast13(val), {
-        message: "You must be at least 13 years old",
+        message: "birthDate.errors.atLastAge",
       }),
-    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+    phoneNumber: z
+      .string()
+      .nonempty({ message: "phoneNumber.errors.required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
     password: z
       .string()
-      .nonempty({ message: "Password is required" })
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .nonempty({ message: "password.errors.required" })
+      .min(8, { message: "password.errors.min" })
+      .max(50, { message: "password.errors.max" }),
     confirmPassword: z
       .string()
-      .nonempty({ message: "Confirm password is required" }),
+      .nonempty({ message: "confirmPassword.errors.required" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Passwords must match",
+    message: "confirmPassword.errors.match",
   })
   .superRefine((data, ctx) => {
     const { phoneNumber, countryCode } = data;
@@ -107,14 +112,14 @@ export const createAccountWithNumberSchema = z
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message: "Phone number is invalid",
+          message: "phoneNumber.errors.invalid",
         });
       }
     } catch {
       ctx.addIssue({
         code: "custom",
         path: ["phoneNumber"],
-        message: "Phone number is invalid",
+        message: "phoneNumber.errors.invalid",
       });
     }
   });

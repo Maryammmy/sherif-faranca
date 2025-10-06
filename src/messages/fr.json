@@ -1,0 +1,129 @@
+{
+  "form": {
+    "email": {
+      "name": "Email",
+      "errors": {
+        "required": "L'email est requis",
+        "invalid": "Adresse email invalide"
+      }
+    },
+    "phoneNumber": {
+      "name": "Numéro de téléphone",
+      "errors": {
+        "required": "Le numéro de téléphone est requis",
+        "invalid": "Numéro de téléphone invalide"
+      }
+    },
+    "firstName": {
+      "name": "Prénom",
+      "errors": {
+        "required": "Le prénom est requis",
+        "length": "longueur min 3 et max 50"
+      }
+    },
+    "lastName": {
+      "name": "Nom de famille",
+      "errors": {
+        "required": "Le nom de famille est requis",
+        "length": "longueur min 3 et max 50"
+      }
+    },
+    "birthDate": {
+      "name": "Date de naissance",
+      "errors": {
+        "required": "La date de naissance est requise",
+        "invalid": "Format de date invalide",
+        "atLastAge": "Vous devez avoir au moins 13 ans"
+      }
+    },
+    "password": {
+      "name": "Mot de passe",
+      "errors": {
+        "required": "Le mot de passe est requis",
+        "min": "Le mot de passe doit contenir au moins 8 caractères",
+        "max": "Le mot de passe doit contenir au maximum 50 caractères"
+      }
+    },
+    "confirmPassword": {
+      "name": "Confirmer le mot de passe",
+      "errors": {
+        "required": "La confirmation du mot de passe est requise",
+        "match": "Les mots de passe doivent correspondre"
+      }
+    }
+  },
+  "auth": {
+    "description": "Découvrez des entraînements de danse amusants et efficaces pour tous les niveaux. Aucune expérience nécessaire - il suffit de bouger au rythme ! Libérez votre danseur intérieur et découvrez une manière amusante d'atteindre vos objectifs de fitness.",
+    "name": "Plateforme Sherif Faranca",
+    "signin": "Avoir un compte Se connecter",
+    "signup": "Inscription d'un nouvel utilisateur",
+    "welcome": "Bienvenue à"
+  },
+  "price": {
+    "egp": "EGP"
+  },
+  "selectLanguage": {
+    "arabic": "Arabe",
+    "choose": "CHOISISSEZ VOTRE LANGUE",
+    "description": "Vous pouvez changer la langue dans les paramètres de votre profil après vous être connecté.",
+    "english": "Anglais",
+    "french": "Français",
+    "next": "Suivant"
+  },
+  "selectMethod": {
+    "account": "avez-vous un compte ?",
+    "change": "CHANGER",
+    "email": "Continuer avec l'email",
+    "facebook": "Continuer avec Facebook",
+    "google": "Continuer avec Google",
+    "number": "Continuer avec le numéro",
+    "or": "Ou",
+    "register": "S'INSCRIRE À",
+    "signin": "se connecter",
+    "start": "COMMENCER UN PARCOURS DE FITNESS"
+  },
+  "sidebar": {
+    "aboutUs": "À propos de nous",
+    "contactUs": "Contactez-nous",
+    "discover": "Découvrez",
+    "hey": "Salut",
+    "home": "Accueil",
+    "myFit": "Mon Fit",
+    "privacyPolicy": "Politique de confidentialité",
+    "settings": "Paramètres",
+    "termsAndConditions": "Conditions générales"
+  },
+  "signin": {
+    "title": "Vous nous avez manqué !",
+    "welcome": "Bienvenue !"
+  },
+  "signup": {
+    "title": "S'INSCRIRE",
+    "withNumber": "AVEC UN NUMÉRO",
+    "withEmail": "AVEC UN EMAIL",
+    "description": "Commencez par créer un nouveau compte gratuit. Cela vous aidera à maintenir votre santé et votre forme physique",
+    "button": "Créer un nouveau compte"
+  },
+  "otp": {
+    "title": "ENTRER LE CODE DE",
+    "code": "VÉRIFICATION",
+    "description": "Un code de vérification a été envoyé à votre",
+    "email": "email",
+    "number": "numéro de téléphone",
+    "resendOtp": "Renvoyer le code OTP dans",
+    "button": "Vérifier",
+    "receiveTheCode": "Vous n'avez pas reçu le code?",
+    "resendOtpButton": "Renvoyer le code"
+  },
+  "createAccount": {
+    "title": "MOMENT DU",
+    "beginning": "DÉBUT",
+    "button": "Créer un nouveau compte",
+    "modal": {
+      "title": "Conditions générales et politique de confidentialité",
+      "description": "Conditions générales : Acceptation : En utilisant l'application Re-Dus, vous acceptez de vous conformer à toutes les conditions générales applicables. Utilisation : Cette application est destinée à un usage personnel uniquement et ne peut être utilisée à des fins commerciales sans autorisation. Compte : Vous êtes responsable de la sécurité de votre compte et de toutes les activités qui s'y déroulent. Contenu : Vous ne devez pas télécharger de contenu qui viole les droits d'auteur, la vie privée ou les lois applicables. Modifications : Nous nous réservons le droit de modifier les conditions générales à tout moment et nous vous informerons de ces modifications via l'application ou par e-mail. Politique de confidentialité : Collecte de données : Nous collectons des données personnelles telles que le nom, l'email et la localisation pour traiter les transactions et améliorer nos services. Utilisation des données : Vos données sont utilisées à des fins internes telles que la gestion de compte, l'analyse d'utilisation et l'offre de services. Sécurité : Nous protégeons vos données avec des mesures de sécurité appropriées pour prévenir l'accès non autorisé. Partage de données : Nous ne partageons pas vos données personnelles avec des tiers sans votre consentement, sauf si la loi l'exige. Vos droits : Vous pouvez accéder, mettre à jour ou supprimer vos données personnelles à tout moment via les paramètres de l'application ou en nous contactant.",
+      "agree": "J'accepte",
+      "decline": "Refuser"
+    }
+  }
+}

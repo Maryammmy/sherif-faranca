@@ -9,7 +9,7 @@ export const signupWithEmailSchema = z.object({
 });
 export const signupWithNumberSchema = z
   .object({
-    mobile: z.string().nonempty({ message: "Phone number is required" }),
+    mobile: z.string().nonempty({ message: "phoneNumber.errors.required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
   })
   .superRefine((data, ctx) => {
@@ -24,14 +24,14 @@ export const signupWithNumberSchema = z
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message: "Phone number is invalid",
+          message: "phoneNumber.errors.invalid",
         });
       }
     } catch {
       ctx.addIssue({
         code: "custom",
         path: ["phoneNumber"],
-        message: "Phone number is invalid",
+        message: "phoneNumber.errors.invalid",
       });
     }
   });

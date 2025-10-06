@@ -39,11 +39,9 @@ const PhoneInputField: React.FC<IProps> = ({
         },
       }}
       onChange={(value, country: CountryData) => {
-        console.log(value, country);
         const dialCode = country?.dialCode || "";
         const numberOnly = value.slice(dialCode.length);
         const format = country?.format || ""; // ناخد الـ format
-        console.log(format);
         onChange(value, numberOnly, dialCode, format);
       }}
       inputStyle={{

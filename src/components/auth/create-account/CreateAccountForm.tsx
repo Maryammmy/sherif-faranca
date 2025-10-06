@@ -30,8 +30,10 @@ import {
   signupWithNumberAPI,
 } from "@/src/services/mutations/auth";
 import { setToken, useQueryParams } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 export default function CreateAccountForm() {
+  const t = useTranslations("createAccount");
   const router = useRouter();
   const { type, email } = useQueryParams();
   const [termsOpen, setTermsOpen] = useState(false);
@@ -194,7 +196,7 @@ export default function CreateAccountForm() {
           type="submit"
           className="w-full bg-primary text-white p-3 rounded-md font-medium"
         >
-          Create new account
+          {t("button")}
         </Button>
 
         {termsOpen && (
