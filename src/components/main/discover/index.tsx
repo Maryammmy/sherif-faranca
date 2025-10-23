@@ -5,16 +5,11 @@ import { useRouter } from "@/src/i18n/navigation";
 import DiscoverSections from "./DiscoverSections";
 import { useQueryParams } from "@/src/lib/utils";
 import Sections from "./sections";
-import PicksForYou from "./picks-for-you";
-import PopularTraining from "./popular-training";
-import FatBurning from "./fat-burning";
-import HitWorkout from "./hit-workout";
-import RecommendClass from "./recommend-class";
 
 function Discover() {
-  const section = useQueryParams("section");
+  const section = useQueryParams("section") || "workouts";
   const router = useRouter();
-  const handleSelectSection = (section: DiscoverSection = "workout") => {
+  const handleSelectSection = (section: DiscoverSection) => {
     router.replace(`/discover?section=${section}`);
   };
   return (
@@ -23,12 +18,7 @@ function Discover() {
         selectedSection={section}
         handleSelectSection={handleSelectSection}
       />
-      <Sections />
-      <PicksForYou />
-      <PopularTraining />
-      <FatBurning />
-      <HitWorkout />
-      <RecommendClass />
+      <Sections selectedSection={section} />
     </div>
   );
 }

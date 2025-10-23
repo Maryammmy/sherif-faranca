@@ -1,10 +1,14 @@
+import { ISuggestedVideo } from "@/src/interfaces/main/discover";
 import PopularTrainingCard from "./Card";
 
-function PopularTrainings() {
+interface IProps {
+  suggestions: ISuggestedVideo[];
+}
+function PopularTrainings({ suggestions }: IProps) {
   return (
     <div className="grid gap-5 py-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-      {Array.from({ length: 4 }).map((_, index) => (
-        <PopularTrainingCard key={index} />
+      {suggestions?.map((video) => (
+        <PopularTrainingCard key={video?.id} video={video} />
       ))}
     </div>
   );

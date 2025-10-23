@@ -1,7 +1,11 @@
 import { Button } from "@/src/components/ui/Button";
 import PopularTrainings from "./PopularTrainings";
+import { ISuggestedVideo } from "@/src/interfaces/main/discover";
 
-function PopularTraining() {
+interface IProps {
+  suggestions: ISuggestedVideo[];
+}
+function PopularTraining({ suggestions }: IProps) {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -12,7 +16,7 @@ function PopularTraining() {
           <span>View All</span>
         </Button>
       </div>
-      <PopularTrainings />
+      <PopularTrainings suggestions={suggestions} />
     </div>
   );
 }

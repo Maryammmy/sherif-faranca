@@ -1,1 +1,1 @@
-export type DiscoverSection = "workout" | "dance" | "mix training";
+export type DiscoverSection = "workouts" | "videos";

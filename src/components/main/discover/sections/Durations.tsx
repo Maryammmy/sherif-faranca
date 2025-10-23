@@ -1,10 +1,14 @@
 import { Button } from "@/src/components/ui/Button";
+import { IDurationRange } from "@/src/interfaces/main/discover";
 import { Clock12 } from "lucide-react";
 
-function Durations() {
+interface IProps {
+  durations: IDurationRange[];
+}
+function Durations({ durations }: IProps) {
   return (
     <div className="flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
-      {Array.from({ length: 5 }).map((_, index) => {
+      {durations?.map(({ label }, index) => {
         return (
           <Button
             key={index}
@@ -13,7 +17,7 @@ function Durations() {
             <span className="text-primary shrink-0">
               <Clock12 size={20} />
             </span>
-            <span className="text-secondary">10-8 Minute</span>
+            <span className="text-secondary">{label}</span>
           </Button>
         );
       })}

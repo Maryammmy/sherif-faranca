@@ -1,3 +1,4 @@
+"use server";
 import { postServerData } from "../server";
 
 export const makeAllReadNotificationAPI = async () => {
