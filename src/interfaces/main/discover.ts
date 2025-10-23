@@ -1,6 +1,6 @@
 export interface IDurationRange {
-  minDuration: number;
-  maxDuration: number;
+  minHours: number;
+  maxHours: number;
   label: string;
 }
 export interface IFoucsArea {
@@ -52,4 +52,14 @@ export interface IFilterVideos {
   minHours: number;
   maxHours: number;
   levelId: number;
+}
+export interface IDiscoverFilters {
+  section: string;
+  focusAreaIds?: number[];
+  minHours?: number | null;
+  maxHours?: number | null;
+  levelId?: number | null;
+}
+export interface IDiscoverFiltersWithPagination extends IDiscoverFilters {
+  page: number;
 }

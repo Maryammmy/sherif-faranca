@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Notification from "./Notification";
 import { Button } from "../ui/Button";
-import { useMyNotifications } from "@/src/hooks/notification";
+import { useMyNotifications } from "@/src/hooks";
 import { INotification } from "@/src/interfaces/notifications";
 import Header from "./Header";
 import { SingleSkeletonCard, SkeletonCard } from "../skeleton/Card";

@@ -4,11 +4,11 @@ import { Link } from "@/src/i18n/navigation";
 import { ISuggestedProgram } from "@/src/interfaces/main/discover";
 
 interface IProps {
-  recommend: ISuggestedProgram;
+  program: ISuggestedProgram;
 }
-function RecommendClassCard({ recommend }: IProps) {
+function SuggestedProgramCard({ program }: IProps) {
   const { id, classesCount, imageUrl, levelName, title, totalCalories } =
-    recommend;
+    program;
   return (
     <div className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
@@ -45,4 +45,4 @@ function RecommendClassCard({ recommend }: IProps) {
   );
 }
 
-export default RecommendClassCard;
+export default SuggestedProgramCard;

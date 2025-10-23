@@ -3,15 +3,26 @@ import { ILevel } from "@/src/interfaces/main/discover";
 
 interface IProps {
   levels: ILevel[];
+  selectedLevelId: number | null;
+  onSelectLevel: (id: number) => void;
 }
-function Levels({ levels }: IProps) {
+
+function Levels({ levels, selectedLevelId, onSelectLevel }: IProps) {
   return (
     <div className="flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
       {levels?.map(({ id, name }) => {
+        const isSelected = selectedLevelId === id;
+
         return (
           <Button
             key={id}
-            className="flex items-center capitalize border-gray-200 text-secondary gap-2 border rounded-md px-3 py-2 transition"
+            onClick={() => onSelectLevel(id)}
+            className={`flex items-center capitalize gap-2 rounded-md px-3 py-2 transition
+              ${
+                isSelected
+                  ? "bg-primary text-white border-primary"
+                  : "border border-gray-200 hover:border-primary hover:text-primary"
+              }`}
           >
             <span>{name}</span>
           </Button>

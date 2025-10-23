@@ -7,3 +7,5 @@ export * from "./services";
 export * from "./workouts-program";
 export * from "./my-fit";
 export * from "./program";
+export * from "./notification";
+export * from "./discover";
