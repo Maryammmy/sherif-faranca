@@ -8,7 +8,6 @@ import { useQueryClient } from "@tanstack/react-query";
 
 export default function Header() {
   const queryClient = useQueryClient();
-  console.log("maryam");
   const makeReadAllNotification = async () => {
     const response = await makeAllReadNotificationAPI();
     if (response?.success === true) {
