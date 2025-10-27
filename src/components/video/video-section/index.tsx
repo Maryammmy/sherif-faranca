@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import DisplayVideo from "./DisplayVideo";
 import Buttons from "./Buttons";
 import { baseURL } from "@/src/services";
+import { useRouter } from "next/router";
 
 interface IProps {
   videoUrl: string;
@@ -12,6 +13,7 @@ interface IProps {
 
 const VideoSection = ({ videoUrl, videoId }: IProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const router = useRouter();
   const [time, setTime] = useState(0);
   const [kcal, setKcal] = useState(0);
   const [locked, setLocked] = useState(false);
@@ -51,18 +53,23 @@ const VideoSection = ({ videoUrl, videoId }: IProps) => {
     };
   }, [duration]);
   useEffect(() => {
-    const handleUnload = () => {
+    const sendProgress = () => {
       if (time > 0) {
         const payload = new Blob(
           [JSON.stringify({ videoId, watchedSeconds: time })],
           { type: "application/json" }
         );
         navigator.sendBeacon(`${baseURL}/api/Video/update-wateched`, payload);
+        console.log("✅ Progress sent:", { videoId, time });
       }
     };
-    window.addEventListener("beforeunload", handleUnload);
-    return () => window.removeEventListener("beforeunload", handleUnload);
-  }, [time, videoId]);
+    window.addEventListener("beforeunload", sendProgress);
+    router.events.on("routeChangeStart", sendProgress);
+    return () => {
+      window.removeEventListener("beforeunload", sendProgress);
+      router.events.off("routeChangeStart", sendProgress);
+    };
+  }, [router.events, time, videoId]);
 
   const handleReset = () => {
     setTime(0);
