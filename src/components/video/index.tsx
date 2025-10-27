@@ -14,7 +14,6 @@ interface IProps {
 function Video({ videoId }: IProps) {
   const { data } = useVideo(videoId);
   const video: IVideo = data?.data;
-  console.log(data);
   return (
     <div className="padding-layout space-y-4">
       {!data ? (
@@ -43,10 +42,14 @@ function Video({ videoId }: IProps) {
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-10">
             <div className="lg:col-span-2 space-y-4">
-              <VideoSection />
+              <VideoSection videoUrl={video?.videoUrl} videoId={video?.id} />
               <FocusArea areas={video?.focusAreas} />
             </div>
-            <Sessions />
+            <Sessions
+              classBySession={video?.classBySession}
+              classBySong={video?.classBySong}
+              videoId={videoId}
+            />
           </div>
         </>
       )}

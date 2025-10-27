@@ -2,14 +2,15 @@ import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import React from "react";
 import { ISuggestedVideo } from "@/src/interfaces/main/discover";
+import Link from "next/link";
 
 interface IProps {
   video: ISuggestedVideo;
 }
 function SuggestedVideoCard({ video }: IProps) {
-  const { imageUrl, calories, durationMinutes, level, title } = video;
+  const { imageUrl, calories, durationMinutes, level, title, id } = video;
   return (
-    <div className="space-y-2">
+    <Link href={`/videos/${id}`} className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
         <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
@@ -33,7 +34,7 @@ function SuggestedVideoCard({ video }: IProps) {
           <span className="truncate">{calories}Kcal</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

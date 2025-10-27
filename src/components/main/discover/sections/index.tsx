@@ -27,7 +27,6 @@ interface IProps {
 function Sections({ selectedSection }: IProps) {
   const { data: workoutsData } = useDiscoverWorkouts(selectedSection);
   const { data: videosData } = useDiscoverVideos(selectedSection);
-
   const workouts: IWorkouts = workoutsData?.data;
   const videos: IVideos = videosData?.data;
   const isVideo = selectedSection === "videos";
@@ -103,7 +102,7 @@ function Sections({ selectedSection }: IProps) {
         <SkeletonCard count={6} className="w-20 h-20 rounded-full" />
       </div>
       <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 place-items-center">
-        <SkeletonCard count={6} className="w-40 h-8" />
+        <SkeletonCard count={6} className="h-8" />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
         <SkeletonCard count={4} className="h-[270px]" />

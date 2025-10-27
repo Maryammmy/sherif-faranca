@@ -28,7 +28,7 @@ function SettingsInput<T extends FieldValues>({
     type,
     labelClassname,
     inputClassname,
-    readonly,
+    readOnly,
     disabled,
   } = input;
 
@@ -38,7 +38,7 @@ function SettingsInput<T extends FieldValues>({
     name,
     placeholder,
     className: inputClassname,
-    readonly,
+    readOnly,
     disabled,
     ...(register ? register(name as Path<T>) : {}),
   };

@@ -10,3 +10,4 @@ export * from "./birthDate";
 export * from "./phone";
 export * from "./getHref";
 export * from "./queryString";
+export * from "./time";

@@ -19,7 +19,6 @@ export function formatDateOnly(isoString: string): string {
   const month = dateObj.toLocaleString("en-US", { month: "long" });
   return `${day} ${month}`;
 }
-
 /**
  * Format ISO string to "5:15 AM"
  * @param {string} isoString
@@ -31,4 +30,14 @@ export function formatTimeOnly(isoString: string): string {
     hour: "numeric",
     minute: "2-digit",
   });
+}
+/**
+ * تنسيق التاريخ القادم من الـ backend بحيث يعرض فقط yyyy-mm-dd
+ * @param dateString - التاريخ القادم مثل "1981-06-25T09:37:24.641"
+ * @returns string - "1981-06-25" أو "" لو مش صالح
+ */
+export function formatDate(dateString?: string | null): string {
+  if (!dateString) return "";
+  if (!dateString.includes("T")) return dateString; // لو جاي أصلاً تاريخ بس
+  return dateString.split("T")[0];
 }

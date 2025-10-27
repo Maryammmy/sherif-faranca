@@ -3,24 +3,33 @@
 import { useRef, useState, useEffect } from "react";
 import DisplayVideo from "./DisplayVideo";
 import Buttons from "./Buttons";
+import { baseURL } from "@/src/services";
 
-const VideoSection = () => {
+interface IProps {
+  videoUrl: string;
+  videoId: number;
+}
+
+const VideoSection = ({ videoUrl, videoId }: IProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [time, setTime] = useState(0);
   const [kcal, setKcal] = useState(0);
   const [locked, setLocked] = useState(false);
   const [duration, setDuration] = useState(6);
+  const [isLoading, setIsLoading] = useState(true);
 
   const minutes = Math.floor(time / 60);
   const seconds = String(time % 60).padStart(2, "0");
   const formattedTime = `${minutes}:${seconds}`;
   const progress = (time / duration) * 100;
-
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleLoadedMetadata = () => setDuration(Math.floor(video.duration));
+    const handleLoadedMetadata = () => {
+      setDuration(Math.floor(video.duration));
+      setIsLoading(false); // لما الفيديو يجهز، نوقف التحميل
+    };
     const handleTimeUpdate = () => {
       const currentTime = Math.floor(video.currentTime);
       setTime(currentTime);
@@ -41,6 +50,19 @@ const VideoSection = () => {
       video.removeEventListener("ended", handleEnded);
     };
   }, [duration]);
+  useEffect(() => {
+    const handleUnload = () => {
+      if (time > 0) {
+        const payload = new Blob(
+          [JSON.stringify({ videoId, watchedSeconds: time })],
+          { type: "application/json" }
+        );
+        navigator.sendBeacon(`${baseURL}/api/Video/update-wateched`, payload);
+      }
+    };
+    window.addEventListener("beforeunload", handleUnload);
+    return () => window.removeEventListener("beforeunload", handleUnload);
+  }, [time, videoId]);
 
   const handleReset = () => {
     setTime(0);
@@ -54,12 +76,14 @@ const VideoSection = () => {
   return (
     <div className="space-y-4">
       <DisplayVideo
+        videoUrl={videoUrl}
         videoRef={videoRef}
         locked={locked}
         setLocked={setLocked}
         progress={progress}
         formattedTime={formattedTime}
         kcal={kcal}
+        isLoading={isLoading}
       />
       <Buttons handleReset={handleReset} />
     </div>

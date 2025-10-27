@@ -1,5 +1,6 @@
 import { useCustomQuery } from ".";
 import {
+  countryAPI,
   emailAPI,
   phoneAPI,
   profileAPI,
@@ -17,4 +18,7 @@ export function usePhone() {
 }
 export function useTotalCalories() {
   return useCustomQuery(["totalCalories"], totalCalories);
+}
+export function useCountry() {
+  return useCustomQuery(["country"], countryAPI);
 }

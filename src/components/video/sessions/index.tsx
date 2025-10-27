@@ -1,11 +1,20 @@
+import { IClassBySession, IClassBySong } from "@/src/interfaces/video";
 import FilterSessions from "./FilterSessions";
-import SessionList from "./SessionsList";
 
-function Sessions() {
+interface IProps {
+  classBySession: IClassBySession[];
+  classBySong: IClassBySong[];
+  videoId: string;
+}
+
+function Sessions({ classBySession, classBySong, videoId }: IProps) {
   return (
-    <div className="space-y-4 max-h-[600px] overflow-y-auto">
-      <FilterSessions />
-      <SessionList />
+    <div className="max-h-[600px] overflow-y-auto">
+      <FilterSessions
+        classBySession={classBySession}
+        classBySong={classBySong}
+        videoId={videoId}
+      />
     </div>
   );
 }

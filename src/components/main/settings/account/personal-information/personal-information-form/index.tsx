@@ -6,7 +6,6 @@ import GenderSelector from "./GenderSelector";
 import { Button } from "@/src/components/ui/Button";
 import SettingsInput from "../../../SettingsInput";
 import { useProfile } from "@/src/hooks";
-import { IProfile } from "@/src/interfaces/main/settings";
 import { Label } from "@/src/components/ui/Label";
 import { DatePicker } from "@/src/components/ui/date-picker";
 import PhoneField from "@/src/components/ui/PhoneField";
@@ -16,6 +15,8 @@ import toast from "react-hot-toast";
 import { Profile, profileSchema } from "@/src/schemas/main/settings/profile";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
+import CountrySelect from "@/src/components/ui/CountrySelect";
+import { formatDate } from "@/src/lib/utils";
 
 interface IProps {
   close: () => void;
@@ -23,7 +24,6 @@ interface IProps {
 function PersonalInformationForm({ close }: IProps) {
   const { data, refetch } = useProfile();
   const profile = data?.data;
-
   const methods = useForm<Profile>({
     resolver: zodResolver(profileSchema),
     mode: "onChange",
@@ -40,19 +40,19 @@ function PersonalInformationForm({ close }: IProps) {
   useEffect(() => {
     if (data && profile) {
       reset({
-        firstName: profile?.firstName,
-        lastName: profile?.lastName,
+        FirstName: profile?.firstName,
+        LastName: profile?.lastName,
         email: profile?.email,
-        birthDate: profile?.birthDate,
+        BirthDate: formatDate(profile?.birthDate),
         phoneNumber: profile?.phoneNumber,
-        countryCode: "20",
+        countryCode: profile?.countrycode,
         isMale: profile?.isMale,
+        CountryId: profile?.countryId?.toString(),
       });
     }
   }, [data, profile, reset]);
   // submit handler
-  const onSubmit = async (data: IProfile) => {
-    // console.log("Form submitted:", data);
+  const onSubmit = async (data: Profile) => {
     const response = await updateProfileAPI(data);
     if (response?.success) {
       toast.success(response?.message);
@@ -94,7 +94,7 @@ function PersonalInformationForm({ close }: IProps) {
           <Label className="font-medium text-gray-400">Birthday</Label>
           <div className="border-b">
             <Controller
-              name="birthDate"
+              name="BirthDate"
               control={control}
               render={({ field }) => (
                 <DatePicker
@@ -105,8 +105,25 @@ function PersonalInformationForm({ close }: IProps) {
               )}
             />
           </div>
-          {errors.birthDate && (
-            <InputErrorMessage msg={errors?.birthDate?.message} />
+          {errors.BirthDate && (
+            <InputErrorMessage msg={errors?.BirthDate?.message} />
+          )}
+        </div>
+        <div className="flex flex-col gap-1">
+          <Label className="font-medium text-gray-400">Country</Label>
+          <Controller
+            name="CountryId"
+            control={control}
+            render={({ field }) => (
+              <CountrySelect
+                value={field.value}
+                onChange={field.onChange}
+                className="border-b"
+              />
+            )}
+          />
+          {errors.CountryId && (
+            <InputErrorMessage msg={errors?.CountryId?.message} />
           )}
         </div>
         <GenderSelector />

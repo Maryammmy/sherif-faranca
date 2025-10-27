@@ -1,6 +1,6 @@
 export interface IDurationRange {
-  minHours: number;
-  maxHours: number;
+  minDuration: number;
+  maxDuration: number;
   label: string;
 }
 export interface IFoucsArea {

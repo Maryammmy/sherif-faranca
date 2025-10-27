@@ -1,7 +1,6 @@
 "use server";
 
-import { IProfile } from "@/src/interfaces/main/settings";
-import { postServerData, putServerData } from "../server";
+import { postFormServerData, postServerData, putServerData } from "../server";
 import { ChangePassword } from "@/src/schemas/main/settings/change-password";
 import {
   ChangeEmail,
@@ -11,9 +10,14 @@ import {
   ChangePhone,
   VerifyPhone,
 } from "@/src/schemas/main/settings/change-phone";
+import { Profile } from "@/src/schemas/main/settings/profile";
 
-export const updateProfileAPI = async (payload: IProfile) => {
-  const data = await putServerData("/api/Users/profile", payload);
+export const updateProfileAPI = async (payload: Profile) => {
+  const formData = new FormData();
+  Object.entries(payload).forEach(([key, value]) => {
+    formData.append(key, String(value));
+  });
+  const data = await postFormServerData("/api/Users/update-profile", formData);
   return data;
 };
 export const changePasswordAPI = async (payload: ChangePassword) => {

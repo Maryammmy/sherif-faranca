@@ -125,5 +125,8 @@
       "agree": "I Agree",
       "decline": "Decline"
     }
+  },
+  "country": {
+    "egypt": "Egypt"
   }
 }

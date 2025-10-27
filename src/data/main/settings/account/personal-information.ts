@@ -6,16 +6,16 @@ const defaultStyles = {
 };
 export const personalInformationForm: IInputSettings[] = [
   {
-    id: "firstName",
-    name: "firstName",
+    id: "FirstName",
+    name: "FirstName",
     placeholder: "Mohmoud",
     type: "text",
     label: "First name",
     ...defaultStyles,
   },
   {
-    id: "lastName",
-    name: "lastName",
+    id: "LastName",
+    name: "LastName",
     placeholder: "Ali",
     type: "text",
     label: "Last name",
@@ -27,7 +27,7 @@ export const personalInformationForm: IInputSettings[] = [
     placeholder: "Mohmoud@gmail.com",
     type: "email",
     label: "Email",
-    readonly: true,
+    readOnly: true,
     disabled: true,
     ...defaultStyles,
   },

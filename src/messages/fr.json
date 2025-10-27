@@ -125,5 +125,8 @@
       "agree": "J'accepte",
       "decline": "Refuser"
     }
+  },
+  "country": {
+    "egypt": "Égypte"
   }
 }

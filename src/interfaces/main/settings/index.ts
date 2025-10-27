@@ -13,19 +13,15 @@ export interface IInputSettings {
   placeholder: string;
   labelClassname: string;
   inputClassname: string;
-  readonly?: boolean;
+  readOnly?: boolean;
   disabled?: boolean;
 }
 export interface IGender {
   label: string;
   value: boolean;
 }
-export interface IProfile {
-  firstName: string;
-  lastName: string;
-  email?: string;
-  birthDate?: string;
-  country?: string;
-  picture?: string;
-  isMale?: boolean;
+export interface ICountry {
+  id: number;
+  name: string;
+  flagUrl: string;
 }
