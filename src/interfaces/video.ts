@@ -9,8 +9,12 @@ export interface IClassBySession {
 export interface IClassBySong {
   segments: IClassBySession[];
 }
+export interface IFoucsArea {
+  id: number;
+  name: string;
+}
 export interface IVideo {
-  focusAreas: string[];
+  focusAreas: IFoucsArea[];
   classBySession: IClassBySession[];
   classBySong: IClassBySong[];
   durationInMinutes: number;

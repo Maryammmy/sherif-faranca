@@ -9,3 +9,4 @@ export * from "./my-fit";
 export * from "./program";
 export * from "./notification";
 export * from "./discover";
+export * from "./faq";

@@ -1,7 +1,6 @@
 import { Button } from "@/src/components/ui/Button";
 import { ISubscription } from "@/src/interfaces";
 import { cn } from "@/src/lib/utils";
-import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface IProps {
@@ -10,7 +9,7 @@ interface IProps {
 
 function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
   const t = useTranslations("price");
-  const { planName, features, beforePrice, afterPrice, isSpecialOffer } =
+  const { planName, beforePrice, afterPrice, isSpecialOffer, description } =
     subscriptionPlan;
   const premiumPlan = planName === "Premium Plan";
 
@@ -25,7 +24,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
       )}
     >
       <div className="flex-1 flex flex-col gap-10">
-        {/* Title + Price */}
+        {/* العنوان + السعر */}
         <div className="flex flex-col gap-0.5 items-center">
           <h2
             className={cn(
@@ -60,32 +59,24 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
           </div>
         </div>
 
-        {/* المميزات */}
-        <div className="flex flex-col gap-3">
-          {features?.map((feature, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <span
-                className={cn(
-                  "shrink-0",
-                  premiumPlan ? "text-white" : "text-primary"
-                )}
-              >
-                <Check size={20} />
-              </span>
-              <p
-                className={cn(
-                  "font-medium text-sm",
-                  premiumPlan ? "text-white" : "text-gray-700"
-                )}
-              >
-                {feature}
-              </p>
-            </div>
-          ))}
-        </div>
+        {/* الوصف بدل الـ features */}
+        {/* الوصف بدل الـ features */}
+        {description && (
+          <div
+            className={cn(
+              "leading-relaxed",
+              // قواعد مشتركة للـ ul/li
+              "[&_ul]:pl-5 [&_ul]:list-disc [&_ul]:marker:text-primary [&_li]:my-1",
+              premiumPlan
+                ? "text-white [&_ul]:marker:text-white"
+                : "text-gray-700"
+            )}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        )}
       </div>
 
-      {/* زرار */}
+      {/* الزر */}
       <div>
         <Button
           className={cn(

@@ -1,12 +1,16 @@
 "use client";
 
 import { cn } from "@/src/lib/utils";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "../../ui/Button";
 import SidebarContent from "./SidebarContent";
 import { useSidebar } from "@/src/context/sidebar";
+import { useLocale } from "next-intl";
 
 export default function Sidebar() {
+  const locale = useLocale();
+  const isAr = locale === "ar";
+  const ChevronIcon = isAr ? ChevronLeft : ChevronRight;
   const {
     isDesktopExpanded,
     toggleDesktopSidebar,
@@ -18,16 +22,20 @@ export default function Sidebar() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "relative hidden lg:flex flex-col bg-white border-r shrink-0 transition-all duration-300 ease-in-out",
-          isDesktopExpanded ? "w-64" : "w-20"
+          "relative hidden lg:flex flex-col bg-white shrink-0 transition-all duration-300 ease-in-out",
+          isDesktopExpanded ? "w-64" : "w-20",
+          isAr ? "border-l" : "border-r"
         )}
       >
         <SidebarContent isExpanded={isDesktopExpanded} />
         <Button
           onClick={toggleDesktopSidebar}
-          className="absolute -right-3 top-1/2 -translate-y-1/2 bg-white border rounded-full p-1 text-gray-600 hover:text-primary hover:border-primary transition-all"
+          className={cn(
+            "absolute top-1/2 -translate-y-1/2 bg-white border rounded-full p-1 text-gray-600 hover:text-primary hover:border-primary transition-all",
+            isAr ? "-left-3" : "-right-3"
+          )}
         >
-          <ChevronLeft
+          <ChevronIcon
             className={cn(
               "w-4 h-4 transition-transform duration-300",
               !isDesktopExpanded && "rotate-180"

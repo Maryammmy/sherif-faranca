@@ -7,6 +7,7 @@ import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
 import RecentWatchedCard from "./Card";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
+import { cn } from "@/src/lib/utils";
 
 function RecentWatchedList() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -34,7 +35,10 @@ function RecentWatchedList() {
           {hasNextPage && (
             <div className="col-span-full flex justify-center">
               <Button
-                className="bg-primary w-28 p-2 text-white font-medium rounded-md"
+                className={cn(
+                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
+                  isFetchingNextPage && "w-[106.7px] px-0"
+                )}
                 onClick={() => fetchNextPage()}
                 disabled={isFetchingNextPage}
               >

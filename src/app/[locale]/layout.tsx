@@ -44,9 +44,9 @@ export default async function RootLayout({
     notFound();
   }
   setRequestLocale(locale);
-  // const dir = locale === "ar" ? "rtl" : "ltr";
+  const dir = locale === "ar" ? "rtl" : "ltr";
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={dir}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

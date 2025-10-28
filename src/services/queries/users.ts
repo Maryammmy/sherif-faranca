@@ -16,7 +16,3 @@ export const phoneAPI = async () => {
   const data = await getServerData("/api/Users/current-PhoneNumber");
   return data;
 };
-export const totalCalories = async () => {
-  const data = await getServerData("/api/Users/total-calories");
-  return data;
-};

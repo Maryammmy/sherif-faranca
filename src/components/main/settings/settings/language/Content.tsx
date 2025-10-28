@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "@/src/components/ui/Image";
-import { useRouter, usePathname } from "@/src/i18n/navigation";
+import { usePathname } from "@/src/i18n/navigation";
 import { useLocale } from "next-intl";
 import { Button } from "@/src/components/ui/Button";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
@@ -10,15 +10,14 @@ import { languages } from "@/src/data";
 
 export default function Content() {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
 
   const [lang, setLang] = useState(locale);
 
   const handleSave = () => {
     if (lang !== locale) {
-      router.replace(pathname, { locale: lang });
-      router.refresh();
+      // router.replace(pathname, { locale: lang });
+      window.location.replace(`/${lang}${pathname}`);
     }
   };
 

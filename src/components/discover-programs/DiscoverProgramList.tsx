@@ -7,6 +7,7 @@ import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
 import DiscoverProgramCard from "./Card";
 import Loader from "../loader/Loader";
 import { Button } from "../ui/Button";
+import { cn } from "@/src/lib/utils";
 
 function DiscoverProgramList() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -30,7 +31,10 @@ function DiscoverProgramList() {
           {hasNextPage && (
             <div className="col-span-full flex justify-center">
               <Button
-                className="bg-primary w-28 p-2 text-white font-medium rounded-md"
+                className={cn(
+                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
+                  isFetchingNextPage && "w-[106.7px] px-0"
+                )}
                 onClick={() => fetchNextPage()}
                 disabled={isFetchingNextPage}
               >

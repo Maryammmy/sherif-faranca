@@ -4,6 +4,7 @@ export * from "./errorHandler";
 export * from "./useQueryParams";
 export * from "./formatDate";
 export * from "./auth";
+export * from "./lang";
 export * from "./questions";
 export * from "./query";
 export * from "./birthDate";

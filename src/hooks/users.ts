@@ -4,7 +4,6 @@ import {
   emailAPI,
   phoneAPI,
   profileAPI,
-  totalCalories,
 } from "@/src/services/queries/users";
 
 export function useProfile() {
@@ -15,9 +14,6 @@ export function useEmail() {
 }
 export function usePhone() {
   return useCustomQuery(["phoneNumber"], phoneAPI);
-}
-export function useTotalCalories() {
-  return useCustomQuery(["totalCalories"], totalCalories);
 }
 export function useCountry() {
   return useCustomQuery(["country"], countryAPI);

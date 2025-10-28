@@ -8,6 +8,7 @@ export interface ISubscription {
   beforePrice: number;
   discountPercentage: number;
   features: string[];
+  description: string;
   freeTrialDays: number;
   hasFreeTrial: boolean;
   id: number;

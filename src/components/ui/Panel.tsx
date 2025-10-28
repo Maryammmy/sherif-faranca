@@ -1,3 +1,5 @@
+"use client";
+
 import { X } from "lucide-react";
 import {
   Sheet,
@@ -10,6 +12,7 @@ import {
 } from "./sheet";
 import React, { ReactNode } from "react";
 import { cn } from "@/src/lib/utils";
+import { useLocale } from "next-intl";
 
 interface IProps {
   open: boolean;
@@ -34,9 +37,11 @@ function Panel({
   titleClassName,
   closeButtonClassName,
 }: IProps) {
+  const locale = useLocale();
+  const isAr = locale === "ar";
   return (
     <Sheet open={open} onOpenChange={onClose}>
-      <SheetContent side="left" className={contentClassName}>
+      <SheetContent side={isAr ? "right" : "left"} className={contentClassName}>
         {title && (
           <SheetHeader>
             <CloseButtonPanel closeButtonClassname={closeButtonClassName} />

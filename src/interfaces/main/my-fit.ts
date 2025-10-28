@@ -15,12 +15,13 @@ export interface IHabit {
   icon: ReactNode;
 }
 export interface ICalories {
-  dailyCalories: IDailyCalories[];
-  totalWeekCalories: number;
+  weekRange: string;
+  weeklySummary: IWeeklySummary[];
+  weeklyTotal: number;
 }
-export interface IDailyCalories {
+export interface IWeeklySummary {
   calories: number;
-  date: string;
+  day: string;
 }
 export interface IAchievement {
   progress: number;
@@ -48,8 +49,10 @@ export interface IHistories {
 }
 export interface IHealthHabit {
   goal: number;
+  imageUrl: number;
   progress: number;
   title: string;
+  unit: string;
 }
 export interface IMyFit {
   achievement: IAchievement;

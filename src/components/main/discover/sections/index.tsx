@@ -19,6 +19,7 @@ import { Button } from "@/src/components/ui/Button";
 import Loader from "@/src/components/loader/Loader";
 import SuggestedPrograms from "../suggested-programs";
 import SuggestedVideo from "../suggested-videos";
+import { cn } from "@/src/lib/utils";
 
 interface IProps {
   selectedSection: string;
@@ -144,7 +145,10 @@ function Sections({ selectedSection }: IProps) {
               <button
                 onClick={() => fetchNextVideosPage()}
                 disabled={isFetchingNextVideos}
-                className="w-28 p-2 bg-primary text-white rounded-md font-medium disabled:opacity-50"
+                className={cn(
+                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
+                  isFetchingNextVideos && "w-[106.7px] px-0"
+                )}
               >
                 {isFetchingNextVideos ? <Loader /> : "Show More"}
               </button>
@@ -153,7 +157,10 @@ function Sections({ selectedSection }: IProps) {
               <Button
                 onClick={() => fetchNextWorkoutsPage()}
                 disabled={isFetchingNextWorkouts}
-                className="w-28 p-2 bg-primary text-white rounded-md font-medium disabled:opacity-50"
+                className={cn(
+                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
+                  isFetchingNextWorkouts && "w-[106.7px] px-0"
+                )}
               >
                 {isFetchingNextWorkouts ? <Loader /> : "Show More"}
               </Button>

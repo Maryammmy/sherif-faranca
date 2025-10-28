@@ -1,11 +1,11 @@
-import { subscriptionAPI } from "../services/queries/subscription";
+import { faqAPI } from "../services/queries/faq";
 import { useCustomInfiniteQuery } from "./useCustomQuery";
 
-export function useSubscription(type = "monthly") {
+export function useFaq() {
   return useCustomInfiniteQuery(
-    ["subscription", type],
+    ["faq"],
     async ({ pageParam = 1 }) => {
-      return subscriptionAPI(type, pageParam);
+      return faqAPI(pageParam);
     },
     {
       initialPageParam: 1,

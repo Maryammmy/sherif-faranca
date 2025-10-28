@@ -128,5 +128,13 @@
   },
   "country": {
     "egypt": "Égypte"
+  },
+  "myFit": {
+    "healthHabits": {
+      "calories": "Calories",
+      "water": "Eau",
+      "steps": "Pas",
+      "duration": "Durée"
+    }
   }
 }

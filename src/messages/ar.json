@@ -128,5 +128,13 @@
   },
   "country": {
     "egypt": "مصر"
+  },
+  "myFit": {
+    "healthHabits": {
+      "calories": "سعرات حرارية",
+      "water": "ماء",
+      "steps": "خطوات",
+      "duration": "المدة"
+    }
   }
 }

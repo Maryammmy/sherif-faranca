@@ -10,6 +10,7 @@ import { Button } from "../ui/Button";
 import SwiperSlider from "../ui/SwiperSlider";
 import { navBreakpoints } from "@/src/data";
 import Loader from "../loader/Loader";
+import { cn } from "@/src/lib/utils";
 
 function ClassList() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -81,7 +82,10 @@ function ClassList() {
                 {hasNextPage && (
                   <div className="col-span-full flex justify-center">
                     <Button
-                      className="bg-primary w-28 p-2 text-white font-medium rounded-md"
+                      className={cn(
+                        "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
+                        isFetchingNextPage && "w-[106.7px] px-0"
+                      )}
                       onClick={() => fetchNextPage()}
                       disabled={isFetchingNextPage}
                     >

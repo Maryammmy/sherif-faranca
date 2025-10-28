@@ -25,3 +25,9 @@ export interface ICountry {
   name: string;
   flagUrl: string;
 }
+export interface IFaq {
+  answer: string;
+  id: number;
+  question: string;
+  visibilityOrder: number;
+}
