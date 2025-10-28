@@ -79,7 +79,7 @@ function PersonalInformationForm({ close }: IProps) {
         })}
         <div className="flex flex-col gap-1">
           <Label className="text-gray-400 font-medium">Phone number</Label>
-          <div className="border-b">
+          <div className="border-b" dir="ltr">
             <PhoneField
               numberName="phoneNumber"
               countryCodeName="countryCode"
@@ -92,7 +92,7 @@ function PersonalInformationForm({ close }: IProps) {
         </div>
         <div className="flex flex-col gap-1">
           <Label className="font-medium text-gray-400">Birthday</Label>
-          <div className="border-b">
+          <div className="border-b" dir="ltr">
             <Controller
               name="BirthDate"
               control={control}

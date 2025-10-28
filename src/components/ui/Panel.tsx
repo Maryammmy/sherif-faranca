@@ -63,10 +63,13 @@ interface ICloseButtonProps {
   closeButtonClassname?: string;
 }
 export function CloseButtonPanel({ closeButtonClassname }: ICloseButtonProps) {
+  const locale = useLocale();
+  const isAr = locale === "ar";
   return (
     <SheetClose
       className={cn(
-        "w-6 h-6 bg-transparent rounded-full text-gray-700 border-2 border-gray-700 flex justify-center items-center absolute top-4 right-4",
+        "w-6 h-6 bg-transparent rounded-full text-gray-700 border-2 border-gray-700 flex justify-center items-center absolute top-4",
+        isAr ? "left-4" : "right-4",
         closeButtonClassname && closeButtonClassname
       )}
     >

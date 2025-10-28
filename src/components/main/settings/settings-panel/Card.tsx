@@ -1,7 +1,8 @@
 import { Button } from "@/src/components/ui/Button";
 import { ISetting } from "@/src/interfaces/main/settings";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "@/src/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
 
 interface IProps {
   setting: ISetting;
@@ -25,20 +26,39 @@ function SettingsPanelCard({
   handleOpenFaq,
 }: IProps) {
   const { icon: Icon, label, href } = setting;
+  const locale = useLocale();
+  const isAr = locale === "ar";
+  const ChevronIcon = isAr ? ChevronLeft : ChevronRight;
+  const t = useTranslations();
   const handleClick = () => {
-    if (label === "personal information" && handleOpenPersonalInfo) {
+    if (
+      t(label) === t("settings.account.personalInformation") &&
+      handleOpenPersonalInfo
+    ) {
       handleOpenPersonalInfo();
-    } else if (label === "language" && handleOpenChangeLanguage) {
+    } else if (
+      t(label) === t("settings.settings.language") &&
+      handleOpenChangeLanguage
+    ) {
       handleOpenChangeLanguage();
-    } else if (label === "change password" && handleOpenChangePassword) {
+    } else if (
+      t(label) === t("settings.settings.changePassword") &&
+      handleOpenChangePassword
+    ) {
       handleOpenChangePassword();
-    } else if (label === "change email" && handleOpenChangeEmail) {
+    } else if (
+      t(label) === t("settings.settings.changeEmail") &&
+      handleOpenChangeEmail
+    ) {
       handleOpenChangeEmail();
-    } else if (label === "change phone number" && handleOpenChangePhone) {
+    } else if (
+      t(label) === t("settings.settings.changePhoneNumber") &&
+      handleOpenChangePhone
+    ) {
       handleOpenChangePhone();
-    } else if (label === "my goal" && handleOpenGoals) {
+    } else if (t(label) === t("settings.account.myGoal") && handleOpenGoals) {
       handleOpenGoals();
-    } else if (label === "FAQ" && handleOpenFaq) {
+    } else if (t(label) === t("settings.settings.faq") && handleOpenFaq) {
       handleOpenFaq();
     }
   };
@@ -55,10 +75,10 @@ function SettingsPanelCard({
             <Icon />
           </div>
           <span className="flex-grow text-xs sm:text-base font-medium text-gray-700 text-start">
-            {label}
+            {t(label)}
           </span>
           <span className="text-secondary">
-            <ChevronRight />
+            <ChevronIcon />
           </span>
         </Link>
       ) : (
@@ -70,10 +90,10 @@ function SettingsPanelCard({
             <Icon />
           </div>
           <span className="flex-grow text-xs sm:text-base font-medium text-gray-700 text-start">
-            {label}
+            {t(label)}
           </span>
           <span className="text-secondary">
-            <ChevronRight />
+            <ChevronIcon />
           </span>
         </Button>
       )}

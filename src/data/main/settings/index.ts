@@ -11,20 +11,20 @@ import {
 } from "lucide-react";
 
 export const account: ISetting[] = [
-  { icon: UserRound, label: "personal information" },
+  { icon: UserRound, label: "settings.account.personalInformation" },
   {
     icon: BookmarkCheck,
-    label: "my workouts",
+    label: "settings.account.myWorkouts",
     href: "/settings/account/workouts?section=history&time=today",
   },
-  { icon: BadgeCheck, label: "my goal" },
+  { icon: BadgeCheck, label: "settings.account.myGoal" },
 ];
 export const settings: ISetting[] = [
-  { icon: Languages, label: "language" },
-  { icon: LockKeyhole, label: "change password" },
-  { icon: MailCheck, label: "change email" },
-  { icon: Phone, label: "change phone number" },
-  { icon: TableOfContents, label: "FAQ" },
+  { icon: Languages, label: "settings.settings.language" },
+  { icon: LockKeyhole, label: "settings.settings.changePassword" },
+  { icon: MailCheck, label: "settings.settings.changeEmail" },
+  { icon: Phone, label: "settings.settings.changePhoneNumber" },
+  { icon: TableOfContents, label: "settings.settings.faq" },
 ];
 export const email: IInputSettings = {
   id: "newEmail",

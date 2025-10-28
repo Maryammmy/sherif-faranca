@@ -136,5 +136,29 @@
       "steps": "خطوات",
       "duration": "المدة"
     }
+  },
+  "settings": {
+    "welcome": "مرحباً",
+    "myTrainingAchievement": {
+      "title": "إنجاز تدريبي",
+      "myClass": "حصتي",
+      "calories": "السعرات الحرارية",
+      "goal": "الهدف"
+    },
+    "account": {
+      "title": "حسابي",
+      "personalInformation": "المعلومات الشخصية",
+      "myWorkouts": "تماريني",
+      "myGoal": "هدفي"
+    },
+    "settings": {
+      "title": "الإعدادات",
+      "language": "اللغة",
+      "changePassword": "تغيير كلمة المرور",
+      "changeEmail": "تغيير البريد الإلكتروني",
+      "changePhoneNumber": "تغيير رقم الهاتف",
+      "faq": "الأسئلة الشائعة"
+    },
+    "logout": "تسجيل الخروج"
   }
 }

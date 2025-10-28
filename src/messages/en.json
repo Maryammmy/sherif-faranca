@@ -136,5 +136,29 @@
       "steps": "Steps",
       "duration": "Duration"
     }
+  },
+  "settings": {
+    "welcome": "Welcome",
+    "myTrainingAchievement": {
+      "title": "My Training Achievement",
+      "myClass": "My Class",
+      "calories": "Calories",
+      "goal": "Goal"
+    },
+    "account": {
+      "title": "My Account",
+      "personalInformation": "personal information",
+      "myWorkouts": "my workouts",
+      "myGoal": "my goal"
+    },
+    "settings": {
+      "title": "Settings",
+      "language": "language",
+      "changePassword": "change password",
+      "changeEmail": "change email",
+      "changePhoneNumber": "change phone number",
+      "faq": "FAQ"
+    },
+    "logout": "Logout"
   }
 }
