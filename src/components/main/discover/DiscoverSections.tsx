@@ -2,12 +2,14 @@ import { Button } from "@/src/components/ui/Button";
 import { discoverSections } from "@/src/data/main/discover";
 import { cn } from "@/src/lib/utils";
 import { DiscoverSection } from "@/src/types/main/discover";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   selectedSection: string;
   handleSelectSection: (section: DiscoverSection) => void;
 }
 function DiscoverSections({ selectedSection, handleSelectSection }: IProps) {
+  const t = useTranslations("discover.discoverSections");
   return (
     <div className="grid grid-cols-3 place-items-center sm:flex sm:items-center gap-5">
       {discoverSections.map((section, index) => (
@@ -21,7 +23,7 @@ function DiscoverSections({ selectedSection, handleSelectSection }: IProps) {
               : "text-secondary"
           )}
         >
-          {section}
+          {t(section)}
         </Button>
       ))}
     </div>

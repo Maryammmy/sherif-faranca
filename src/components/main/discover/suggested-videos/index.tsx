@@ -1,20 +1,25 @@
-import { Button } from "@/src/components/ui/Button";
 import SuggestedVideos from "./SuggestedVideos";
 import { ISuggestedVideo } from "@/src/interfaces/main/discover";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 interface IProps {
   videos: ISuggestedVideo[] | undefined;
 }
 function SuggestedVideo({ videos }: IProps) {
+  const t = useTranslations("discover.suggestedVideos");
   return (
     <div>
       <div className="flex items-center justify-between">
         <h2 className="text-gray-700 text-lg font-semibold capitalize">
-          Suggested Videos
+          {t("title")}
         </h2>
-        <Button className="border-b border-secondary text-secondary font-medium">
-          <span>View All</span>
-        </Button>
+        <Link
+          href="/classes"
+          className="border-b border-secondary text-secondary font-medium"
+        >
+          <span>{t("viewAll")}</span>
+        </Link>
       </div>
       <SuggestedVideos videos={videos} />
     </div>

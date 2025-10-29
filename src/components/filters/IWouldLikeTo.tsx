@@ -4,6 +4,7 @@ import { cn } from "@/src/lib/utils";
 import Image from "@/src/components/ui/Image";
 import { CheckCircle2 } from "lucide-react";
 import { EmptyState } from "../ui/empty-state/EmptyState";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   iWouldLikeTo: IFilter[];
@@ -12,9 +13,10 @@ interface IProps {
 }
 
 function IWouldLikeTo({ iWouldLikeTo, value, onChange }: IProps) {
+  const t = useTranslations("fliters.iWouldLikeTo");
   return (
     <div>
-      <h2 className="text-gray-700 font-bold">I&apos;d Like To</h2>
+      <h2 className="text-gray-700 font-bold">{t("title")}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10 py-5">
         {iWouldLikeTo?.length ? (
           iWouldLikeTo?.map(({ id, name, imageUrl }) => {
@@ -42,7 +44,7 @@ function IWouldLikeTo({ iWouldLikeTo, value, onChange }: IProps) {
             );
           })
         ) : (
-          <EmptyState message="No i'd like to found" />
+          <EmptyState message={t("noI'dLikeToFound")} />
         )}
       </div>
     </div>

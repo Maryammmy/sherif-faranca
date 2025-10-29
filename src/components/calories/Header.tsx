@@ -1,15 +1,20 @@
-import { MoveLeft } from "lucide-react";
+import { MoveLeft, MoveRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
 function Header() {
+  const t = useTranslations("calories");
+  const locale = useLocale();
+  const isAr = locale === "ar";
+  const MoveIcon = isAr ? MoveRight : MoveLeft;
   return (
     <div className="flex justify-between items-center gap-2 text-gray-700 pb-5">
       <Link href="/my-fit">
-        <MoveLeft className="size-6" />
+        <MoveIcon className="size-6" />
       </Link>
       <header className="flex-1 flex justify-center">
         <h1 className="text-2xl font-bold text-center text-gray-700">
-          Calories
+          {t("title")}
         </h1>
       </header>
     </div>

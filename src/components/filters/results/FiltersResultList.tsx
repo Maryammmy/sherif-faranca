@@ -2,8 +2,11 @@
 import { IFiltersResult } from "@/src/interfaces/filters";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import { useTranslations } from "next-intl";
+import { EmptyStatePage } from "../../ui/empty-state/EmptyStatePage";
 
 function FiltersResultList() {
+  const t = useTranslations("fliters.results");
   const [results, setResults] = useState<IFiltersResult[]>([]);
 
   useEffect(() => {
@@ -17,9 +20,7 @@ function FiltersResultList() {
       {results?.length ? (
         results?.map((result) => <Card key={result?.id} result={result} />)
       ) : (
-        <p className="col-span-full flex justify-center items-center text-lg h-[50vh] text-secondary font-medium">
-          No filters results found
-        </p>
+        <EmptyStatePage message={t("noFiltersResultsFound")} />
       )}
     </div>
   );

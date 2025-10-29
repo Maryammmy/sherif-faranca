@@ -10,8 +10,10 @@ import SwiperSlider from "../../ui/SwiperSlider";
 import { SingleSkeletonCard } from "../../skeleton/Card";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function ClassicClass() {
+  const t = useTranslations("home.classes");
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data } = useHome();
   const classicClasses: IClassicClass[] = data?.data?.classicClasses;
@@ -25,12 +27,12 @@ export default function ClassicClass() {
     <div>
       {data && (
         <div className="flex items-center justify-between">
-          <h2 className="text-gray-800 text-xl font-semibold">Classes</h2>
+          <h2 className="text-gray-800 text-xl font-semibold">{t("title")}</h2>
           <Link
             href="/classes"
             className="border-b border-secondary text-secondary font-medium"
           >
-            <span>View All</span>
+            <span>{t("viewAll")}</span>
           </Link>
         </div>
       )}
@@ -113,7 +115,7 @@ export default function ClassicClass() {
                 />
               ) : (
                 // لو اخترت focus area ومفيش برامج
-                <EmptyState message="No classes found" />
+                <EmptyState message={t("noClassesFound")} />
               )}
             </div>
           </>

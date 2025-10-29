@@ -1,7 +1,7 @@
-import FiltersResultsComponent from "@/src/components/filters/results";
+import FilterResultsComponent from "@/src/components/filters/results";
 
-function FiltersResults() {
-  return <FiltersResultsComponent />;
+function FilterResults() {
+  return <FilterResultsComponent />;
 }
 
-export default FiltersResults;
+export default FilterResults;

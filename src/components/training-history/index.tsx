@@ -1,4 +1,3 @@
-import TrainingHistories from "./TrainingHistories";
 import TrainingHistoryHeader from "./Header";
 import TrainingHistoryTime from "./Time";
 
@@ -7,7 +6,6 @@ function TrainingHistory() {
     <div className="padding-layout">
       <TrainingHistoryHeader />
       <TrainingHistoryTime />
-      <TrainingHistories />
     </div>
   );
 }

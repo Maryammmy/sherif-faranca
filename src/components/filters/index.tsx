@@ -6,11 +6,10 @@ import IWouldLikeTo from "./IWouldLikeTo";
 import Levels from "./Levels";
 import WorkoutPrefer from "./WorkoutPrefer";
 import { useFilters } from "@/src/hooks";
-import { Link } from "@/src/i18n/navigation";
-import { MoveLeft } from "lucide-react";
 import ApplyFilters from "./ApplyFilters";
 import { useState } from "react";
 import { SkeletonCard } from "../skeleton/Card";
+import Header from "./Header";
 
 function Filters() {
   const { data } = useFilters();
@@ -99,15 +98,7 @@ function Filters() {
 
   return (
     <div className="padding-layout">
-      <div className="flex justify-between items-center gap-2 text-gray-700 pb-5">
-        <Link href="/">
-          <MoveLeft className="size-6" />
-        </Link>
-        <header className="flex-1 flex justify-center">
-          <h1 className="font-bold text-lg sm:text-2xl">Filters</h1>
-        </header>
-      </div>
-
+      <Header />
       <FilterBodyFocusArea
         filterBodyFocusArea={filterBodyFocsArea}
         value={filterBodyFoucsAreaIds}

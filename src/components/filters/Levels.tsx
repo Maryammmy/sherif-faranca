@@ -2,6 +2,7 @@ import { ISubFilter } from "@/src/interfaces/filters";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 import { EmptyState } from "../ui/empty-state/EmptyState";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   levels: ISubFilter[];
@@ -10,9 +11,10 @@ interface IProps {
 }
 
 function Levels({ levels, value, onChange }: IProps) {
+  const t = useTranslations("fliters.levels");
   return (
     <div>
-      <h2 className="text-gray-700 font-bold">Levels</h2>
+      <h2 className="text-gray-700 font-bold">{t("title")}</h2>
       <div className="py-5 flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
         {levels?.length ? (
           levels?.map(({ id, name }) => {
@@ -34,7 +36,7 @@ function Levels({ levels, value, onChange }: IProps) {
             );
           })
         ) : (
-          <EmptyState message="No levels found" />
+          <EmptyState message={t("noLevelsFound")} />
         )}
       </div>
     </div>

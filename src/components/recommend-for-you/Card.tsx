@@ -4,11 +4,13 @@ import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
 }
 export default function RecommendForYouCard({ recommendForYou }: IProps) {
+  const t = useTranslations("card");
   const queryClient = useQueryClient();
   const {
     classesCount,
@@ -72,11 +74,17 @@ export default function RecommendForYouCard({ recommendForYou }: IProps) {
         </div>
         <div className="flex items-center justify-center gap-1 text-gray-400 text-sm font-medium">
           <Play />
-          <span className="truncate">{classesCount}Class</span>
+          <span className="truncate">
+            {classesCount}
+            {t("class")}
+          </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame className="shrink-0" />
-          <span className="truncate">{totalCalories}Kcal</span>
+          <span className="truncate">
+            {totalCalories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
     </div>

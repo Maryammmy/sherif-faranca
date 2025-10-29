@@ -3,11 +3,13 @@ import { timeAgo } from "@/src/lib/utils/timeAgo";
 import { makeReadNotificationAPI } from "@/src/services/mutations/notification";
 import { useQueryClient } from "@tanstack/react-query";
 import { Bell } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   notification: INotification;
 }
 function Notification({ notification }: IProps) {
+  const t = useTranslations();
   const queryClient = useQueryClient();
   const { id, title, body, createdAt, isRead } = notification;
   const makeReadNotification = async () => {
@@ -48,7 +50,7 @@ function Notification({ notification }: IProps) {
         </div>
         <div className="text-xs">
           <span className="text-gray-400 font-medium">
-            {timeAgo(createdAt)}
+            {timeAgo(createdAt, t)}
           </span>
         </div>
       </div>

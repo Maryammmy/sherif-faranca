@@ -11,8 +11,10 @@ import SwiperSlider from "../ui/SwiperSlider";
 import { navBreakpoints } from "@/src/data";
 import Loader from "../loader/Loader";
 import { cn } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 function ClassList() {
+  const t = useTranslations("classes");
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data: foucsAreas } = useFoucsAreas();
   const foucsAreaList: IFoucsArea[] = foucsAreas;
@@ -89,13 +91,13 @@ function ClassList() {
                       onClick={() => fetchNextPage()}
                       disabled={isFetchingNextPage}
                     >
-                      {isFetchingNextPage ? <Loader /> : "Show More"}
+                      {isFetchingNextPage ? <Loader /> : t("showMore")}
                     </Button>
                   </div>
                 )}
               </>
             ) : (
-              <EmptyStatePage message="No classes found" />
+              <EmptyStatePage message={t("noClassesFound")} />
             )}
           </>
         )

@@ -129,14 +129,6 @@
   "country": {
     "egypt": "Égypte"
   },
-  "myFit": {
-    "healthHabits": {
-      "calories": "Calories",
-      "water": "Eau",
-      "steps": "Pas",
-      "duration": "Durée"
-    }
-  },
   "settings": {
     "welcome": "Bienvenue",
     "myTrainingAchievement": {
@@ -160,5 +152,178 @@
       "faq": "FAQ"
     },
     "logout": "Se déconnecter"
+  },
+  "header": {
+    "searchWorkouts": "Rechercher des séances...",
+    "hey": "Salut"
+  },
+  "card": {
+    "kcal": "Kcal",
+    "min": "Min",
+    "class": "Cours",
+    "startProgram": "Commencer le programme",
+    "continueTheClass": "Continuer le cours",
+    "direction": "Direction",
+    "calories": "Calories"
+  },
+  "home": {
+    "navigationBar": {
+      "class": "Cours",
+      "challenges": "Défis",
+      "programs": "Programmes",
+      "water": "Eau",
+      "steps": "Pas",
+      "favorite": "Favoris",
+      "calories": "Calories",
+      "sleep": "Sommeil",
+      "direction": "Direction"
+    },
+    "banners": {
+      "noBannersFound": "Aucune bannière trouvée"
+    },
+    "classes": {
+      "title": "Cours",
+      "viewAll": "Voir tout",
+      "noClassesFound": "Aucun cours trouvé"
+    },
+    "discoverPrograms": {
+      "title": "Découvrir les programmes",
+      "viewAll": "Voir tout",
+      "noDiscoverProgramsFound": "Aucun programme trouvé"
+    },
+    "recentWatched": {
+      "title": "Récemment regardé",
+      "viewAll": "Voir tout"
+    },
+    "recommendedForYou": {
+      "title": "Recommandé pour vous",
+      "viewAll": "Voir tout",
+      "noRecommendedForYouFound": "Aucune recommandation trouvée"
+    }
+  },
+  "fliters": {
+    "title": "Filtres",
+    "showResults": "Afficher les résultats",
+    "filterBodyFocusArea": {
+      "title": "Zone ciblée du corps",
+      "noFoucsAreaFound": "Aucune zone trouvée"
+    },
+    "iWouldLikeTo": {
+      "title": "Je voudrais",
+      "noI'dLikeToFound": "Aucune option trouvée"
+    },
+    "whatWorkoutPrefer": {
+      "title": "Quel entraînement préférez-vous ?",
+      "noWorkoutPreferFound": "Aucun entraînement trouvé"
+    },
+    "durations": {
+      "title": "Durées",
+      "NoDurationsFound": "Aucune durée trouvée"
+    },
+    "levels": {
+      "title": "Niveaux",
+      "noLevelsFound": "Aucun niveau trouvé"
+    },
+    "results": {
+      "title": "Résultats du filtre",
+      "noFiltersResultsFound": "Aucun résultat trouvé"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "makeAllRead": "Marquer comme lues",
+    "noNotificationsFound": "Aucune notification trouvée"
+  },
+  "timeAgo": {
+    "dAgo": "il y a {value} j",
+    "hAgo": "il y a {value} h",
+    "mAgo": "il y a {value} min",
+    "sAgo": "il y a {value} s"
+  },
+  "timeFliters": {
+    "today": "aujourd'hui",
+    "thisWeek": "cette semaine",
+    "thisMonth": "ce mois-ci"
+  },
+  "myFit": {
+    "myActives": {
+      "title": "Mes activités",
+      "healthHabits": {
+        "goal": "Objectif",
+        "calories": "Calories",
+        "water": "Eau",
+        "steps": "Pas",
+        "duration": "Durée"
+      },
+      "achievement": {
+        "title": "Réalisations",
+        "average": "Moyenne",
+        "goal": "Objectif"
+      }
+    },
+    "myTrainingHistory": {
+      "title": "Historique d'entraînement",
+      "viewAll": "Voir tout",
+      "noTrainingHistoryFound": "Aucun historique trouvé"
+    },
+    "myFavoriteTraining": {
+      "title": "Mes entraînements favoris",
+      "viewAll": "Voir tout",
+      "noFavoriteTrainingFound": "Aucun entraînement favori trouvé"
+    }
+  },
+  "discover": {
+    "discoverSections": {
+      "workouts": "Entraînements",
+      "videos": "Vidéos"
+    },
+    "suggestedPrograms": {
+      "title": "Programmes suggérés",
+      "viewAll": "Voir tout",
+      "noProgramsFound": "Aucun programme trouvé"
+    },
+    "suggestedVideos": {
+      "title": "Vidéos suggérées",
+      "viewAll": "Voir tout",
+      "noVideosFound": "Aucune vidéo trouvée"
+    }
+  },
+  "classes": {
+    "title": "Cours",
+    "noClassesFound": "Aucun cours trouvé",
+    "showMore": "Afficher plus"
+  },
+  "discoverPrograms": {
+    "title": "Découvrir les programmes",
+    "noDiscoverProgramsFound": "Aucun programme trouvé",
+    "showMore": "Afficher plus"
+  },
+  "recentWatched": {
+    "title": "Récemment regardé",
+    "noRecentWatchedFound": "Aucun contenu récemment regardé",
+    "showMore": "Afficher plus"
+  },
+  "recommendedForYou": {
+    "title": "Recommandé pour vous",
+    "noRecommendedForYouFound": "Aucune recommandation trouvée",
+    "showMore": "Afficher plus"
+  },
+  "calories": {
+    "title": "Calories",
+    "todayCalories": {
+      "title": "Calories brûlées aujourd'hui",
+      "caloriesBurnt": "Calories brûlées",
+      "kcal": "Kcal",
+      "running": "Course",
+      "dancing": "Danse",
+      "workout": "Entraînement",
+      "yoga": "Yoga",
+      "walking": "Marche"
+    },
+    "weeklySummary": {
+      "title": "Résumé hebdomadaire",
+      "caloriesBurnt": "Calories brûlées",
+      "calories": "Calories"
+    }
   }
 }

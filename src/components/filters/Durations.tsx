@@ -3,6 +3,7 @@ import { Clock12 } from "lucide-react";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 import { EmptyState } from "../ui/empty-state/EmptyState";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   durations: IDuration[];
@@ -11,9 +12,10 @@ interface IProps {
 }
 
 function Durations({ durations, value, onChange }: IProps) {
+  const t = useTranslations("fliters.durations");
   return (
     <div>
-      <h2 className="text-gray-700 font-bold">Durations</h2>
+      <h2 className="text-gray-700 font-bold">{t("title")}</h2>
       <div className="py-5 flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
         {durations?.length ? (
           durations?.map((duration, index) => {
@@ -40,7 +42,7 @@ function Durations({ durations, value, onChange }: IProps) {
             );
           })
         ) : (
-          <EmptyState message="No durations found" />
+          <EmptyState message={t("NoDurationsFound")} />
         )}
       </div>
     </div>

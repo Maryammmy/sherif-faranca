@@ -16,9 +16,9 @@ function TrainingHistory({ histories }: IProps) {
     setSelectedTime(time);
   };
   const historyMap = {
-    today: histories.daily,
-    "this week": histories.weekly,
-    "this month": histories.monthly,
+    today: histories?.daily,
+    thisWeek: histories?.weekly,
+    thisMonth: histories?.monthly,
   };
 
   const filteredHistory = historyMap[selectedTime];

@@ -1,11 +1,13 @@
 import Image from "@/src/components/ui/Image";
 import { IHistory } from "@/src/interfaces/main/my-fit";
 import { formatDateOnly, formatTimeOnly } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   history: IHistory;
 }
 function WorkoutsCard({ history }: IProps) {
+  const t = useTranslations("card");
   const { calories, durationMinutes, watchedDate, imageUrl, title } = history;
   return (
     <div className="p-4 rounded-2xl border space-y-2">
@@ -25,13 +27,19 @@ function WorkoutsCard({ history }: IProps) {
         </div>
         <div className="flex justify-between items-center gap-5 text-secondary text-sm font-medium">
           <span>{formatDateOnly(watchedDate)}</span>
-          <span>Direction</span>
-          <span>Calories</span>
+          <span>{t("direction")}</span>
+          <span>{t("calories")}</span>
         </div>
         <div className="flex justify-between items-center gap-5 text-secondary font-medium">
           <span>{formatTimeOnly(watchedDate)}</span>
-          <span>{durationMinutes}Min</span>
-          <span>{calories}Kcal</span>
+          <span>
+            {durationMinutes}
+            {t("min")}
+          </span>
+          <span>
+            {calories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
     </div>

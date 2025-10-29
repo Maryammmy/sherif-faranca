@@ -6,12 +6,14 @@ import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import Link from "next/link";
 import { getHref } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
 }
 export default function RecommendCard({ recommendForYou }: IProps) {
   const queryClient = useQueryClient();
+  const t = useTranslations("card");
   const {
     classesCount,
     levelName,
@@ -75,11 +77,17 @@ export default function RecommendCard({ recommendForYou }: IProps) {
         </div>
         <div className="flex items-center justify-center gap-1 text-gray-400 text-sm font-medium">
           <Play />
-          <span className="truncate">{classesCount}Class</span>
+          <span className="truncate">
+            {classesCount}
+            {t("class")}
+          </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame className="shrink-0" />
-          <span className="truncate">{totalCalories}Kcal</span>
+          <span className="truncate">
+            {totalCalories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
     </Link>

@@ -1,11 +1,13 @@
 import { IClass } from "@/src/interfaces/main/home";
 import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   classicClass: IClass;
 }
 export default function ClassicClassCard({ classicClass }: IProps) {
+  const t = useTranslations("card");
   const { title, level, calories, duration, imageUrl } = classicClass;
   return (
     <div className="space-y-2">
@@ -27,7 +29,10 @@ export default function ClassicClassCard({ classicClass }: IProps) {
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame />
-          <span className="truncate">{calories}Kcal</span>
+          <span className="truncate">
+            {calories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
     </div>

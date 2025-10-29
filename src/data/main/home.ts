@@ -12,15 +12,13 @@ import {
 } from "lucide-react";
 
 export const navItems: INavItem[] = [
-  { label: "Class", icon: Play },
-  { label: "Challenges", icon: Grid },
-  { label: "Programs", icon: ClipboardList },
-  { label: "Water", icon: Droplet },
-  { label: "Steps", icon: Footprints },
-  { label: "Favorite", icon: Heart },
-  { label: "Calories", icon: Flame },
-  { label: "Sleep", icon: BedDouble },
-  { label: "Direction", icon: Clock },
-  { label: "Favorite", icon: Heart },
-  { label: "Calories", icon: Flame },
+  { label: "class", icon: Play },
+  { label: "challenges", icon: Grid },
+  { label: "programs", icon: ClipboardList },
+  { label: "water", icon: Droplet },
+  { label: "steps", icon: Footprints },
+  { label: "favorite", icon: Heart },
+  { label: "calories", icon: Flame },
+  { label: "sleep", icon: BedDouble },
+  { label: "direction", icon: Clock },
 ];

@@ -3,11 +3,13 @@ import Image from "@/src/components/ui/Image";
 import React from "react";
 import { ISuggestedVideo } from "@/src/interfaces/main/discover";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   video: ISuggestedVideo;
 }
 function SuggestedVideoCard({ video }: IProps) {
+  const t = useTranslations("card");
   const { imageUrl, calories, durationMinutes, level, title, id } = video;
   return (
     <Link href={`/videos/${id}`} className="space-y-2">
@@ -27,11 +29,17 @@ function SuggestedVideoCard({ video }: IProps) {
         </div>
         <div className="flex justify-center items-center gap-1 text-gray-400 text-sm font-medium">
           <Clock12 />
-          <span>{durationMinutes}min</span>
+          <span>
+            {durationMinutes}
+            {t("min")}
+          </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame />
-          <span className="truncate">{calories}Kcal</span>
+          <span className="truncate">
+            {calories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
     </Link>

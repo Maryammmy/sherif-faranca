@@ -6,7 +6,7 @@ export const navBreakpoints: SwiperBreakpoints = {
   768: { slidesPerView: 4 },
   1280: { slidesPerView: 5 },
   1440: { slidesPerView: 6 },
-  1536: { slidesPerView: 8 },
+  1536: { slidesPerView: 7 },
 };
 export const HomeBreakpoints: SwiperBreakpoints = {
   640: { slidesPerView: 2 },

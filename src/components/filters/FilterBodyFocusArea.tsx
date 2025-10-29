@@ -3,6 +3,7 @@ import Image from "@/src/components/ui/Image";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 import { EmptyStateGrid } from "../ui/empty-state/EmptyStateGrid";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   filterBodyFocusArea: IFilter[];
@@ -11,9 +12,10 @@ interface IProps {
 }
 
 function FilterBodyFocusArea({ filterBodyFocusArea, value, onChange }: IProps) {
+  const t = useTranslations("fliters.filterBodyFocusArea");
   return (
     <div>
-      <h2 className="text-gray-700 font-bold">Filter Body Focus Area</h2>
+      <h2 className="text-gray-700 font-bold">{t("title")}</h2>
       <div className="py-5 grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {filterBodyFocusArea.length ? (
           filterBodyFocusArea?.map(({ name, id, imageUrl }) => {
@@ -51,7 +53,7 @@ function FilterBodyFocusArea({ filterBodyFocusArea, value, onChange }: IProps) {
             );
           })
         ) : (
-          <EmptyStateGrid message="No foucs area found" />
+          <EmptyStateGrid message={t("noFoucsAreaFound")} />
         )}
       </div>
     </div>

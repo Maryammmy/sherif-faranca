@@ -8,8 +8,10 @@ import RecentWatchedCard from "./Card";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
 import { cn } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 function RecentWatchedList() {
+  const t = useTranslations("recentWatched");
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useRecentWatched();
 
@@ -42,13 +44,13 @@ function RecentWatchedList() {
                 onClick={() => fetchNextPage()}
                 disabled={isFetchingNextPage}
               >
-                {isFetchingNextPage ? <Loader /> : "Show More"}
+                {isFetchingNextPage ? <Loader /> : t("showMore")}
               </Button>
             </div>
           )}
         </>
       ) : (
-        <EmptyStatePage message="No recent watched found" />
+        <EmptyStatePage message={t("noRecentWatchedFound")} />
       )}
     </div>
   );

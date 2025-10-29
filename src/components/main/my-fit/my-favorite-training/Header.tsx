@@ -1,15 +1,17 @@
 import { Link } from "@/src/i18n/navigation";
 import Title from "../Title";
+import { useTranslations } from "next-intl";
 
 function FavoriteTrainingHeader() {
+  const t = useTranslations("myFit.myFavoriteTraining");
   return (
     <div className="flex items-center justify-between">
-      <Title title="My favorite training" />
+      <Title title={t("title")} />
       <Link
         href="/my-favorite-training"
         className="border-b border-secondary text-secondary font-medium"
       >
-        <span>View All</span>
+        <span>{t("viewAll")}</span>
       </Link>
     </div>
   );

@@ -2,11 +2,16 @@
 
 import { Link } from "@/src/i18n/navigation";
 import { Button } from "../ui/Button";
-import { MoveLeft } from "lucide-react";
+import { MoveLeft, MoveRight } from "lucide-react";
 import { makeAllReadNotificationAPI } from "@/src/services/mutations/notification";
 import { useQueryClient } from "@tanstack/react-query";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Header() {
+  const t = useTranslations("notifications");
+  const locale = useLocale();
+  const isAr = locale === "ar";
+  const MoveIcon = isAr ? MoveRight : MoveLeft;
   const queryClient = useQueryClient();
   const makeReadAllNotification = async () => {
     const response = await makeAllReadNotificationAPI();
@@ -17,17 +22,17 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between gap-2 text-white padding-layout">
       <Link href="/">
-        <MoveLeft className="size-6" />
+        <MoveIcon className="size-6" />
       </Link>
       <header>
-        <h1 className="sm:text-2xl font-bold">Notification</h1>
+        <h1 className="sm:text-2xl font-bold">{t("title")}</h1>
       </header>
       <div>
         <Button
           onClick={makeReadAllNotification}
           className="bg-white text-gray-700 text-xs sm:text-base font-medium px-4 py-2 rounded-md hover:bg-gray-100 transition"
         >
-          Make All Read
+          {t("makeAllRead")}
         </Button>
       </div>
     </div>

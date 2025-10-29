@@ -9,7 +9,6 @@ interface IProps {
   fav: IFav;
 }
 function FavoriteTrainingCard({ fav }: IProps) {
-  console.log(fav);
   const { id, imageUrl, isProgram, title } = fav;
   const queryClient = useQueryClient();
   const toggleFav = async () => {

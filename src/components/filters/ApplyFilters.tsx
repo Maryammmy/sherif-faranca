@@ -5,12 +5,14 @@ import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
 import { useRouter } from "@/src/i18n/navigation";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   filters: IApplyFilters;
   isDisabled: boolean;
 }
 function ApplyFilters({ filters, isDisabled }: IProps) {
+  const t = useTranslations("fliters");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const applyFilters = async () => {
@@ -34,7 +36,7 @@ function ApplyFilters({ filters, isDisabled }: IProps) {
       onClick={applyFilters}
       className="rounded-md font-medium text-white w-full sm:w-50 py-2 bg-primary disabled:bg-gray-200"
     >
-      {loading ? <Loader borderColor="#3e1492" /> : "Show Results"}
+      {loading ? <Loader borderColor="#3e1492" /> : t("showResults")}
     </Button>
   );
 }

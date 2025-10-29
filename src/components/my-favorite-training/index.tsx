@@ -12,7 +12,7 @@ function FavoriteTraining() {
     <div className="padding-layout">
       {!data ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
-          <SkeletonCard count={10} className="h-[315px]" />
+          <SkeletonCard count={5} className="h-[315px]" />
         </div>
       ) : (
         <>

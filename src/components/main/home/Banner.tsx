@@ -7,8 +7,10 @@ import SwiperSlider from "../../ui/SwiperSlider";
 import { SkeletonCard } from "../../skeleton/Card";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Banner() {
+  const t = useTranslations("home.banners");
   const { data } = useHome();
   const merchantBanners: IMerchantBanner[] = data?.data?.merchantBanners;
   return (
@@ -43,7 +45,7 @@ export default function Banner() {
           className="rounded-3xl overflow-hidden"
         />
       ) : (
-        <EmptyState message="No banners found" />
+        <EmptyState message={t("noBannersFound")} />
       )}
     </div>
   );

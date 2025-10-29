@@ -2,12 +2,14 @@ import { Button } from "@/src/components/ui/Button";
 import { workoutTimeFilters } from "@/src/data/main/settings/account/workouts";
 import { cn } from "@/src/lib/utils";
 import { WorkoutHistoryTime } from "@/src/types/main/settings/account/workouts";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   selectedTime: string;
   handleSelectTime: (time: WorkoutHistoryTime) => void;
 }
 function WorkoutTimeFilters({ selectedTime, handleSelectTime }: IProps) {
+  const t = useTranslations("timeFliters");
   return (
     <div className="grid grid-cols-3 sm:flex sm:items-center sm:justify-center gap-5">
       {workoutTimeFilters.map((time, index) => (
@@ -21,7 +23,7 @@ function WorkoutTimeFilters({ selectedTime, handleSelectTime }: IProps) {
               : "border sm:border-none text-secondary"
           )}
         >
-          {time}
+          {t(time)}
         </Button>
       ))}
     </div>

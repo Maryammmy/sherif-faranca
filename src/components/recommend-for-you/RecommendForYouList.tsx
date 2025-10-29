@@ -8,8 +8,10 @@ import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
 import { cn } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 function RecommendForYorList() {
+  const t = useTranslations("recommendedForYou");
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useRecommendForYou();
 
@@ -38,13 +40,13 @@ function RecommendForYorList() {
                 onClick={() => fetchNextPage()}
                 disabled={isFetchingNextPage}
               >
-                {isFetchingNextPage ? <Loader /> : "Show More"}
+                {isFetchingNextPage ? <Loader /> : t("showMore")}
               </Button>
             </div>
           )}
         </>
       ) : (
-        <EmptyStatePage message="No recommendations found" />
+        <EmptyStatePage message={"noRecommendedForYouFound"} />
       )}
     </div>
   );

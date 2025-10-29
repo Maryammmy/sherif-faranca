@@ -7,22 +7,22 @@ import SwiperSlider from "../../ui/SwiperSlider";
 import { HomeBreakpoints } from "@/src/data";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function RecommendForYou() {
+  const t = useTranslations("home.recommendedForYou");
   const { data } = useHome();
   const recommendedForYou: IRecommendedForYou[] = data?.data?.recommendedForYou;
   return (
     <div>
       {data && (
         <div className="flex items-center justify-between">
-          <h2 className="text-gray-800 text-xl font-semibold">
-            Recommend For You
-          </h2>
+          <h2 className="text-gray-800 text-xl font-semibold">{t("title")}</h2>
           <Link
             href="/recommend-for-you"
             className="border-b border-secondary text-secondary font-medium"
           >
-            <span>View All</span>
+            <span>{t("viewAll")}</span>
           </Link>
         </div>
       )}
@@ -51,7 +51,7 @@ export default function RecommendForYou() {
             loop={false}
           />
         ) : (
-          <EmptyState message="No recommended for you found" />
+          <EmptyState message={t("noRecommendedForYouFound")} />
         )}
       </div>
     </div>

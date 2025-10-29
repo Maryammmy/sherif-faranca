@@ -2,6 +2,7 @@ import { ISubFilter } from "@/src/interfaces/filters";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
 import { EmptyState } from "../ui/empty-state/EmptyState";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   whatWorkoutPrefer: ISubFilter[];
@@ -10,9 +11,10 @@ interface IProps {
 }
 
 function WhatWorkoutPrefer({ whatWorkoutPrefer, value, onChange }: IProps) {
+  const t = useTranslations("fliters.whatWorkoutPrefer");
   return (
     <div>
-      <h2 className="text-gray-700 font-bold">What Workout Prefer</h2>
+      <h2 className="text-gray-700 font-bold">{t("title")}</h2>
       <div className="py-5 flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
         {whatWorkoutPrefer?.length ? (
           whatWorkoutPrefer?.map(({ id, name }) => {
@@ -35,7 +37,7 @@ function WhatWorkoutPrefer({ whatWorkoutPrefer, value, onChange }: IProps) {
             );
           })
         ) : (
-          <EmptyState message="No workout prefer found" />
+          <EmptyState message={t("noWorkoutPreferFound")} />
         )}
       </div>
     </div>

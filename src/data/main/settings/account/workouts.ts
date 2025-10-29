@@ -10,6 +10,6 @@ export const workoutSections: WorkoutSection[] = [
 ];
 export const workoutTimeFilters: WorkoutHistoryTime[] = [
   "today",
-  "this week",
-  "this month",
+  "thisWeek",
+  "thisMonth",
 ];

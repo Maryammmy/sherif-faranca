@@ -129,14 +129,6 @@
   "country": {
     "egypt": "مصر"
   },
-  "myFit": {
-    "healthHabits": {
-      "calories": "سعرات حرارية",
-      "water": "ماء",
-      "steps": "خطوات",
-      "duration": "المدة"
-    }
-  },
   "settings": {
     "welcome": "مرحباً",
     "myTrainingAchievement": {
@@ -160,5 +152,178 @@
       "faq": "الأسئلة الشائعة"
     },
     "logout": "تسجيل الخروج"
+  },
+  "header": {
+    "searchWorkouts": "ابحث عن التمارين...",
+    "hey": "مرحباً"
+  },
+  "card": {
+    "kcal": "سعرة حرارية",
+    "min": "دقيقة",
+    "class": "الحصة",
+    "startProgram": "ابدأ البرنامج",
+    "continueTheClass": "تابع الحصة",
+    "direction": "الاتجاه",
+    "calories": "السعرات الحرارية"
+  },
+  "home": {
+    "navigationBar": {
+      "class": "الحصة",
+      "challenges": "التحديات",
+      "programs": "البرامج",
+      "water": "الماء",
+      "steps": "الخطوات",
+      "favorite": "المفضلة",
+      "calories": "السعرات الحرارية",
+      "sleep": "النوم",
+      "direction": "الاتجاه"
+    },
+    "banners": {
+      "noBannersFound": "لم يتم العثور على لافتات"
+    },
+    "classes": {
+      "title": "الحصص",
+      "viewAll": "عرض الكل",
+      "noClassesFound": "لم يتم العثور على حصص"
+    },
+    "discoverPrograms": {
+      "title": "اكتشف البرامج",
+      "viewAll": "عرض الكل",
+      "noDiscoverProgramsFound": "لم يتم العثور على برامج"
+    },
+    "recentWatched": {
+      "title": "شوهد مؤخرًا",
+      "viewAll": "عرض الكل"
+    },
+    "recommendedForYou": {
+      "title": "موصى به لك",
+      "viewAll": "عرض الكل",
+      "noRecommendedForYouFound": "لا توجد اقتراحات لك"
+    }
+  },
+  "fliters": {
+    "title": "الفلاتر",
+    "showResults": "عرض النتائج",
+    "filterBodyFocusArea": {
+      "title": "تصفية منطقة التركيز الجسدي",
+      "noFoucsAreaFound": "لم يتم العثور على منطقة تركيز"
+    },
+    "iWouldLikeTo": {
+      "title": "أرغب في",
+      "noI'dLikeToFound": "لم يتم العثور على خيارات"
+    },
+    "whatWorkoutPrefer": {
+      "title": "ما نوع التمرين المفضل لديك؟",
+      "noWorkoutPreferFound": "لم يتم العثور على تمارين مفضلة"
+    },
+    "durations": {
+      "title": "المدد الزمنية",
+      "NoDurationsFound": "لم يتم العثور على مدد"
+    },
+    "levels": {
+      "title": "المستويات",
+      "noLevelsFound": "لم يتم العثور على مستويات"
+    },
+    "results": {
+      "title": "نتائج الفلترة",
+      "noFiltersResultsFound": "لم يتم العثور على نتائج"
+    }
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "makeAllRead": "تحديد الكل كمقروء",
+    "noNotificationsFound": "لا توجد إشعارات"
+  },
+  "timeAgo": {
+    "dAgo": "منذ {value} يوم",
+    "hAgo": "منذ {value} ساعة",
+    "mAgo": "منذ {value} دقيقة",
+    "sAgo": "منذ {value} ثانية"
+  },
+  "timeFliters": {
+    "today": "اليوم",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر"
+  },
+  "myFit": {
+    "myActives": {
+      "title": "أنشطتي",
+      "healthHabits": {
+        "goal": "الهدف",
+        "calories": "السعرات الحرارية",
+        "water": "الماء",
+        "steps": "الخطوات",
+        "duration": "المدة"
+      },
+      "achievement": {
+        "title": "الإنجاز",
+        "average": "المتوسط",
+        "goal": "الهدف"
+      }
+    },
+    "myTrainingHistory": {
+      "title": "سجل تدريباتي",
+      "viewAll": "عرض الكل",
+      "noTrainingHistoryFound": "لا يوجد سجل تدريبات"
+    },
+    "myFavoriteTraining": {
+      "title": "تدريباتي المفضلة",
+      "viewAll": "عرض الكل",
+      "noFavoriteTrainingFound": "لا توجد تدريبات مفضلة"
+    }
+  },
+  "discover": {
+    "discoverSections": {
+      "workouts": "التمارين",
+      "videos": "الفيديوهات"
+    },
+    "suggestedPrograms": {
+      "title": "البرامج المقترحة",
+      "viewAll": "عرض الكل",
+      "noProgramsFound": "لم يتم العثور على برامج"
+    },
+    "suggestedVideos": {
+      "title": "الفيديوهات المقترحة",
+      "viewAll": "عرض الكل",
+      "noVideosFound": "لم يتم العثور على فيديوهات"
+    }
+  },
+  "classes": {
+    "title": "الحصص",
+    "noClassesFound": "لم يتم العثور على حصص",
+    "showMore": "عرض المزيد"
+  },
+  "discoverPrograms": {
+    "title": "اكتشف البرامج",
+    "noDiscoverProgramsFound": "لم يتم العثور على برامج",
+    "showMore": "عرض المزيد"
+  },
+  "recentWatched": {
+    "title": "شوهد مؤخرًا",
+    "noRecentWatchedFound": "لا يوجد محتوى شوهد مؤخرًا",
+    "showMore": "عرض المزيد"
+  },
+  "recommendedForYou": {
+    "title": "موصى به لك",
+    "noRecommendedForYouFound": "لا توجد اقتراحات",
+    "showMore": "عرض المزيد"
+  },
+  "calories": {
+    "title": "السعرات الحرارية",
+    "todayCalories": {
+      "title": "السعرات الحرارية المحروقة اليوم",
+      "caloriesBurnt": "السعرات المحروقة",
+      "kcal": "سعرة حرارية",
+      "running": "الجري",
+      "dancing": "الرقص",
+      "workout": "التمرين",
+      "yoga": "اليوغا",
+      "walking": "المشي"
+    },
+    "weeklySummary": {
+      "title": "الملخص الأسبوعي",
+      "caloriesBurnt": "السعرات المحروقة",
+      "calories": "السعرات الحرارية"
+    }
   }
 }

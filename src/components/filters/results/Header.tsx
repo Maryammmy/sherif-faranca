@@ -3,10 +3,11 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
 function Header() {
-  const t = useTranslations("classes");
+  const t = useTranslations("fliters.results");
   const locale = useLocale();
   const isAr = locale === "ar";
   const MoveIcon = isAr ? MoveRight : MoveLeft;
+
   return (
     <div className="flex justify-between items-center gap-2 text-gray-700 pb-5">
       <Link href="/">

@@ -10,8 +10,10 @@ import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
 import CircularRing from "../ui/CircularRing";
 import { SkeletonCard } from "../skeleton/Card";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
+  const t = useTranslations("header");
   const { toggleMobileSidebar } = useSidebar();
   const { data } = useHeader();
   if (!data) {
@@ -39,7 +41,7 @@ export default function Header() {
         </Button>
         <div className="hidden lg:block">
           <h2 className="text-xl font-semibold text-gray-800">
-            Hey {userName}
+            {t("hey")} {userName}
           </h2>
           <p className="text-sm text-secondary">{greeting}</p>
         </div>
@@ -50,7 +52,7 @@ export default function Header() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <Input
             type="text"
-            placeholder="Search workouts..."
+            placeholder={t("searchWorkouts")}
             className="pl-10 pr-4 py-2 border rounded-lg bg-white w-48 md:w-64"
           />
         </div>

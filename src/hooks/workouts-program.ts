@@ -17,9 +17,9 @@ export function useWorkouts(
     api = recentWorkoutsAPI;
   } else {
     api =
-      time === "this week"
+      time === "thisWeek"
         ? workoutsHistoryWeekAPI
-        : time === "this month"
+        : time === "thisMonth"
         ? workoutsHistoryMonthAPI
         : workoutsHistoryTodayAPI;
   }

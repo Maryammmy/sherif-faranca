@@ -1,4 +1,6 @@
-export function timeAgo(dateString: string): string {
+import { TranslateFn } from "@/src/types";
+
+export function timeAgo(dateString: string, t: TranslateFn): string {
   const date = new Date(dateString);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -8,8 +10,8 @@ export function timeAgo(dateString: string): string {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
 
-  if (days > 0) return `${days}d ago`;
-  if (hours > 0) return `${hours}h ago`;
-  if (minutes > 0) return `${minutes}m ago`;
-  return `${seconds}s ago`;
+  if (days > 0) return t("timeAgo.dAgo", { value: days });
+  if (hours > 0) return t("timeAgo.hAgo", { value: hours });
+  if (minutes > 0) return t("timeAgo.mAgo", { value: minutes });
+  return t("timeAgo.sAgo", { value: seconds });
 }

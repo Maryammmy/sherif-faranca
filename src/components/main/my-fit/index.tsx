@@ -9,7 +9,6 @@ import { IMyFit } from "@/src/interfaces/main/my-fit";
 function MyFit() {
   const { data } = useMyFit();
   const myFit: IMyFit = data;
-  console.log(data);
   return (
     <div className="flex flex-col gap-5">
       {!data ? (

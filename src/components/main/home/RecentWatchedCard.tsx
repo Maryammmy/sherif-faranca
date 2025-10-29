@@ -10,11 +10,13 @@ import { IRecentWatched } from "@/src/interfaces/main/home";
 import CircularRing from "@/src/components/ui/CircularRing";
 import Link from "next/link";
 import { getHref } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   recentVideo: IRecentWatched;
 }
 export default function RecentWatchedCard({ recentVideo }: IProps) {
+  const t = useTranslations("card");
   const {
     imageUrl,
     categoryName,
@@ -82,7 +84,7 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
         {/* Bottom Section */}
         <div>
           <Button className="w-full bg-white text-black rounded-full py-2 px-4 flex justify-between items-center text-sm font-medium">
-            Continue the class
+            {t("continueTheClass")}
             <div className="bg-primary text-white rounded-full flex items-center justify-center w-8 h-8 ml-2">
               <MoveUpRight />
             </div>

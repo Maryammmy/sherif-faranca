@@ -8,8 +8,10 @@ import DiscoverProgramCard from "./Card";
 import Loader from "../loader/Loader";
 import { Button } from "../ui/Button";
 import { cn } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 function DiscoverProgramList() {
+  const t = useTranslations("discoverPrograms");
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useDiscoverPrograms();
 
@@ -38,13 +40,13 @@ function DiscoverProgramList() {
                 onClick={() => fetchNextPage()}
                 disabled={isFetchingNextPage}
               >
-                {isFetchingNextPage ? <Loader /> : "Show More"}
+                {isFetchingNextPage ? <Loader /> : t("showMore")}
               </Button>
             </div>
           )}
         </>
       ) : (
-        <EmptyStatePage message="No discover programs found" />
+        <EmptyStatePage message={t("noDiscoverProgramsFound")} />
       )}
     </div>
   );

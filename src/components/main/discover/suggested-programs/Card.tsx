@@ -2,11 +2,13 @@ import { Flame, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
 import { ISuggestedProgram } from "@/src/interfaces/main/discover";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   program: ISuggestedProgram;
 }
 function SuggestedProgramCard({ program }: IProps) {
+  const t = useTranslations("card");
   const { id, classesCount, imageUrl, levelName, title, totalCalories } =
     program;
   return (
@@ -27,11 +29,17 @@ function SuggestedProgramCard({ program }: IProps) {
         </div>
         <div className="flex items-center justify-center gap-1 text-gray-400 text-sm font-medium">
           <Play />
-          <span className="truncate">{classesCount}Class</span>
+          <span className="truncate">
+            {classesCount}
+            {t("class")}
+          </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame />
-          <span className="truncate">{totalCalories}Kcal</span>
+          <span className="truncate">
+            {totalCalories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
       <Link
@@ -39,7 +47,7 @@ function SuggestedProgramCard({ program }: IProps) {
         className="flex justify-center items-center gap-2 bg-primary text-white py-3 px-5 rounded-full w-full font-medium"
       >
         <Play />
-        <span className="">Start Program </span>
+        <span className="">{t("startProgram")} </span>
       </Link>
     </div>
   );

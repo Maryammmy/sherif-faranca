@@ -7,22 +7,22 @@ import { HomeBreakpoints } from "@/src/data";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function DiscoverPrograms() {
+  const t = useTranslations("home.discoverPrograms");
   const { data } = useHome();
   const discoverPrograms: IDiscoverProgram[] = data?.data?.discoverProgram;
   return (
     <div>
       {data && (
         <div className="flex items-center justify-between">
-          <h2 className="text-gray-800 text-xl font-semibold">
-            Discover Programs
-          </h2>
+          <h2 className="text-gray-800 text-xl font-semibold">{t("title")}</h2>
           <Link
             href="/discover-programs"
             className="border-b border-secondary text-secondary font-medium"
           >
-            <span>View All</span>
+            <span>{t("viewAll")}</span>
           </Link>
         </div>
       )}
@@ -51,7 +51,7 @@ export default function DiscoverPrograms() {
             loop={false}
           />
         ) : (
-          <EmptyState message="No discover programs found" />
+          <EmptyState message={t("noDiscoverProgramsFound")} />
         )}
       </div>
     </div>
