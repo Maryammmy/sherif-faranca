@@ -264,6 +264,7 @@
     "myTrainingHistory": {
       "title": "My training history",
       "viewAll": "View All",
+       "showMore": "Show More",
       "noTrainingHistoryFound": "No training history found"
     },
     "myFavoriteTraining": {

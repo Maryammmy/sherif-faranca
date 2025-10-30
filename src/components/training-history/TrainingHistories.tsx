@@ -4,7 +4,7 @@ import { EmptyStatePage } from "../ui/empty-state/EmptyStatePage";
 import { useTranslations } from "next-intl";
 
 interface IProps {
-  trainingHistories: IWorkout[];
+  trainingHistories: IWorkout[] | undefined;
 }
 function TrainingHistories({ trainingHistories }: IProps) {
   const t = useTranslations("myFit.myTrainingHistory");

@@ -264,7 +264,8 @@
     "myTrainingHistory": {
       "title": "Historique d'entraînement",
       "viewAll": "Voir tout",
-      "noTrainingHistoryFound": "Aucun historique trouvé"
+      "noTrainingHistoryFound": "Aucun historique trouvé",
+      "showMore": "Afficher plus"
     },
     "myFavoriteTraining": {
       "title": "Mes entraînements favoris",

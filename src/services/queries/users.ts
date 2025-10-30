@@ -16,3 +16,7 @@ export const phoneAPI = async () => {
   const data = await getServerData("/api/Users/current-PhoneNumber");
   return data;
 };
+export const trainingAchievementAPI = async () => {
+  const data = await getServerData("/api/Users/training-achievement");
+  return data;
+};

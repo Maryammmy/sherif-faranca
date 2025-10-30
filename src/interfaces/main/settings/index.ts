@@ -31,3 +31,8 @@ export interface IFaq {
   question: string;
   visibilityOrder: number;
 }
+export interface ITrainingAchievement {
+  caloriesBurned: number;
+  classesCount: number;
+  goal: string;
+}

@@ -4,6 +4,7 @@ import {
   emailAPI,
   phoneAPI,
   profileAPI,
+  trainingAchievementAPI,
 } from "@/src/services/queries/users";
 
 export function useProfile() {
@@ -17,4 +18,7 @@ export function usePhone() {
 }
 export function useCountry() {
   return useCustomQuery(["country"], countryAPI);
+}
+export function useTrainingAchievement() {
+  return useCustomQuery(["trainingAchievement"], trainingAchievementAPI);
 }

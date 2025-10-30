@@ -264,7 +264,8 @@
     "myTrainingHistory": {
       "title": "سجل تدريباتي",
       "viewAll": "عرض الكل",
-      "noTrainingHistoryFound": "لا يوجد سجل تدريبات"
+      "noTrainingHistoryFound": "لا يوجد سجل تدريبات",
+      "showResults": "عرض النتائج"
     },
     "myFavoriteTraining": {
       "title": "تدريباتي المفضلة",
