@@ -12,6 +12,7 @@ import {
 } from "@/src/components/ui/popover";
 import { formatDateToYYYYMMDD } from "@/src/lib/utils";
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   name: string;
@@ -32,6 +33,7 @@ export function DatePicker({
   resetTrigger,
   serverAction = false,
 }: IProps) {
+  const t = useTranslations("date");
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<Date | undefined>(
     propValue ? new Date(propValue) : undefined
@@ -65,7 +67,7 @@ export function DatePicker({
       <Input
         id="date"
         value={displayValue}
-        placeholder="YYYY-MM-DD"
+        placeholder={t("placeholder")}
         className="w-full"
         onChange={(e) => {
           const val = e.target.value;

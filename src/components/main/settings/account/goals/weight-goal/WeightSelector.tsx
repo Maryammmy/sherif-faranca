@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { floorToTen } from "@/src/lib/utils";
 import RulerTick from "./RulerTick";
 import { Button } from "@/src/components/ui/Button";
+import { useTranslations } from "next-intl";
 
 export default function WeightSelector() {
+  const t = useTranslations("myGoal.weightGoalModal");
   const minWeight = 30;
   const maxWeight = 200;
   const rulerRef = useRef<HTMLDivElement>(null);
@@ -69,7 +71,7 @@ export default function WeightSelector() {
         </div>
       </div>
       <Button className="w-full bg-primary py-3 font-medium text-white rounded-md">
-        Change
+        {t("change")}
       </Button>
     </div>
   );

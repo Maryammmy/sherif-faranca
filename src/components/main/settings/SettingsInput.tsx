@@ -2,6 +2,7 @@ import { Input } from "@/src/components/ui/Input";
 import { Label } from "@/src/components/ui/Label";
 import PasswordInput from "@/src/components/ui/PasswordInput";
 import { IInputSettings } from "@/src/interfaces/main/settings";
+import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
 import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 
@@ -20,6 +21,7 @@ function SettingsInput<T extends FieldValues>({
   wrapperClassName = "flex items-center border rounded-md px-3 py-1 gap-2",
   register,
 }: IProps<T>) {
+  const t = useTranslations("form");
   const {
     id,
     label,
@@ -36,7 +38,7 @@ function SettingsInput<T extends FieldValues>({
     id,
     type,
     name,
-    placeholder,
+    placeholder: t(placeholder),
     className: inputClassname,
     readOnly,
     disabled,
@@ -66,7 +68,7 @@ function SettingsInput<T extends FieldValues>({
   return (
     <div className="flex flex-col gap-2">
       <Label htmlFor={id} className={labelClassname}>
-        {label}
+        {t(label)}
       </Label>
       {renderInput()}
     </div>

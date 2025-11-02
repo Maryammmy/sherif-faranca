@@ -7,6 +7,7 @@ import {
   Tooltip,
   Title,
 } from "chart.js";
+import { useTranslations } from "next-intl";
 import { Bar } from "react-chartjs-2";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -17,6 +18,7 @@ interface WeeklySummaryProps {
 }
 
 export default function WeeklySummary({ weeklyData }: WeeklySummaryProps) {
+  const t = useTranslations("step.weeklySummary");
   const totalCalories = weeklyData.reduce((a, b) => a + b.calories, 0);
   const isLarge = useMediaQuery("(min-width: 1280px)");
 
@@ -44,13 +46,13 @@ export default function WeeklySummary({ weeklyData }: WeeklySummaryProps) {
 
   return (
     <div className="">
-      <h2 className="text-lg font-medium">Weekly Summary</h2>
+      <h2 className="text-lg font-medium">{t("title")}</h2>
       <p className="text-sm font-medium text-secondary mb-4">
-        Calories Burned{" "}
+        {t("caloriesBurned")}{" "}
         <span className="font-semibold">
-          {(totalCalories / 1000).toFixed(1)}k
+          {(totalCalories / 1000).toFixed(1)}
         </span>{" "}
-        Kcal
+        {t("kcal")}
       </p>
       <Bar data={chartData} options={chartOptions} height={200} />
     </div>

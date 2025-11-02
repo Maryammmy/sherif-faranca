@@ -2,6 +2,7 @@
   "form": {
     "email": {
       "name": "Email",
+      "placeholder": "Mohmoud@gmail.com",
       "errors": {
         "required": "Email is required",
         "invalid": "Invalid email address"
@@ -16,6 +17,7 @@
     },
     "firstName": {
       "name": "First Name",
+      "placeholder": "Mohmoud",
       "errors": {
         "required": "First name is required",
         "length": "min length 3 and max is 50"
@@ -23,6 +25,7 @@
     },
     "lastName": {
       "name": "Last Name",
+      "placeholder": "Ali",
       "errors": {
         "required": "Last name is required",
         "length": "min length 3 and max is 50"
@@ -32,7 +35,7 @@
       "name": "Birth Date",
       "errors": {
         "required": "Birth date is required",
-        "invalid": "Invalid date format",
+        "invalid": "Invalid date format (YYYY-MM-DD)",
         "atLastAge": "You must be at least 13 years old"
       }
     },
@@ -50,7 +53,30 @@
         "required": "Confirm password is required",
         "match": "Passwords must match"
       }
+    },
+    "gender": {
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "errors": {
+        "required": "Please select gender"
+      }
+    },
+    "country": {
+      "name": "Country",
+      "errors": {
+        "required": "Country is required"
+      }
+    },
+    "buttons": {
+      "saveChange": "Save Change"
     }
+  },
+  "personalInfo": {
+    "title": "Personal Information"
+  },
+  "date": {
+    "placeholder": "YYYY-MM-DD"
   },
   "auth": {
     "description": " Discover fun and effective dance workouts for all levels. No\n            experience needed – just move to the beat! Unleash your inner dancer\n            and discover a fun way to achieve your fitness goals.",
@@ -264,7 +290,7 @@
     "myTrainingHistory": {
       "title": "My training history",
       "viewAll": "View All",
-       "showMore": "Show More",
+      "showMore": "Show More",
       "noTrainingHistoryFound": "No training history found"
     },
     "myFavoriteTraining": {
@@ -325,6 +351,66 @@
       "title": "Weekly Summary",
       "caloriesBurnt": "Calories Burnt",
       "calories": "calories"
+    }
+  },
+  "workouts": {
+    "title": "About My Workouts",
+    "workoutSections": {
+      "history": "history",
+      "recent": "recent",
+      "favorite": "favorite"
+    },
+    "noFavoriteWorkoutsFound": "No favorite workouts found",
+    "noRecentWorkoutsFound": "No recent workouts found",
+    "noHistoryWorkoutsFound": "No history workouts found"
+  },
+  "myGoal": {
+    "title": "My Goal",
+    "stepGoal": "step goal",
+    "weightGoal": "weight goal",
+    "fitnessGoal": "fitness goal",
+    "steps": "Steps",
+    "kg": "KG",
+    "weightGoalModal": {
+      "title": "What's is your Target Weight ?",
+      "description": "This data will help us tailor your workout to match your body shape and daily work",
+      "currentWeight": "Current Weight",
+      "change": "Change"
+    },
+    "fitnessGoalModal": {
+      "title": "What's your main goal?",
+      "description": "This data will help us tailor your workout to match your body shape and daily work",
+      "change": "Change"
+    }
+  },
+  "subscription": {
+    "title": "Supercharge Your Health With",
+    "subTitle": "Sherif Faranca Premium",
+    "getStarted": "Get Started",
+    "periods": {
+      "monthly": "monthly",
+      "yearly": "yearly"
+    }
+  },
+  "step": {
+    "title": "Step",
+    "weeklySummary": {
+      "title": "Weekly Summary",
+      "caloriesBurned": "Calories Burned",
+      "kcal": "Kcal"
+    },
+    "todayStepGoal": {
+      "title": "Today Step Goal",
+      "description": " Track daily Step and keep you motivated!",
+      "steps": "Steps",
+      "weeklyGoal": "Weekly Goal",
+      "dailyStepGoal": {
+        "title": "Daily Step Goal",
+        "recommended": "Recommended",
+        "custom": "Custom",
+        "stepsDay": "Steps / Day",
+        "change": "Change"
+      }
     }
   }
 }

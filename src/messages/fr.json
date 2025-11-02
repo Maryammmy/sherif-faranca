@@ -1,10 +1,11 @@
 {
   "form": {
     "email": {
-      "name": "Email",
+      "name": "E-mail",
+      "placeholder": "mohmoud@gmail.com",
       "errors": {
-        "required": "L'email est requis",
-        "invalid": "Adresse email invalide"
+        "required": "L'e-mail est requis",
+        "invalid": "Adresse e-mail invalide"
       }
     },
     "phoneNumber": {
@@ -16,16 +17,18 @@
     },
     "firstName": {
       "name": "Prénom",
+      "placeholder": "Mohmoud",
       "errors": {
         "required": "Le prénom est requis",
-        "length": "longueur min 3 et max 50"
+        "length": "La longueur minimale est de 3 et maximale de 50"
       }
     },
     "lastName": {
       "name": "Nom de famille",
+      "placeholder": "Ali",
       "errors": {
         "required": "Le nom de famille est requis",
-        "length": "longueur min 3 et max 50"
+        "length": "La longueur minimale est de 3 et maximale de 50"
       }
     },
     "birthDate": {
@@ -50,7 +53,30 @@
         "required": "La confirmation du mot de passe est requise",
         "match": "Les mots de passe doivent correspondre"
       }
+    },
+    "gender": {
+      "gender": "Genre",
+      "male": "Homme",
+      "female": "Femme",
+      "errors": {
+        "required": "Veuillez sélectionner le genre"
+      }
+    },
+    "country": {
+      "name": "Pays",
+      "errors": {
+        "required": "Le pays est requis"
+      }
+    },
+    "buttons": {
+      "saveChange": "Enregistrer les modifications"
     }
+  },
+  "personalInfo": {
+    "title": "Informations personnelles"
+  },
+  "date": {
+    "placeholder": "AAAA-MM-JJ (année-mois-jour)"
   },
   "auth": {
     "description": "Découvrez des entraînements de danse amusants et efficaces pour tous les niveaux. Aucune expérience nécessaire - il suffit de bouger au rythme ! Libérez votre danseur intérieur et découvrez une manière amusante d'atteindre vos objectifs de fitness.",
@@ -325,6 +351,66 @@
       "title": "Résumé hebdomadaire",
       "caloriesBurnt": "Calories brûlées",
       "calories": "Calories"
+    }
+  },
+  "workouts": {
+    "title": "À propos de mes entraînements",
+    "workoutSections": {
+      "history": "historique",
+      "recent": "récent",
+      "favorite": "favori"
+    },
+    "noFavoriteWorkoutsFound": "Aucun entraînement favori trouvé",
+    "noRecentWorkoutsFound": "Aucun entraînement récent trouvé",
+    "noHistoryWorkoutsFound": "Aucun historique d’entraînements trouvé"
+  },
+  "myGoal": {
+    "title": "Mon objectif",
+    "stepGoal": "objectif de pas",
+    "weightGoal": "objectif de poids",
+    "fitnessGoal": "objectif de forme physique",
+    "steps": "Pas",
+    "kg": "Kg",
+    "weightGoalModal": {
+      "title": "Quel est votre poids cible ?",
+      "description": "Ces données nous aideront à adapter votre entraînement à votre morphologie et à votre routine quotidienne",
+      "currentWeight": "Poids actuel",
+      "change": "Modifier"
+    },
+    "fitnessGoalModal": {
+      "title": "Quel est votre objectif principal ?",
+      "description": "Ces données nous aideront à adapter votre entraînement à votre morphologie et à votre routine quotidienne",
+      "change": "Modifier"
+    }
+  },
+  "subscription": {
+    "title": "Boostez votre santé avec",
+    "subTitle": "Sherif Faranca Premium",
+    "getStarted": "Commencer",
+    "periods": {
+      "monthly": "mensuel",
+      "yearly": "annuel"
+    }
+  },
+  "step": {
+    "title": "Pas",
+    "weeklySummary": {
+      "title": "Résumé hebdomadaire",
+      "caloriesBurned": "Calories brûlées",
+      "kcal": "Kcal"
+    },
+    "todayStepGoal": {
+      "title": "Objectif de pas du jour",
+      "description": "Suivez vos pas quotidiens et restez motivé !",
+      "steps": "Pas",
+      "weeklyGoal": "Objectif hebdomadaire",
+      "dailyStepGoal": {
+        "title": "Objectif de pas quotidien",
+        "recommended": "Recommandé",
+        "custom": "Personnalisé",
+        "stepsDay": "Pas / Jour",
+        "change": "Modifier"
+      }
     }
   }
 }

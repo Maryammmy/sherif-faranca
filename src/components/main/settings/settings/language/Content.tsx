@@ -36,7 +36,7 @@ export default function Content() {
                 width={30}
                 height={30}
               />
-              <span className="font-medium">{l.label}</span>
+              <span className="font-medium capitalize">{l.label}</span>
             </div>
             <RadioGroupItem className="w-6 h-6" value={l.code} />
           </div>

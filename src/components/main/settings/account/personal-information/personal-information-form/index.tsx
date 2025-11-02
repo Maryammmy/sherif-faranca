@@ -17,11 +17,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import CountrySelect from "@/src/components/ui/CountrySelect";
 import { formatDate } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   close: () => void;
 }
 function PersonalInformationForm({ close }: IProps) {
+  const t = useTranslations("form");
   const { data, refetch } = useProfile();
   const profile = data?.data;
   const methods = useForm<Profile>({
@@ -78,7 +80,9 @@ function PersonalInformationForm({ close }: IProps) {
           );
         })}
         <div className="flex flex-col gap-1">
-          <Label className="text-gray-400 font-medium">Phone number</Label>
+          <Label className="text-gray-400 font-medium">
+            {t("phoneNumber.name")}
+          </Label>
           <div className="border-b" dir="ltr">
             <PhoneField
               numberName="phoneNumber"
@@ -91,7 +95,9 @@ function PersonalInformationForm({ close }: IProps) {
           )}
         </div>
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-gray-400">Birthday</Label>
+          <Label className="font-medium text-gray-400">
+            {t("birthDate.name")}
+          </Label>
           <div className="border-b" dir="ltr">
             <Controller
               name="BirthDate"
@@ -110,7 +116,9 @@ function PersonalInformationForm({ close }: IProps) {
           )}
         </div>
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-gray-400">Country</Label>
+          <Label className="font-medium text-gray-400">
+            {t("country.name")}
+          </Label>
           <Controller
             name="CountryId"
             control={control}
@@ -132,7 +140,7 @@ function PersonalInformationForm({ close }: IProps) {
           type="submit"
           className="bg-primary py-3 font-medium text-white rounded-md"
         >
-          {isSubmitting ? <Loader /> : "Save Change"}
+          {isSubmitting ? <Loader /> : t("buttons.saveChange")}
         </Button>
       </form>
     </FormProvider>

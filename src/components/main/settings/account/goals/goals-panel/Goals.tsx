@@ -4,8 +4,10 @@ import GoalsPanelCard from "./Card";
 import { useState } from "react";
 import FitnessGoal from "../fitness-goal";
 import WeightGoal from "../weight-goal";
+import { useTranslations } from "next-intl";
 
 function Goals() {
+  const t = useTranslations("myGoal");
   const [weightGoalOpen, setWeightGoalOpen] = useState(false);
   const [fitnessGoalOpen, setFitnessGoalOpen] = useState(false);
 
@@ -16,10 +18,10 @@ function Goals() {
           <GoalsPanelCard
             key={index}
             goal={goal}
-            {...(goal.label === "weight goal" && {
+            {...(t(goal.label) === t("weightGoal") && {
               handleOpenWeightGoal: () => setWeightGoalOpen(true),
             })}
-            {...(goal.label === "fitness goal" && {
+            {...(t(goal.label) === t("fitnessGoal") && {
               handleOpenFitnessGoal: () => setFitnessGoalOpen(true),
             })}
           />

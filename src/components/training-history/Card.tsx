@@ -28,7 +28,7 @@ function WorkoutCard({ workout }: IProps) {
         <div className="grid grid-cols-3 gap-2 capitalize text-secondary text-sm font-medium">
           <span className="truncate">{formatDateOnly(watchedDate)}</span>
           <span className="truncate">{t("direction")}</span>
-          <span className="truncate">{t("Calories")}</span>
+          <span className="truncate">{t("calories")}</span>
         </div>
         <div className="grid grid-cols-3 gap-2 capitalize text-secondary font-medium">
           <span className="truncate">{formatTimeOnly(watchedDate)}</span>

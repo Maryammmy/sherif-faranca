@@ -8,12 +8,14 @@ import {
 import WorkoutCard from "./Card";
 import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { EmptyStatePage } from "@/src/components/ui/empty-state/EmptyStatePage";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   section: string;
   time: string;
 }
 function Workouts({ section, time }: IProps) {
+  const t = useTranslations("workouts");
   const isFav = section === "favorite";
   const isRecent = section === "recent";
   const isHistory = section === "history";
@@ -27,44 +29,44 @@ function Workouts({ section, time }: IProps) {
   return (
     <div
       className={cn(
-        "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5"
+        "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-5"
         // isFav && "place-items-center"
       )}
     >
       {isFav && (
         <>
           {!favData ? (
-            <SkeletonCard count={10} className="h-[315px]" />
+            <SkeletonCard count={5} className="h-[315px]" />
           ) : favs?.length ? (
             favs.map((fav) => <FavoriteWorkoutCard key={fav?.id} fav={fav} />)
           ) : (
-            <EmptyStatePage message="No favorite workouts found" />
+            <EmptyStatePage message={t("noFavoriteWorkoutsFound")} />
           )}
         </>
       )}
       {isRecent && (
         <>
           {!data ? (
-            <SkeletonCard count={10} className="h-[315px]" />
+            <SkeletonCard count={5} className="h-[315px]" />
           ) : recentWorkouts?.length ? (
             recentWorkouts?.map((recent) => (
               <WorkoutCard key={recent?.id} workout={recent} />
             ))
           ) : (
-            <EmptyStatePage message="No recent workouts found" />
+            <EmptyStatePage message={t("noRecentWorkoutsFound")} />
           )}
         </>
       )}
       {isHistory && (
         <>
           {!data ? (
-            <SkeletonCard count={10} className="h-[315px]" />
+            <SkeletonCard count={5} className="h-[315px]" />
           ) : historyWorkouts?.length ? (
             historyWorkouts?.map((history) => (
               <WorkoutCard key={history?.id} workout={history} />
             ))
           ) : (
-            <EmptyStatePage message="No history workouts found" />
+            <EmptyStatePage message={t("noHistoryWorkoutsFound")} />
           )}
         </>
       )}

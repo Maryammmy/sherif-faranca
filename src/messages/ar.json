@@ -2,9 +2,10 @@
   "form": {
     "email": {
       "name": "البريد الإلكتروني",
+      "placeholder": "mohmoud@gmail.com",
       "errors": {
         "required": "البريد الإلكتروني مطلوب",
-        "invalid": "عنوان بريد إلكتروني غير صالح"
+        "invalid": "عنوان البريد الإلكتروني غير صالح"
       }
     },
     "phoneNumber": {
@@ -16,16 +17,18 @@
     },
     "firstName": {
       "name": "الاسم الأول",
+      "placeholder": "محمود",
       "errors": {
         "required": "الاسم الأول مطلوب",
-        "length": "يجب أن يكون الحد الأدنى 3 أحرف والحد الأقصى 50 حرفًا"
+        "length": "الحد الأدنى 3 أحرف والحد الأقصى 50"
       }
     },
     "lastName": {
-      "name": "الاسم الأخير",
+      "name": "اسم العائلة",
+      "placeholder": "علي",
       "errors": {
-        "required": "الاسم الأخير مطلوب",
-        "length": "يجب أن يكون الحد الأدنى 3 أحرف والحد الأقصى 50 حرفًا"
+        "required": "اسم العائلة مطلوب",
+        "length": "الحد الأدنى 3 أحرف والحد الأقصى 50"
       }
     },
     "birthDate": {
@@ -50,7 +53,30 @@
         "required": "تأكيد كلمة المرور مطلوب",
         "match": "يجب أن تتطابق كلمات المرور"
       }
+    },
+    "gender": {
+      "gender": "النوع",
+      "male": "ذكر",
+      "female": "أنثى",
+      "errors": {
+        "required": "يرجى اختيار النوع"
+      }
+    },
+    "country": {
+      "name": "الدولة",
+      "errors": {
+        "required": "الدولة مطلوبة"
+      }
+    },
+    "buttons": {
+      "saveChange": "حفظ التغييرات"
     }
+  },
+  "personalInfo": {
+    "title": "المعلومات الشخصية"
+  },
+  "date": {
+    "placeholder": "YYYY-MM-DD (سنة-شهر-يوم)"
   },
   "auth": {
     "description": "اكتشف تمارين الرقص الممتعة والفعالة لجميع المستويات. لا حاجة لأي خبرة - فقط تحرك على الإيقاع! أطلق العنان لراقصك الداخلي واكتشف طريقة ممتعة لتحقيق أهداف لياقتك البدنية.",
@@ -325,6 +351,66 @@
       "title": "الملخص الأسبوعي",
       "caloriesBurnt": "السعرات المحروقة",
       "calories": "السعرات الحرارية"
+    }
+  },
+  "workouts": {
+    "title": "حول تماريني",
+    "workoutSections": {
+      "history": "السجل",
+      "recent": "الأخيرة",
+      "favorite": "المفضلة"
+    },
+    "noFavoriteWorkoutsFound": "لم يتم العثور على تمارين مفضلة",
+    "noRecentWorkoutsFound": "لم يتم العثور على تمارين حديثة",
+    "noHistoryWorkoutsFound": "لم يتم العثور على تمارين في السجل"
+  },
+  "myGoal": {
+    "title": "هدفي",
+    "stepGoal": "هدف الخطوات",
+    "weightGoal": "هدف الوزن",
+    "fitnessGoal": "هدف اللياقة",
+    "steps": "خطوات",
+    "kg": "كجم",
+    "weightGoalModal": {
+      "title": "ما هو وزنك المستهدف؟",
+      "description": "ستساعدنا هذه البيانات في تخصيص تمارينك لتناسب شكل جسمك وروتينك اليومي",
+      "currentWeight": "الوزن الحالي",
+      "change": "تغيير"
+    },
+    "fitnessGoalModal": {
+      "title": "ما هو هدفك الرئيسي؟",
+      "description": "ستساعدنا هذه البيانات في تخصيص تمارينك لتناسب شكل جسمك وروتينك اليومي",
+      "change": "تغيير"
+    }
+  },
+  "subscription": {
+    "title": "عزز صحتك مع",
+    "subTitle": "شريف فرنسا بريميم",
+    "getStarted": "ابدأ الآن",
+    "periods": {
+      "monthly": "شهري",
+      "yearly": "سنوي"
+    }
+  },
+  "step": {
+    "title": "الخطوات",
+    "weeklySummary": {
+      "title": "الملخص الأسبوعي",
+      "caloriesBurned": "السعرات الحرارية المحروقة",
+      "kcal": "سعرة حرارية"
+    },
+    "todayStepGoal": {
+      "title": "هدف خطوات اليوم",
+      "description": "تابع خطواتك اليومية وابقَ متحفزًا!",
+      "steps": "خطوات",
+      "weeklyGoal": "الهدف الأسبوعي",
+      "dailyStepGoal": {
+        "title": "الهدف اليومي للخطوات",
+        "recommended": "موصى به",
+        "custom": "مخصص",
+        "stepsDay": "خطوات / يوم",
+        "change": "تغيير"
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import { Pencil } from "lucide-react";
 import { Button } from "@/src/components/ui/Button";
 import { useState } from "react";
 import DailyStepGoalModal from "./DailyStepGoalModal";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   stepsToday: number;
@@ -10,16 +11,15 @@ interface IProps {
 }
 
 export default function TodayStepGoal({ stepsToday, stepTarget }: IProps) {
+  const t = useTranslations("step.todayStepGoal");
   const [dailyStepGoalOpen, setDailyStepGoalOpen] = useState(false);
   const percent = (stepsToday / stepTarget) * 100;
 
   return (
     <>
       <div className="flex flex-col items-center">
-        <h2 className="text-gray-700 font-semibold">Today Step Goal</h2>
-        <p className="text-sm font-medium text-secondary">
-          Track daily Step and keep you motivated!
-        </p>
+        <h2 className="text-gray-700 font-semibold">{t("title")}</h2>
+        <p className="text-sm font-medium text-secondary">{t("description")}</p>
 
         {/* Semi Circle Progress */}
         <div className="relative w-56 xl:w-70 h-28 lg:h-40 mt-4">
@@ -43,7 +43,9 @@ export default function TodayStepGoal({ stepsToday, stepTarget }: IProps) {
 
           <div className="absolute inset-0 flex flex-col items-center justify-center translate-y-6">
             <p className="text-green-500 text-2xl font-bold">{stepsToday}</p>
-            <p className="text-secondary text-sm">{stepTarget} Steps</p>
+            <p className="text-secondary text-sm">
+              {stepTarget} {t("steps")}
+            </p>
           </div>
         </div>
 
@@ -51,7 +53,7 @@ export default function TodayStepGoal({ stepsToday, stepTarget }: IProps) {
           onClick={() => setDailyStepGoalOpen(true)}
           className="flex items-center gap-2 mt-4 text-gray-600 font-medium"
         >
-          <span>Weekly Goal</span>
+          <span>{t("weeklyGoal")}</span>
           <Pencil size={14} />
         </Button>
       </div>

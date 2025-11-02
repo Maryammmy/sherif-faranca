@@ -1,5 +1,6 @@
 import { Button } from "@/src/components/ui/Button";
 import Modal from "@/src/components/ui/Modal";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 interface IProps {
@@ -8,6 +9,7 @@ interface IProps {
 }
 
 function DailyStepGoalModal({ open, onClose }: IProps) {
+  const t = useTranslations("step.todayStepGoal.dailyStepGoal");
   const [tab, setTab] = useState<"recommended" | "custom">("recommended");
   const [customValue, setCustomValue] = useState(5500);
 
@@ -26,8 +28,8 @@ function DailyStepGoalModal({ open, onClose }: IProps) {
       open={open}
       onClose={onClose}
       contentClassName="md:max-w-xs"
-      title="Daily Step Goal"
-      titleClassName="font-semibold text-gray-600"
+      title={t("title")}
+      titleClassName="font-semibold text-gray-600 text-start"
     >
       <div className="">
         {/* Tabs */}
@@ -40,7 +42,7 @@ function DailyStepGoalModal({ open, onClose }: IProps) {
                 : "text-secondary"
             }`}
           >
-            Recommended
+            {t("recommended")}
           </Button>
           <Button
             onClick={() => setTab("custom")}
@@ -50,7 +52,7 @@ function DailyStepGoalModal({ open, onClose }: IProps) {
                 : "text-secondary"
             }`}
           >
-            Custom
+            {t("custom")}
           </Button>
         </div>
 
@@ -64,7 +66,9 @@ function DailyStepGoalModal({ open, onClose }: IProps) {
                   className="flex justify-between items-center text-sm font-medium border rounded-lg p-3 cursor-pointer hover:border-primary"
                 >
                   <span>{goal.label}</span>
-                  <span>{goal.steps} Steps / Day</span>
+                  <span>
+                    {goal.steps} {t("stepsDay")}
+                  </span>
                 </div>
               ))}
             </div>
@@ -92,7 +96,7 @@ function DailyStepGoalModal({ open, onClose }: IProps) {
 
         {/* Button */}
         <Button className="w-full mt-5 bg-primary text-white py-2 rounded-lg font-semibold">
-          Change
+          {t("change")}
         </Button>
       </div>
     </Modal>

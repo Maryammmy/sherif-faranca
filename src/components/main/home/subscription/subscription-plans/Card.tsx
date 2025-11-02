@@ -8,7 +8,7 @@ interface IProps {
 }
 
 function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
-  const t = useTranslations("price");
+  const t = useTranslations();
   const { planName, beforePrice, afterPrice, isSpecialOffer, description } =
     subscriptionPlan;
   const premiumPlan = planName === "Premium Plan";
@@ -44,7 +44,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
                   premiumPlan ? "text-gray-200" : "text-secondary"
                 )}
               >
-                {beforePrice} {t("egp")}
+                {beforePrice} {t("price.egp")}
               </p>
             )}
 
@@ -54,7 +54,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
                 premiumPlan ? "text-white" : "text-primary"
               )}
             >
-              {afterPrice ?? beforePrice} {t("egp")}
+              {afterPrice ?? beforePrice} {t("price.egp")}
             </p>
           </div>
         </div>
@@ -84,7 +84,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
             premiumPlan ? "bg-white text-primary" : "bg-primary text-white"
           )}
         >
-          Get Started
+          {t("subscription.getStarted")}
         </Button>
       </div>
     </div>

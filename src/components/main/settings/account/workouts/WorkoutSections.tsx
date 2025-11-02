@@ -6,6 +6,7 @@ import {
   WorkoutHistoryTime,
   WorkoutSection,
 } from "@/src/types/main/settings/account/workouts";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   selectedSection: string;
@@ -19,6 +20,7 @@ function WorkoutSections({
   selectedTime,
   handleSelectTime,
 }: IProps) {
+  const t = useTranslations("workouts.workoutSections");
   return (
     <>
       <div className="grid grid-cols-3 place-items-center sm:flex sm:items-center sm:justify-center gap-5">
@@ -33,7 +35,7 @@ function WorkoutSections({
                 : "text-secondary"
             )}
           >
-            {section}
+            {t(section)}
           </Button>
         ))}
       </div>

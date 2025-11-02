@@ -4,13 +4,15 @@ import { Button } from "@/src/components/ui/Button";
 import { Controller, useFormContext } from "react-hook-form";
 import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import { genders } from "@/src/data/main/settings/account/personal-information";
+import { useTranslations } from "next-intl";
 
 function GenderSelector() {
+  const t = useTranslations("form");
   const { control } = useFormContext();
 
   return (
     <div className="flex flex-col gap-1">
-      <label className="font-medium text-gray-400">Gender</label>
+      <label className="font-medium text-gray-400">{t("gender.gender")}</label>
       <Controller
         name="isMale"
         control={control}
@@ -26,7 +28,7 @@ function GenderSelector() {
                     field.value === g.value ? "bg-primary text-white" : ""
                   }`}
                 >
-                  {g.label}
+                  {t(g.label)}
                 </Button>
               ))}
             </div>

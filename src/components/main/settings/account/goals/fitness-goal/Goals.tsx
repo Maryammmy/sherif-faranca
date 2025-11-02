@@ -3,8 +3,10 @@ import { goals } from "@/src/data/questions";
 import FitnessGoalCard from "./Card";
 import { Button } from "@/src/components/ui/Button";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 function Goals() {
+  const t = useTranslations("myGoal.fitnessGoalModal");
   const [selectedGoal, setSelectedGoal] = useState<string>("");
   const handleSelectGoal = (goal: string) => {
     setSelectedGoal(goal);
@@ -20,7 +22,7 @@ function Goals() {
         />
       ))}
       <Button className="bg-primary py-3 font-medium text-white rounded-md">
-        Change
+        {t("change")}
       </Button>
     </div>
   );
