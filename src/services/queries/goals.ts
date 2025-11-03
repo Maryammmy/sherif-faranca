@@ -8,3 +8,11 @@ export const myGoalsAPI = async () => {
   const data = await getServerData("/api/MyFit/get-Mygoal");
   return data;
 };
+export const targetWeightAPI = async () => {
+  const data = await getServerData("/api/MyFit/Target-weight");
+  return data;
+};
+export const targetGoalAPI = async () => {
+  const data = await getServerData("/api/MyFit/get-Targetgoal");
+  return data;
+};

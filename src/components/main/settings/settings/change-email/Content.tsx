@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 function Content() {
   const t = useTranslations("changeEmail");
   const { data } = useEmail();
-  console.log(data);
   return (
     <div className="flex flex-col items-center gap-1 border-b pb-5">
       {!data ? (

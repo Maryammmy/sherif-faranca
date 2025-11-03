@@ -10,6 +10,7 @@ import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { goalAPI } from "@/src/services/mutations/goals";
 import toast from "react-hot-toast";
 import Loader from "@/src/components/loader/Loader";
+// import { useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
   onClose: () => void;
@@ -17,6 +18,7 @@ interface IProps {
 function Goals({ onClose }: IProps) {
   const { data } = useGoals();
   const t = useTranslations("myGoal.fitnessGoalModal");
+  // const queryClient = useQueryClient();
   const [selectedGoal, setSelectedGoal] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const goals: IQuestion[] = data;

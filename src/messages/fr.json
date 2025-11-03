@@ -404,7 +404,8 @@
     "weightGoalModal": {
       "title": "Quel est votre poids cible ?",
       "description": "Ces données nous aideront à adapter votre entraînement à votre morphologie et à votre routine quotidienne",
-      "currentWeight": "Poids actuel",
+      "targetWeight": "Poids cible",
+      "kg": "KG",
       "change": "Modifier"
     },
     "fitnessGoalModal": {

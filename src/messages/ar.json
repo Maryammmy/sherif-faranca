@@ -404,7 +404,8 @@
     "weightGoalModal": {
       "title": "ما هو وزنك المستهدف؟",
       "description": "ستساعدنا هذه البيانات في تخصيص تمارينك لتناسب شكل جسمك وروتينك اليومي",
-      "currentWeight": "الوزن الحالي",
+      "targetWeight": "الوزن المستهدف",
+      "kg": "كجم",
       "change": "تغيير"
     },
     "fitnessGoalModal": {

@@ -8,6 +8,9 @@ import { Button } from "@/src/components/ui/Button";
 import { useTranslations } from "next-intl";
 import { targetWeightAPI } from "@/src/services/mutations/goals";
 import toast from "react-hot-toast";
+import { useTargetWeight } from "@/src/hooks";
+import { SingleSkeletonCard } from "@/src/components/skeleton/Card";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
   onClose: () => void;
@@ -22,12 +25,17 @@ export default function WeightSelector({ onClose }: IProps) {
   const [selectedWeight, setSelectedWeight] = useState(60);
   const [initialized, setInitialized] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const queryClient = useQueryClient();
+  const { data } = useTargetWeight();
   // --- Drag state ---
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
-
+  useEffect(() => {
+    if (data) {
+      setSelectedWeight(data?.data);
+    }
+  }, [data]);
   // --- بعد اختيار الوزن، نعمل scroll لمكانه ---
   useEffect(() => {
     if (rulerRef.current && !initialized) {
@@ -80,8 +88,10 @@ export default function WeightSelector({ onClose }: IProps) {
     const response = await targetWeightAPI({ weight: selectedWeight });
     if (response?.success) {
       toast.success(response.message);
+      queryClient.invalidateQueries({ queryKey: ["targetWeight"] });
       setTimeout(() => {
         onClose();
+        queryClient.invalidateQueries({ queryKey: ["myGoals"] });
       }, 500);
     } else toast.error(response.message);
     setLoading(false);
@@ -89,11 +99,17 @@ export default function WeightSelector({ onClose }: IProps) {
 
   return (
     <div className="grid grid-cols-1 place-items-center gap-10 pt-5">
-      <div className="bg-gray-100 px-6 py-3 rounded-lg sm:text-lg font-semibold text-secondary">
-        Current Weight ={" "}
-        <span className="text-primary">{selectedWeight}KG</span>
-      </div>
-
+      {!data ? (
+        <SingleSkeletonCard className="h-10" />
+      ) : (
+        <div className="bg-gray-100 px-6 py-3 rounded-lg sm:text-lg font-semibold text-secondary">
+          {t("targetWeight")} ={" "}
+          <span className="text-primary">
+            {selectedWeight}
+            {t("kg")}
+          </span>
+        </div>
+      )}
       <div
         className="relative w-full max-w-7xl overflow-x-scroll scrollbar-none cursor-grab active:cursor-grabbing"
         ref={rulerRef}

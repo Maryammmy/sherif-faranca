@@ -32,7 +32,6 @@ export default function ChangeEmailForm({ handleChangeEmail }: IProps) {
   });
   const onSubmit = async (data: ChangeEmail) => {
     const response = await sendChangeEmailAPI(data);
-    console.log(response);
     if (response?.success) {
       toast.success(response?.message);
       handleChangeEmail(data.newEmail);

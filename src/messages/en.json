@@ -404,7 +404,8 @@
     "weightGoalModal": {
       "title": "What's is your Target Weight ?",
       "description": "This data will help us tailor your workout to match your body shape and daily work",
-      "currentWeight": "Current Weight",
+      "targetWeight": "Target Weight",
+      "kg": "KG",
       "change": "Change"
     },
     "fitnessGoalModal": {
