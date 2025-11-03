@@ -9,6 +9,7 @@ export default function SelectHeight() {
   const maxHeight = 300;
   const rulerRef = useRef<HTMLDivElement>(null);
   const [selectedHeight, setSelectedHeight] = useState(160);
+  const [initialized, setInitialized] = useState(false);
 
   // --- Drag state ---
   const isDragging = useRef(false);
@@ -24,35 +25,16 @@ export default function SelectHeight() {
     }
   }, []);
 
-  const handleScroll = () => {
-    if (rulerRef.current) {
-      const itemWidth = 20;
-      const scrollLeft = rulerRef.current.scrollLeft;
-      const centerOffset = rulerRef.current.offsetWidth / 2;
-      const centerPosition = scrollLeft + centerOffset - itemWidth / 2;
-      const newHeight = minHeight + Math.round(centerPosition / itemWidth);
-
-      if (
-        newHeight !== selectedHeight &&
-        newHeight >= minHeight &&
-        newHeight <= maxHeight
-      ) {
-        setSelectedHeight(newHeight);
-        sessionStorage.setItem("heightCm", newHeight.toString());
-      }
-    }
-  };
-
   useEffect(() => {
-    if (rulerRef.current) {
+    if (rulerRef.current && !initialized) {
       const itemWidth = 20;
       const centerOffset = rulerRef.current.offsetWidth / 2;
-      const initialScroll =
+      const targetScroll =
         (selectedHeight - minHeight) * itemWidth - centerOffset + itemWidth / 2;
-      rulerRef.current.scrollTo({ left: initialScroll, behavior: "smooth" });
+      rulerRef.current.scrollTo({ left: targetScroll, behavior: "instant" });
+      setInitialized(true);
     }
-  }, [selectedHeight]);
-
+  }, [initialized, selectedHeight]);
   // --- Handle Mouse Drag ---
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!rulerRef.current) return;
@@ -98,7 +80,6 @@ export default function SelectHeight() {
       <div
         className="relative w-full max-w-7xl overflow-x-scroll scrollbar-none cursor-grab active:cursor-grabbing"
         ref={rulerRef}
-        onScroll={handleScroll}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

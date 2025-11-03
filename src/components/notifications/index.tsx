@@ -12,6 +12,7 @@ export default function NotificationList() {
   const t = useTranslations("notifications");
   const { data } = useMyNotifications();
   const notifications: INotification[] = data?.data;
+  console.log(notifications);
   return (
     <div className="min-h-screen bg-white">
       {!data ? (

@@ -6,12 +6,14 @@ import { EmptyStatePage } from "@/src/components/ui/empty-state/EmptyStatePage";
 import { Button } from "@/src/components/ui/Button";
 import Loader from "@/src/components/loader/Loader";
 import { cn } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   type: string;
 }
 
 function SubscriptionPlanList({ type }: IProps) {
+  const t = useTranslations("subscription");
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useSubscription(type);
 
@@ -32,7 +34,7 @@ function SubscriptionPlanList({ type }: IProps) {
             />
           ))
         ) : (
-          <EmptyStatePage message="Subscription plans not found" />
+          <EmptyStatePage message={t("subscriptionPlansNotFound")} />
         )}
       </div>
 
@@ -46,7 +48,7 @@ function SubscriptionPlanList({ type }: IProps) {
               "px-3 py-2 bg-[#3e1492] text-white font-medium rounded-md hover:bg-[#2b0e6e] transition-colors duration-200"
             )}
           >
-            {isFetchingNextPage ? <Loader /> : "Show More"}
+            {isFetchingNextPage ? <Loader /> : t("showMore")}
           </Button>
         </div>
       )}

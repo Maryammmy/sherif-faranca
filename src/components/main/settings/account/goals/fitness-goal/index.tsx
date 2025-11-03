@@ -15,7 +15,7 @@ export default function FitnessGoal({ open, onClose }: IProps) {
       title={t("title")}
       titleClassName="text-gray-700 font-bold text-sm sm:text-xl text-start"
     >
-      <Goals />
+      <Goals onClose={onClose} />
     </Modal>
   );
 }

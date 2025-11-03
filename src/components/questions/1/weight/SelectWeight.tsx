@@ -9,6 +9,7 @@ export default function SelectWeight() {
   const maxWeight = 200;
   const rulerRef = useRef<HTMLDivElement>(null);
   const [selectedWeight, setSelectedWeight] = useState(60);
+  const [initialized, setInitialized] = useState(false);
 
   // --- Drag state ---
   const isDragging = useRef(false);
@@ -24,34 +25,16 @@ export default function SelectWeight() {
     }
   }, []);
 
-  const handleScroll = () => {
-    if (rulerRef.current) {
-      const itemWidth = 20;
-      const scrollLeft = rulerRef.current.scrollLeft;
-      const centerOffset = rulerRef.current.offsetWidth / 2;
-      const centerPosition = scrollLeft + centerOffset - itemWidth / 2;
-      const newWeight = minWeight + Math.round(centerPosition / itemWidth);
-
-      if (
-        newWeight !== selectedWeight &&
-        newWeight >= minWeight &&
-        newWeight <= maxWeight
-      ) {
-        setSelectedWeight(newWeight);
-        sessionStorage.setItem("weightKg", newWeight.toString());
-      }
-    }
-  };
-
   useEffect(() => {
-    if (rulerRef.current) {
+    if (rulerRef.current && !initialized) {
       const itemWidth = 20;
       const centerOffset = rulerRef.current.offsetWidth / 2;
-      const initialScroll =
+      const targetScroll =
         (selectedWeight - minWeight) * itemWidth - centerOffset + itemWidth / 2;
-      rulerRef.current.scrollTo({ left: initialScroll, behavior: "smooth" });
+      rulerRef.current.scrollTo({ left: targetScroll, behavior: "instant" });
+      setInitialized(true);
     }
-  }, [selectedWeight]);
+  }, [initialized, selectedWeight]);
 
   // --- Handle Mouse Drag ---
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -98,7 +81,6 @@ export default function SelectWeight() {
       <div
         className="relative w-full max-w-7xl overflow-x-scroll scrollbar-none cursor-grab active:cursor-grabbing"
         ref={rulerRef}
-        onScroll={handleScroll}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

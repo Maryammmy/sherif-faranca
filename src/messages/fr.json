@@ -399,7 +399,7 @@
     "stepGoal": "objectif de pas",
     "weightGoal": "objectif de poids",
     "fitnessGoal": "objectif de forme physique",
-    "steps": "Pas",
+    "step": "Pas",
     "kg": "Kg",
     "weightGoalModal": {
       "title": "Quel est votre poids cible ?",
@@ -417,6 +417,8 @@
     "title": "Boostez votre santé avec",
     "subTitle": "Sherif Faranca Premium",
     "getStarted": "Commencer",
+    "subscriptionPlansNotFound": "Aucun plan d’abonnement trouvé",
+    "showMore": "Afficher plus",
     "periods": {
       "monthly": "mensuel",
       "yearly": "annuel"

@@ -66,7 +66,7 @@ function SubscriptionPlanCard({ subscriptionPlan }: IProps) {
             className={cn(
               "leading-relaxed",
               // قواعد مشتركة للـ ul/li
-              "[&_ul]:pl-5 [&_ul]:list-disc [&_ul]:marker:text-primary [&_li]:my-1",
+              "[&_ul]:ps-5 [&_ul]:list-disc [&_ul]:marker:text-primary [&_li]:my-1",
               premiumPlan
                 ? "text-white [&_ul]:marker:text-white"
                 : "text-gray-700"

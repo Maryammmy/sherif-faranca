@@ -399,7 +399,7 @@
     "stepGoal": "step goal",
     "weightGoal": "weight goal",
     "fitnessGoal": "fitness goal",
-    "steps": "Steps",
+    "step": "Step",
     "kg": "KG",
     "weightGoalModal": {
       "title": "What's is your Target Weight ?",
@@ -417,6 +417,8 @@
     "title": "Supercharge Your Health With",
     "subTitle": "Sherif Faranca Premium",
     "getStarted": "Get Started",
+    "subscriptionPlansNotFound": "Subscription plans not found",
+    "showMore": "Show More",
     "periods": {
       "monthly": "monthly",
       "yearly": "yearly"

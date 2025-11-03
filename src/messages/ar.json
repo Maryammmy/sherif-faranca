@@ -399,7 +399,7 @@
     "stepGoal": "هدف الخطوات",
     "weightGoal": "هدف الوزن",
     "fitnessGoal": "هدف اللياقة",
-    "steps": "خطوات",
+    "step": "خطوة",
     "kg": "كجم",
     "weightGoalModal": {
       "title": "ما هو وزنك المستهدف؟",
@@ -417,6 +417,8 @@
     "title": "عزز صحتك مع",
     "subTitle": "شريف فرنسا بريميم",
     "getStarted": "ابدأ الآن",
+    "subscriptionPlansNotFound": "لم يتم العثور على خطط الاشتراك",
+    "showMore": "عرض المزيد",
     "periods": {
       "monthly": "شهري",
       "yearly": "سنوي"

@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 function Header() {
   const t = useTranslations("settings");
   const { data } = useProfile();
-  console.log(data);
   if (!data)
     return (
       <div className="flex items-center gap-2 py-5 sm:py-10 px-2.5">

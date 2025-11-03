@@ -18,7 +18,7 @@ export default function WeightGoal({ open, onClose }: IProps) {
       descriptionClassName="font-medium text-start"
       contentClassName="sm:max-w-[400px]"
     >
-      <WeightSelector />
+      <WeightSelector onClose={onClose} />
     </Modal>
   );
 }
