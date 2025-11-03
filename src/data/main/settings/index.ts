@@ -29,9 +29,9 @@ export const settings: ISetting[] = [
 export const email: IInputSettings = {
   id: "newEmail",
   name: "newEmail",
-  placeholder: "Enter new email",
+  placeholder: "newEmail.placeholder",
   type: "email",
-  label: "New email",
+  label: "newEmail.name",
   inputClassname: "w-full",
   labelClassname: "text-gray-600 font-medium",
 };
@@ -43,25 +43,25 @@ export const changePasswordForm: IInputSettings[] = [
   {
     id: "currentPassword",
     name: "currentPassword",
-    placeholder: "Enter current password",
+    placeholder: "password.currentPlaceholder",
     type: "password",
-    label: "Password",
+    label: "password.currentName",
     ...passwordDefaultStyles,
   },
   {
     id: "newPassword",
     name: "newPassword",
-    placeholder: "Enter new password",
+    placeholder: "newPassword.placeholder",
     type: "password",
-    label: "New password",
+    label: "newPassword.name",
     ...passwordDefaultStyles,
   },
   {
     id: "confirmPassword",
     name: "confirmPassword",
-    placeholder: "Enter confirm password",
+    placeholder: "confirmPassword.placeholder",
     type: "password",
-    label: "Confirm password",
+    label: "confirmPassword.name",
     ...passwordDefaultStyles,
   },
 ];

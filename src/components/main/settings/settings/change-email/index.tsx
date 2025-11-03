@@ -4,12 +4,14 @@ import ChangeEmailForm from "./ChangeEmailForm";
 import Content from "./Content";
 import { useState } from "react";
 import VerifyChangeEmail from "./verify-email";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   open: boolean;
   onClose: () => void;
 }
 function ChangeEmail({ open, onClose }: IProps) {
+  const t = useTranslations("changeEmail");
   const [verifyEmailOpen, setVerifyEmailOpen] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const handleChangeEmail = (email: string) => {
@@ -24,7 +26,7 @@ function ChangeEmail({ open, onClose }: IProps) {
       <Modal
         open={open}
         onClose={onClose}
-        title="Change email"
+        title={t("title")}
         titleClassName="text-gray-600 text-center font-bold"
         contentClassName="sm:max-w-[400px]"
         closeButtonClassname="text-gray-800 border-gray-800"

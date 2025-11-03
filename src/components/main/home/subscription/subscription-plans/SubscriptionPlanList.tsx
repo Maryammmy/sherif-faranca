@@ -43,8 +43,7 @@ function SubscriptionPlanList({ type }: IProps) {
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
             className={cn(
-              "px-3 py-2 bg-[#3e1492] text-white font-medium rounded-md hover:bg-[#2b0e6e] transition-colors duration-200",
-              isFetchingNextPage && "w-[106.7px] px-0"
+              "px-3 py-2 bg-[#3e1492] text-white font-medium rounded-md hover:bg-[#2b0e6e] transition-colors duration-200"
             )}
           >
             {isFetchingNextPage ? <Loader /> : "Show More"}

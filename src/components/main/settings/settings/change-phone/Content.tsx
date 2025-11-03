@@ -2,8 +2,10 @@ import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { usePhone } from "@/src/hooks";
 import { ChangePhone } from "@/src/schemas/main/settings/change-phone";
 import { Phone } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function Content() {
+  const t = useTranslations("changePhoneNumber");
   const { data } = usePhone();
   if (!data)
     return (
@@ -22,17 +24,17 @@ function Content() {
         <Phone className="text-white" />
       </div>
 
-      <span className="text-secondary font-medium">Current phone number</span>
+      <span className="text-secondary font-medium">
+        {t("currentPhoneNumber")}
+      </span>
 
       <div className="text-center">
         {hasPhone ? (
-          <p className="text-gray-600 font-medium leading-none">
+          <p className="text-gray-600 font-medium leading-none" dir="ltr">
             {`+${countryCode}${phoneNumber}`}
           </p>
         ) : (
-          <p className="text-gray-400 italic">
-            You don’t have a registered mobile number
-          </p>
+          <p className="text-gray-400 italic">{t("noRegisteredPhone")}</p>
         )}
       </div>
     </div>

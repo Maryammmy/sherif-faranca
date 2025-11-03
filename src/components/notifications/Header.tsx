@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between gap-2 text-white padding-layout">
       <Link href="/">
-        <MoveIcon className="size-6" />
+        <MoveIcon className="sm:size-10" />
       </Link>
       <header>
         <h1 className="sm:text-2xl font-bold">{t("title")}</h1>

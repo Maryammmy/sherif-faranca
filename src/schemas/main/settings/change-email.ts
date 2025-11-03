@@ -4,10 +4,10 @@ export const changeEmailSchema = (currentEmail: string) =>
   z.object({
     newEmail: z
       .string()
-      .nonempty("Email is required")
-      .email("Please enter a valid email")
+      .nonempty("newEmail.errors.required")
+      .email("newEmail.errors.invalid")
       .refine((val) => val !== currentEmail, {
-        message: "New email cannot be the same as current email",
+        message: "newEmail.errors.emailSameAsCurrent",
       }),
   });
 

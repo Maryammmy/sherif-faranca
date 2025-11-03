@@ -12,11 +12,13 @@ import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 import Loader from "@/src/components/loader/Loader";
 import toast from "react-hot-toast";
 import { changePasswordAPI } from "@/src/services/mutations/users";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   close: () => void;
 }
 function ChangePasswordForm({ close }: IProps) {
+  const t = useTranslations("changePassword");
   const {
     register,
     handleSubmit,
@@ -52,7 +54,7 @@ function ChangePasswordForm({ close }: IProps) {
         disabled={isSubmitting}
         className="bg-primary py-3 font-medium text-white rounded-md"
       >
-        {isSubmitting ? <Loader /> : "Change password"}
+        {isSubmitting ? <Loader /> : t("changePassword")}
       </Button>
     </form>
   );

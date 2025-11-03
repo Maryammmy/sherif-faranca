@@ -17,6 +17,8 @@ import {
   verifyPhoneSchema,
 } from "@/src/schemas/main/settings/change-phone";
 import { useQueryClient } from "@tanstack/react-query";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   onClose: () => void;
@@ -24,6 +26,7 @@ interface IProps {
 }
 
 function VerifyPhoneForm({ onClose, newPhone }: IProps) {
+  const t = useTranslations("otp");
   const queryClient = useQueryClient();
   const {
     handleSubmit,
@@ -88,15 +91,13 @@ function VerifyPhoneForm({ onClose, newPhone }: IProps) {
             ))}
           </InputOTPGroup>
         </InputOTP>
-        {errors.otp && (
-          <p className="text-red-500 text-sm mt-1">{errors.otp.message}</p>
-        )}
+        {errors.otp && <InputErrorMessage msg={errors.otp.message} />}
       </div>
       {/* Resend Timer */}
       <div className="text-center mb-4">
         {timeLeft > 0 ? (
           <p className="text-sm text-secondary font-semibold">
-            Resend OTP in {Math.floor(timeLeft / 60)}:
+            {t("resendOtp")} {Math.floor(timeLeft / 60)}:
             {String(timeLeft % 60).padStart(2, "0")}
           </p>
         ) : (
@@ -110,7 +111,7 @@ function VerifyPhoneForm({ onClose, newPhone }: IProps) {
         className="w-full bg-primary text-white p-3 rounded-md font-medium"
         disabled={isSubmitting}
       >
-        {isSubmitting ? <Loader /> : "Verify"}
+        {isSubmitting ? <Loader /> : t("button")}
       </Button>
     </form>
   );

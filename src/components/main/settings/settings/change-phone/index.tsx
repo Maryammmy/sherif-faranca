@@ -5,12 +5,14 @@ import { useState } from "react";
 import ChangePhoneForm from "./ChangePhoneForm";
 import VerifyPhone from "./verify-phone";
 import { type ChangePhone } from "@/src/schemas/main/settings/change-phone";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   open: boolean;
   onClose: () => void;
 }
 function ChangePhone({ open, onClose }: IProps) {
+  const t = useTranslations("changePhoneNumber");
   const [verifyPhoneOpen, setVerifyPhoneOpen] = useState(false);
   const [newPhone, setNewPhone] = useState({
     countryCode: "",
@@ -29,7 +31,7 @@ function ChangePhone({ open, onClose }: IProps) {
       <Modal
         open={open}
         onClose={onClose}
-        title="Change phone number"
+        title={t("title")}
         titleClassName="text-gray-600 text-center font-bold"
         contentClassName="sm:max-w-[400px]"
         closeButtonClassname="text-gray-800 border-gray-800"

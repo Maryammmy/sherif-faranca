@@ -142,24 +142,22 @@ function Sections({ selectedSection }: IProps) {
       <div className="flex justify-center mt-5">
         {isVideo
           ? hasNextVideosPage && (
-              <button
+              <Button
                 onClick={() => fetchNextVideosPage()}
                 disabled={isFetchingNextVideos}
                 className={cn(
-                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
-                  isFetchingNextVideos && "w-[106.7px] px-0"
+                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300"
                 )}
               >
                 {isFetchingNextVideos ? <Loader /> : "Show More"}
-              </button>
+              </Button>
             )
           : hasNextWorkoutsPage && (
               <Button
                 onClick={() => fetchNextWorkoutsPage()}
                 disabled={isFetchingNextWorkouts}
                 className={cn(
-                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
-                  isFetchingNextWorkouts && "w-[106.7px] px-0"
+                  "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300"
                 )}
               >
                 {isFetchingNextWorkouts ? <Loader /> : "Show More"}

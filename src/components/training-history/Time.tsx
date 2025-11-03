@@ -51,8 +51,7 @@ function TrainingHistoryTime() {
         <div className="flex justify-center mt-4">
           <Button
             className={cn(
-              "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300",
-              isFetchingNextPage && "w-[106.7px] px-0"
+              "bg-primary hover:bg-primary/60 px-3 py-2 text-white font-medium rounded-md transition-all duration-300"
             )}
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}

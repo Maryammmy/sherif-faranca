@@ -1,9 +1,12 @@
 import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { useEmail } from "@/src/hooks";
 import { MailPlus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function Content() {
+  const t = useTranslations("changeEmail");
   const { data } = useEmail();
+  console.log(data);
   return (
     <div className="flex flex-col items-center gap-1 border-b pb-5">
       {!data ? (
@@ -13,10 +16,12 @@ function Content() {
           <div className="w-14 h-14 rounded-full flex justify-center items-center bg-primary">
             <MailPlus className="text-white" />
           </div>
-          <span className="text-secondary font-medium">Current email</span>
+          <span className="text-secondary font-medium">
+            {t("currentEmail")}
+          </span>
           <div>
             <p className="text-gray-600 font-medium leading-none">
-              {data?.message}
+              {data?.data?.email}
             </p>
           </div>
         </>

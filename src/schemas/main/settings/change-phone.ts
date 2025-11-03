@@ -4,7 +4,9 @@ import { z } from "zod";
 export const changePhoneSchema = (currentPhone?: string) =>
   z
     .object({
-      phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+      phoneNumber: z
+        .string()
+        .nonempty({ message: "phoneNumber.errors.required" }),
       countryCode: z.string().nonempty({ message: "Country code is required" }),
     })
     .superRefine((data, ctx) => {
@@ -19,14 +21,14 @@ export const changePhoneSchema = (currentPhone?: string) =>
           ctx.addIssue({
             code: "custom",
             path: ["phoneNumber"],
-            message: "Phone number is invalid",
+            message: "phoneNumber.errors.invalid",
           });
         }
       } catch {
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message: "Phone number is invalid",
+          message: "phoneNumber.errors.invalid",
         });
       }
 
@@ -35,8 +37,7 @@ export const changePhoneSchema = (currentPhone?: string) =>
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message:
-            "New phone number cannot be the same as current phone number",
+          message: "phoneNumber.errors.phoneSameAsCurrent",
         });
       }
     });
@@ -48,9 +49,11 @@ export const verifyPhoneSchema = z
   .object({
     otp: z
       .string()
-      .nonempty("OTP is required")
-      .regex(/^\d{5}$/, "OTP must be 5 digits (numbers only)"),
-    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+      .nonempty("otp.errors.required")
+      .regex(/^\d{5}$/, "otp.errors.invalid"),
+    phoneNumber: z
+      .string()
+      .nonempty({ message: "phoneNumber.errors.required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
   })
   .superRefine((data, ctx) => {
@@ -65,14 +68,14 @@ export const verifyPhoneSchema = z
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message: "Phone number is invalid",
+          message: "phoneNumber.errors.invalid",
         });
       }
     } catch {
       ctx.addIssue({
         code: "custom",
         path: ["phoneNumber"],
-        message: "Phone number is invalid",
+        message: "phoneNumber.errors.invalid",
       });
     }
   });

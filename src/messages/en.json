@@ -8,11 +8,28 @@
         "invalid": "Invalid email address"
       }
     },
+    "newEmail": {
+      "name": "New Email",
+      "placeholder": "Enter new email",
+      "errors": {
+        "required": "New email is required",
+        "invalid": "Invalid email address",
+        "emailSameAsCurrent": "New email cannot be the same as current email"
+      }
+    },
     "phoneNumber": {
       "name": "Phone Number",
+      "newName": "New Phone Number",
       "errors": {
         "required": "Phone number is required",
-        "invalid": "Phone number is invalid"
+        "invalid": "Phone number is invalid",
+        "phoneSameAsCurrent": "New phone number cannot be the same as current phone number"
+      }
+    },
+    "otp": {
+      "errors": {
+        "required": "OTP is required",
+        "invalid": "OTP must be 5 digits (numbers only)"
       }
     },
     "firstName": {
@@ -40,7 +57,9 @@
       }
     },
     "password": {
-      "name": "password",
+      "name": "Password",
+      "currentName": "Current Password",
+      "currentPlaceholder": "Enter current password",
       "errors": {
         "required": "Password is required",
         "min": "Password must be at least 8 characters",
@@ -49,9 +68,19 @@
     },
     "confirmPassword": {
       "name": "Confirm Password",
+      "placeholder": "Enter confirm password",
       "errors": {
         "required": "Confirm password is required",
         "match": "Passwords must match"
+      }
+    },
+    "newPassword": {
+      "name": "New Password",
+      "placeholder": "Enter new password",
+      "errors": {
+        "required": "New password is required",
+        "min": "Password must be at least 8 characters",
+        "max": "Password must be at most 50 characters"
       }
     },
     "gender": {
@@ -69,7 +98,8 @@
       }
     },
     "buttons": {
-      "saveChange": "Save Change"
+      "saveChange": "Save Change",
+      "changePhoneNumber": "Change phone number"
     }
   },
   "personalInfo": {
@@ -412,5 +442,31 @@
         "change": "Change"
       }
     }
+  },
+  "language": {
+    "title": "Language",
+    "save": "Save"
+  },
+  "changePassword": {
+    "title": "Change password",
+    "changePassword": "Change password"
+  },
+  "changeEmail": {
+    "title": "Change email",
+    "currentEmail": "Current email",
+    "changeEmail": "Change email"
+  },
+  "changePhoneNumber": {
+    "title": "Change phone number",
+    "currentPhoneNumber": "Current phone number",
+    "noRegisteredPhone": "You don’t have a registered mobile number",
+    "verifyPhoneNumber": {
+      "title": "Verification code",
+      "sendVerificationCode": "We are sending a verification code to your phone number:",
+      "checkPhoneNumber": "Please check your phone number"
+    }
+  },
+  "faq": {
+    "showMore": "Show More"
   }
 }

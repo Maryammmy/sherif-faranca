@@ -10,7 +10,7 @@ function Header() {
   return (
     <div className="flex justify-between items-center gap-2 text-gray-700 pb-5">
       <Link href="/my-fit">
-        <MoveIcon className="size-6" />
+        <MoveIcon className="sm:size-10" />
       </Link>
       <header className="flex-1 flex justify-center">
         <h1 className="text-2xl font-bold text-center text-gray-700">

@@ -14,18 +14,20 @@ import toast from "react-hot-toast";
 import { sendChangeEmailAPI } from "@/src/services/mutations/users";
 import SettingsInput from "../../SettingsInput";
 import { useEmail } from "@/src/hooks";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   handleChangeEmail: (email: string) => void;
 }
 export default function ChangeEmailForm({ handleChangeEmail }: IProps) {
+  const t = useTranslations("changeEmail");
   const { data } = useEmail();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<ChangeEmail>({
-    resolver: zodResolver(changeEmailSchema(data?.message || "")),
+    resolver: zodResolver(changeEmailSchema(data?.data?.email || "")),
     mode: "onChange",
   });
   const onSubmit = async (data: ChangeEmail) => {
@@ -58,7 +60,7 @@ export default function ChangeEmailForm({ handleChangeEmail }: IProps) {
           disabled={isSubmitting}
           className="bg-primary py-3 font-medium text-white rounded-md"
         >
-          {isSubmitting ? <Loader /> : "Change email"}
+          {isSubmitting ? <Loader /> : t("changeEmail")}
         </Button>
       </form>
     </>

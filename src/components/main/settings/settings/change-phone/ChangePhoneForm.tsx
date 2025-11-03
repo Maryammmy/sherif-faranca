@@ -12,11 +12,14 @@ import {
   changePhoneSchema,
 } from "@/src/schemas/main/settings/change-phone";
 import { usePhone } from "@/src/hooks";
+import { useTranslations } from "next-intl";
+import { Label } from "@/src/components/ui/Label";
 
 interface IProps {
   handleChangePhone: (phone: ChangePhone) => void;
 }
 export default function ChangePhoneForm({ handleChangePhone }: IProps) {
+  const t = useTranslations("form");
   const { data } = usePhone();
   const currentPhone = data?.data
     ? `${data.data.countryCode}${data.data.phoneNumber}`
@@ -42,8 +45,14 @@ export default function ChangePhoneForm({ handleChangePhone }: IProps) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="">
-          <div className="border border-gray-400 rounded-md py-3 px-1">
+        <div className="flex flex-col gap-1">
+          <Label className="text-gray-600 font-medium">
+            {t("phoneNumber.newName")}
+          </Label>
+          <div
+            className="border border-gray-400 rounded-md py-3 px-1"
+            dir="ltr"
+          >
             <PhoneField
               numberName="phoneNumber"
               countryCodeName="countryCode"
@@ -58,7 +67,7 @@ export default function ChangePhoneForm({ handleChangePhone }: IProps) {
           disabled={isSubmitting}
           className="bg-primary py-3 font-medium text-white rounded-md"
         >
-          {isSubmitting ? <Loader /> : "Change phone number"}
+          {isSubmitting ? <Loader /> : t("buttons.changePhoneNumber")}
         </Button>
       </form>
     </FormProvider>

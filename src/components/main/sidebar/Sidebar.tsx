@@ -53,8 +53,14 @@ export default function Sidebar() {
       ></div>
       <aside
         className={cn(
-          "fixed top-0 left-0 h-full w-64 bg-white z-50 flex flex-col transition-transform duration-300 ease-in-out lg:hidden",
-          isMobileOpen ? "translate-x-0" : "-translate-x-full"
+          "fixed top-0 h-full w-64 bg-white z-50 flex flex-col transition-transform duration-300 ease-in-out lg:hidden",
+          isAr
+            ? isMobileOpen
+              ? "translate-x-0 right-0"
+              : "translate-x-full right-0"
+            : isMobileOpen
+            ? "translate-x-0 left-0"
+            : "-translate-x-full left-0"
         )}
       >
         <SidebarContent isExpanded={true} onLinkClick={closeMobileSidebar} />

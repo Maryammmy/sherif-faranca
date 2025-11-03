@@ -3,14 +3,17 @@
 import { useState } from "react";
 import Image from "@/src/components/ui/Image";
 import { usePathname } from "@/src/i18n/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/Button";
 import { RadioGroup, RadioGroupItem } from "@/src/components/ui/radio-group";
 import { languages } from "@/src/data";
 
 export default function Content() {
+  const t = useTranslations("language");
   const locale = useLocale();
   const pathname = usePathname();
+  const isAr = locale === "ar";
+  const dir = isAr ? "rtl" : "ltr";
 
   const [lang, setLang] = useState(locale);
 
@@ -23,7 +26,12 @@ export default function Content() {
 
   return (
     <div className="flex flex-col gap-5">
-      <RadioGroup value={lang} onValueChange={setLang} className="space-y-3">
+      <RadioGroup
+        value={lang}
+        onValueChange={setLang}
+        className="space-y-3"
+        dir={dir}
+      >
         {languages.map((l) => (
           <div
             key={l.code}
@@ -46,7 +54,7 @@ export default function Content() {
         className="bg-primary py-3 font-medium text-white rounded-md"
         onClick={handleSave}
       >
-        Save
+        {t("save")}
       </Button>
     </div>
   );

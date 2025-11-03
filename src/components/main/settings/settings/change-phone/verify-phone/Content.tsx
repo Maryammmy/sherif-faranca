@@ -1,15 +1,20 @@
 import { ChangePhone } from "@/src/schemas/main/settings/change-phone";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   newPhone: ChangePhone;
 }
 function Content({ newPhone }: IProps) {
+  const t = useTranslations("changePhoneNumber.verifyPhoneNumber");
   const { countryCode, phoneNumber } = newPhone;
   return (
     <p className="font-medium text-secondary text-center">
-      We are sending a verification code to your phone number:{" "}
-      <span className="text-primary">{`+${countryCode}${phoneNumber}`}</span>{" "}
-      Please check your phone number
+      {t("sendVerificationCode")}{" "}
+      <span
+        className="text-primary"
+        dir="ltr"
+      >{`+${countryCode}${phoneNumber}`}</span>{" "}
+      {t("checkPhoneNumber")}
     </p>
   );
 }

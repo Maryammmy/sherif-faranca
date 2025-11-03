@@ -2,18 +2,18 @@ import z from "zod";
 
 export const changePasswordSchema = z
   .object({
-    currentPassword: z.string().min(1, { message: "Password is required" }),
+    currentPassword: z.string().min(1, { message: "password.errors.required" }),
     newPassword: z
       .string()
-      .nonempty({ message: "Password is required" })
-      .min(8, { message: "Password must be at least 8 characters" })
-      .max(50, { message: "Password must be at most 50 characters" }),
+      .nonempty({ message: "newPassword.errors.required" })
+      .min(8, { message: "newPassword.errors.min" })
+      .max(50, { message: "newPassword.errors.max" }),
     confirmPassword: z
       .string()
-      .nonempty({ message: "Confirm password is required" }),
+      .nonempty({ message: "confirmPassword.errors.required" }),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Passwords must match",
+    message: "confirmPassword.errors.match",
   });
 export type ChangePassword = z.infer<typeof changePasswordSchema>;

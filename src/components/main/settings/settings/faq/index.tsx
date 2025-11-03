@@ -6,6 +6,8 @@ import { Button } from "@/src/components/ui/Button";
 import Loader from "@/src/components/loader/Loader";
 import { IFaq } from "@/src/interfaces/main/settings";
 import { cn } from "@/src/lib/utils";
+import { useTranslations } from "next-intl";
+import { SkeletonCard } from "@/src/components/skeleton/Card";
 
 interface IProps {
   open: boolean;
@@ -13,6 +15,7 @@ interface IProps {
 }
 
 function Faq({ open, onClose }: IProps) {
+  const t = useTranslations("faq");
   const [activeId, setActiveId] = useState<number | null>(1);
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useFaq();
 
@@ -23,14 +26,22 @@ function Faq({ open, onClose }: IProps) {
   return (
     <Modal open={open} onClose={onClose} contentClassName="bg-[#F3F5F6]">
       <div className="bg-[#F3F5F6] max-h-[355.2px] overflow-y-auto">
-        {faqList?.map((faq) => (
-          <FaqItem
-            key={faq?.id}
-            faq={faq}
-            isActive={activeId === faq?.id}
-            onToggle={() => setActiveId(activeId === faq?.id ? null : faq?.id)}
-          />
-        ))}
+        {!data ? (
+          <div className="flex flex-col gap-5">
+            <SkeletonCard count={3} className="h-20" />
+          </div>
+        ) : (
+          faqList?.map((faq) => (
+            <FaqItem
+              key={faq?.id}
+              faq={faq}
+              isActive={activeId === faq?.id}
+              onToggle={() =>
+                setActiveId(activeId === faq?.id ? null : faq?.id)
+              }
+            />
+          ))
+        )}
 
         {hasNextPage && (
           <div className="flex justify-center p-4">
@@ -38,11 +49,10 @@ function Faq({ open, onClose }: IProps) {
               onClick={() => fetchNextPage()}
               disabled={isFetchingNextPage}
               className={cn(
-                "text-sm px-3 py-2 rounded-md bg-black hover:bg-black/60 text-white font-medium",
-                isFetchingNextPage && "w-[106.7px] px-0"
+                "text-sm px-3 py-2 rounded-md bg-black hover:bg-black/60 text-white font-medium"
               )}
             >
-              {isFetchingNextPage ? <Loader /> : "Show More"}
+              {isFetchingNextPage ? <Loader /> : t("showMore")}
             </Button>
           </div>
         )}
