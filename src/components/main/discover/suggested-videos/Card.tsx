@@ -2,7 +2,7 @@ import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import React from "react";
 import { ISuggestedVideo } from "@/src/interfaces/main/discover";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 interface IProps {
@@ -31,7 +31,7 @@ function SuggestedVideoCard({ video }: IProps) {
           <Clock12 />
           <span>
             {durationMinutes}
-            {t("min")}
+            {t("mins")}
           </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">

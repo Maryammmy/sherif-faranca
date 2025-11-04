@@ -1,12 +1,14 @@
 import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { ISuggestion } from "@/src/interfaces/program";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   suggestion: ISuggestion;
 }
 export default function RecommendCard({ suggestion }: IProps) {
+  const t = useTranslations("card");
   const { calories, imageUrl, level, programId, timeMinutes, title } =
     suggestion;
   return (
@@ -25,7 +27,7 @@ export default function RecommendCard({ suggestion }: IProps) {
         {/* Content */}
       </div>
       <div>
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-gray-600 font-medium truncate">{title}</h3>
       </div>
       <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
@@ -34,11 +36,17 @@ export default function RecommendCard({ suggestion }: IProps) {
         </div>
         <div className="flex items-center justify-center gap-1 text-gray-400 text-sm font-medium">
           <Clock12 className="shrink-0" />
-          <span className="truncate">{timeMinutes}Mins</span>
+          <span className="truncate">
+            {timeMinutes}
+            {t("mins")}
+          </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
           <Flame className="shrink-0" />
-          <span className="truncate">{calories}Kcal</span>
+          <span className="truncate">
+            {calories}
+            {t("kcal")}
+          </span>
         </div>
       </div>
     </Link>

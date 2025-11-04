@@ -9,7 +9,7 @@ import { useState } from "react";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { SingleSkeletonCard } from "../../skeleton/Card";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function ClassicClass() {

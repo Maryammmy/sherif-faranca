@@ -4,7 +4,7 @@ import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { getHref } from "@/src/lib/utils";
 import { useTranslations } from "next-intl";
 
@@ -68,7 +68,7 @@ export default function RecommendCard({ recommendForYou }: IProps) {
         </div>
       </div>
       <div>
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-gray-600 font-medium truncate">{title}</h3>
       </div>
       <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">

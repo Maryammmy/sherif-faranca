@@ -1,6 +1,7 @@
 import Image from "@/src/components/ui/Image";
+import { Link } from "@/src/i18n/navigation";
 import { IHistory } from "@/src/interfaces/main/my-fit";
-import { formatDateOnly, formatTimeOnly } from "@/src/lib/utils";
+import { formatDateOnly, formatTimeOnly, getHref } from "@/src/lib/utils";
 import { useTranslations } from "next-intl";
 
 interface IProps {
@@ -8,9 +9,20 @@ interface IProps {
 }
 function WorkoutsCard({ history }: IProps) {
   const t = useTranslations("card");
-  const { calories, durationMinutes, watchedDate, imageUrl, title } = history;
+  const {
+    calories,
+    durationMinutes,
+    watchedDate,
+    imageUrl,
+    title,
+    id,
+    isProgram,
+  } = history;
   return (
-    <div className="p-4 rounded-2xl border space-y-2">
+    <Link
+      href={getHref(id, isProgram)}
+      className="p-4 rounded-2xl border space-y-2"
+    >
       <div className="relative w-full h-[200px] rounded-2xl overflow-hidden">
         <Image
           src={imageUrl}
@@ -34,7 +46,7 @@ function WorkoutsCard({ history }: IProps) {
           <span>{formatTimeOnly(watchedDate)}</span>
           <span>
             {durationMinutes}
-            {t("min")}
+            {t("mins")}
           </span>
           <span>
             {calories}
@@ -42,7 +54,7 @@ function WorkoutsCard({ history }: IProps) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

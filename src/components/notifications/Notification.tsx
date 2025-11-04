@@ -5,7 +5,7 @@ import { timeAgo } from "@/src/lib/utils/timeAgo";
 import { makeReadNotificationAPI } from "@/src/services/mutations/notification";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/src/i18n/navigation";
 import Image from "../ui/Image";
 import { Button } from "../ui/Button";
 

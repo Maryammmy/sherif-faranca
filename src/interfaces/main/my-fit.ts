@@ -41,6 +41,7 @@ export interface IHistory {
   imageUrl: string;
   title: string;
   watchedDate: string;
+  isProgram: boolean;
 }
 export interface IHistories {
   daily: IHistory[];

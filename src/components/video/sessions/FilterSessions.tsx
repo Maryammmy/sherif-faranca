@@ -5,6 +5,7 @@ import { ClassBy } from "@/src/types/video";
 import SongList from "./SongList";
 import SessionList from "./SessionList";
 import { IClassBySession, IClassBySong } from "@/src/interfaces/video";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   classBySession: IClassBySession[];
@@ -13,6 +14,7 @@ interface IProps {
 }
 
 function FilterSessions({ classBySession, classBySong, videoId }: IProps) {
+  const t = useTranslations("video.classBy");
   const classBy = useQueryParams("classBy") || "session";
   const isSong = classBy === "song";
   const router = useRouter();
@@ -26,13 +28,13 @@ function FilterSessions({ classBySession, classBySong, videoId }: IProps) {
           onClick={() => handleSelectClassBy("session")}
           className="bg-primary text-white p-2 rounded-md w-full"
         >
-          Class by Session
+          {t("session")}
         </Button>
         <Button
           onClick={() => handleSelectClassBy("song")}
           className="bg-primary text-white p-2 rounded-md w-full"
         >
-          Class by Song
+          {t("song")}
         </Button>
       </div>
       {isSong ? (

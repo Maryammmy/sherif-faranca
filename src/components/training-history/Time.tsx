@@ -28,7 +28,6 @@ function TrainingHistoryTime() {
   const trainingHistories: IWorkout[] | undefined = data?.pages?.flatMap(
     (page) => page?.data?.items
   );
-  console.log(data);
   return (
     <div className="space-y-4">
       {/* Filters */}

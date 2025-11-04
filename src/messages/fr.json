@@ -146,8 +146,7 @@
     "home": "Accueil",
     "myFit": "Mon Fit",
     "privacyPolicy": "Politique de confidentialité",
-    "settings": "Paramètres",
-    "termsAndConditions": "Conditions générales"
+    "settings": "Paramètres"
   },
   "signin": {
     "title": "Vous nous avez manqué !",
@@ -214,8 +213,11 @@
     "hey": "Salut"
   },
   "card": {
+    "videoError": "Votre navigateur ne prend pas en charge la balise vidéo.",
+    "segment": "Segment",
+    "session": "Session",
     "kcal": "Kcal",
-    "min": "Min",
+    "mins": "Mins",
     "class": "Cours",
     "startProgram": "Commencer le programme",
     "continueTheClass": "Continuer le cours",
@@ -476,5 +478,50 @@
   },
   "faq": {
     "showMore": "Afficher plus"
+  },
+  "video": {
+    "reset": "Réinitialiser",
+    "share": "Partager",
+    "focusArea": "Zone de concentration",
+    "classBy": {
+      "session": "Cours par session",
+      "song": "Cours par chanson"
+    }
+  },
+  "program": {
+    "aboutTheProgram": "À propos du programme",
+    "day": "Jour",
+    "whatThisProgramOffer": "Ce que ce programme offre",
+    "expectedResults": "Résultats attendus",
+    "startProgram": "Commencer le programme",
+    "gym": "Salle de sport",
+    "home": "Maison"
+  },
+  "selectDay": {
+    "daysFinished": "Jours terminés",
+    "week": "Semaine",
+    "startTraining": "Commencer l'entraînement"
+  },
+  "exercises": {
+    "level": "Niveau",
+    "mins": "Mins",
+    "time": "Temps",
+    "focusArea": "Zone de concentration",
+    "exercises": "Exercices"
+  },
+  "aboutUs": {
+    "title": "Découvrez les qualités uniques de",
+    "sherifFarancaPlatform": "Plateforme Sherif Franca",
+    "description": "Nous croyons que le fitness est bien plus qu'une simple routine ; c'est un mode de vie. Fondée dans le but d'inspirer et d'autonomiser les individus dans leur parcours fitness",
+    "version": "Version:"
+  },
+  "privacyPolicy": {
+    "title": "Politique de confidentialité"
+  },
+  "contactUs": {
+    "title": "Contactez-nous",
+    "mail": "E-mail",
+    "hotline": "Hotline",
+    "phoneNumber": "Numéro de téléphone"
   }
 }

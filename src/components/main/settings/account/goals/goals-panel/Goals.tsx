@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/src/components/ui/Button";
 import { useMyGoals } from "@/src/hooks";
 import { IMyGoal } from "@/src/interfaces/main/settings/account/goals";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { SkeletonCard } from "@/src/components/skeleton/Card";
 
 function Goals() {

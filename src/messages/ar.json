@@ -146,8 +146,7 @@
     "home": "الرئيسية",
     "myFit": "ملاءمتي",
     "privacyPolicy": "سياسة الخصوصية",
-    "settings": "الإعدادات",
-    "termsAndConditions": "الشروط والأحكام"
+    "settings": "الإعدادات"
   },
   "signin": {
     "title": "لقد افتقدناك!",
@@ -214,8 +213,11 @@
     "hey": "مرحباً"
   },
   "card": {
+    "videoError": "متصفحك لا يدعم عنصر الفيديو.",
+    "segment": "مقطع",
+    "session": "جلسة",
     "kcal": "سعرة حرارية",
-    "min": "دقيقة",
+    "mins": "دقيقة",
     "class": "الحصة",
     "startProgram": "ابدأ البرنامج",
     "continueTheClass": "تابع الحصة",
@@ -306,10 +308,10 @@
       "title": "أنشطتي",
       "healthHabits": {
         "goal": "الهدف",
-        "calories": "السعرات الحرارية",
-        "water": "الماء",
-        "steps": "الخطوات",
-        "duration": "المدة"
+        "calories": "سعرات حرارية",
+        "water": "ماء",
+        "steps": "خطوات",
+        "duration": "مدة"
       },
       "achievement": {
         "title": "الإنجاز",
@@ -476,5 +478,50 @@
   },
   "faq": {
     "showMore": "عرض المزيد"
+  },
+  "video": {
+    "reset": "إعادة التعيين",
+    "share": "مشاركة",
+    "focusArea": "منطقة التركيز",
+    "classBy": {
+      "session": "تصنيف حسب الجلسة",
+      "song": "تصنيف حسب الأغنية"
+    }
+  },
+  "program": {
+    "aboutTheProgram": "عن البرنامج",
+    "day": "اليوم",
+    "whatThisProgramOffer": "ما الذي يقدمه هذا البرنامج",
+    "expectedResults": "النتائج المتوقعة",
+    "startProgram": "ابدأ البرنامج",
+    "gym": "النادي الرياضي",
+    "home": "المنزل"
+  },
+  "selectDay": {
+    "daysFinished": "الأيام المكتملة",
+    "week": "الأسبوع",
+    "startTraining": "ابدأ التمرين"
+  },
+  "exercises": {
+    "level": "المستوى",
+    "mins": "دقيقة",
+    "time": "الوقت",
+    "focusArea": "منطقة التركيز",
+    "exercises": "التمارين"
+  },
+  "aboutUs": {
+    "title": "اكتشف الصفات الفريدة عن",
+    "sherifFarancaPlatform": "منصة شريف فرانكا",
+    "description": "نحن نؤمن أن اللياقة البدنية أكثر من مجرد روتين؛ إنها أسلوب حياة. تأسست بهدف إلهام وتمكين الأفراد في رحلاتهم نحو اللياقة البدنية",
+    "version": "الإصدار:"
+  },
+  "privacyPolicy": {
+    "title": "سياسة الخصوصية"
+  },
+  "contactUs": {
+    "title": "تواصل معنا",
+    "mail": "البريد الإلكتروني",
+    "hotline": "الخط الساخن",
+    "phoneNumber": "رقم الهاتف"
   }
 }

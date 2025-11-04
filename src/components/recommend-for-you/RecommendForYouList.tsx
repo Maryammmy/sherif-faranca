@@ -18,7 +18,6 @@ function RecommendForYorList() {
   const recommendList: IRecommendedForYou[] | undefined = data?.pages.flatMap(
     (page) => page?.data?.items
   );
-  console.log(recommendList);
   return (
     <div className="py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-5">
       {!data ? (

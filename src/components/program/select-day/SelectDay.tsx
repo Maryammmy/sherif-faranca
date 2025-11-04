@@ -6,6 +6,7 @@ import { Award, Calendar, MoveRight } from "lucide-react";
 import { useRouter } from "@/src/i18n/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { IProgramDays } from "@/src/interfaces/program";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   programId: string;
@@ -13,6 +14,7 @@ interface IProps {
 }
 
 export default function SelectDay({ programId, data }: IProps) {
+  const t = useTranslations("selectDay");
   const router = useRouter();
   const { totalDays, completedDays, weeks } = data;
 
@@ -90,7 +92,7 @@ export default function SelectDay({ programId, data }: IProps) {
       <div className="flex flex-col gap-6">
         <div>
           <p className="text-sm text-muted-foreground">
-            {completedDays}/{totalDays} Days Finished
+            {completedDays}/{totalDays} {t("daysFinished")}
           </p>
           <div className="w-full h-2 bg-gray-200 rounded-full mt-2">
             <div
@@ -116,7 +118,7 @@ export default function SelectDay({ programId, data }: IProps) {
                 <Calendar />
               </span>
               <h3 className="text-gray-700 text-lg font-semibold">
-                Week {week.weekNumber}
+                {t("week")} {week.weekNumber}
               </h3>
             </div>
             <div className="flex items-center gap-2">
@@ -185,9 +187,9 @@ export default function SelectDay({ programId, data }: IProps) {
         <div>
           <Button
             onClick={handleStartTraining}
-            className="bg-primary hover:bg-primary/80 font-medium text-white py-3 w-full sm:w-60 rounded-md"
+            className="bg-primary hover:bg-primary/80 font-medium text-white p-3 w-full sm:w-1/6 rounded-md"
           >
-            Start Training
+            {t("startTraining")}
           </Button>
         </div>
       </div>

@@ -2,21 +2,25 @@ import Image from "@/src/components/ui/Image";
 import {
   Clock12,
   EllipsisVertical,
+  MoveUpLeft,
   MoveUpRight,
   UserRound,
 } from "lucide-react";
 import { Button } from "@/src/components/ui/Button";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import CircularRing from "@/src/components/ui/CircularRing";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { getHref } from "@/src/lib/utils";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 interface IProps {
   recentVideo: IRecentWatched;
 }
 export default function RecentWatchedCard({ recentVideo }: IProps) {
   const t = useTranslations("card");
+  const locale = useLocale();
+  const isAr = locale === "ar";
+  const MoveUpIcon = isAr ? MoveUpLeft : MoveUpRight;
   const {
     imageUrl,
     categoryName,
@@ -86,7 +90,7 @@ export default function RecentWatchedCard({ recentVideo }: IProps) {
           <Button className="w-full bg-white text-black rounded-full py-2 px-4 flex justify-between items-center text-sm font-medium">
             {t("continueTheClass")}
             <div className="bg-primary text-white rounded-full flex items-center justify-center w-8 h-8 ml-2">
-              <MoveUpRight />
+              <MoveUpIcon />
             </div>
           </Button>
         </div>

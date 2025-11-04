@@ -1,16 +1,27 @@
 import { Button } from "@/src/components/ui/Button";
-import { Clock12, Heart, MoveLeft, Play, TrendingUp } from "lucide-react";
+import {
+  Clock12,
+  Heart,
+  MoveLeft,
+  MoveRight,
+  Play,
+  TrendingUp,
+} from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
 import { IProgramBackground } from "@/src/interfaces/program";
 import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
+import { useLocale } from "next-intl";
 interface IProps {
   href: string;
   programBackground: IProgramBackground;
   queryKey: string[];
 }
 function Background({ href, programBackground, queryKey }: IProps) {
+  const locale = useLocale();
+  const isAr = locale === "ar";
+  const MoveIcon = isAr ? MoveRight : MoveLeft;
   const queryClient = useQueryClient();
   const { imageUrl, isFavorite, category, level, timeTotal, title, id } =
     programBackground;
@@ -38,7 +49,7 @@ function Background({ href, programBackground, queryKey }: IProps) {
                 href={href}
                 className="flex justify-center items-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white"
               >
-                <MoveLeft className="text-gray-700 w-4 h-4 sm:w-6 sm:h-6" />
+                <MoveIcon className="text-gray-700 w-4 h-4 sm:w-6 sm:h-6" />
               </Link>
               <Button
                 onClick={toggleProgramFav}

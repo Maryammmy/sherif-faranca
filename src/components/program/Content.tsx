@@ -3,11 +3,13 @@ import { Button } from "@/src/components/ui/Button";
 import { Calendar1, Clock4, Dumbbell, House, ShieldCheck } from "lucide-react";
 import { useRouter } from "@/src/i18n/navigation";
 import { IProgram } from "@/src/interfaces/program";
+import { useTranslations } from "next-intl";
 interface IProps {
   programId: string;
   data: IProgram;
 }
 function Content({ programId, data }: IProps) {
+  const t = useTranslations("program");
   const router = useRouter();
   const {
     description,
@@ -26,14 +28,16 @@ function Content({ programId, data }: IProps) {
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="text-gray-700 font-semibold text-lg">
-            About The Program
+            {t("aboutTheProgram")}
           </h2>
           <div className="flex flex-wrap gap-3 sm:gap-4 font-medium">
             <div className="flex items-center gap-2 border border-gray-200 rounded-md px-3 py-2">
               <span className="text-primary shrink-0">
                 {atGym ? <Dumbbell size={20} /> : <House size={20} />}
               </span>
-              <span className="text-secondary">{atGym ? "Gym" : "Home"}</span>
+              <span className="text-secondary">
+                {atGym ? t("gym") : t("home")}
+              </span>
             </div>
             <div className="flex items-center gap-2 border border-gray-200 rounded-md px-3 py-2">
               <span className="text-primary shrink-0">
@@ -51,13 +55,15 @@ function Content({ programId, data }: IProps) {
               <span className="text-primary shrink-0">
                 <Calendar1 size={20} />
               </span>
-              <span className="text-secondary">{activeDays} Day</span>
+              <span className="text-secondary">
+                {activeDays} {t("day")}
+              </span>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="text-gray-700 font-semibold text-lg">
-            What This Program Offer
+            {t("whatThisProgramOffer")}
           </h2>
           <div className="flex flex-wrap gap-3 sm:gap-4 text-secondary font-medium">
             {whatThisProgramOffer?.map((item, index) => (
@@ -72,7 +78,7 @@ function Content({ programId, data }: IProps) {
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="text-gray-700 font-semibold text-lg">
-            Expected Results
+            {t("expectedResults")}
           </h2>
           {expectedResults?.map((item, index) => (
             <div key={index} className="flex items-center gap-2 font-medium">
@@ -86,9 +92,9 @@ function Content({ programId, data }: IProps) {
         <div>
           <Button
             onClick={() => router.push(`/programs/${programId}/select-day`)}
-            className="bg-primary hover:bg-primary/80 font-medium text-white py-3 w-full sm:w-60 rounded-md"
+            className="bg-primary hover:bg-primary/80 font-medium text-white py-3 w-full sm:w-1/6 rounded-md"
           >
-            Start Program
+            {t("startProgram")}
           </Button>
         </div>
       </div>

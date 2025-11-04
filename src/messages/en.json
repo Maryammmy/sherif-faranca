@@ -146,8 +146,7 @@
     "home": "Home",
     "myFit": "My Fit",
     "privacyPolicy": "Privacy Policy",
-    "settings": "Settings",
-    "termsAndConditions": "Terms & Conditions"
+    "settings": "Settings"
   },
   "signin": {
     "title": "You’ve been missed!",
@@ -214,8 +213,11 @@
     "hey": "Hey"
   },
   "card": {
+    "videoError": "Your browser does not support the video tag.",
+    "segment": "Segment",
+    "session": "Session",
     "kcal": "Kcal",
-    "min": "Min",
+    "mins": "Mins",
     "class": "Class",
     "startProgram": "Start Program",
     "continueTheClass": "Continue the class",
@@ -477,5 +479,50 @@
   },
   "faq": {
     "showMore": "Show More"
+  },
+  "video": {
+    "reset": "Reset",
+    "share": "Share",
+    "focusArea": "Focus Area",
+    "classBy": {
+      "session": "Class by Session",
+      "song": "Class by Song"
+    }
+  },
+  "program": {
+    "aboutTheProgram": "About The Program",
+    "day": "Day",
+    "whatThisProgramOffer": "What This Program Offer",
+    "expectedResults": "Expected Results",
+    "startProgram": "Start Program",
+    "gym": "Gym",
+    "home": "Home"
+  },
+  "selectDay": {
+    "daysFinished": "Days Finished",
+    "week": "Week",
+    "startTraining": "Start Training"
+  },
+  "exercises": {
+    "level": "Level",
+    "mins": "Mins",
+    "time": "Time",
+    "focusArea": "Focus Area",
+    "exercises": "Exercises"
+  },
+  "aboutUs": {
+    "title": "Discover the Unique Qualities About",
+    "sherifFarancaPlatform": "Sherif Franca Platform",
+    "description": "we believe that fitness is more than just a routine; it’s a way of life. Founded with the mission to inspire and empower individuals on their fitness journeys",
+    "version": "Version:"
+  },
+  "privacyPolicy": {
+    "title": "Privacy and Policy"
+  },
+  "contactUs": {
+    "title": "Contact Us",
+    "mail": "Mail",
+    "hotline": "Hotline",
+    "phoneNumber": "Phone Number"
   }
 }

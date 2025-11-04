@@ -1,6 +1,6 @@
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 function Header() {
   const t = useTranslations("fliters");

@@ -1,13 +1,15 @@
 "use client";
 import { ChevronRight } from "lucide-react";
 import ExerciseCard from "./ExerciseCard";
-import { Link } from "@/src/i18n/navigation";
 import { IProgramDay } from "@/src/interfaces/program";
 import RecommendForYou from "./RecommendForYou";
+import { useTranslations } from "next-intl";
+
 interface IProps {
   data: IProgramDay;
 }
 function DayExercises({ data }: IProps) {
+  const t = useTranslations("exercises");
   const {
     dayDescription,
     dayTitle,
@@ -24,7 +26,7 @@ function DayExercises({ data }: IProps) {
         <div className="flex flex-col gap-1">
           <header>
             {" "}
-            <h1 className="text-gray-700 font-bold">{programTitle}</h1>
+            <h2 className="text-gray-700 font-bold">{programTitle}</h2>
           </header>
           <header>
             {" "}
@@ -35,39 +37,41 @@ function DayExercises({ data }: IProps) {
         <div className="flex items-center justify-between bg-white rounded-xl shadow-sm px-3 sm:px-6 py-4 border text-center text-gray-700 font-medium w-full max-w-md mx-auto">
           {/* Level */}
           <div className="flex-1">
-            <div className="flex flex-col gap-px items-start mx-auto w-fit">
+            <div className="flex flex-col gap-px items-center text-center mx-auto w-fit">
               <h3 className="flex justify-center items-center gap-px text-xs sm:text-base">
                 {level}{" "}
                 <span className="text-primary shrink-0">
                   <ChevronRight />
                 </span>
               </h3>
-              <p className="text-xs text-gray-400">Level</p>
+              <p className="text-xs text-gray-400">{t("level")}</p>
             </div>
           </div>
           {/* Divider */}
           <div className="w-px h-8 bg-gray-200 mx-2 sm:mx-4" />
           {/* Time */}
           <div className="flex-1">
-            <div className="flex flex-col gap-px items-start mx-auto w-fit">
-              <h3 className="text-xs sm:text-base">{totalTimeMinutes} Mins</h3>
-              <p className=" text-xs text-gray-400">Time</p>
+            <div className="flex flex-col gap-px items-center mx-auto w-fit text-center">
+              <h3 className="text-xs sm:text-base">
+                {totalTimeMinutes} {t("mins")}
+              </h3>
+              <p className="text-xs text-gray-400">{t("time")}</p>
             </div>
           </div>
           {/* Divider */}
           <div className="w-px h-8 bg-gray-200 mx-2 sm:mx-4" />
           {/* Focus Area */}
           <div className="flex-1">
-            <div className="flex flex-col gap-px items-start mx-auto w-fit">
+            <div className="flex flex-col gap-px items-center mx-auto w-fit text-center">
               <h3 className="text-xs sm:text-base">{focusArea}</h3>
-              <p className="text-xs text-gray-400">Focus Area</p>
+              <p className="text-xs text-gray-400">{t("focusArea")}</p>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-6">
           <div>
             <h2 className="text-lg text-gray-700 font-bold">
-              Exercises ({exercises?.length})
+              {t("exercises")} ({exercises?.length})
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
@@ -75,12 +79,6 @@ function DayExercises({ data }: IProps) {
               <ExerciseCard key={exercise?.exerciseId} exercise={exercise} />
             ))}
           </div>
-          <Link
-            href={`/`}
-            className="bg-primary hover:bg-primary/80 text-center font-medium text-white py-3 w-full sm:w-60 rounded-md"
-          >
-            Start Training
-          </Link>
         </div>
         <RecommendForYou suggestions={suggestions} />
       </div>

@@ -9,6 +9,8 @@ import { Button } from "@/src/components/ui/Button";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import CircularRing from "@/src/components/ui/CircularRing";
 import { useTranslations } from "next-intl";
+import { Link } from "@/src/i18n/navigation";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   recentWatched: IRecentWatched;
@@ -16,6 +18,8 @@ interface IProps {
 export default function RecentWatchedCard({ recentWatched }: IProps) {
   const t = useTranslations("card");
   const {
+    id,
+    isprogram,
     imageUrl,
     categoryName,
     levelName,
@@ -25,7 +29,10 @@ export default function RecentWatchedCard({ recentWatched }: IProps) {
     watchProgressPercentage,
   } = recentWatched;
   return (
-    <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
+    <Link
+      href={getHref(id, isprogram)}
+      className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg"
+    >
       {/* Background image */}
       <Image src={imageUrl} alt={title} fill className="object-cover" />
       {/* Overlay */}
@@ -84,6 +91,6 @@ export default function RecentWatchedCard({ recentWatched }: IProps) {
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

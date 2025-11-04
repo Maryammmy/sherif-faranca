@@ -1,7 +1,7 @@
 import SuggestedVideos from "./SuggestedVideos";
 import { ISuggestedVideo } from "@/src/interfaces/main/discover";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 interface IProps {
   videos: ISuggestedVideo[] | undefined;

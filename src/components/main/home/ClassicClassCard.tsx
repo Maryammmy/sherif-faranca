@@ -1,8 +1,7 @@
 import { IClass } from "@/src/interfaces/main/home";
 import { Clock12, Flame, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
-import Link from "next/link";
-import { getHref } from "@/src/lib/utils";
+import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 interface IProps {
@@ -12,13 +11,13 @@ export default function ClassicClassCard({ classicClass }: IProps) {
   const { title, level, calories, duration, imageUrl, videoId } = classicClass;
   const t = useTranslations("card");
   return (
-    <Link href={getHref(videoId)} className="space-y-2">
+    <Link href={`/videos/${videoId}`} className="space-y-2">
       <div className="h-[250px] shadow-xl rounded-2xl overflow-hidden relative">
         <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
 
       <div>
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-gray-600 font-medium truncate">{title}</h3>
       </div>
       <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
@@ -29,7 +28,7 @@ export default function ClassicClassCard({ classicClass }: IProps) {
           <Clock12 />
           <span>
             {duration}
-            {t("min")}
+            {t("mins")}
           </span>
         </div>
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">

@@ -1,4 +1,6 @@
 export interface IWorkout {
+  workoutProgramId: number;
+  isProgram: boolean;
   calories: number;
   durationMinutes: number;
   id: number;

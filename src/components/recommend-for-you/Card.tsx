@@ -5,6 +5,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Flame, Heart, Play, TrendingUp } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/src/i18n/navigation";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   recommendForYou: IRecommendedForYou;
@@ -33,7 +35,7 @@ export default function RecommendForYouCard({ recommendForYou }: IProps) {
     }
   };
   return (
-    <div className="space-y-2">
+    <Link href={getHref(id, isProgram)} className="space-y-2">
       <div className="relative rounded-2xl overflow-hidden text-white w-full h-[250px] shadow-lg">
         <Image
           src={imageUrl}
@@ -65,7 +67,7 @@ export default function RecommendForYouCard({ recommendForYou }: IProps) {
         </div>
       </div>
       <div>
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-gray-600 font-medium truncate">{title}</h3>
       </div>
       <div className="grid grid-cols-3 gap-2 capitalize">
         <div className="flex items-center gap-1 text-gray-400 text-sm font-medium">
@@ -87,6 +89,6 @@ export default function RecommendForYouCard({ recommendForYou }: IProps) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

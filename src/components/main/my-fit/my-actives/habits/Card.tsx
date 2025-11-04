@@ -27,7 +27,7 @@ function HabitCard({ habit }: IProps) {
   const CardContent = (
     <div className="border rounded-2xl p-4 shadow-sm flex flex-col gap-2 hover:shadow-md transition h-full">
       <div className="flex justify-between items-center">
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-gray-600 font-medium truncate">{title}</h3>
         {icon && <span>{icon}</span>}
       </div>
       <div className="text-2xl font-bold flex items-baseline gap-1">

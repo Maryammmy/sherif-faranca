@@ -2,10 +2,12 @@ import { Clock12, Flame, CircleCheck } from "lucide-react";
 import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
 import { IExercise } from "@/src/interfaces/program";
+import { useTranslations } from "next-intl";
 interface IProps {
   exercise: IExercise;
 }
 function ExerciseCard({ exercise }: IProps) {
+  const t = useTranslations("card");
   const { calories, durationMinutes, exerciseId, focusArea, imageUrl, title } =
     exercise;
   return (
@@ -29,11 +31,17 @@ function ExerciseCard({ exercise }: IProps) {
         <div className="grid grid-cols-3 gap-2 capitalize text-gray-700 text-xs font-medium">
           <div className="flex items-center gap-px">
             <Flame className="text-orange-600 size-5 shrink-0" />
-            <span className="truncate">{calories} Kcal</span>
+            <span className="truncate">
+              {calories}
+              {t("kcal")}
+            </span>
           </div>
           <div className="flex items-center gap-px">
             <Clock12 className="size-5 shrink-0" />
-            <span className="truncate">{durationMinutes} Min</span>
+            <span className="truncate">
+              {durationMinutes}
+              {t("mins")}
+            </span>
           </div>
           <div className="flex items-center gap-px">
             <CircleCheck className="size-5 shrink-0" />

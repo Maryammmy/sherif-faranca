@@ -1,7 +1,6 @@
 import { INavItem } from "@/src/interfaces/main/sidebar";
 import {
   Compass,
-  FileText,
   Headphones,
   Home,
   Info,
@@ -21,5 +20,4 @@ export const secondaryNavItems: INavItem[] = [
   { href: "/about-us", icon: Info, label: "aboutUs" },
   { icon: Headphones, label: "contactUs" },
   { href: "/privacy-policy", icon: ShieldCheck, label: "privacyPolicy" },
-  { href: "/terms", icon: FileText, label: "termsAndConditions" },
 ];

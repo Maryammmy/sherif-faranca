@@ -1,6 +1,8 @@
 import { Lock, LockOpen } from "lucide-react";
 import CircularRing from "@/src/components/ui/CircularRing";
 import { Button } from "@/src/components/ui/Button";
+import { useLocale, useTranslations } from "next-intl";
+import { cn } from "@/src/lib/utils";
 
 interface IProps {
   videoUrl: string;
@@ -23,6 +25,9 @@ const DisplayVideo = ({
   kcal,
   isLoading,
 }: IProps) => {
+  const t = useTranslations("card");
+  const locale = useLocale();
+  const isAr = locale === "ar";
   return (
     <div className="relative rounded-xl shadow-lg overflow-hidden">
       {/* 🎥 Video */}
@@ -33,19 +38,27 @@ const DisplayVideo = ({
         preload="metadata"
       >
         <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
+        {t("videoError")}
       </video>
 
       {/* 🔒 Lock Button */}
       <Button
         onClick={() => setLocked(!locked)}
-        className="absolute top-4 right-4 bg-white/80 backdrop-blur-md p-2 rounded-full shadow hover:scale-110 transition z-20"
+        className={cn(
+          "absolute top-4 bg-white/80 backdrop-blur-md p-2 rounded-full shadow hover:scale-110 transition z-20",
+          isAr ? "left-4" : "right-4"
+        )}
       >
         {locked ? <LockOpen /> : <Lock />}
       </Button>
 
       {/* 🕒 Progress Ring */}
-      <div className="absolute top-4 left-4 w-16 h-16 z-20 bg-black/40 rounded-full overflow-hidden">
+      <div
+        className={cn(
+          "absolute top-4 w-16 h-16 z-20 bg-black/40 rounded-full overflow-hidden",
+          isAr ? "right-4" : "left-4"
+        )}
+      >
         <CircularRing
           value={progress}
           color={"#3e1492"}
@@ -55,10 +68,15 @@ const DisplayVideo = ({
       </div>
 
       {/* 🔥 Calories */}
-      <div className="absolute top-[60%] sm:top-[75%] left-4 flex flex-col gap-1 items-center justify-center z-20">
+      <div
+        className={cn(
+          "absolute top-[60%] sm:top-[75%] flex flex-col gap-1 items-center justify-center z-20",
+          isAr ? "right-4" : "left-4"
+        )}
+      >
         <span>🔥</span>
         <span className="bg-orange-500 text-white px-2 py-1 rounded-md font-medium text-sm">
-          {Math.floor(kcal)} Kcal
+          {Math.floor(kcal)} {t("kcal")}
         </span>
       </div>
 

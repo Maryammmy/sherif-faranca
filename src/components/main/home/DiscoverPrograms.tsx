@@ -6,7 +6,7 @@ import { SingleSkeletonCard } from "../../skeleton/Card";
 import { HomeBreakpoints } from "@/src/data";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function DiscoverPrograms() {

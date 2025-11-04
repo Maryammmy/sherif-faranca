@@ -6,7 +6,7 @@ import Image from "@/src/components/ui/Image";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { SkeletonCard } from "../../skeleton/Card";
 import { EmptyState } from "../../ui/empty-state/EmptyState";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function Banner() {

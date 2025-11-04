@@ -11,7 +11,6 @@ interface IProps {
 
 function TrainingHistory({ histories }: IProps) {
   const [selectedTime, setSelectedTime] = useState<WorkoutHistoryTime>("today");
-
   const handleSelectTime = (time: WorkoutHistoryTime) => {
     setSelectedTime(time);
   };

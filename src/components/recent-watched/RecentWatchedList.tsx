@@ -14,7 +14,6 @@ function RecentWatchedList() {
   const t = useTranslations("recentWatched");
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useRecentWatched();
-
   // دمج كل الـ pages في Array واحد
   const recentWatchedList: IRecentWatched[] | undefined = data?.pages.flatMap(
     (page) => page?.data?.items

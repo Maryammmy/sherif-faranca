@@ -3,7 +3,7 @@ import { ISuggestedProgram } from "@/src/interfaces/main/discover";
 import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { EmptyStatePage } from "@/src/components/ui/empty-state/EmptyStatePage";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 interface IProps {
   programs: ISuggestedProgram[] | undefined;

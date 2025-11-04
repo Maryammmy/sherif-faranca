@@ -19,7 +19,7 @@ const WeeklySummary = ({ data }: IProps) => {
     labels,
     datasets: [
       {
-        label: t("calorieBurnt"),
+        label: t("caloriesBurnt"),
         data: caloriesData,
         backgroundColor: "#3e1492",
       },

@@ -4,6 +4,8 @@ import { toggleFavAPI } from "@/src/services/mutations/fav";
 import { useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import Image from "@/src/components/ui/Image";
+import { Link } from "@/src/i18n/navigation";
+import { getHref } from "@/src/lib/utils";
 
 interface IProps {
   fav: IFav;
@@ -25,7 +27,10 @@ function FavoriteWorkoutCard({ fav }: IProps) {
   };
 
   return (
-    <div className="p-4 rounded-2xl border space-y-2 bg-gray-50">
+    <Link
+      href={getHref(id, isProgram)}
+      className="p-4 rounded-2xl border space-y-2 bg-gray-50"
+    >
       <div className="relative overflow-hidden rounded-2xl w-full h-[250px]">
         <Image
           src={imageUrl}
@@ -50,7 +55,7 @@ function FavoriteWorkoutCard({ fav }: IProps) {
       <div>
         <h2 className="font-bold text-gray-700">{title}</h2>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -18,3 +18,12 @@ export interface ISubscription {
   planName: string;
   timeEnd: string;
 }
+export interface IPrivacyPolicy {
+  content1: string;
+  content2: string;
+  imageUrl: string;
+  section1: string;
+  section2: string;
+  tiltleImage: string;
+  title: string;
+}

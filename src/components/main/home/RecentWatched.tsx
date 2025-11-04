@@ -5,7 +5,7 @@ import { useHome } from "@/src/hooks";
 import { IRecentWatched } from "@/src/interfaces/main/home";
 import SwiperSlider from "../../ui/SwiperSlider";
 import { HomeBreakpoints } from "@/src/data";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function RecentWatched() {
