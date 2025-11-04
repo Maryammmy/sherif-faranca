@@ -1,6 +1,7 @@
 import Loader from "@/src/components/loader/Loader";
 import { Button } from "@/src/components/ui/Button";
 import { sendChangeEmailAPI } from "@/src/services/mutations/users";
+import { useTranslations } from "next-intl";
 
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -10,6 +11,7 @@ interface IProps {
   resetTimer: () => void;
 }
 function ResendOtp({ newEmail, resetTimer }: IProps) {
+  const t = useTranslations("otp");
   const [loading, setLoading] = useState(false);
   const resendOtp = async () => {
     setLoading(true);
@@ -28,7 +30,7 @@ function ResendOtp({ newEmail, resetTimer }: IProps) {
       type="button"
       className="text-primary w-full disabled:text-gray-400 font-medium"
     >
-      {loading ? <Loader borderColor="#3e1492" /> : "Send Code Again"}
+      {loading ? <Loader borderColor="#3e1492" /> : t("resendOtpButton")}
     </Button>
   );
 }

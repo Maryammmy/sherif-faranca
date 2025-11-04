@@ -1,4 +1,4 @@
-"use client";
+import { IStep } from "@/src/interfaces/main/settings/account/goals";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,20 +14,20 @@ import { useMediaQuery } from "usehooks-ts";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Title);
 
 interface WeeklySummaryProps {
-  weeklyData: { day: string; calories: number }[];
+  data: IStep;
 }
 
-export default function WeeklySummary({ weeklyData }: WeeklySummaryProps) {
+export default function WeeklySummary({ data }: WeeklySummaryProps) {
   const t = useTranslations("step.weeklySummary");
-  const totalCalories = weeklyData.reduce((a, b) => a + b.calories, 0);
+  const weeklyData = data?.weeklySummary || [];
   const isLarge = useMediaQuery("(min-width: 1280px)");
 
   const chartData = {
-    labels: weeklyData.map((d) => d.day),
+    labels: weeklyData?.map((d) => d.day),
     datasets: [
       {
-        label: "Calories Burned",
-        data: weeklyData.map((d) => d.calories),
+        label: t("steps"),
+        data: weeklyData.map((d) => d.steps),
         backgroundColor: "#6b21a8",
         borderRadius: 8,
         barThickness: isLarge ? 40 : 20, // responsive
@@ -45,16 +45,13 @@ export default function WeeklySummary({ weeklyData }: WeeklySummaryProps) {
   };
 
   return (
-    <div className="">
+    <div className="space-y-2">
       <h2 className="text-lg font-medium">{t("title")}</h2>
-      <p className="text-sm font-medium text-secondary mb-4">
-        {t("caloriesBurned")}{" "}
-        <span className="font-semibold">
-          {(totalCalories / 1000).toFixed(1)}
-        </span>{" "}
-        {t("kcal")}
-      </p>
+      <p className="text-sm font-medium text-secondary">{data?.weekRange}</p>
       <Bar data={chartData} options={chartOptions} height={200} />
+      <p className="text-end text-gray-600 text-sm font-medium">
+        {data?.weeklyTotal} {t("steps")}
+      </p>
     </div>
   );
 }

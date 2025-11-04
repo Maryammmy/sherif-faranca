@@ -17,6 +17,8 @@ import toast from "react-hot-toast";
 import ResendOtp from "./ResendOtp";
 import { useQueryClient } from "@tanstack/react-query";
 import { verifyEmailAPI } from "@/src/services/mutations/users";
+import { useTranslations } from "next-intl";
+import InputErrorMessage from "@/src/components/ui/InputErrorMsg";
 
 interface IProps {
   onClose: () => void;
@@ -24,6 +26,7 @@ interface IProps {
 }
 
 function VerifyEmailForm({ onClose, newEmail }: IProps) {
+  const t = useTranslations("otp");
   const queryClient = useQueryClient();
   const {
     handleSubmit,
@@ -65,8 +68,8 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
       toast.success(response?.message);
       queryClient.invalidateQueries({ queryKey: ["email"] });
       setTimeout(() => {
-        onClose();
         queryClient.invalidateQueries({ queryKey: ["profile"] });
+        onClose();
       }, 500);
     } else {
       toast.error(response?.message);
@@ -88,15 +91,13 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
             ))}
           </InputOTPGroup>
         </InputOTP>
-        {errors.otp && (
-          <p className="text-red-500 text-sm mt-1">{errors.otp.message}</p>
-        )}
+        {errors.otp && <InputErrorMessage msg={errors.otp.message} />}
       </div>
       {/* Resend Timer */}
       <div className="text-center mb-4">
         {timeLeft > 0 ? (
           <p className="text-sm text-secondary font-semibold">
-            Resend OTP in {Math.floor(timeLeft / 60)}:
+            {t("resendOtp")} {Math.floor(timeLeft / 60)}:
             {String(timeLeft % 60).padStart(2, "0")}
           </p>
         ) : (
@@ -110,7 +111,7 @@ function VerifyEmailForm({ onClose, newEmail }: IProps) {
         className="w-full bg-primary text-white p-3 rounded-md font-medium"
         disabled={isSubmitting || otp.length < 5}
       >
-        {isSubmitting ? <Loader /> : "Verify"}
+        {isSubmitting ? <Loader /> : t("button")}
       </Button>
     </form>
   );

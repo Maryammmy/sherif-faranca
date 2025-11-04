@@ -399,7 +399,7 @@
     "stepGoal": "objectif de pas",
     "weightGoal": "objectif de poids",
     "fitnessGoal": "objectif de forme physique",
-    "step": "Pas",
+    "steps": "Pas",
     "kg": "Kg",
     "weightGoalModal": {
       "title": "Quel est votre poids cible ?",
@@ -441,7 +441,7 @@
         "title": "Objectif de pas quotidien",
         "recommended": "Recommandé",
         "custom": "Personnalisé",
-        "stepsDay": "Pas / Jour",
+        "recommendedError": "Veuillez d'abord sélectionner un objectif recommandé",
         "change": "Modifier"
       }
     }
@@ -455,9 +455,14 @@
     "changePassword": "Changer le mot de passe"
   },
   "changeEmail": {
-    "title": "Changer l'e-mail",
-    "currentEmail": "E-mail actuel",
-    "changeEmail": "Changer l'e-mail"
+    "title": "Modifier l'adresse e-mail",
+    "currentEmail": "Adresse e-mail actuelle",
+    "changeEmail": "Modifier l'adresse e-mail",
+    "verifyEmail": {
+      "title": "Code de vérification",
+      "sendVerificationCode": "Nous envoyons un code de vérification à votre nouvelle adresse e-mail :",
+      "checkEmail": "Veuillez vérifier votre boîte mail"
+    }
   },
   "changePhoneNumber": {
     "title": "Changer le numéro de téléphone",

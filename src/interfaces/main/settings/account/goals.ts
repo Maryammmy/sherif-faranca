@@ -15,3 +15,25 @@ export interface IMyGoal {
   stepGoals: number;
   targetWeight: number;
 }
+export interface IWeeklySummary {
+  day: string;
+  steps: number;
+}
+export interface IStep {
+  todaySteps: number;
+  stepsGoal: number;
+  weekRange: string;
+  weeklySummary: IWeeklySummary[];
+  weeklyTotal: number;
+}
+export interface ICustomStepGoal {
+  stepGoals: number;
+}
+export interface IRecommendedStepGoal {
+  id: number;
+}
+export interface IRecommended {
+  id: number;
+  title: string;
+  steps: string;
+}

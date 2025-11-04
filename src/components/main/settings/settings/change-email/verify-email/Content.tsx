@@ -1,11 +1,14 @@
+import { useTranslations } from "next-intl";
+
 interface IProps {
   newEmail: string;
 }
 function Content({ newEmail }: IProps) {
+  const t = useTranslations("changeEmail.verifyEmail");
   return (
     <p className="font-medium text-secondary text-center">
-      We are sending a verification code to your new email address:{" "}
-      <span className="text-primary">{newEmail}</span> Please check your email
+      {t("sendVerificationCode")}{" "}
+      <span className="text-primary">{newEmail}</span> {t("checkEmail")}
     </p>
   );
 }

@@ -1,8 +1,7 @@
-"use client";
 import { Pencil } from "lucide-react";
 import { Button } from "@/src/components/ui/Button";
 import { useState } from "react";
-import DailyStepGoalModal from "./DailyStepGoalModal";
+import DailyStepGoalModal from "./daily-step-goal";
 import { useTranslations } from "next-intl";
 
 interface IProps {

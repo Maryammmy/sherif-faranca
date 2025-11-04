@@ -1,6 +1,8 @@
 "use server";
 
 import {
+  ICustomStepGoal,
+  IRecommendedStepGoal,
   ITargetGoal,
   ITargetWeight,
 } from "@/src/interfaces/main/settings/account/goals";
@@ -15,5 +17,13 @@ export const goalAPI = async (payload: ITargetGoal) => {
     "/api/Questions/update-userPreference",
     payload
   );
+  return data;
+};
+export const customStepGoalAPI = async (payload: ICustomStepGoal) => {
+  const data = await postServerData("/api/Steps/goal", payload);
+  return data;
+};
+export const recommendedStepGoalAPI = async (payload: IRecommendedStepGoal) => {
+  const data = await putServerData("/api/Steps/update-goal", payload);
   return data;
 };

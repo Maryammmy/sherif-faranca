@@ -399,7 +399,7 @@
     "stepGoal": "هدف الخطوات",
     "weightGoal": "هدف الوزن",
     "fitnessGoal": "هدف اللياقة",
-    "step": "خطوة",
+    "steps": "خطوة",
     "kg": "كجم",
     "weightGoalModal": {
       "title": "ما هو وزنك المستهدف؟",
@@ -441,7 +441,7 @@
         "title": "الهدف اليومي للخطوات",
         "recommended": "موصى به",
         "custom": "مخصص",
-        "stepsDay": "خطوات / يوم",
+        "recommendedError": "يرجى اختيار هدف مقترح أولاً",
         "change": "تغيير"
       }
     }
@@ -457,7 +457,12 @@
   "changeEmail": {
     "title": "تغيير البريد الإلكتروني",
     "currentEmail": "البريد الإلكتروني الحالي",
-    "changeEmail": "تغيير البريد الإلكتروني"
+    "changeEmail": "تغيير البريد الإلكتروني",
+    "verifyEmail": {
+      "title": "رمز التحقق",
+      "sendVerificationCode": "نقوم بإرسال رمز تحقق إلى عنوان بريدك الإلكتروني الجديد:",
+      "checkEmail": "يرجى التحقق من بريدك الإلكتروني"
+    }
   },
   "changePhoneNumber": {
     "title": "تغيير رقم الجوال",

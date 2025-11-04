@@ -38,13 +38,14 @@ const Calories = () => {
           </div>
         </div>
       ) : (
-        <div className="max-w-7xl mx-auto padding-layout">
+        <>
+          {" "}
           <Header />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <TodayCalories data={data?.data?.todayCalories} />
             <WeeklySummary data={data?.data} />
           </div>
-        </div>
+        </>
       )}
     </div>
   );

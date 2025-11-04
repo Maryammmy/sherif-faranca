@@ -46,7 +46,7 @@ const WeeklySummary = ({ data }: IProps) => {
 
       <Bar data={barData} options={barOptions} />
 
-      <p className="text-right text-gray-600 text-sm font-medium">
+      <p className="text-end text-gray-600 text-sm font-medium">
         {data?.weeklyTotal} {t("calories")}
       </p>
     </div>

@@ -2,26 +2,33 @@
 
 import FitnessGoalCard from "./Card";
 import { Button } from "@/src/components/ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useGoals } from "@/src/hooks";
+import { useGoals, useTargetGoal } from "@/src/hooks";
 import { IQuestion } from "@/src/interfaces/questions";
 import { SkeletonCard } from "@/src/components/skeleton/Card";
 import { goalAPI } from "@/src/services/mutations/goals";
 import toast from "react-hot-toast";
 import Loader from "@/src/components/loader/Loader";
-// import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
   onClose: () => void;
 }
 function Goals({ onClose }: IProps) {
   const { data } = useGoals();
+  const { data: targetGoalData } = useTargetGoal();
   const t = useTranslations("myGoal.fitnessGoalModal");
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const [selectedGoal, setSelectedGoal] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const goals: IQuestion[] = data;
+
+  useEffect(() => {
+    if (targetGoalData) {
+      setSelectedGoal(targetGoalData?.data?.id);
+    }
+  }, [targetGoalData]);
   const handleSelectGoal = (goal: number) => {
     setSelectedGoal(goal);
   };
@@ -31,7 +38,9 @@ function Goals({ onClose }: IProps) {
     const response = await goalAPI({ goalId: selectedGoal });
     if (response?.success) {
       toast.success(response.message);
+      queryClient.invalidateQueries({ queryKey: ["targetGoal"] });
       setTimeout(() => {
+        queryClient.invalidateQueries({ queryKey: ["myGoals"] });
         onClose();
       }, 500);
     } else toast.error(response.message);

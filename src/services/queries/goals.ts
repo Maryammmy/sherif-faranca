@@ -16,3 +16,11 @@ export const targetGoalAPI = async () => {
   const data = await getServerData("/api/MyFit/get-Targetgoal");
   return data;
 };
+export const stepAPI = async () => {
+  const data = await getServerData("/api/MyFit/steps");
+  return data;
+};
+export const recommendedGoalAPI = async () => {
+  const data = await getServerData("/api/Steps/recommend");
+  return data;
+};

@@ -36,7 +36,7 @@ function Goals() {
               </h3>
               <div className="flex items-center gap-1 text-xs sm:text-sm text-secondary font-medium shrink-0">
                 <span>
-                  {myGoal?.stepGoals} {t("step")}
+                  {myGoal?.stepGoals} {t("steps")}
                 </span>
                 <ChevronIcon className="size-4" />
               </div>

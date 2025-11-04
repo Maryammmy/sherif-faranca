@@ -399,7 +399,7 @@
     "stepGoal": "step goal",
     "weightGoal": "weight goal",
     "fitnessGoal": "fitness goal",
-    "step": "Step",
+    "steps": "Steps",
     "kg": "KG",
     "weightGoalModal": {
       "title": "What's is your Target Weight ?",
@@ -430,7 +430,8 @@
     "weeklySummary": {
       "title": "Weekly Summary",
       "caloriesBurned": "Calories Burned",
-      "kcal": "Kcal"
+      "kcal": "Kcal",
+      "steps": "Steps"
     },
     "todayStepGoal": {
       "title": "Today Step Goal",
@@ -441,7 +442,7 @@
         "title": "Daily Step Goal",
         "recommended": "Recommended",
         "custom": "Custom",
-        "stepsDay": "Steps / Day",
+        "recommendedError": "Please select a recommended goal first",
         "change": "Change"
       }
     }
@@ -457,7 +458,12 @@
   "changeEmail": {
     "title": "Change email",
     "currentEmail": "Current email",
-    "changeEmail": "Change email"
+    "changeEmail": "Change email",
+    "verifyEmail": {
+      "title": "Verification code",
+      "sendVerificationCode": "We are sending a verification code to your new email address:",
+      "checkEmail": "Please check your email"
+    }
   },
   "changePhoneNumber": {
     "title": "Change phone number",

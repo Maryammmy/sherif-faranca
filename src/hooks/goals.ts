@@ -1,6 +1,9 @@
 import {
   goalsAPI,
   myGoalsAPI,
+  recommendedGoalAPI,
+  stepAPI,
+  targetGoalAPI,
   targetWeightAPI,
 } from "../services/queries/goals";
 import { useCustomQuery } from "./useCustomQuery";
@@ -13,4 +16,13 @@ export function useMyGoals() {
 }
 export function useTargetWeight() {
   return useCustomQuery(["targetWeight"], targetWeightAPI);
+}
+export function useTargetGoal() {
+  return useCustomQuery(["targetGoal"], targetGoalAPI);
+}
+export function useStep() {
+  return useCustomQuery(["step"], stepAPI);
+}
+export function useRecommendedStepGoal() {
+  return useCustomQuery(["recommendedStepGoal"], recommendedGoalAPI);
 }

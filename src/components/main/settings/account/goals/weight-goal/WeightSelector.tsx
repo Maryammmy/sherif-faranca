@@ -90,8 +90,8 @@ export default function WeightSelector({ onClose }: IProps) {
       toast.success(response.message);
       queryClient.invalidateQueries({ queryKey: ["targetWeight"] });
       setTimeout(() => {
-        onClose();
         queryClient.invalidateQueries({ queryKey: ["myGoals"] });
+        onClose();
       }, 500);
     } else toast.error(response.message);
     setLoading(false);

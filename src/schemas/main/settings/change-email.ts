@@ -16,9 +16,9 @@ export type ChangeEmail = z.infer<ReturnType<typeof changeEmailSchema>>;
 export const verifyEmailSchema = z.object({
   otp: z
     .string()
-    .nonempty("OTP is required")
-    .regex(/^\d{5}$/, "OTP must be 5 digits (numbers only)"),
-  newEmail: z.string().email("Please enter a valid email"),
+    .nonempty("otp.errors.required")
+    .regex(/^\d{5}$/, "otp.errors.invalid"),
+  newEmail: z.string().email("email.errors.invalid"),
 });
 
 export type VerifyEmail = z.infer<typeof verifyEmailSchema>;
