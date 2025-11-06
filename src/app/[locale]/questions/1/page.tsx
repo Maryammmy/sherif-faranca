@@ -2,11 +2,7 @@ import Questions from "@/src/components/questions/Questions";
 
 function Questions1() {
   return (
-    <Questions
-      title="Part 1"
-      subTitle="Goal & Focus"
-      link="/questions/1/intro"
-    />
+    <Questions title="title1" subTitle="subTitle1" link="/questions/1/intro" />
   );
 }
 

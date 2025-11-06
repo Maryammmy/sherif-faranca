@@ -33,7 +33,7 @@ import { setToken, useQueryParams } from "@/src/lib/utils";
 import { useTranslations } from "next-intl";
 
 export default function CreateAccountForm() {
-  const t = useTranslations("createAccount");
+  const t = useTranslations("form");
   const router = useRouter();
   const { type, email } = useQueryParams();
   const [termsOpen, setTermsOpen] = useState(false);
@@ -98,11 +98,13 @@ export default function CreateAccountForm() {
       >
         {/* First Name */}
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-secondary">First Name</Label>
+          <Label className="font-medium text-secondary">
+            {t("firstName.name")}
+          </Label>
           <div className="flex items-center gap-1 p-3 border rounded-md">
             <Input
               {...register("firstName")}
-              placeholder="First name"
+              placeholder={t("firstName.placeholder")}
               className="w-full"
             />
           </div>
@@ -113,11 +115,13 @@ export default function CreateAccountForm() {
 
         {/* Last Name */}
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-secondary">Last Name</Label>
+          <Label className="font-medium text-secondary">
+            {t("lastName.name")}
+          </Label>
           <div className="flex items-center gap-1 p-3 border rounded-md">
             <Input
               {...register("lastName")}
-              placeholder="Last name"
+              placeholder={t("lastName.placeholder")}
               className="w-full"
             />
           </div>
@@ -128,7 +132,9 @@ export default function CreateAccountForm() {
 
         {/* Birth Date */}
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-secondary">Birth Date</Label>
+          <Label className="font-medium text-secondary">
+            {t("birthDate.name")}
+          </Label>
           <div className="flex items-center gap-1 p-3 border rounded-md">
             <Controller
               name="birthDate"
@@ -149,8 +155,13 @@ export default function CreateAccountForm() {
 
         {/* Phone Number */}
         <div className="flex flex-col gap-1">
-          <Label className="text-secondary font-medium">Phone number</Label>
-          <div className="flex items-center gap-1 p-3 border rounded-md">
+          <Label className="text-secondary font-medium">
+            {t("phoneNumber.name")}
+          </Label>
+          <div
+            className="flex items-center gap-1 p-3 border rounded-md"
+            dir="ltr"
+          >
             <PhoneField
               numberName="phoneNumber"
               countryCodeName="countryCode"
@@ -163,12 +174,14 @@ export default function CreateAccountForm() {
 
         {/* Password */}
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-secondary">Password</Label>
+          <Label className="font-medium text-secondary">
+            {t("password.name")}
+          </Label>
           <div className="flex items-center gap-1 p-3 border rounded-md">
             <PasswordInput
               {...register("password")}
               className="w-full"
-              placeholder="Password"
+              placeholder={t("password.placeholder")}
             />
           </div>
           {errors.password && (
@@ -178,12 +191,14 @@ export default function CreateAccountForm() {
 
         {/* Confirm Password */}
         <div className="flex flex-col gap-1">
-          <Label className="font-medium text-secondary">Confirm Password</Label>
+          <Label className="font-medium text-secondary">
+            {t("confirmPassword.name")}
+          </Label>
           <div className="flex items-center gap-1 p-3 border rounded-md">
             <PasswordInput
               {...register("confirmPassword")}
               className="w-full"
-              placeholder="Confirm password"
+              placeholder={t("confirmPassword.placeholder")}
             />
           </div>
           {errors.confirmPassword && (
@@ -196,7 +211,7 @@ export default function CreateAccountForm() {
           type="submit"
           className="w-full bg-primary text-white p-3 rounded-md font-medium"
         >
-          {t("button")}
+          {t("buttons.createAccount")}
         </Button>
 
         {termsOpen && (

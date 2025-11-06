@@ -58,6 +58,7 @@
     },
     "password": {
       "name": "Mot de passe",
+      "placeholder": "Entrez le mot de passe",
       "currentName": "Mot de passe actuel",
       "currentPlaceholder": "Entrez le mot de passe actuel",
       "errors": {
@@ -99,7 +100,8 @@
     },
     "buttons": {
       "saveChange": "Enregistrer les modifications",
-      "changePhoneNumber": "Changer le numéro de téléphone"
+      "changePhoneNumber": "Changer le numéro de téléphone",
+      "createAccount": "Créer un nouveau compte"
     }
   },
   "personalInfo": {
@@ -173,13 +175,33 @@
   "createAccount": {
     "title": "MOMENT DU",
     "beginning": "DÉBUT",
-    "button": "Créer un nouveau compte",
     "modal": {
       "title": "Conditions générales et politique de confidentialité",
       "description": "Conditions générales : Acceptation : En utilisant l'application Re-Dus, vous acceptez de vous conformer à toutes les conditions générales applicables. Utilisation : Cette application est destinée à un usage personnel uniquement et ne peut être utilisée à des fins commerciales sans autorisation. Compte : Vous êtes responsable de la sécurité de votre compte et de toutes les activités qui s'y déroulent. Contenu : Vous ne devez pas télécharger de contenu qui viole les droits d'auteur, la vie privée ou les lois applicables. Modifications : Nous nous réservons le droit de modifier les conditions générales à tout moment et nous vous informerons de ces modifications via l'application ou par e-mail. Politique de confidentialité : Collecte de données : Nous collectons des données personnelles telles que le nom, l'email et la localisation pour traiter les transactions et améliorer nos services. Utilisation des données : Vos données sont utilisées à des fins internes telles que la gestion de compte, l'analyse d'utilisation et l'offre de services. Sécurité : Nous protégeons vos données avec des mesures de sécurité appropriées pour prévenir l'accès non autorisé. Partage de données : Nous ne partageons pas vos données personnelles avec des tiers sans votre consentement, sauf si la loi l'exige. Vos droits : Vous pouvez accéder, mettre à jour ou supprimer vos données personnelles à tout moment via les paramètres de l'application ou en nous contactant.",
       "agree": "J'accepte",
       "decline": "Refuser"
     }
+  },
+  "accountCreated": {
+    "your": "VOTRE",
+    "title": "COMPTE CRÉÉ AVEC SUCCÈS",
+    "letCustomize": "Personnalisons votre plan"
+  },
+  "questions": {
+    "title1": "Partie 1",
+    "subTitle1": "Objectif et concentration",
+    "title2": "Partie 2",
+    "subTitle2": "Connaître votre corps",
+    "title3": "Partie 3",
+    "subTitle3": "Évaluation de la condition physique"
+  },
+  "intro": {
+    "title": "Bonjour !",
+    "thisData": "Ces données nous aideront",
+    "someQuestions": "Voici quelques questions pour",
+    "personalizedPlan": "un plan personnalisé",
+    "forYou": "pour vous.",
+    "next": "Suivant"
   },
   "country": {
     "egypt": "Égypte"

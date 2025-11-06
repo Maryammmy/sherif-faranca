@@ -1,16 +1,16 @@
-"use client";
 import Image from "@/src/components/ui/Image";
 import { Link } from "@/src/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 function AccountCreated() {
+  const t = useTranslations("accountCreated");
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-20 place-items-center my-5">
       <div className="space-y-5 w-full max-w-lg">
         <div className="space-y-3">
           <header>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-11 sm:leading-16">
-              YOUR{" "}
-              <span className="text-primary">ACCOUNT CREATED SUCCESSFULLY</span>
+              {t("your")} <span className="text-primary">{t("title")}</span>
             </h1>
           </header>
         </div>
@@ -19,7 +19,7 @@ function AccountCreated() {
             href="/questions/1"
             className="flex justify-center items-center bg-primary text-white p-3 rounded-md font-medium"
           >
-            Let&apos;s customize your plan
+            {t("letCustomize")}
           </Link>
         </div>
       </div>

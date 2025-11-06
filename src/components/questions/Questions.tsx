@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "@/src/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
 interface IProps {
@@ -9,6 +10,7 @@ interface IProps {
   link: string;
 }
 function Questions({ title, subTitle, link }: IProps) {
+  const t = useTranslations("questions");
   const router = useRouter();
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -21,10 +23,10 @@ function Questions({ title, subTitle, link }: IProps) {
     <div className="h-screen bg-primary">
       <div className="px-10 sm:px-20 h-full flex flex-col justify-center gap-3">
         <h4 className="text-white font-bold text-2xl sm:text-3xl uppercase">
-          {title}
+          {t(title)}
         </h4>
         <h3 className="text-white font-bold text-4xl md:text-6xl uppercase leading-11">
-          {subTitle}
+          {t(subTitle)}
         </h3>
       </div>
     </div>

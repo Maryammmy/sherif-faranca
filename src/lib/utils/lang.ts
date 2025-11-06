@@ -1,5 +1,4 @@
 "use server";
-"use server";
 
 import { getLocale } from "next-intl/server";
 

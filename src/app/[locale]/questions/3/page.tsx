@@ -3,8 +3,8 @@ import Questions from "@/src/components/questions/Questions";
 function Questions3() {
   return (
     <Questions
-      title="Part 3"
-      subTitle="Fitness Assessment"
+      title="title3"
+      subTitle="subTitle3"
       link="/questions/3/fitness-level"
     />
   );

@@ -96,7 +96,10 @@ export default function OtpForm({ queryParams }: IProps) {
         <div className="space-y-5">
           <div className="flex flex-col mx-auto w-fit">
             <InputOTP value={otp} onChange={handleOTPChange} maxLength={5}>
-              <InputOTPGroup className="flex justify-between items-center gap-2 sm:gap-4">
+              <InputOTPGroup
+                dir="ltr"
+                className="flex justify-between items-center gap-2 sm:gap-4"
+              >
                 {Array.from({ length: 5 }).map((_, index) => (
                   <InputOTPSlot
                     key={index}
