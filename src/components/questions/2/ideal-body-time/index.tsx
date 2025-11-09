@@ -3,11 +3,13 @@ import { IQuestion } from "@/src/interfaces/questions";
 import SelectIdealBodyTime from "./SelectIdealBodyTime";
 import Shared from "@/src/components/questions/Shared";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   idealBodies: IQuestion[];
 }
 function IdealBodyTime({ idealBodies }: IProps) {
+  const t = useTranslations("idealBodyTime");
   const [selectedIdealBody, setSelectedIdealBody] = useState<number | null>(
     null
   );
@@ -22,8 +24,8 @@ function IdealBodyTime({ idealBodies }: IProps) {
   return (
     <Shared
       progresses={[100, 33.33, 0]}
-      title="when last time had your"
-      coloredTitle="ideal body ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectIdealBodyTime
           idealBodies={idealBodies}

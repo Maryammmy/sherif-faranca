@@ -17,22 +17,22 @@ export const goals: IQuestionData[] = [
 export const workoutFrequencies: IWorkoutFrequency[] = [
   {
     src: "calender-1",
-    label: "I'm so busy, and would like to work out once in a while",
+    label: "label1",
     value: 1,
   },
   {
     src: "calender-2",
-    label: "I have free time, and would like to work but not much",
+    label: "label2",
     value: 2,
   },
   {
     src: "calender-3",
-    label: "I enjoy workout, and would like to make is part my life",
+    label: "label3",
     value: 3,
   },
   {
     src: "calender-4",
-    label: "More than better, and would like to make is part my life  ",
+    label: "label4",
     value: 4,
   },
 ];

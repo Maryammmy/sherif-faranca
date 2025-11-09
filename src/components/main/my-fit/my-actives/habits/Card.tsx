@@ -13,6 +13,7 @@ function HabitCard({ habit }: IProps) {
   const { goal, title, progress, unit } = habit;
 
   const isCalories = title === t("calories");
+  const isDuration = title === t("duration");
 
   // 🧩 خريطة الأيقونات
   const icons: Record<string, JSX.Element> = {
@@ -34,9 +35,11 @@ function HabitCard({ habit }: IProps) {
         <span>{progress}</span>
         <span className="text-secondary text-base">{unit}</span>
       </div>
-      <p className="text-gray-400 text-sm font-medium">
-        {t("goal")} {goal} {unit}
-      </p>
+      {!isCalories && !isDuration && (
+        <p className="text-gray-400 text-sm font-medium">
+          {t("goal")} {goal} {unit}
+        </p>
+      )}
     </div>
   );
 

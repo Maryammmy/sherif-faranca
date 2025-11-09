@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import SelectMusicPreference from "./SelectMusicPreference";
 import Shared from "@/src/components/questions/Shared";
 import { ISubQuestion } from "@/src/interfaces/questions";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   musicPreferences: ISubQuestion[];
 }
 function MusicPreference({ musicPreferences }: IProps) {
+  const t = useTranslations("musicPreference");
   const [selectedMusicPreferences, setSelectedMusicPreferences] = useState<
     number[]
   >([]);
@@ -29,8 +31,8 @@ function MusicPreference({ musicPreferences }: IProps) {
   return (
     <Shared
       progresses={[100, 100, 100]}
-      title="What types of music prefer to"
-      coloredTitle="listen ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectMusicPreference
           musicPreferences={musicPreferences}

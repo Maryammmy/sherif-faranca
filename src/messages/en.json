@@ -194,6 +194,10 @@
     "title3": "Part 3",
     "subTitle3": "Fitness Assessment"
   },
+  "nextAndBackButtons": {
+    "next": "Next",
+    "back": "Back"
+  },
   "intro": {
     "title": "Hello !",
     "thisData": "This data will help us",
@@ -201,6 +205,106 @@
     "personalizedPlan": "personalized plan",
     "forYou": "for you.",
     "next": "Next"
+  },
+  "gender": {
+    "title": "What's your",
+    "subTitle": "gender ?",
+    "description": "This data will help us tailor your workout to match your body shape and daily work",
+    "male": "male",
+    "female": "female"
+  },
+  "foucsArea": {
+    "title": "What's your",
+    "subTitle": "Focus area ?"
+  },
+  "height": {
+    "title": "What's is your",
+    "subTitle": "height ?",
+    "description": "This data will help us tailor your workout to match your body shape and daily work",
+    "currentHeight": "Current Height",
+    "cm": "CM"
+  },
+  "weight": {
+    "title": "What's is you",
+    "subTitle": "weight ?",
+    "description": "This data will help us tailor your workout to match your body shape and daily work",
+    "currentWeight": "Current Weight",
+    "kg": "KG"
+  },
+  "bmi": {
+    "title18": "Strength training with a diet",
+    "subTitle18": "BMI below 18.5",
+    "description18": "With a BMI of {bmi}, combine strength training with a diet rich in protein and healthy fat to support optimal muscle gain and overall health.",
+
+    "title25": "Balanced training & nutrition",
+    "subTitle25": "Normal BMI (18.5 - 24.9) -",
+    "description25": "Your BMI is {bmi}. Focus on maintaining a balance between strength training, cardio, and healthy nutrition.",
+
+    "title30": "Cardio & calorie management",
+    "subTitle30": "Overweight (25 - 29.9) -",
+    "description30": "Your BMI is {bmi}. Prioritize cardio workouts and a calorie deficit diet to reach a healthier weight range.",
+
+    "title": "Medical & professional guidance",
+    "subTitle": "Obese (30+) -",
+    "description": "Your BMI is {bmi}. Work closely with a healthcare provider and follow a structured exercise and diet plan."
+  },
+  "goal": {
+    "title": "What's your main",
+    "subTitle": "goal ?",
+    "description": "Your goal shapes your workout We'll tailor the best mix of cardio and strength training for you!"
+  },
+  "keepFit": {
+    "title": "Fitness doesn't mean always",
+    "subTitle": "fatigue !",
+    "description": "Health is consistency, not exhaustion few minutes a day brings you closer to a healthier you."
+  },
+  "buildMuscle": {
+    "title": "Grasp the ideal pace oF",
+    "subTitle": "muscle gain !",
+    "description": "Building muscle requires a sensible mix of workouts and rest. We'll help you find your rhythm!"
+  },
+  "loseWeight": {
+    "title": "make losing Weight Fane &",
+    "subTitle": "Breeze !",
+    "description": "Dropping pounds is not just a pipe dream anymore. We're here to make it happen for you!"
+  },
+  "shape": {
+    "title": "What's your Current",
+    "subTitle": "body Shape ?"
+  },
+  "fitnessGoals": {
+    "title": "Ready to",
+    "subTitle": "Crush Your Fitness Goals ?",
+    "description": "You’re just a few questions away from a personalized plan built for your success. Want to keep going?"
+  },
+  "idealBodyTime": {
+    "title": "when last time had your",
+    "subTitle": "ideal body ?"
+  },
+  "workoutFrequency": {
+    "title": "how often you like to",
+    "subTitle": "work out ?",
+    "workoutPerWeek": "{count} time(s) / week",
+    "label1": "I'm so busy, and would like to work out once in a while",
+    "label2": "I have free time, and would like to work but not much",
+    "label3": "I enjoy workout, and would like to make is part my life",
+    "label4": "More than better, and would like to make is part my life"
+  },
+  "injuries": {
+    "title": "Have you Suffered injuries",
+    "subTitle": "Recently ?"
+  },
+  "fitnessLevel": {
+    "title": "how would you rate your",
+    "subTitle": "fitness level ?"
+  },
+  "workoutTime": {
+    "title": "What is best time for you to",
+    "subTitle": "work out ?"
+  },
+  "musicPreference": {
+    "title": "What types of music prefer to",
+    "subTitle": "listen ?"
   },
   "country": {
     "egypt": "Egypt"

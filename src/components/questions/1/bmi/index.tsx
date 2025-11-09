@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import Result from "@/src/components/questions/Result";
+import { useTranslations } from "next-intl";
 
 function BMI() {
+  const t = useTranslations("bmi");
   const [bmi, setBmi] = useState<number | null>(null);
 
   useEffect(() => {
@@ -21,51 +23,27 @@ function BMI() {
 
   if (bmi !== null) {
     if (bmi < 18.5) {
-      title = "Strength training with a diet";
-      coloredTitle.firstColoredText = `BMI below 18.5 (${bmi})`;
-      description = (
-        <>
-          with <span className="text-primary">a BMI of {bmi}</span>, combine
-          strength training with a diet rich in protein and healthy fat to
-          support optimal muscle gain and overall health.
-        </>
-      );
+      title = t("title18");
+      coloredTitle.firstColoredText = `${t("subTitle18")} (${bmi})`;
+      description = t("description18", { bmi });
     } else if (bmi < 25) {
-      title = "Balanced training & nutrition";
-      coloredTitle.firstColoredText = `Normal BMI (18.5 - 24.9) - ${bmi}`;
-      description = (
-        <>
-          Your <span className="text-primary">BMI is {bmi}</span>. Focus on
-          maintaining a balance between strength training, cardio, and healthy
-          nutrition.
-        </>
-      );
+      title = t("title25");
+      coloredTitle.firstColoredText = `${t("subTitle25")} ${bmi}`;
+      description = t("description25", { bmi });
     } else if (bmi < 30) {
-      title = "Cardio & calorie management";
-      coloredTitle.firstColoredText = `Overweight (25 - 29.9) - ${bmi}`;
-      description = (
-        <>
-          Your <span className="text-primary">BMI is {bmi}</span>. Prioritize
-          cardio workouts and a calorie deficit diet to reach a healthier weight
-          range.
-        </>
-      );
+      title = t("title30");
+      coloredTitle.firstColoredText = `${t("subTitle30")} ${bmi}`;
+      description = t("description30", { bmi });
     } else {
-      title = "Medical & professional guidance";
-      coloredTitle.firstColoredText = `Obese (30+) - ${bmi}`;
-      description = (
-        <>
-          Your <span className="text-primary">BMI is {bmi}</span>. Work closely
-          with a healthcare provider and follow a structured exercise and diet
-          plan.
-        </>
-      );
+      title = t("title");
+      coloredTitle.firstColoredText = `${t("subTitle")} ${bmi}`;
+      description = t("description", { bmi });
     }
   }
 
   return (
     <Result
-      progresses={[62.5, 0, 0]} // هتفضل زي ما هي
+      progresses={[62.5, 0, 0]}
       img="bmi"
       title={title}
       coloredTitle={coloredTitle}

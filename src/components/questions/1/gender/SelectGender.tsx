@@ -3,12 +3,14 @@ import { genders } from "@/src/data/questions";
 import { cn } from "@/src/lib/utils";
 import { CheckCircle2 } from "lucide-react";
 import Image from "@/src/components/ui/Image";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   selectedGender: string | null;
   handleSelectGender: (gender: string) => void;
 }
 function SelectGender({ selectedGender, handleSelectGender }: IProps) {
+  const t = useTranslations("gender");
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 pt-5">
       {genders.map((gender) => (
@@ -28,7 +30,7 @@ function SelectGender({ selectedGender, handleSelectGender }: IProps) {
             <div className="absolute bottom-0 left-0 w-full h-[40%] bg-white blur-md" />
           </div>
           <h5 className="text-center text-gray-700 font-bold text-2xl capitalize">
-            {gender}
+            {t(gender)}
           </h5>
         </Button>
       ))}

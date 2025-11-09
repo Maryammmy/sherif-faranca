@@ -33,7 +33,7 @@ export default function WeightSelector({ onClose }: IProps) {
   const scrollLeftStart = useRef(0);
   useEffect(() => {
     if (data) {
-      setSelectedWeight(data?.data);
+      setSelectedWeight(data?.data || 60);
     }
   }, [data]);
   // --- بعد اختيار الوزن، نعمل scroll لمكانه ---

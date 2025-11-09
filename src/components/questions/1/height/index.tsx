@@ -1,13 +1,15 @@
+import { useTranslations } from "next-intl";
 import SelectHeight from "./SelectHeight";
 import Shared from "@/src/components/questions/Shared";
 
 function Height() {
+  const t = useTranslations("height");
   return (
     <Shared
       progresses={[37.5, 0, 0]}
-      title="What's is your"
-      coloredTitle="height ?"
-      description="This data will help us tailor your workout to match your body shape and daily work"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
+      description={t("description")}
       content={<SelectHeight />}
       backHref="/questions/1/foucs-area"
       nextHref="/questions/1/weight"

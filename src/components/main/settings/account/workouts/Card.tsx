@@ -1,5 +1,5 @@
 import { IWorkout } from "@/src/interfaces/main/settings/account/workouts";
-import { formatDateOnly, formatTimeOnly } from "@/src/lib/utils";
+import { formatDateOnly, formatTimeOnly, getHref } from "@/src/lib/utils";
 import Image from "@/src/components/ui/Image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/src/i18n/navigation";
@@ -8,7 +8,6 @@ interface IProps {
   workout: IWorkout;
 }
 function WorkoutCard({ workout }: IProps) {
-  console.log(workout);
   const t = useTranslations("card");
   const {
     title,
@@ -16,11 +15,12 @@ function WorkoutCard({ workout }: IProps) {
     calories,
     durationMinutes,
     watchedDate,
-    workoutProgramId,
+    id,
+    isProgram,
   } = workout;
   return (
     <Link
-      href={`/programs/${workoutProgramId}`}
+      href={getHref(id, isProgram)}
       className="p-4 rounded-2xl border space-y-2"
     >
       <div className="relative w-full h-[200px] rounded-2xl overflow-hidden">

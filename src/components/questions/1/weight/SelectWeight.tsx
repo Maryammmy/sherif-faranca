@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { floorToTen } from "@/src/lib/utils";
 import RulerTick from "./RulerTick";
+import { useTranslations } from "next-intl";
 
 export default function SelectWeight() {
   const minWeight = 30;
   const maxWeight = 200;
+  const t = useTranslations("weight");
   const rulerRef = useRef<HTMLDivElement>(null);
   const [selectedWeight, setSelectedWeight] = useState(60);
   const [initialized, setInitialized] = useState(false);
@@ -75,10 +77,14 @@ export default function SelectWeight() {
   return (
     <div className="grid grid-cols-1 place-items-center gap-10 pt-5">
       <div className="bg-gray-100 px-6 py-3 rounded-lg text-lg font-semibold text-secondary">
-        Current Weight ={" "}
-        <span className="text-primary">{selectedWeight}KG</span>
+        {t("currentWeight")} ={" "}
+        <span className="text-primary">
+          {selectedWeight}
+          {t("kg")}
+        </span>
       </div>
       <div
+        dir="ltr"
         className="relative w-full max-w-7xl overflow-x-scroll scrollbar-none cursor-grab active:cursor-grabbing"
         ref={rulerRef}
         onMouseDown={handleMouseDown}

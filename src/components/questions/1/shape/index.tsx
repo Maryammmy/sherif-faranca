@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import SelectShape from "./SelectShape";
 import Shared from "@/src/components/questions/Shared";
 import { IQuestion } from "@/src/interfaces/questions";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   shapes: IQuestion[];
 }
 function Shape({ shapes }: IProps) {
+  const t = useTranslations("shape");
   const [selectedShape, setSelectedShape] = useState<number | null>(null);
 
   useEffect(() => {
@@ -24,8 +26,8 @@ function Shape({ shapes }: IProps) {
   return (
     <Shared
       progresses={[100, 0, 0]}
-      title="What's your Current"
-      coloredTitle="body Shape ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectShape
           shapes={shapes}

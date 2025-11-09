@@ -15,7 +15,7 @@ function Content() {
   if (!data)
     return (
       <div className="flex flex-col gap-4">
-        <SkeletonCard count={6} className="h-12" />
+        <SkeletonCard count={3} className="h-12" />
       </div>
     );
 

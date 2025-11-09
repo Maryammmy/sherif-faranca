@@ -195,6 +195,10 @@
     "title3": "Partie 3",
     "subTitle3": "Évaluation de la condition physique"
   },
+  "nextAndBackButtons": {
+    "next": "Suivant",
+    "back": "Précédent"
+  },
   "intro": {
     "title": "Bonjour !",
     "thisData": "Ces données nous aideront",
@@ -202,6 +206,106 @@
     "personalizedPlan": "un plan personnalisé",
     "forYou": "pour vous.",
     "next": "Suivant"
+  },
+  "gender": {
+    "title": "Quel est ton",
+    "subTitle": "genre ?",
+    "description": "Ces informations nous aideront à adapter ton entraînement à ta morphologie et à ton activité quotidienne",
+    "male": "homme",
+    "female": "femme"
+  },
+  "foucsArea": {
+    "title": "Quelle est ta",
+    "subTitle": "zone cible ?"
+  },
+  "height": {
+    "title": "Quelle est ta",
+    "subTitle": "taille ?",
+    "description": "Ces informations nous aideront à adapter ton entraînement à ta morphologie et à ton activité quotidienne",
+    "currentHeight": "Taille actuelle",
+    "cm": "CM"
+  },
+  "weight": {
+    "title": "Quel est ton",
+    "subTitle": "poids ?",
+    "description": "Ces informations nous aideront à adapter ton entraînement à ta morphologie et à ton activité quotidienne",
+    "currentWeight": "Poids actuel",
+    "kg": "KG"
+  },
+  "bmi": {
+    "title18": "Entraînement en force avec un régime",
+    "subTitle18": "IMC inférieur à 18,5",
+    "description18": "Avec un IMC de {bmi}, combinez l'entraînement en force avec un régime riche en protéines et en graisses saines pour favoriser un gain musculaire optimal et une santé globale.",
+
+    "title25": "Entraînement et nutrition équilibrés",
+    "subTitle25": "IMC normal (18,5 - 24,9) -",
+    "description25": "Votre IMC est de {bmi}. Concentrez-vous sur le maintien d'un équilibre entre l'entraînement en force, le cardio et une alimentation saine.",
+
+    "title30": "Cardio et gestion des calories",
+    "subTitle30": "Surpoids (25 - 29,9) -",
+    "description30": "Votre IMC est de {bmi}. Priorisez les séances de cardio et un régime hypocalorique pour atteindre un poids plus sain.",
+
+    "title": "Conseils médicaux et professionnels",
+    "subTitle": "Obésité (30+) -",
+    "description": "Votre IMC est de {bmi}. Travaillez en étroite collaboration avec un professionnel de santé et suivez un programme structuré d'exercice et de régime."
+  },
+  "goal": {
+    "title": "Quel est votre objectif principal",
+    "subTitle": "objectif ?",
+    "description": "Votre objectif façonne votre entraînement. Nous créerons pour vous le meilleur mélange de cardio et de musculation !"
+  },
+  "keepFit": {
+    "title": "La forme physique ne signifie pas toujours",
+    "subTitle": "la fatigue !",
+    "description": "La santé, c'est la régularité, pas l'épuisement. Quelques minutes par jour vous rapprochent d'une meilleure santé."
+  },
+  "buildMuscle": {
+    "title": "Maîtrisez le rythme idéal pour",
+    "subTitle": "la prise de muscle !",
+    "description": "La prise de muscle nécessite un mélange judicieux d'exercices et de repos. Nous vous aiderons à trouver votre rythme !"
+  },
+  "loseWeight": {
+    "title": "Rendez la perte de poids amusante et",
+    "subTitle": "facile !",
+    "description": "Perdre des kilos n'est plus un rêve inaccessible. Nous sommes là pour le réaliser pour vous !"
+  },
+  "shape": {
+    "title": "Quelle est votre forme corporelle actuelle",
+    "subTitle": "forme du corps ?"
+  },
+  "fitnessGoals": {
+    "title": "Prêt à",
+    "subTitle": "atteindre vos objectifs de fitness ?",
+    "description": "Vous êtes à quelques questions d’un plan personnalisé conçu pour votre réussite. Vous voulez continuer ?"
+  },
+  "idealBodyTime": {
+    "title": "Quand avez-vous eu pour la dernière fois",
+    "subTitle": "votre corps idéal ?"
+  },
+  "workoutFrequency": {
+    "title": "À quelle fréquence aimez-vous",
+    "subTitle": "faire du sport ?",
+    "workoutPerWeek": "{count} fois / semaine",
+    "label1": "Je suis très occupé et j’aimerais faire du sport de temps en temps",
+    "label2": "J’ai du temps libre et j’aimerais faire du sport, mais pas trop",
+    "label3": "J’aime faire du sport et j’aimerais en faire une partie de ma vie",
+    "label4": "Plus c’est mieux, j’aimerais en faire un mode de vie"
+  },
+  "injuries": {
+    "title": "Avez-vous subi des blessures",
+    "subTitle": "récemment ?"
+  },
+  "fitnessLevel": {
+    "title": "Comment évalueriez-vous votre",
+    "subTitle": "niveau de forme physique ?"
+  },
+  "workoutTime": {
+    "title": "Quel est le meilleur moment pour vous pour",
+    "subTitle": "faire du sport ?"
+  },
+  "musicPreference": {
+    "title": "Quels types de musique préférez-vous",
+    "subTitle": "écouter ?"
   },
   "country": {
     "egypt": "Égypte"
@@ -454,7 +558,8 @@
     "weeklySummary": {
       "title": "Résumé hebdomadaire",
       "caloriesBurned": "Calories brûlées",
-      "kcal": "Kcal"
+      "kcal": "Kcal",
+      "steps": "Pas"
     },
     "todayStepGoal": {
       "title": "Objectif de pas du jour",

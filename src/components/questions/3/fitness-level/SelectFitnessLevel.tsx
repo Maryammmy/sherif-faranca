@@ -21,7 +21,7 @@ function SelectFitnessLevel({
           key={id}
           onClick={() => handleSelectFitnessLevel(id)}
           className={cn(
-            "bg-white relative flex flex-col gap-3 p-6 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
+            "bg-white relative flex flex-col gap-3 p-7 shadow rounded-2xl border cursor-pointer transition-all duration-300 ease-in-out",
             selectedFitnessLevel === id &&
               "border-2 border-primary ring-2 ring-primary/30"
           )}

@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import SelectWorkoutTime from "./SelectWorkoutTime";
 import Shared from "@/src/components/questions/Shared";
 import { ISubQuestion } from "@/src/interfaces/questions";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   workoutTimes: ISubQuestion[];
 }
 function WorkoutTime({ workoutTimes }: IProps) {
+  const t = useTranslations("workoutTime");
   const [selectedWorkoutTime, setSelectedWorkoutTime] = useState<number | null>(
     null
   );
@@ -22,8 +24,8 @@ function WorkoutTime({ workoutTimes }: IProps) {
   return (
     <Shared
       progresses={[100, 100, 66.66]}
-      title="What is best time for you to"
-      coloredTitle="work out ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectWorkoutTime
           workoutTimes={workoutTimes}

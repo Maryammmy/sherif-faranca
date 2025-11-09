@@ -3,11 +3,13 @@ import { IQuestion } from "@/src/interfaces/questions";
 import SelectInjury from "./SelectInjury";
 import Shared from "@/src/components/questions/Shared";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   injuries: IQuestion[];
 }
 function Injuries({ injuries }: IProps) {
+  const t = useTranslations("injuries");
   const [selectedInjuries, setSelectedInjuries] = useState<number[]>([]);
   useEffect(() => {
     const stored = sessionStorage.getItem("injuryIds");
@@ -27,8 +29,8 @@ function Injuries({ injuries }: IProps) {
   return (
     <Shared
       progresses={[100, 100, 0]}
-      title="Have you Suffered injuries"
-      coloredTitle="Recently ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectInjury
           injuries={injuries}

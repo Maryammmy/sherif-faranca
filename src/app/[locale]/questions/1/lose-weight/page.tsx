@@ -1,13 +1,15 @@
 import Result from "@/src/components/questions/Result";
+import { useTranslations } from "next-intl";
 
 function LoseWeight() {
+  const t = useTranslations("loseWeight");
   return (
     <Result
       progresses={[87.5, 0, 0]}
       img="bmi"
-      title="make losing Weight Fane &"
-      coloredTitle={{ lastColoredText: "Breeze !" }}
-      description="Dropping pounds is not just a pipe dream anymore. We're here to make it happen for you!"
+      title={t("title")}
+      coloredTitle={{ lastColoredText: t("subTitle") }}
+      description={t("description")}
       backHref="/questions/1/goal"
       nextHref="/questions/1/shape"
     />

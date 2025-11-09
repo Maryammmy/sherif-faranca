@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import SelectArea from "./SelectArea";
 import Shared from "@/src/components/questions/Shared";
 import { IArea } from "@/src/interfaces/questions";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   areas: IArea[];
 }
 function FoucsArea({ areas }: IProps) {
+  const t = useTranslations("foucsArea");
   const [selectedAreas, setSelectedAreas] = useState<number[]>([]);
   useEffect(() => {
     const stored = sessionStorage.getItem("selectedTrainingAreaIds");
@@ -27,8 +29,8 @@ function FoucsArea({ areas }: IProps) {
   return (
     <Shared
       progresses={[25, 0, 0]}
-      title="What's your"
-      coloredTitle="Focus area ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectArea
           areas={areas}

@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import SelectGender from "./SelectGender";
 import Shared from "@/src/components/questions/Shared";
+import { useTranslations } from "next-intl";
 
 function Gender() {
+  const t = useTranslations("gender");
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
   useEffect(() => {
     const savedisMale = sessionStorage.getItem("isMale");
@@ -20,9 +22,9 @@ function Gender() {
   return (
     <Shared
       progresses={[37.5, 0, 0]}
-      title="What's your"
-      coloredTitle="gender ?"
-      description="This data will help us tailor your workout to match your body shape and daily work"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
+      description={t("description")}
       content={
         <SelectGender
           selectedGender={selectedGender}

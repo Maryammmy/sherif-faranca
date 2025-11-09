@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import SelectWorkoutFrequency from "./SelectWorkoutFrequency";
 import Shared from "@/src/components/questions/Shared";
+import { useTranslations } from "next-intl";
 
 function WorkoutFrequency() {
+  const t = useTranslations("workoutFrequency");
   const [selectedWorkoutTime, setSelectedWorkoutTime] = useState(4);
 
   useEffect(() => {
@@ -22,8 +24,8 @@ function WorkoutFrequency() {
   return (
     <Shared
       progresses={[100, 66.66, 0]}
-      title="how often you like to"
-      coloredTitle="work out ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectWorkoutFrequency
           selectedWorkoutTime={selectedWorkoutTime}

@@ -29,6 +29,8 @@ function FitnessGoalCard({ goal, selectedGoal, handleSelectGoal }: IProps) {
       </h5>
       <div className="w-40 h-[150px] relative rounded-2xl overflow-hidden">
         <Image src={imageUrl} alt={name} fill />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/30 z-10" />
       </div>
     </Button>
   );

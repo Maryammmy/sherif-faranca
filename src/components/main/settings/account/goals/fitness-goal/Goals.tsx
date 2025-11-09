@@ -47,11 +47,9 @@ function Goals({ onClose }: IProps) {
     setLoading(false);
   };
   return (
-    <div className="flex flex-col gap-5 max-h-[70vh] overflow-y-auto sm:max-w-xs sm:mx-auto p-0.5">
+    <div className="flex flex-col gap-5 max-h-[70vh] overflow-y-auto sm:max-w-xs sm:mx-auto p-0.5 w-full">
       {!data ? (
-        <div className="flex flex-col gap-5">
-          <SkeletonCard count={2} className="h-40" />
-        </div>
+        <SkeletonCard count={2} className="h-40" />
       ) : (
         <>
           {" "}

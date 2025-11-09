@@ -3,11 +3,13 @@ import { IFitnessLevel } from "@/src/interfaces/questions";
 import SelectFitnessLevel from "./SelectFitnessLevel";
 import Shared from "@/src/components/questions/Shared";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   fitnessLevels: IFitnessLevel[];
 }
 function FitnessLevel({ fitnessLevels }: IProps) {
+  const t = useTranslations("fitnessLevel");
   const [selectedFitnessLevel, setSelectedFitnessLevel] = useState<
     number | null
   >(null);
@@ -22,8 +24,8 @@ function FitnessLevel({ fitnessLevels }: IProps) {
   return (
     <Shared
       progresses={[100, 100, 33.33]}
-      title="how would you rate your"
-      coloredTitle="fitness level ?"
+      title={t("title")}
+      coloredTitle={t("subTitle")}
       content={
         <SelectFitnessLevel
           fitnessLevels={fitnessLevels}
