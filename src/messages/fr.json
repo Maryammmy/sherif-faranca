@@ -199,6 +199,10 @@
     "next": "Suivant",
     "back": "Précédent"
   },
+  "continueAndSkipButtons": {
+    "skip": "Passer",
+    "continue": "Continuer"
+  },
   "intro": {
     "title": "Bonjour !",
     "thisData": "Ces données nous aideront",

@@ -198,6 +198,10 @@
     "next": "Next",
     "back": "Back"
   },
+  "continueAndSkipButtons": {
+    "skip": "Skip",
+    "continue": "Continue"
+  },
   "intro": {
     "title": "Hello !",
     "thisData": "This data will help us",

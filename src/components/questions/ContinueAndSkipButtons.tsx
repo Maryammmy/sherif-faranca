@@ -5,11 +5,13 @@ import { useState } from "react";
 import { Button } from "../ui/Button";
 import Loader from "../loader/Loader";
 import { useRouter } from "@/src/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   continueHref: string;
 }
 function ContinueAndSkipButtons({ continueHref }: IProps) {
+  const t = useTranslations("continueAndSkipButtons");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const handleClick = async () => {
@@ -27,13 +29,13 @@ function ContinueAndSkipButtons({ continueHref }: IProps) {
           onClick={handleClick}
           className="text-center border border-primary text-primary font-medium py-2.5 w-full sm:w-40 rounded"
         >
-          {loading ? <Loader borderColor="#3e1492" /> : "Skip"}
+          {loading ? <Loader borderColor="#3e1492" /> : t("skip")}
         </Button>
         <Link
           href={continueHref}
           className="text-center bg-primary text-white font-medium py-2.5 w-full sm:w-40 rounded"
         >
-          Continue
+          {t("continue")}
         </Link>
       </div>
     </div>

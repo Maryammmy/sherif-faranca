@@ -199,6 +199,10 @@
     "next": "التالي",
     "back": "السابق"
   },
+  "continueAndSkipButtons": {
+    "skip": "تخطى",
+    "continue": "متابعة"
+  },
   "intro": {
     "title": "مرحبًا!",
     "thisData": "ستساعدنا هذه البيانات",
