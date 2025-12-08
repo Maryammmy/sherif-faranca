@@ -4,15 +4,17 @@ import { z } from "zod";
 export const signinWithEmailSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "Email is required" })
-    .email({ message: "Please enter a valid email address" }),
-  password: z.string().min(1, { message: "Password is required" }),
+    .min(1, { message: "email.errors.required" })
+    .email({ message: "email.errors.invalid" }),
+  password: z.string().min(1, { message: "password.errors.required" }),
 });
 export const signinWithNumberSchema = z
   .object({
-    phoneNumber: z.string().nonempty({ message: "Phone number is required" }),
+    phoneNumber: z
+      .string()
+      .nonempty({ message: "phoneNumber.errors.required" }),
     countryCode: z.string().nonempty({ message: "Country code is required" }),
-    password: z.string().min(1, { message: "Password is required" }),
+    password: z.string().min(1, { message: "password.errors.required" }),
   })
   .superRefine((data, ctx) => {
     const { phoneNumber, countryCode } = data;
@@ -26,14 +28,14 @@ export const signinWithNumberSchema = z
         ctx.addIssue({
           code: "custom",
           path: ["phoneNumber"],
-          message: "Phone number is invalid",
+          message: "phoneNumber.errors.invalid",
         });
       }
     } catch {
       ctx.addIssue({
         code: "custom",
         path: ["phoneNumber"],
-        message: "Phone number is invalid",
+        message: "phoneNumber.errors.invalid",
       });
     }
   });
