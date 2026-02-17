@@ -11,6 +11,7 @@ const intlMiddleware = createMiddleware(routing);
 const PUBLIC_ROUTES = [
   "/auth",
   "/change-password",
+  "/forget-password",
   "/create-account",
   "/otp",
   "/select-language",
@@ -33,7 +34,8 @@ export async function middleware(request: NextRequest) {
   if (
     PUBLIC_ROUTES.some(
       (route) =>
-        pathWithoutLocale === route || pathWithoutLocale.startsWith(`${route}/`)
+        pathWithoutLocale === route ||
+        pathWithoutLocale.startsWith(`${route}/`),
     )
   ) {
     return response;
