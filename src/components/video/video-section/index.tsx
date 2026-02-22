@@ -57,9 +57,9 @@ const VideoSection = ({ videoUrl, videoId }: IProps) => {
       if (time > 0) {
         const payload = new Blob(
           [JSON.stringify({ videoId, watchedSeconds: time })],
-          { type: "application/json" }
+          { type: "application/json" },
         );
-        navigator.sendBeacon(`${baseURL}/api/Video/update-wateched`, payload);
+        navigator.sendBeacon(`${baseURL}Video/update-wateched`, payload);
         console.log("✅ Progress sent:", { videoId, time });
       }
     };

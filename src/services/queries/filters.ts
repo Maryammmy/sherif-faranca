@@ -1,6 +1,6 @@
 import { getServerData } from "../server";
 
 export const filtersAPI = async () => {
-  const data = await getServerData("/api/WorkoutProgram/filters");
+  const data = await getServerData("WorkoutProgram/filters");
   return data;
 };

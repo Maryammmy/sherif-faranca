@@ -15,10 +15,19 @@ export function handleServerError(error: unknown): IActionState {
       normalizedErrors[key] = Array.isArray(value) ? value : [value];
     }
   }
+
+  // 🔥 handle network errors
+  const isNetworkError =
+    err.code === "ETIMEDOUT" ||
+    err.code === "ERR_NETWORK" ||
+    err.message?.includes("ETIMEDOUT") ||
+    err.message === "Network Error";
+
   return {
     success: false,
-    message:
-      err.response?.data?.message || err.message || "Something went wrong",
+    message: isNetworkError
+      ? "Network error. Please try again."
+      : err.response?.data?.message || err.message || "Something went wrong",
     errors: normalizedErrors,
   };
 }

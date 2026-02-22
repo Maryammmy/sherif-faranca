@@ -8,32 +8,26 @@ import {
 import { postServerData } from "../server";
 
 export const verifyRegistrationWithEmailAPI = async (
-  payload: IVerifyRegistrationWithEmail
+  payload: IVerifyRegistrationWithEmail,
 ) => {
-  const data = await postServerData(
-    "/api/Otp/verify-registration-email",
-    payload
-  );
+  const data = await postServerData("Otp/verify-registration-email", payload);
   return data;
 };
 export const verifyRegistrationWithNumberAPI = async (
-  payload: IVerifyRegistrationWithNumber
+  payload: IVerifyRegistrationWithNumber,
 ) => {
-  const data = await postServerData(
-    "/api/Otp/verify-registration-mobile",
-    payload
-  );
+  const data = await postServerData("Otp/verify-registration-mobile", payload);
   return data;
 };
 export const verifyResetPasswordWithEmailAPI = async (
-  payload: IVerifyResetPasswordWithEmail
+  payload: IVerifyResetPasswordWithEmail,
 ) => {
-  const data = await postServerData("/api/Otp/verify-reset-email", payload);
+  const data = await postServerData("Otp/verify-reset-email", payload);
   return data;
 };
 export const verifyResetPasswordWithNumberAPI = async (
-  payload: IVerifyResetPasswordWithNumber
+  payload: IVerifyResetPasswordWithNumber,
 ) => {
-  const data = await postServerData("/api/Otp/verify-reset-mobile", payload);
+  const data = await postServerData("Otp/verify-reset-mobile", payload);
   return data;
 };

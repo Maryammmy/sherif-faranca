@@ -17,32 +17,29 @@ export const updateProfileAPI = async (payload: Profile) => {
   Object.entries(payload).forEach(([key, value]) => {
     formData.append(key, String(value));
   });
-  const data = await postFormServerData("/api/Users/update-profile", formData);
+  const data = await postFormServerData("Users/update-profile", formData);
   return data;
 };
 export const changePasswordAPI = async (payload: ChangePassword) => {
-  const data = await putServerData("/api/Users/change-password", payload);
+  const data = await putServerData("Users/change-password", payload);
   return data;
 };
 export const sendChangeEmailAPI = async (payload: ChangeEmail) => {
-  const data = await postServerData(
-    "/api/Users/send-change-email-otp",
-    payload
-  );
+  const data = await postServerData("Users/send-change-email-otp", payload);
   return data;
 };
 export const verifyEmailAPI = async (payload: VerifyEmail) => {
-  const data = await postServerData("/api/Users/verify-change-email", payload);
+  const data = await postServerData("Users/verify-change-email", payload);
   return data;
 };
 export const sendChangePhoneAPI = async (payload: ChangePhone) => {
   const data = await postServerData(
-    "/api/Users/send-change-phonenumber-otp",
-    payload
+    "Users/send-change-phonenumber-otp",
+    payload,
   );
   return data;
 };
 export const verifyPhoneAPI = async (payload: VerifyPhone) => {
-  const data = await postServerData("/api/Users/verify-change-mobile", payload);
+  const data = await postServerData("Users/verify-change-mobile", payload);
   return data;
 };

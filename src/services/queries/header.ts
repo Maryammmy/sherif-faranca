@@ -1,6 +1,6 @@
 import { getServerData } from "../server";
 
 export const headerAPI = async () => {
-  const data = await getServerData("/api/Home/UserGreeting");
+  const data = await getServerData("Home/UserGreeting");
   return data;
 };

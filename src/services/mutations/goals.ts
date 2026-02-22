@@ -9,21 +9,18 @@ import {
 import { postServerData, putServerData } from "../server";
 
 export const targetWeightAPI = async (payload: ITargetWeight) => {
-  const data = await postServerData("/api/MyFit/target-weight", payload);
+  const data = await postServerData("MyFit/target-weight", payload);
   return data;
 };
 export const goalAPI = async (payload: ITargetGoal) => {
-  const data = await putServerData(
-    "/api/Questions/update-userPreference",
-    payload
-  );
+  const data = await putServerData("Questions/update-userPreference", payload);
   return data;
 };
 export const customStepGoalAPI = async (payload: ICustomStepGoal) => {
-  const data = await postServerData("/api/Steps/goal", payload);
+  const data = await postServerData("Steps/goal", payload);
   return data;
 };
 export const recommendedStepGoalAPI = async (payload: IRecommendedStepGoal) => {
-  const data = await putServerData("/api/Steps/update-goal", payload);
+  const data = await putServerData("Steps/update-goal", payload);
   return data;
 };

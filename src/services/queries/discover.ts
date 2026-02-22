@@ -4,15 +4,15 @@ import { IDiscoverFiltersWithPagination } from "@/src/interfaces/main/discover";
 import { buildQueryString } from "@/src/lib/utils";
 
 export const discoverWorkoutsAPI = async () => {
-  const data = await getServerData("/api/Discover/Discover-WorkoutProgram");
+  const data = await getServerData("Discover/Discover-WorkoutProgram");
   return data;
 };
 export const discoverVideosAPI = async () => {
-  const data = await getServerData("/api/Discover/Discover-Videos");
+  const data = await getServerData("Discover/Discover-Videos");
   return data;
 };
 export const discoverFilterWorkoutsAPI = async (
-  filters: IDiscoverFiltersWithPagination
+  filters: IDiscoverFiltersWithPagination,
 ) => {
   const queryString = buildQueryString({
     FilterBodyFocsAreaIds: filters.focusAreaIds,
@@ -24,12 +24,12 @@ export const discoverFilterWorkoutsAPI = async (
   });
 
   const data = await getServerData(
-    `/api/Discover/filter-WorkoutProgram?${queryString}`
+    `Discover/filter-WorkoutProgram?${queryString}`,
   );
   return data;
 };
 export const discoverFilterVideosAPI = async (
-  filters: IDiscoverFiltersWithPagination
+  filters: IDiscoverFiltersWithPagination,
 ) => {
   const queryString = buildQueryString({
     FilterBodyFocsAreaIds: filters.focusAreaIds,
@@ -40,8 +40,6 @@ export const discoverFilterVideosAPI = async (
     pageSize: PAGE_SIZE,
   });
 
-  const data = await getServerData(
-    `/api/Discover/filter-Videos?${queryString}`
-  );
+  const data = await getServerData(`Discover/filter-Videos?${queryString}`);
   return data;
 };
